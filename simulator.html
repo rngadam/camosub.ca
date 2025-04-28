@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwater Hockey Simulator (AI Heuristics V3)</title>
+    <title>Underwater Hockey Simulator (Breath Refined)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -42,11 +42,11 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.5rem;
-            font-size: 0.65rem; /* Even smaller font for more columns */
+            font-size: 0.6rem; /* Even smaller font for more columns */
         }
         #statusBoard th, #statusBoard td {
             border: 1px solid #d1d5db; /* Gray-300 border */
-            padding: 0.15rem 0.25rem; /* Adjust padding */
+            padding: 0.1rem 0.2rem; /* Adjust padding */
             text-align: left;
             white-space: nowrap; /* Prevent text wrapping */
         }
@@ -115,7 +115,7 @@
 </head>
 <body class="bg-sky-100">
 
-    <h1 class="text-2xl md:text-3xl font-bold text-sky-800 mb-4">Underwater Hockey Simulator (AI Heuristics V3)</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-sky-800 mb-4">Underwater Hockey Simulator (Breath Refined)</h1>
 
     <div class="w-full max-w-[800px] relative">
         <canvas id="gameCanvas" width="800" height="500"></canvas>
@@ -147,6 +147,7 @@
                          <th>Strategy</th>
                          <th>State</th>
                          <th>Breath (s)</th>
+                         <th>Max Breath (s)</th> {/* */}
                          <th>Speed</th>
                          <th>Flick Str</th>
                      </tr>
@@ -172,7 +173,7 @@
 
         const PUCK_RADIUS = 7;
         const GOAL_WIDTH = 100;
-        const GOAL_DEPTH = 15; // Visual depth of the goal tray
+        const GOAL_DEPTH = 15;
         const PLAYER_BASE_SPEED = 1.6;
         const AI_SPEED_FACTOR = 0.9;
         const PUCK_FRICTION = 0.975;
@@ -180,17 +181,18 @@
         const STICK_REACH = PLAYER_COLLISION_RADIUS + 5;
         const BASE_FLICK_FORCE = 2.5;
         const GOAL_SHOT_FORCE = 4.5;
-        const POSSESSION_PULL_FORCE = 0.8; // *** Further increased puck stickiness ***
-        const POSSESSION_DAMPING = 0.05; // *** Much stronger velocity damping when possessed ***
-        const MAX_BREATH = 100;
-        const APPROX_MAX_BREATH_SECONDS = 15;
-        const BREATH_RECOVERY_RATE = 1.8;
-        const BREATH_CONSUMPTION_RATE = 0.6;
+        const POSSESSION_PULL_FORCE = 0.8;
+        const POSSESSION_DAMPING = 0.05;
+        const MAX_BREATH = 100; // Internal breath unit (always 100)
+        const MIN_BREATH_SECONDS = 15; // *** Min real-world breath hold ***
+        const MAX_BREATH_SECONDS = 30; // *** Max real-world breath hold ***
+        const BREATH_RECOVERY_RATE = 1.8; // Internal units per frame
+        const BREATH_CONSUMPTION_RATE = 0.6; // Internal units per frame
         const AI_DIVE_THRESHOLD_DIST = POOL_WIDTH * 0.35;
-        const AI_SURFACE_THRESHOLD_BREATH = 25;
+        const AI_SURFACE_THRESHOLD_BREATH = 25; // Internal unit threshold to surface
         const AI_GOAL_ATTRACTION_PUSH = 0.8;
         const AI_GOAL_ATTRACTION_CHASE = 0.3;
-        const AI_LOW_BREATH_FLICK_THRESHOLD = AI_SURFACE_THRESHOLD_BREATH * 1.3;
+        const AI_LOW_BREATH_FLICK_THRESHOLD = AI_SURFACE_THRESHOLD_BREATH * 1.3; // Internal unit threshold to flick
         const AI_AVOIDANCE_DISTANCE = PLAYER_COLLISION_RADIUS * 6;
         const AI_LATERAL_MANEUVER_THRESHOLD = PLAYER_COLLISION_RADIUS * 3.5;
         const AI_LATERAL_MANEUVER_ANGLE = Math.PI / 4.5;
@@ -205,9 +207,9 @@
         const FORMATION_ROLES = ['LF', 'CF', 'RF', 'LB', 'CB', 'RB'];
         const LEFT_HANDED_PROBABILITY = 0.1;
         const START_COUNTDOWN_SECONDS = 3;
-        const INITIAL_PUCK_RACE_COMMITMENT = POOL_WIDTH * 0.20; // *** Increased commitment distance further ***
+        const INITIAL_PUCK_RACE_COMMITMENT = POOL_WIDTH * 0.20;
         const START_POS_Y_SPREAD = PLAYER_HEIGHT * 1.2;
-        const WING_SIDE_THRESHOLD = POOL_HEIGHT * 0.35; // How far from center defines left/right side
+        const WING_SIDE_THRESHOLD = POOL_HEIGHT * 0.35;
 
         // Game State
         let players = [];
@@ -376,7 +378,7 @@
                 super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_COLLISION_RADIUS, color);
                 this.team = team;
                 this.role = role;
-                this.breath = MAX_BREATH;
+                this.breath = MAX_BREATH; // Internal unit
                 this.isUnderwater = false;
                 this.friction = PLAYER_FRICTION;
                 this.stickColor = team === 'white' ? '#d1d5db' : '#4b5563';
@@ -388,16 +390,20 @@
                 this.stickSide = this.handedness === 'R' ? 1 : -1;
                 this.angle = team === 'white' ? 0 : Math.PI;
                 this.initialDiveTargetMet = false;
+                // *** Individual max breath time in seconds ***
+                this.maxBreathSeconds = MIN_BREATH_SECONDS + Math.random() * (MAX_BREATH_SECONDS - MIN_BREATH_SECONDS);
             }
 
             manageBreath() {
                 if (this.isUnderwater) {
+                    // Consumption logic remains the same (internal units)
                     this.breath -= BREATH_CONSUMPTION_RATE;
                     if (this.breath <= 0) {
                         this.breath = 0;
                         this.surface();
                     }
                 } else {
+                    // Recovery logic remains the same (internal units, capped at MAX_BREATH)
                     const speedFactor = Math.sqrt(this.vx*this.vx + this.vy*this.vy) / this.baseSpeed;
                     const recoveryMultiplier = Math.max(0, 1 - speedFactor * 1.5);
                     this.breath += BREATH_RECOVERY_RATE * recoveryMultiplier;
@@ -408,7 +414,8 @@
             }
 
             dive() {
-                if (this.breath > AI_SURFACE_THRESHOLD_BREATH * 1.1 && !this.isUnderwater) {
+                // *** Can only dive if breath is FULL (internal 100) ***
+                if (this.breath >= MAX_BREATH && !this.isUnderwater) {
                     this.isUnderwater = true;
                     this.initialDiveTargetMet = false;
                 }
@@ -455,7 +462,7 @@
 
             // --- AI Logic ---
             updateAI(puck, players) {
-                if (!puck || gameState !== 'RUNNING') return; // Only run AI during active play
+                if (!puck || gameState !== 'RUNNING') return;
 
                 const distToPuck = distance(this.x, this.y, puck.x, puck.y);
                 const isPossessing = puck.possessor === this;
@@ -493,12 +500,15 @@
                 // --- Surface Logic ---
                 if (!this.isUnderwater) {
                     this.strategy = 'Recover/Reposition';
-                    const shouldDiveOffensively = this.breath > MAX_BREATH * 0.8 && distToPuck < AI_DIVE_THRESHOLD_DIST && !opponentHasPuck && !puckInDefensiveZone; // Don't dive offensively if puck is defensive
+                    // *** Condition to dive: MUST have full breath (100) ***
+                    const canDive = this.breath >= MAX_BREATH;
+                    const shouldDiveOffensively = canDive && distToPuck < AI_DIVE_THRESHOLD_DIST && !opponentHasPuck && !puckInDefensiveZone;
                     const loosePuckNearGoal = !puck.possessor && puckInDefensiveZone && distance(this.x, this.y, puck.x, puck.y) < AI_DIVE_THRESHOLD_DIST * 2;
-                    const shouldDiveDefensively = this.breath > MAX_BREATH * 0.5 && ( (opponentHasPuck && distance(this.x, this.y, puck.possessor.x, puck.possessor.y) < AI_DIVE_THRESHOLD_DIST * 1.5) || loosePuckNearGoal );
+                    const shouldDiveDefensively = canDive && ( (opponentHasPuck && distance(this.x, this.y, puck.possessor.x, puck.possessor.y) < AI_DIVE_THRESHOLD_DIST * 1.5) || loosePuckNearGoal );
 
                     // *** Backs follow forwards initially ***
                     if (this.strategy === 'Follow Forward' && !this.initialDiveTargetMet) {
+                       // ... (following logic remains the same) ...
                         let targetPlayer = null;
                         let correspondingRole = '';
                         if (this.role === 'LB') correspondingRole = 'LF';
@@ -511,7 +521,6 @@
 
                         if (targetPlayer) {
                             this.currentState = 'Following Forward';
-                            // Move towards where the forward is, but stay slightly behind
                             const targetX = targetPlayer.x - Math.cos(targetPlayer.angle) * PLAYER_HEIGHT;
                             const targetY = targetPlayer.y - Math.sin(targetPlayer.angle) * PLAYER_HEIGHT;
                             const dx = targetX - this.x;
@@ -525,21 +534,37 @@
                             } else {
                                 this.vx *= 0.8; this.vy *= 0.8;
                             }
-                            // Back stops following if forward gets puck or puck goes deep defensive
                             if (targetPlayer.isUnderwater || (puck.possessor && puck.possessor.team !== this.team && puckInDefensiveZone)) {
-                                this.initialDiveTargetMet = true; // Stop following
+                                this.initialDiveTargetMet = true;
                                 this.strategy = 'Positioning';
                             }
                         } else {
-                             this.strategy = 'Positioning'; // Fallback
+                             this.strategy = 'Positioning';
                         }
                     }
                     // *** Normal surface positioning/diving logic ***
                     else if (shouldDiveOffensively || shouldDiveDefensively) {
-                        this.dive();
-                        this.currentState = shouldDiveDefensively ? 'Diving (Defensive)' : 'Diving for Puck';
-                    } else {
-                        this.currentState = this.breath < MAX_BREATH * 0.95 ? 'Recovering Breath' : 'Positioning (Surface)';
+                        this.dive(); // Dive function now implicitly checks for full breath
+                        if(this.isUnderwater) { // Check if dive was successful
+                           this.currentState = shouldDiveDefensively ? 'Diving (Defensive)' : 'Diving for Puck';
+                        } else {
+                            // If dive failed (not full breath), continue recovery/positioning
+                            this.currentState = 'Recovering Breath'; // Force recovery state
+                            // Continue moving towards formation slowly
+                            const formationPos = this.getFormationPosition(puck, players);
+                            const dx = formationPos.x - this.x;
+                            const dy = formationPos.y - this.y;
+                            const distToTarget = Math.sqrt(dx*dx + dy*dy);
+                            if (distToTarget > this.radius * 2) {
+                                const moveX = (dx / distToTarget) * speed * 0.2; // Slow recovery speed
+                                const moveY = (dy / distToTarget) * speed * 0.2;
+                                this.applyForce(moveX * 0.1, moveY * 0.1);
+                            } else {
+                                this.vx *= 0.8; this.vy *= 0.8;
+                            }
+                        }
+                    } else { // Stay surfaced and recover/position
+                        this.currentState = this.breath < MAX_BREATH ? 'Recovering Breath' : 'Positioning (Surface)'; // Explicitly recover if not full
                         const formationPos = this.getFormationPosition(puck, players);
                         const dx = formationPos.x - this.x;
                         const dy = formationPos.y - this.y;
@@ -566,12 +591,12 @@
                         const centerPuckX = POOL_WIDTH / 2;
                         const centerPuckY = POOL_HEIGHT / 2;
                         const distToCenterTarget = distance(this.x, this.y, centerPuckX, centerPuckY);
-                        const puckMovedFromCenter = distance(puck.x, puck.y, centerPuckX, centerPuckY) > PUCK_RADIUS * 5; // Increased threshold
+                        const puckMovedFromCenter = distance(puck.x, puck.y, centerPuckX, centerPuckY) > PUCK_RADIUS * 5;
 
                         if (distToCenterTarget > INITIAL_PUCK_RACE_COMMITMENT && !puckMovedFromCenter) {
                              this.currentState = 'Racing for Puck';
                              moveAngle = angle(this.x, this.y, centerPuckX, centerPuckY);
-                             forceMagnitude = speed * 0.22; // Move faster during initial race
+                             forceMagnitude = speed * 0.22;
                              this.applyForce(Math.cos(moveAngle) * forceMagnitude, Math.sin(moveAngle) * forceMagnitude);
                              return;
                         } else {
@@ -671,7 +696,6 @@
 
                     } else { // Puck is loose
                          // --- Loose Puck / Positioning Underwater ---
-                         // *** Prioritize puck if it's near own goal ***
                          if (puckInDefensiveZone && (this.role.includes('B') || distance(this.x, this.y, ownGoalX, ownGoalY) < POOL_WIDTH * 0.4)) {
                              this.strategy = 'Defend Loose Puck';
                              this.currentState = 'Chasing (Defensive)';
@@ -691,12 +715,10 @@
                              if (isOffWing) {
                                  this.strategy = 'Recover Off-Wing';
                                  this.currentState = 'Repositioning Center';
-                                 // Target position closer to center line and own half
                                  const formationPos = this.getFormationPosition(puck, players);
-                                 const targetX = (this.x + formationPos.x) * 0.5; // Move towards formation X
-                                 const targetY = (this.y + POOL_HEIGHT / 2) * 0.5; // Move towards center Y
+                                 const targetX = (this.x + formationPos.x) * 0.5;
+                                 const targetY = (this.y + POOL_HEIGHT / 2) * 0.5;
                                  moveAngle = angle(this.x, this.y, targetX, targetY);
-                                 // Off-wings might surface sooner if breath is moderate
                                  if (this.breath < MAX_BREATH * 0.6) {
                                       this.strategy = 'Surfacing (Off-Wing)';
                                       this.surface();
@@ -991,8 +1013,10 @@
                 row.insertCell().textContent = player.isUnderwater ? 'Bottom' : 'Surface';
                 row.insertCell().textContent = player.strategy;
                 row.insertCell().textContent = player.currentState;
-                const approxBreathSeconds = (player.breath / MAX_BREATH) * APPROX_MAX_BREATH_SECONDS;
+                // *** Calculate and display approx breath seconds based on individual max ***
+                const approxBreathSeconds = (player.breath / MAX_BREATH) * player.maxBreathSeconds;
                 row.insertCell().textContent = `${approxBreathSeconds.toFixed(1)}s`;
+                row.insertCell().textContent = player.maxBreathSeconds.toFixed(1); // Display Max Breath
                 row.insertCell().textContent = player.baseSpeed.toFixed(1);
                 row.insertCell().textContent = player.flickStrength.toFixed(1);
             });
