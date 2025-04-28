@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwater Hockey Simulator (Breath Refined)</title>
+    <title>Underwater Hockey Simulator (Stick Possession)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -115,7 +115,7 @@
 </head>
 <body class="bg-sky-100">
 
-    <h1 class="text-2xl md:text-3xl font-bold text-sky-800 mb-4">Underwater Hockey Simulator (Breath Refined)</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-sky-800 mb-4">Underwater Hockey Simulator (Stick Possession)</h1>
 
     <div class="w-full max-w-[800px] relative">
         <canvas id="gameCanvas" width="800" height="500"></canvas>
@@ -147,7 +147,7 @@
                          <th>Strategy</th>
                          <th>State</th>
                          <th>Breath (s)</th>
-                         <th>Max Breath (s)</th> {/* */}
+                         <th>Max Breath (s)</th>
                          <th>Speed</th>
                          <th>Flick Str</th>
                      </tr>
@@ -171,28 +171,29 @@
         const PLAYER_HEIGHT = 30;
         const PLAYER_COLLISION_RADIUS = Math.max(PLAYER_WIDTH, PLAYER_HEIGHT) / 2;
 
-        const PUCK_RADIUS = 7;
+        const PUCK_RADIUS = 6;
         const GOAL_WIDTH = 100;
         const GOAL_DEPTH = 15;
         const PLAYER_BASE_SPEED = 1.6;
         const AI_SPEED_FACTOR = 0.9;
         const PUCK_FRICTION = 0.975;
         const PLAYER_FRICTION = 0.90;
-        const STICK_REACH = PLAYER_COLLISION_RADIUS + 5;
+        const STICK_VISUAL_LENGTH = 15; // How long the stick looks
+        const STICK_REACH = PLAYER_COLLISION_RADIUS + STICK_VISUAL_LENGTH * 0.8; // Effective reach slightly less than visual
         const BASE_FLICK_FORCE = 2.5;
         const GOAL_SHOT_FORCE = 4.5;
-        const POSSESSION_PULL_FORCE = 0.8;
-        const POSSESSION_DAMPING = 0.05;
-        const MAX_BREATH = 100; // Internal breath unit (always 100)
-        const MIN_BREATH_SECONDS = 15; // *** Min real-world breath hold ***
-        const MAX_BREATH_SECONDS = 30; // *** Max real-world breath hold ***
-        const BREATH_RECOVERY_RATE = 1.8; // Internal units per frame
-        const BREATH_CONSUMPTION_RATE = 0.6; // Internal units per frame
+        const POSSESSION_PULL_FORCE = 0.9;
+        const POSSESSION_DAMPING = 0.02;
+        const MAX_BREATH = 100;
+        const MIN_BREATH_SECONDS = 15;
+        const MAX_BREATH_SECONDS = 30;
+        const BREATH_RECOVERY_RATE = 1.8;
+        const BREATH_CONSUMPTION_RATE = 0.6;
         const AI_DIVE_THRESHOLD_DIST = POOL_WIDTH * 0.35;
-        const AI_SURFACE_THRESHOLD_BREATH = 25; // Internal unit threshold to surface
+        const AI_SURFACE_THRESHOLD_BREATH = 25;
         const AI_GOAL_ATTRACTION_PUSH = 0.8;
         const AI_GOAL_ATTRACTION_CHASE = 0.3;
-        const AI_LOW_BREATH_FLICK_THRESHOLD = AI_SURFACE_THRESHOLD_BREATH * 1.3; // Internal unit threshold to flick
+        const AI_LOW_BREATH_FLICK_THRESHOLD = AI_SURFACE_THRESHOLD_BREATH * 1.3;
         const AI_AVOIDANCE_DISTANCE = PLAYER_COLLISION_RADIUS * 6;
         const AI_LATERAL_MANEUVER_THRESHOLD = PLAYER_COLLISION_RADIUS * 3.5;
         const AI_LATERAL_MANEUVER_ANGLE = Math.PI / 4.5;
@@ -320,15 +321,28 @@
 
             update(players) {
                  if (this.possessor && this.possessor.isUnderwater) {
-                     const forwardOffset = this.possessor.height * 0.6;
-                     const sideOffset = this.possessor.width * 0.5 * this.possessor.stickSide;
-                     const targetX = this.possessor.x + Math.cos(this.possessor.angle) * forwardOffset - Math.sin(this.possessor.angle) * sideOffset;
-                     const targetY = this.possessor.y + Math.sin(this.possessor.angle) * forwardOffset + Math.cos(this.possessor.angle) * sideOffset;
+                     // *** Calculate target position at the stick tip ***
+                     const p = this.possessor;
+                     const stickSideOffset = (p.width / 2 + 2) * p.stickSide;
+                     const stickForwardOffset = p.height * 0.4;
+                     const stickTipLength = STICK_VISUAL_LENGTH + this.radius; // Target slightly beyond visual tip
+
+                     // Calculate stick tip position relative to player center, then rotate
+                     const localStickTipX = stickForwardOffset + stickTipLength;
+                     const localStickTipY = stickSideOffset;
+
+                     const cosA = Math.cos(p.angle);
+                     const sinA = Math.sin(p.angle);
+
+                     const targetX = p.x + localStickTipX * cosA - localStickTipY * sinA;
+                     const targetY = p.y + localStickTipX * sinA + localStickTipY * cosA;
+
+                     // Apply strong force towards stick tip
                      const dx = targetX - this.x;
                      const dy = targetY - this.y;
                      this.vx += dx * POSSESSION_PULL_FORCE;
                      this.vy += dy * POSSESSION_PULL_FORCE;
-                     this.vx *= POSSESSION_DAMPING;
+                     this.vx *= POSSESSION_DAMPING; // Dampen velocity heavily
                      this.vy *= POSSESSION_DAMPING;
                  } else {
                      if (this.possessor && !this.possessor.isUnderwater) {
@@ -340,6 +354,7 @@
                      players.forEach(player => {
                          if (player.isUnderwater) {
                              const d = distance(this.x, this.y, player.x, player.y);
+                             // Check against player's collision radius
                              if (d < this.radius + player.radius) {
                                  const impactAngle = angle(player.x, player.y, this.x, this.y);
                                  const totalSpeed = Math.sqrt(this.vx**2 + this.vy**2);
@@ -390,7 +405,6 @@
                 this.stickSide = this.handedness === 'R' ? 1 : -1;
                 this.angle = team === 'white' ? 0 : Math.PI;
                 this.initialDiveTargetMet = false;
-                // *** Individual max breath time in seconds ***
                 this.maxBreathSeconds = MIN_BREATH_SECONDS + Math.random() * (MAX_BREATH_SECONDS - MIN_BREATH_SECONDS);
             }
 
@@ -474,7 +488,7 @@
                 const ownGoalY = POOL_HEIGHT / 2;
                 const ownDefensiveLine = POOL_WIDTH * (this.team === 'white' ? AI_DEFENSIVE_ZONE_X_FACTOR : 1 - AI_DEFENSIVE_ZONE_X_FACTOR);
                 const puckInDefensiveZone = (this.team === 'white' && puck.x < ownDefensiveLine) || (this.team === 'black' && puck.x > ownDefensiveLine);
-                const puckInGoalZone = (this.team === 'white' && puck.x < GOAL_DEPTH) || (this.team === 'black' && puck.x > POOL_WIDTH - GOAL_DEPTH);
+                const puckInGoalZone = (this.team === 'white' && puck.x < GOAL_DEPTH + PUCK_RADIUS) || (this.team === 'black' && puck.x > POOL_WIDTH - GOAL_DEPTH - PUCK_RADIUS);
 
                 // --- Priority 1: Surface if critically low on breath ---
                 if (this.isUnderwater && this.breath < AI_SURFACE_THRESHOLD_BREATH) {
@@ -535,11 +549,11 @@
                                 this.vx *= 0.8; this.vy *= 0.8;
                             }
                             if (targetPlayer.isUnderwater || (puck.possessor && puck.possessor.team !== this.team && puckInDefensiveZone)) {
-                                this.initialDiveTargetMet = true;
+                                this.initialDiveTargetMet = true; // Stop following
                                 this.strategy = 'Positioning';
                             }
                         } else {
-                             this.strategy = 'Positioning';
+                             this.strategy = 'Positioning'; // Fallback
                         }
                     }
                     // *** Normal surface positioning/diving logic ***
@@ -593,16 +607,17 @@
                         const distToCenterTarget = distance(this.x, this.y, centerPuckX, centerPuckY);
                         const puckMovedFromCenter = distance(puck.x, puck.y, centerPuckX, centerPuckY) > PUCK_RADIUS * 5;
 
+                        // Only race if puck is still near center and player hasn't reached commitment distance
                         if (distToCenterTarget > INITIAL_PUCK_RACE_COMMITMENT && !puckMovedFromCenter) {
                              this.currentState = 'Racing for Puck';
                              moveAngle = angle(this.x, this.y, centerPuckX, centerPuckY);
-                             forceMagnitude = speed * 0.22;
+                             forceMagnitude = speed * 0.22; // Faster during race
                              this.applyForce(Math.cos(moveAngle) * forceMagnitude, Math.sin(moveAngle) * forceMagnitude);
-                             return;
+                             return; // Override other logic during initial race
                         } else {
-                             this.initialDiveTargetMet = true;
-                             this.strategy = 'Get Puck/Position';
-                             this.currentState = 'Chasing/Positioning';
+                             this.initialDiveTargetMet = true; // Reached close enough or puck moved
+                             this.strategy = 'Get Puck/Position'; // Transition strategy
+                             this.currentState = 'Chasing/Positioning'; // Sensible default state
                         }
                     }
 
@@ -626,7 +641,7 @@
                              return;
                          }
                          // *** Clearing / Attacking Logic ***
-                         else if (isInOwnHalf) {
+                         else if (isInOwnHalf || puckInGoalZone) { // Also clear if in own goal zone
                              this.strategy = 'Clear Puck';
                              this.currentState = 'Clearing Puck';
                              const targetY = this.y < POOL_HEIGHT / 2 ? 0 + this.radius : POOL_HEIGHT - this.radius;
@@ -680,7 +695,14 @@
 
                     } else if (opponentHasPuck) {
                         // --- Defensive Logic (Underwater) ---
-                        if (this.role.includes('B')) {
+                         // *** Aggressive defense if puck is near own goal ***
+                        if (puckInDefensiveZone || puckInGoalZone) {
+                             this.strategy = 'Defend Goal (Aggressive)';
+                             this.currentState = 'Pressuring Carrier';
+                             moveAngle = angle(this.x, this.y, puck.possessor.x, puck.possessor.y);
+                        }
+                        // Standard defensive positioning otherwise
+                        else if (this.role.includes('B')) {
                             this.strategy = 'Defend Goal';
                             this.currentState = 'Intercepting';
                             const interceptDist = PLAYER_HEIGHT * 1.5;
@@ -696,7 +718,8 @@
 
                     } else { // Puck is loose
                          // --- Loose Puck / Positioning Underwater ---
-                         if (puckInDefensiveZone && (this.role.includes('B') || distance(this.x, this.y, ownGoalX, ownGoalY) < POOL_WIDTH * 0.4)) {
+                         // *** Prioritize puck if it's near own goal ***
+                         if (puckInDefensiveZone || puckInGoalZone) {
                              this.strategy = 'Defend Loose Puck';
                              this.currentState = 'Chasing (Defensive)';
                              moveAngle = angle(this.x, this.y, puck.x, puck.y);
@@ -887,25 +910,57 @@
             players = [];
             sortedPlayerList = [];
 
+            // Create players temporarily before assigning roles
+            let tempPlayers = { white: [], black: [] };
             let roleIndex = 0;
             for (let team of ['white', 'black']) {
                  roleIndex = 0;
                  for (let i = 0; i < NUM_PLAYERS_PER_TEAM; i++) {
-                     // Role assignment remains the same
                      const role = FORMATION_ROLES[roleIndex % FORMATION_ROLES.length];
-                     const player = new Player(0, 0, team, role); // Initial pos set in resetPositions
-                     players.push(player);
+                     const player = new Player(0, 0, team, role); // Temp position
+                     tempPlayers[team].push(player);
                      roleIndex++;
                  }
             }
 
+            // *** Assign strongest players to center roles ***
+            for (let team of ['white', 'black']) {
+                 let forwards = tempPlayers[team].filter(p => p.role.includes('F'));
+                 let backs = tempPlayers[team].filter(p => p.role.includes('B'));
+
+                 // Assign Center Forward
+                 if (forwards.length >= 3) {
+                     forwards.sort((a, b) => (b.baseSpeed * b.flickStrength) - (a.baseSpeed * a.flickStrength)); // Sort descending by strength
+                     let currentCF = forwards.find(p => p.role === 'CF');
+                     if (currentCF && forwards[0] !== currentCF) { // If strongest isn't already CF
+                         let strongestRole = forwards[0].role;
+                         forwards[0].role = 'CF'; // Assign strongest to CF
+                         currentCF.role = strongestRole; // Assign old CF the strongest's original role
+                         console.log(`${team} CF assigned to player originally ${strongestRole}`);
+                     }
+                 }
+                 // Assign Center Back
+                 if (backs.length >= 3) {
+                      backs.sort((a, b) => (b.baseSpeed * b.flickStrength) - (a.baseSpeed * a.flickStrength)); // Sort descending by strength
+                      let currentCB = backs.find(p => p.role === 'CB');
+                      if (currentCB && backs[0] !== currentCB) { // If strongest isn't already CB
+                          let strongestRole = backs[0].role;
+                          backs[0].role = 'CB'; // Assign strongest to CB
+                          currentCB.role = strongestRole; // Assign old CB the strongest's original role
+                          console.log(`${team} CB assigned to player originally ${strongestRole}`);
+                      }
+                 }
+                 players = players.concat(tempPlayers[team]); // Add processed team players to main list
+            }
+
+
             puck = new Puck(POOL_WIDTH / 2, POOL_HEIGHT / 2);
             puck.possessor = null;
 
-            sortPlayersForStatus(); // Sort players for consistent status display
+            sortPlayersForStatus(); // Sort players for consistent status display *after* role assignment
 
             console.log(`Game Initialized. Players: ${players.length}. Setting up for pre-start.`);
-            resetPositions(); // Position players at walls based on role
+            resetPositions(); // Position players at walls based on final role
             gameState = 'PRE_START';
             updateStatusBoard();
             drawInitialState(); // Draw the initial frame
@@ -936,19 +991,18 @@
                  const startX = player.team === 'white' ? player.radius + 5 : POOL_WIDTH - player.radius - 5;
                  let startY = centerGoalY;
 
-                 // *** Calculate Y based on role ***
+                 // *** Calculate Y based on final assigned role ***
                  switch (player.role) {
                      case 'CF': startY = centerGoalY; break;
                      case 'LF': startY = centerGoalY - START_POS_Y_SPREAD * 1; break;
                      case 'RF': startY = centerGoalY + START_POS_Y_SPREAD * 1; break;
-                     case 'LB': startY = centerGoalY - START_POS_Y_SPREAD * 2; break; // Left of LF
-                     case 'CB': startY = centerGoalY + START_POS_Y_SPREAD * 2; break; // Right of RF
-                     case 'RB': startY = centerGoalY + START_POS_Y_SPREAD * 3; break; // Right of CB
+                     case 'LB': startY = centerGoalY - START_POS_Y_SPREAD * 2; break;
+                     case 'CB': startY = centerGoalY + START_POS_Y_SPREAD * 2; break;
+                     case 'RB': startY = centerGoalY + START_POS_Y_SPREAD * 3; break;
                      default:
                           startY = centerGoalY + (Math.random() - 0.5) * POOL_HEIGHT * 0.4;
                           break;
                  }
-                 // Clamp Y to be within pool bounds
                  startY = Math.max(player.radius + 2, Math.min(POOL_HEIGHT - player.radius - 2, startY));
 
                  player.x = startX;
@@ -1030,14 +1084,23 @@
             players.forEach(player => {
                 if (!player.isUnderwater) return;
 
-                const dist = distance(player.x, player.y, puck.x, puck.y);
-                if (dist < player.radius + puck.radius + (STICK_REACH - player.radius)) {
+                // Calculate stick tip position (simplified for collision check)
+                const stickForwardOffset = player.height * 0.5 + STICK_VISUAL_LENGTH * 0.5; // Approx center of stick length
+                const stickSideOffset = (player.width / 2) * player.stickSide;
+                const stickTipX = player.x + Math.cos(player.angle) * stickForwardOffset - Math.sin(player.angle) * stickSideOffset;
+                const stickTipY = player.y + Math.sin(player.angle) * stickForwardOffset + Math.cos(player.angle) * stickSideOffset;
+
+                // Check distance from puck to stick tip area
+                const dist = distance(stickTipX, stickTipY, puck.x, puck.y);
+                const reachRadius = STICK_VISUAL_LENGTH * 0.5 + puck.radius; // Effective reach area around stick tip
+
+                if (dist < reachRadius) {
                     if (!puck.possessor || puck.possessor.team !== player.team) {
                          if(puck.possessor) {
                              puck.possessor.applyForce((puck.possessor.x - player.x) * 0.05, (puck.possessor.y - player.y) * 0.05);
                          }
                          puck.possessor = player;
-                         puck.applyForce(player.vx * 0.1, player.vy * 0.1);
+                         // Puck velocity is now heavily dampened when possessed, no need to add player velocity here
                     }
                 }
             });
