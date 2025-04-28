@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwater Hockey Simulator (AI Behavior V3)</title>
+    <title>Underwater Hockey Simulator (Realistic Start)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -115,7 +115,7 @@
 </head>
 <body class="bg-sky-100">
 
-    <h1 class="text-2xl md:text-3xl font-bold text-sky-800 mb-4">Underwater Hockey Simulator (AI Behavior V3)</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-sky-800 mb-4">Underwater Hockey Simulator (Realistic Start)</h1>
 
     <div class="w-full max-w-[800px] relative">
         <canvas id="gameCanvas" width="800" height="500"></canvas>
@@ -179,9 +179,9 @@
         const PLAYER_FRICTION = 0.90;
         const STICK_REACH = PLAYER_COLLISION_RADIUS + 5;
         const BASE_FLICK_FORCE = 2.5;
-        const GOAL_SHOT_FORCE = 4.0;
-        const POSSESSION_PULL_FORCE = 0.6; // *** Increased puck stickiness further ***
-        const POSSESSION_DAMPING = 0.2; // *** Stronger velocity damping when possessed ***
+        const GOAL_SHOT_FORCE = 4.5;
+        const POSSESSION_PULL_FORCE = 0.7;
+        const POSSESSION_DAMPING = 0.1;
         const MAX_BREATH = 100;
         const APPROX_MAX_BREATH_SECONDS = 15;
         const BREATH_RECOVERY_RATE = 1.8;
@@ -197,14 +197,16 @@
         const AI_AVOIDANCE_WEIGHT = 0.35;
         const AI_TEAMMATE_ATTRACTION_WEIGHT = 0.2;
         const AI_FORMATION_WEIGHT = 0.3;
-        const AI_GOAL_SHOT_RANGE = GOAL_DEPTH * 5;
+        const AI_GOAL_SHOT_RANGE = GOAL_DEPTH * 6;
+        const AI_DEFENSIVE_ZONE_X_FACTOR = 0.3;
         const PUCK_COLLISION_DAMPEN = 0.2;
         const PLAYER_REPULSION_FORCE = 0.05;
         const NUM_PLAYERS_PER_TEAM = 6;
         const FORMATION_ROLES = ['LF', 'CF', 'RF', 'LB', 'CB', 'RB'];
         const LEFT_HANDED_PROBABILITY = 0.1;
         const START_COUNTDOWN_SECONDS = 3;
-        const INITIAL_PUCK_RACE_COMMITMENT = POOL_WIDTH * 0.1; // How close player gets to center before other logic takes over
+        const INITIAL_PUCK_RACE_COMMITMENT = POOL_WIDTH * 0.15;
+        const START_POS_Y_SPREAD = PLAYER_HEIGHT * 1.2; // Vertical distance between players at start
 
         // Game State
         let players = [];
@@ -215,7 +217,7 @@
         let animationFrameId;
         let countdownTimer = START_COUNTDOWN_SECONDS;
         let countdownIntervalId = null;
-        let sortedPlayerList = []; // *** For stable status board order ***
+        let sortedPlayerList = [];
 
         // UI Elements
         const scoreWhiteEl = document.getElementById('scoreWhite');
@@ -336,12 +338,10 @@
                          if (player.isUnderwater) {
                              const d = distance(this.x, this.y, player.x, player.y);
                              if (d < this.radius + player.radius) {
-                                 // More realistic collision - transfer some velocity based on angle
                                  const impactAngle = angle(player.x, player.y, this.x, this.y);
                                  const totalSpeed = Math.sqrt(this.vx**2 + this.vy**2);
                                  this.vx = Math.cos(impactAngle) * totalSpeed * PUCK_COLLISION_DAMPEN;
                                  this.vy = Math.sin(impactAngle) * totalSpeed * PUCK_COLLISION_DAMPEN;
-                                // Add a small amount of the player's velocity
                                  this.vx += player.vx * 0.1;
                                  this.vy += player.vy * 0.1;
                              }
@@ -386,7 +386,7 @@
                 this.handedness = Math.random() < LEFT_HANDED_PROBABILITY ? 'L' : 'R';
                 this.stickSide = this.handedness === 'R' ? 1 : -1;
                 this.angle = team === 'white' ? 0 : Math.PI;
-                this.initialDiveTargetMet = false; // *** Track if initial dive target reached ***
+                this.initialDiveTargetMet = false;
             }
 
             manageBreath() {
@@ -409,7 +409,7 @@
             dive() {
                 if (this.breath > AI_SURFACE_THRESHOLD_BREATH * 1.1 && !this.isUnderwater) {
                     this.isUnderwater = true;
-                    this.initialDiveTargetMet = false; // Reset flag on new dive
+                    this.initialDiveTargetMet = false;
                 }
             }
 
@@ -454,7 +454,7 @@
 
             // --- AI Logic ---
             updateAI(puck, players) {
-                if (!puck) return;
+                if (!puck || gameState !== 'RUNNING') return; // Only run AI during active play
 
                 const distToPuck = distance(this.x, this.y, puck.x, puck.y);
                 const isPossessing = puck.possessor === this;
@@ -464,6 +464,8 @@
                 const opponentGoalY = POOL_HEIGHT / 2;
                 const ownGoalX = this.team === 'white' ? 0 : POOL_WIDTH;
                 const ownGoalY = POOL_HEIGHT / 2;
+                const ownDefensiveLine = POOL_WIDTH * (this.team === 'white' ? AI_DEFENSIVE_ZONE_X_FACTOR : 1 - AI_DEFENSIVE_ZONE_X_FACTOR);
+                const puckInDefensiveZone = (this.team === 'white' && puck.x < ownDefensiveLine) || (this.team === 'black' && puck.x > ownDefensiveLine);
 
                 // --- Priority 1: Surface if critically low on breath ---
                 if (this.isUnderwater && this.breath < AI_SURFACE_THRESHOLD_BREATH) {
@@ -490,9 +492,44 @@
                 if (!this.isUnderwater) {
                     this.strategy = 'Recover/Reposition';
                     const shouldDiveOffensively = this.breath > MAX_BREATH * 0.8 && distToPuck < AI_DIVE_THRESHOLD_DIST && !opponentHasPuck;
-                    const shouldDiveDefensively = this.breath > MAX_BREATH * 0.5 && opponentHasPuck && distance(this.x, this.y, puck.possessor.x, puck.possessor.y) < AI_DIVE_THRESHOLD_DIST * 1.5;
+                    const loosePuckNearGoal = !puck.possessor && puckInDefensiveZone && distance(this.x, this.y, puck.x, puck.y) < AI_DIVE_THRESHOLD_DIST * 2;
+                    const shouldDiveDefensively = this.breath > MAX_BREATH * 0.5 && ( (opponentHasPuck && distance(this.x, this.y, puck.possessor.x, puck.possessor.y) < AI_DIVE_THRESHOLD_DIST * 1.5) || loosePuckNearGoal );
 
-                    if (shouldDiveOffensively || shouldDiveDefensively) {
+                    // *** Backs follow forwards initially ***
+                    if (this.strategy === 'Follow Forward' && !this.initialDiveTargetMet) {
+                        let targetPlayer = null;
+                        let correspondingRole = '';
+                        if (this.role === 'LB') correspondingRole = 'LF';
+                        else if (this.role === 'RB') correspondingRole = 'RF';
+                        else if (this.role === 'CB') correspondingRole = 'CF';
+
+                        if (correspondingRole) {
+                            targetPlayer = players.find(p => p.team === this.team && p.role === correspondingRole);
+                        }
+
+                        if (targetPlayer) {
+                            this.currentState = 'Following Forward';
+                            const targetX = targetPlayer.x + (this.x - targetPlayer.x) * 0.2; // Target slightly behind forward
+                            const targetY = targetPlayer.y + (this.y - targetPlayer.y) * 0.2;
+                            const dx = targetX - this.x;
+                            const dy = targetY - this.y;
+                            const distToTarget = Math.sqrt(dx*dx + dy*dy);
+                            const speedMultiplier = 0.6; // Move reasonably fast
+                            if (distToTarget > this.radius * 2) {
+                                 const moveX = (dx / distToTarget) * speed * speedMultiplier;
+                                 const moveY = (dy / distToTarget) * speed * speedMultiplier;
+                                 this.applyForce(moveX * 0.1, moveY * 0.1);
+                            } else {
+                                this.vx *= 0.8; this.vy *= 0.8;
+                            }
+                            // Decide when to stop following (e.g., after few seconds or if puck situation changes drastically)
+                            // For simplicity, let's just let them follow until they decide to dive based on other conditions.
+                        } else {
+                             this.strategy = 'Positioning'; // Fallback if target not found
+                        }
+                    }
+                    // *** Normal surface positioning/diving logic ***
+                    else if (shouldDiveOffensively || shouldDiveDefensively) {
                         this.dive();
                         this.currentState = shouldDiveDefensively ? 'Diving (Defensive)' : 'Diving for Puck';
                     } else {
@@ -519,19 +556,22 @@
                     let forceMagnitude = speed * 0.15; // Default force
 
                     // *** Initial Dive Commitment ***
-                    if (this.currentState === 'Diving for Puck' && !this.initialDiveTargetMet) {
+                    if (this.strategy === 'Race for Puck' && !this.initialDiveTargetMet) {
                         const centerPuckX = POOL_WIDTH / 2;
                         const centerPuckY = POOL_HEIGHT / 2;
-                        const distToCenter = distance(this.x, this.y, centerPuckX, centerPuckY);
-                        if (distToCenter > INITIAL_PUCK_RACE_COMMITMENT) {
-                             this.strategy = 'Race for Puck';
+                        const distToCenterTarget = distance(this.x, this.y, centerPuckX, centerPuckY);
+                        const puckMovedFromCenter = distance(puck.x, puck.y, centerPuckX, centerPuckY) > PUCK_RADIUS * 3;
+
+                        if (distToCenterTarget > INITIAL_PUCK_RACE_COMMITMENT && !puckMovedFromCenter) {
+                             this.currentState = 'Racing for Puck';
                              moveAngle = angle(this.x, this.y, centerPuckX, centerPuckY);
-                             forceMagnitude = speed * 0.20; // Move slightly faster during initial race
+                             forceMagnitude = speed * 0.20;
                              this.applyForce(Math.cos(moveAngle) * forceMagnitude, Math.sin(moveAngle) * forceMagnitude);
-                             return; // Override other logic during initial race
+                             return;
                         } else {
-                             this.initialDiveTargetMet = true; // Reached close enough, normal logic resumes
-                             this.currentState = 'Chasing/Positioning'; // Update state
+                             this.initialDiveTargetMet = true;
+                             this.strategy = 'Get Puck/Position'; // Transition strategy
+                             this.currentState = 'Chasing/Positioning';
                         }
                     }
 
@@ -540,8 +580,8 @@
                          // --- Pushing Puck ---
                          forceMagnitude = speed * 0.18;
                          let targetAngle;
-                         const isInOwnHalf = (this.team === 'white' && this.x < POOL_WIDTH / 2) || (this.team === 'black' && this.x > POOL_WIDTH / 2);
                          const distToOppGoal = distance(this.x, this.y, opponentGoalX, opponentGoalY);
+                         const isInOwnHalf = (this.team === 'white' && this.x < POOL_WIDTH / 2) || (this.team === 'black' && this.x > POOL_WIDTH / 2);
 
                          // *** Goal Shot Logic ***
                          if (!isInOwnHalf && distToOppGoal < AI_GOAL_SHOT_RANGE) {
@@ -558,8 +598,8 @@
                          else if (isInOwnHalf) {
                              this.strategy = 'Clear Puck';
                              this.currentState = 'Clearing Puck';
-                             const targetY = this.y < POOL_HEIGHT / 2 ? 0 : POOL_HEIGHT;
-                             targetAngle = angle(this.x, this.y, this.x + (opponentGoalX - this.x)*0.2, targetY);
+                             const targetY = this.y < POOL_HEIGHT / 2 ? 0 + this.radius : POOL_HEIGHT - this.radius;
+                             targetAngle = angle(this.x, this.y, this.x + (opponentGoalX - this.x)*0.1, targetY);
                          } else {
                              this.strategy = 'Attack Goal';
                              this.currentState = 'Pushing to Goal';
@@ -623,29 +663,35 @@
                             moveAngle = angle(this.x, this.y, puck.possessor.x, puck.possessor.y);
                         }
 
-                    } else {
+                    } else { // Puck is loose
                          // --- Loose Puck / Positioning Underwater ---
-                         this.strategy = 'Get Puck/Position';
-                         this.currentState = 'Chasing/Positioning';
-                         const angleToPuck = angle(this.x, this.y, puck.x, puck.y);
-                         let puckVecX = Math.cos(angleToPuck);
-                         let puckVecY = Math.sin(angleToPuck);
-                         let puckWeight = 1.0;
+                         if (puckInDefensiveZone && (this.role.includes('B') || distance(this.x, this.y, ownGoalX, ownGoalY) < POOL_WIDTH * 0.4)) {
+                             this.strategy = 'Defend Loose Puck';
+                             this.currentState = 'Chasing (Defensive)';
+                             moveAngle = angle(this.x, this.y, puck.x, puck.y);
+                         } else {
+                             this.strategy = 'Get Puck/Position';
+                             this.currentState = 'Chasing/Positioning';
+                             const angleToPuck = angle(this.x, this.y, puck.x, puck.y);
+                             let puckVecX = Math.cos(angleToPuck);
+                             let puckVecY = Math.sin(angleToPuck);
+                             let puckWeight = 1.0;
 
-                         const formationPos = this.getFormationPosition(puck, players);
-                         const angleToFormation = angle(this.x, this.y, formationPos.x, formationPos.y);
-                         let formationVecX = Math.cos(angleToFormation);
-                         let formationVecY = Math.sin(angleToFormation);
-                         let formationWeight = AI_FORMATION_WEIGHT * Math.min(1, distToPuck / (POOL_WIDTH * 0.25));
+                             const formationPos = this.getFormationPosition(puck, players);
+                             const angleToFormation = angle(this.x, this.y, formationPos.x, formationPos.y);
+                             let formationVecX = Math.cos(angleToFormation);
+                             let formationVecY = Math.sin(angleToFormation);
+                             let formationWeight = AI_FORMATION_WEIGHT * Math.min(1, distToPuck / (POOL_WIDTH * 0.25));
 
-                         if (this.role.includes('B')) {
-                             formationWeight *= 1.8;
+                             if (this.role.includes('B')) {
+                                 formationWeight *= 1.8;
+                             }
+                             puckWeight = 1.0 - formationWeight;
+
+                             let finalVecX = puckVecX * puckWeight + formationVecX * formationWeight;
+                             let finalVecY = puckVecY * puckWeight + formationVecY * formationWeight;
+                             moveAngle = Math.atan2(finalVecY, finalVecX);
                          }
-                         puckWeight = 1.0 - formationWeight;
-
-                         let finalVecX = puckVecX * puckWeight + formationVecX * formationWeight;
-                         let finalVecY = puckVecY * puckWeight + formationVecY * formationWeight;
-                         moveAngle = Math.atan2(finalVecY, finalVecX);
                     }
 
                     // Apply the calculated force
@@ -693,7 +739,7 @@
 
                     const stickSideOffset = (this.width / 2 + 2) * this.stickSide;
                     const stickForwardOffset = this.height * 0.4;
-                    const stickLength = 15; // *** Increased stick visual length ***
+                    const stickLength = 15; // Increased stick visual length
 
                     ctx.beginPath();
                     ctx.moveTo(stickForwardOffset, stickSideOffset);
@@ -722,7 +768,7 @@
 
         function hideMessage() {
             messageOverlay.classList.remove('visible');
-            // gamePaused = false; // Don't unpause here, let calling function handle state
+            // gamePaused = false; // Let calling function manage pause state
         }
 
         function startCountdown() {
@@ -753,13 +799,13 @@
              players.forEach(player => {
                  if (player.role.includes('F')) {
                      player.dive();
-                     player.strategy = 'Race for Puck'; // *** Specific initial strategy ***
+                     player.strategy = 'Race for Puck';
                      player.currentState = 'Diving for Puck';
-                     player.initialDiveTargetMet = false; // Ensure flag is reset
+                     player.initialDiveTargetMet = false;
                  } else {
-                     player.strategy = 'Positioning';
+                     player.strategy = 'Follow Forward'; // *** Backs start by following ***
                      player.currentState = 'Waiting (Surface)';
-                     player.initialDiveTargetMet = true; // Backs don't race initially
+                     player.initialDiveTargetMet = true; // Not applicable initially
                  }
              });
 
@@ -782,20 +828,15 @@
             score = { white: 0, black: 0 };
             updateScoreboard();
             players = [];
-            sortedPlayerList = []; // Clear sorted list
+            sortedPlayerList = [];
 
             let roleIndex = 0;
             for (let team of ['white', 'black']) {
                  roleIndex = 0;
                  for (let i = 0; i < NUM_PLAYERS_PER_TEAM; i++) {
-                     const startX = team === 'white' ? POOL_WIDTH * 0.2 : POOL_WIDTH * 0.8;
+                     // Role assignment remains the same
                      const role = FORMATION_ROLES[roleIndex % FORMATION_ROLES.length];
-                     const player = new Player(
-                         startX,
-                         (POOL_HEIGHT / (NUM_PLAYERS_PER_TEAM + 1)) * (i + 1),
-                         team,
-                         role
-                     );
+                     const player = new Player(0, 0, team, role); // Initial pos set in resetPositions
                      players.push(player);
                      roleIndex++;
                  }
@@ -804,15 +845,14 @@
             puck = new Puck(POOL_WIDTH / 2, POOL_HEIGHT / 2);
             puck.possessor = null;
 
-            // *** Create the stable sorted list for the status board ***
-            sortPlayersForStatus();
+            sortPlayersForStatus(); // Sort players for consistent status display
 
             console.log(`Game Initialized. Players: ${players.length}. Setting up for pre-start.`);
-            resetPositions();
+            resetPositions(); // Position players at walls based on role
             gameState = 'PRE_START';
             updateStatusBoard();
-            drawInitialState();
-            startCountdown();
+            drawInitialState(); // Draw the initial frame
+            startCountdown(); // Start the countdown
         }
 
         // Function to draw the initial state
@@ -833,15 +873,29 @@
              }
              puck.possessor = null;
 
-             players.forEach((player, index) => {
+             const centerGoalY = POOL_HEIGHT / 2;
+
+             players.forEach((player) => {
                  const startX = player.team === 'white' ? player.radius + 5 : POOL_WIDTH - player.radius - 5;
-                 // Use role index for vertical positioning to keep it consistent
-                 const roleOrder = FORMATION_ROLES.indexOf(player.role);
-                 const teamBaseIndex = player.team === 'white' ? 0 : NUM_PLAYERS_PER_TEAM;
-                 const verticalPosIndex = roleOrder !== -1 ? roleOrder : index - teamBaseIndex; // Fallback if role not found
+                 let startY = centerGoalY;
+
+                 // *** Calculate Y based on role ***
+                 switch (player.role) {
+                     case 'CF': startY = centerGoalY; break;
+                     case 'LF': startY = centerGoalY - START_POS_Y_SPREAD * 1; break;
+                     case 'RF': startY = centerGoalY + START_POS_Y_SPREAD * 1; break;
+                     case 'LB': startY = centerGoalY - START_POS_Y_SPREAD * 2; break; // Left of LF
+                     case 'CB': startY = centerGoalY + START_POS_Y_SPREAD * 2; break; // Right of RF
+                     case 'RB': startY = centerGoalY + START_POS_Y_SPREAD * 3; break; // Right of CB
+                     default: // Fallback - should not happen with defined roles
+                          startY = centerGoalY + (Math.random() - 0.5) * POOL_HEIGHT * 0.4;
+                          break;
+                 }
+                 // Clamp Y to be within pool bounds
+                 startY = Math.max(player.radius, Math.min(POOL_HEIGHT - player.radius, startY));
 
                  player.x = startX;
-                 player.y = (POOL_HEIGHT / (NUM_PLAYERS_PER_TEAM + 1)) * (verticalPosIndex + 1);
+                 player.y = startY;
                  player.vx = 0;
                  player.vy = 0;
                  player.angle = player.team === 'white' ? 0 : Math.PI;
@@ -849,7 +903,7 @@
                  player.breath = MAX_BREATH;
                  player.currentState = 'Waiting at Wall';
                  player.strategy = 'Positioning';
-                 player.initialDiveTargetMet = false; // Reset dive flag
+                 player.initialDiveTargetMet = false;
              });
 
             puck.x = POOL_WIDTH / 2;
@@ -874,14 +928,13 @@
             scoreBlackEl.textContent = score.black;
         }
 
-        // *** Function to sort players for status board ***
+        // Function to sort players for status board
         function sortPlayersForStatus() {
              const roleOrder = FORMATION_ROLES;
+             // Sort a copy of the players array
              sortedPlayerList = [...players].sort((a, b) => {
-                 // Sort by team first (White then Black)
                  if (a.team < b.team) return -1;
                  if (a.team > b.team) return 1;
-                 // Then sort by role order
                  const roleAIndex = roleOrder.indexOf(a.role);
                  const roleBIndex = roleOrder.indexOf(b.role);
                  return roleAIndex - roleBIndex;
@@ -893,7 +946,7 @@
             if (!statusBoardBody) return;
             statusBoardBody.innerHTML = '';
 
-            // *** Iterate over the pre-sorted list ***
+            // Iterate over the pre-sorted list
             sortedPlayerList.forEach(player => {
                 const row = statusBoardBody.insertRow();
                 row.insertCell().textContent = player.team.charAt(0).toUpperCase() + player.team.slice(1);
@@ -961,22 +1014,23 @@
              const goalYMax = (POOL_HEIGHT / 2) + (GOAL_WIDTH / 2);
              let goalScored = false;
 
-             // Check if puck entered goal area AND has some velocity towards it OR was recently shot
-             const minGoalSpeed = 0.3; // Reduced speed threshold slightly
-             const puckJustShot = puck.vx > GOAL_SHOT_FORCE * 0.1 || puck.vx < -GOAL_SHOT_FORCE * 0.1; // Check if recently shot
+             // *** Simplified Goal Check: Puck center needs to cross the goal line depth ***
+             const goalLineLeft = GOAL_DEPTH;
+             const goalLineRight = POOL_WIDTH - GOAL_DEPTH;
 
              // Black scores on left goal
-             if (puck.x - puck.radius < GOAL_DEPTH && puck.y > goalYMin && puck.y < goalYMax && (puck.vx < -minGoalSpeed || puckJustShot)) {
+             if (puck.x < goalLineLeft && puck.y > goalYMin && puck.y < goalYMax) {
                  score.black++;
                  goalScored = true;
-                 showMessage(`Goal for Black Team! (${score.white}-${score.black})`, true); // Show continue button
+                 showMessage(`Goal for Black Team! (${score.white}-${score.black})`, true);
              }
              // White scores on right goal
-             else if (puck.x + puck.radius > POOL_WIDTH - GOAL_DEPTH && puck.y > goalYMin && puck.y < goalYMax && (puck.vx > minGoalSpeed || puckJustShot)) {
+             else if (puck.x > goalLineRight && puck.y > goalYMin && puck.y < goalYMax) {
                  score.white++;
                  goalScored = true;
-                 showMessage(`Goal for White Team! (${score.white}-${score.black})`, true); // Show continue button
+                 showMessage(`Goal for White Team! (${score.white}-${score.black})`, true);
              }
+
 
              if (goalScored) {
                  updateScoreboard();
@@ -1019,8 +1073,7 @@
         function gameLoop() {
             if (gameState !== 'RUNNING' || gamePaused) {
                  if (gameState === 'PRE_START' || gamePaused) {
-                     drawInitialState();
-                     // Keep requesting frame if paused/pre-start to show static state or countdown
+                     drawInitialState(); // Keep drawing static or paused state
                      if (!animationFrameId) animationFrameId = requestAnimationFrame(gameLoop);
                  } else {
                      cancelAnimationFrame(animationFrameId);
@@ -1078,7 +1131,7 @@
             if (gameState === 'PAUSED') {
                  console.log("Continue button clicked after goal.");
                  hideMessage();
-                 resetPositions(true); // Pass true to indicate it's a goal reset
+                 resetPositions(true); // Pass true to indicate it's a goal reset -> starts countdown
             }
         });
 
@@ -1108,7 +1161,7 @@
              try {
                  resizeCanvas();
                  console.log("Initial resize complete.");
-                 initGame();
+                 initGame(); // Sets up pre-start and starts countdown
              } catch (error) {
                  console.error("Error during initial setup:", error);
                  const uiContainer = document.getElementById('ui-container');
