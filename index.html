@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club CAMO - Sports Subaquatiques | Underwater Sports</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Font Awesome -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -18,14 +19,18 @@
 <body class="bg-gray-100 text-gray-800">
 
     <div class="text-center py-4 bg-gray-200">
-        <button class="lang-button px-4 py-2 mr-2 rounded bg-blue-500 text-white" data-lang="fr">Français</button>
-        <button class="lang-button px-4 py-2 rounded bg-gray-400 text-gray-800" data-lang="en">English</button>
+        <button class="lang-button px-4 py-2 mr-2 rounded bg-blue-500 text-white" data-lang="fr">
+            <i class="fas fa-fleur-de-lis"></i> Français
+        </button>
+        <button class="lang-button px-4 py-2 rounded bg-gray-400 text-gray-800" data-lang="en">
+            <i class="fas fa-canadian-maple-leaf"></i> English
+        </button>
     </div>
 
     <div class="lang-fr">
-        <header class="bg-blue-900 text-white py-8 text-center shadow-lg">
-            <h1 class="text-4xl md:text-5xl font-bold">Club CAMO</h1>
-            <p class="mt-3 text-lg md:text-xl">Votre club de Sports Subaquatiques à Montréal</p>
+        <header class="bg-blue-500 text-white py-8 text-center shadow-lg">
+            <img src="images/camo-subaquatique.png" alt="CAMO Subaquatique" class="mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold">CAMO Subaquatique: Votre club de Sports Subaquatiques à Montréal</h1>
             <p class="mt-1 text-md md:text-lg italic">Plongez dans l'action avec le Hockey et le Rugby Subaquatique !</p>
         </header>
 
@@ -72,11 +77,9 @@
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-gray-800">Découvrez Nos Disciplines</h2>
 
             <div class="flex flex-col md:flex-row gap-10">
-
                 <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">Hockey Subaquatique</h3>
-                    [Image of Underwater Hockey players with sticks and puck]
-                    <img src="https://placehold.co/600x400/4a90e2/ffffff?text=Hockey+Subaquatique" alt="Image de joueurs de Hockey Subaquatique" class="rounded-lg mb-6 w-full h-auto object-cover">
+                    <img src="images/hockey.jpg" alt="Image de joueurs de Hockey Subaquatique" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Le hockey subaquatique est un sport d'équipe non-contact pratiqué au fond d'une piscine. Deux équipes de six joueurs s'affrontent pour pousser un palet lourd à l'aide d'une crosse dans le but adverse. C'est un sport intense qui demande apnée, endurance et stratégie.
                         <br><br>
@@ -88,17 +91,15 @@
 
                 <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
                     <h3 class="text-2xl font-bold mb-4 text-green-800">Rugby Subaquatique</h3>
-                     [Image of Underwater Rugby players competing for the ball]
-                    <img src="https://placehold.co/600x400/50e3c2/ffffff?text=Rugby+Subaquatique" alt="Image de joueurs de Rugby Subaquatique" class="rounded-lg mb-6 w-full h-auto object-cover">
+                    <img src="images/rugby.jpg" alt="Image de joueurs de Rugby Subaquatique" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Le rugby subaquatique est un sport d'équipe en trois dimensions joué au fond d'une piscine profonde. Deux équipes tentent de placer un ballon rempli d'eau salée (qui coule) dans le panier adverse. Les contacts sont autorisés pour prendre le ballon au porteur.
                         <br><br>
                         Ce sport développe l'apnée, la puissance, la tactique spatiale et la capacité à travailler en équipe dans un environnement unique. Il est idéal pour les athlètes cherchant un sport aquatique intense et stratégique.
                     </p>
                     <p class="text-lg font-semibold text-gray-900 mt-4">Pratiques régulières : <span class="font-normal">Mercredi et Samedi soirs</span></p>
-                     <a href="#entrainement-rugby" class="mt-6 inline-block bg-green-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-800 transition duration-300 shadow-lg">Voir l'entraînement d'initiation</a>
+                    <a href="#entrainement-rugby" class="mt-6 inline-block bg-green-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-800 transition duration-300 shadow-lg">Voir l'entraînement d'initiation</a>
                 </div>
-
             </div>
         </section>
 
@@ -120,8 +121,7 @@
                         <li>Drills simples de passes entre partenaires.</li>
                         <li>Petits matchs simulés pour appliquer les bases.</li>
                     </ul>
-                     [Image of Underwater Hockey basic drill]
-                    <img src="https://placehold.co/600x300/4a90e2/ffffff?text=Exercice+Hockey+Subaquatique" alt="Illustration d'exercice Hockey Subaquatique" class="rounded-md mt-8 w-full h-auto object-cover">
+                    <img src="images/hockey-drill.jpg" alt="Illustration d'exercice Hockey Subaquatique" class="rounded-md mt-8 w-full h-auto object-cover">
                 </div>
 
                 <div id="entrainement-rugby" class="bg-white rounded-xl shadow-lg p-8">
@@ -137,8 +137,7 @@
                         <li>Exercices de positionnement et de déplacement en 3D.</li>
                         <li>Introduction aux règles de contact et simulations de jeu.</li>
                     </ul>
-                     [Image of Underwater Rugby basic drill]
-                    <img src="https://placehold.co/600x300/50e3c2/ffffff?text=Exercice+Rugby+Subaquatique" alt="Illustration d'exercice Rugby Subaquatique" class="rounded-md mt-8 w-full h-auto object-cover">
+                    <img src="images/rugby-drill.jpg" alt="Illustration d'exercice Rugby Subaquatique" class="rounded-md mt-8 w-full h-auto object-cover">
                 </div>
 
             </div>
@@ -180,9 +179,10 @@
     </div>
 
     <div class="lang-en">
-        <header class="bg-blue-900 text-white py-8 text-center shadow-lg">
+        <header class="bg-blue-500 text-white py-8 text-center shadow-lg">
+            <img src="images/camo-subaquatique.png" alt="CAMO Subaquatique" class="mx-auto">
             <h1 class="text-4xl md:text-5xl font-bold">Club CAMO</h1>
-            <p class="mt-3 text-lg md:text-xl">Your Underwater Sports Club in Montreal</p>
+            <p class="mt-1 text-md md:text-lg italic">Your Underwater Sports Club in Montreal</p>
             <p class="mt-1 text-md md:text-lg italic">Dive into the action with Underwater Hockey and Underwater Rugby!</p>
         </header>
 
@@ -232,8 +232,7 @@
 
                 <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">Underwater Hockey</h3>
-                    [Image of Underwater Hockey players with sticks and puck]
-                    <img src="https://placehold.co/600x400/4a90e2/ffffff?text=Underwater+Hockey" alt="Image of Underwater Hockey players" class="rounded-lg mb-6 w-full h-auto object-cover">
+                    <img src="images/hockey.jpg" alt="Image of Underwater Hockey players" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Underwater hockey is a non-contact team sport played on the bottom of a swimming pool. Two teams of six players compete to push a heavy puck using a stick into the opponent's goal. It's an intense sport that requires breath-holding, endurance, and strategy.
                         <br><br>
@@ -245,8 +244,7 @@
 
                 <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
                     <h3 class="text-2xl font-bold mb-4 text-green-800">Underwater Rugby</h3>
-                     [Image of Underwater Rugby players competing for the ball]
-                    <img src="https://placehold.co/600x400/50e3c2/ffffff?text=Underwater+Rugby" alt="Image of Underwater Rugby players" class="rounded-lg mb-6 w-full h-auto object-cover">
+                    <img src="images/rugby.jpg" alt="Image of Underwater Rugby players" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Underwater rugby is a three-dimensional team sport played at the bottom of a deep pool. Two teams try to place a saltwater-filled ball (which sinks) into the opponent's basket. Contact is allowed to take the ball from the ball carrier.
                         <br><br>
@@ -277,8 +275,7 @@
                         <li>Simple passing drills with partners.</li>
                         <li>Small simulated games to apply the basics.</li>
                     </ul>
-                     [Image of Underwater Hockey basic drill]
-                    <img src="https://placehold.co/600x300/4a90e2/ffffff?text=Underwater+Hockey+Drill" alt="Illustration of Underwater Hockey drill" class="rounded-md mt-8 w-full h-auto object-cover">
+                    <img src="images/hockey-drill.jpg" alt="Illustration of Underwater Hockey drill" class="rounded-md mt-8 w-full h-auto object-cover">
                 </div>
 
                 <div id="entrainement-rugby-en" class="bg-white rounded-xl shadow-lg p-8">
@@ -294,8 +291,7 @@
                         <li>Positioning and 3D movement exercises.</li>
                         <li>Introduction to contact rules and game simulations.</li>
                     </ul>
-                     [Image of Underwater Rugby basic drill]
-                    <img src="https://placehold.co/600x300/50e3c2/ffffff?text=Underwater+Rugby+Drill" alt="Illustration of Underwater Rugby drill" class="rounded-md mt-8 w-full h-auto object-cover">
+                    <img src="images/rugby-drill.jpg" alt="Illustration of Underwater Rugby drill" class="rounded-md mt-8 w-full h-auto object-cover">
                 </div>
 
             </div>
@@ -341,39 +337,23 @@
             const langButtons = document.querySelectorAll('.lang-button');
             const langSections = document.querySelectorAll('.lang-fr, .lang-en');
 
-            // Function to set active language
             const setLanguage = (lang) => {
                 langSections.forEach(section => {
-                    if (section.classList.contains(`lang-${lang}`)) {
-                        section.style.display = 'block';
-                    } else {
-                        section.style.display = 'none';
-                    }
+                    section.style.display = section.classList.contains(`lang-${lang}`) ? 'block' : 'none';
                 });
-
-                // Update button styles
                 langButtons.forEach(button => {
-                    if (button.dataset.lang === lang) {
-                        button.classList.remove('bg-gray-400', 'text-gray-800');
-                        button.classList.add('bg-blue-500', 'text-white');
-                    } else {
-                        button.classList.remove('bg-blue-500', 'text-white');
-                        button.classList.add('bg-gray-400', 'text-gray-800');
-                    }
+                    button.classList.toggle('bg-blue-500', button.dataset.lang === lang);
+                    button.classList.toggle('text-white', button.dataset.lang === lang);
+                    button.classList.toggle('bg-gray-400', button.dataset.lang !== lang);
+                    button.classList.toggle('text-gray-800', button.dataset.lang !== lang);
                 });
-
-                // Update html lang attribute
                 document.documentElement.lang = lang;
             };
 
-            // Add event listeners to buttons
             langButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    setLanguage(button.dataset.lang);
-                });
+                button.addEventListener('click', () => setLanguage(button.dataset.lang));
             });
 
-            // Set default language on load (French)
             setLanguage('fr');
         });
     </script>
