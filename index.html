@@ -6,6 +6,7 @@
     <title>Club CAMO - Sports Subaquatiques | Underwater Sports</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -15,6 +16,15 @@
             display: none;
         }
     </style>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 1000, // Durée de l'animation en millisecondes
+                once: true, // Animation uniquement lors du premier défilement
+            });
+        });
+    </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
@@ -73,11 +83,11 @@
         </section>
 
 
-        <section id="sports" class="container mx-auto px-4 py-16">
+        <section id="sports" class="container mx-auto px-4 py-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-gray-800">Découvrez Nos Disciplines</h2>
 
             <div class="flex flex-col md:flex-row gap-10">
-                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">Hockey Subaquatique</h3>
                     <img src="images/hockey.jpg" alt="Image de joueurs de Hockey Subaquatique" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
@@ -89,7 +99,7 @@
                     <a href="#entrainement-hockey" class="mt-6 inline-block bg-blue-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-800 transition duration-300 shadow-lg">Voir l'entraînement d'initiation</a>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-2xl font-bold mb-4 text-green-800">Rugby Subaquatique</h3>
                     <img src="images/rugby.jpg" alt="Image de joueurs de Rugby Subaquatique" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
@@ -104,11 +114,11 @@
         </section>
 
 
-        <section id="entrainement" class="bg-gray-200 px-4 py-16">
+        <section id="entrainement" class="bg-gray-200 px-4 py-16" data-aos="fade-up">
             <div class="container mx-auto">
                 <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-gray-800">Entraînements d'Initiation Simples</h2>
 
-                <div id="entrainement-hockey" class="bg-white rounded-xl shadow-lg p-8 mb-10">
+                <div id="entrainement-hockey" class="bg-white rounded-xl shadow-lg p-8 mb-10" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">Initiation au Hockey Subaquatique</h3>
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Découvrez les mouvements de base et la manipulation du palet sous l'eau.
@@ -124,7 +134,7 @@
                     <img src="images/hockey-drill.jpg" alt="Illustration d'exercice Hockey Subaquatique" class="rounded-md mt-8 w-full h-auto object-cover">
                 </div>
 
-                <div id="entrainement-rugby" class="bg-white rounded-xl shadow-lg p-8">
+                <div id="entrainement-rugby" class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-2xl font-bold mb-4 text-green-800">Initiation au Rugby Subaquatique</h3>
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Apprenez à vous déplacer en 3D et à interagir avec le ballon et les adversaires.
@@ -233,12 +243,12 @@
         </section>
 
 
-        <section id="sports-en" class="container mx-auto px-4 py-16">
+        <section id="sports-en" class="container mx-auto px-4 py-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-gray-800">Discover Our Disciplines</h2>
 
             <div class="flex flex-col md:flex-row gap-10">
 
-                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">Underwater Hockey</h3>
                     <img src="images/hockey.jpg" alt="Image of Underwater Hockey players" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
@@ -250,7 +260,7 @@
                     <a href="#entrainement-hockey-en" class="mt-6 inline-block bg-blue-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-800 transition duration-300 shadow-lg">See introductory training</a>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                <div class="bg-white rounded-xl shadow-xl p-8 w-full md:w-1/2 transform transition duration-500 hover:scale-105 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-2xl font-bold mb-4 text-green-800">Underwater Rugby</h3>
                     <img src="images/rugby.jpg" alt="Image of Underwater Rugby players" class="rounded-lg mb-6 w-full h-auto object-cover">
                     <p class="text-gray-700 leading-relaxed mb-6">
@@ -266,11 +276,11 @@
         </section>
 
 
-        <section id="entrainement-en" class="bg-gray-200 px-4 py-16">
+        <section id="entrainement-en" class="bg-gray-200 px-4 py-16" data-aos="fade-up">
             <div class="container mx-auto">
                 <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-gray-800">Simple Introductory Trainings</h2>
 
-                <div id="entrainement-hockey-en" class="bg-white rounded-xl shadow-lg p-8 mb-10">
+                <div id="entrainement-hockey-en" class="bg-white rounded-xl shadow-lg p-8 mb-10" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">Introduction to Underwater Hockey</h3>
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Discover the basic movements and puck handling underwater.
@@ -286,7 +296,7 @@
                     <img src="images/hockey-drill.jpg" alt="Illustration of Underwater Hockey drill" class="rounded-md mt-8 w-full h-auto object-cover">
                 </div>
 
-                <div id="entrainement-rugby-en" class="bg-white rounded-xl shadow-lg p-8">
+                <div id="entrainement-rugby-en" class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-2xl font-bold mb-4 text-green-800">Introduction to Underwater Rugby</h3>
                     <p class="text-gray-700 leading-relaxed mb-6">
                         Learn to move in 3D and interact with the ball and opponents.
