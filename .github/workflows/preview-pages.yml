@@ -61,6 +61,7 @@ jobs:
           path: temp_deploy # Download directly into the temp directory
           repository: ${{ github.repository }}
           run-id: ${{steps.get_run_id.outputs.run_id}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract main site artifact
         run: unzip temp_deploy/github-pages.zip -d temp_deploy && rm temp_deploy/github-pages.zip
