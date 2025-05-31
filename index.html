@@ -550,6 +550,24 @@
 
     <script>
   document.addEventListener('DOMContentLoaded', function() {
+    function createVersionElement(text, isError) {
+      const versionP = document.createElement('p');
+      versionP.style.fontSize = '0.8em';
+      versionP.style.textAlign = 'center';
+      versionP.style.marginTop = '15px'; // Added more margin for separation
+      versionP.style.paddingTop = '10px'; // Padding on top
+      versionP.style.borderTop = '1px solid #4A5568'; // Separator line (Tailwind gray-600)
+      versionP.textContent = text;
+      if (isError) {
+        versionP.style.color = '#E53E3E'; // Red color for error (Tailwind red-600)
+      } else {
+        // Assuming the footer text color is generally light (gray-400 in Tailwind)
+        // If not, this might need adjustment or inherit.
+        versionP.style.color = '#A0AEC0'; // Tailwind gray-500, adjust if needed
+      }
+      return versionP;
+    }
+
     fetch('version.json')
       .then(response => {
         if (!response.ok) {
@@ -558,36 +576,33 @@
         return response.json();
       })
       .then(data => {
-        const versionDiv = document.createElement('div');
-        versionDiv.id = 'page-version-display';
-        versionDiv.style.position = 'fixed';
-        versionDiv.style.bottom = '5px';
-        versionDiv.style.right = '5px';
-        versionDiv.style.padding = '2px 5px';
-        versionDiv.style.backgroundColor = 'rgba(0,0,0,0.7)';
-        versionDiv.style.color = 'white';
-        versionDiv.style.fontSize = '10px';
-        versionDiv.style.fontFamily = 'monospace';
-        versionDiv.style.zIndex = '10000'; // Ensure it's on top
-        versionDiv.textContent = `Branch: ${data.branch || 'N/A'} | Commit: ${data.commit ? data.commit.substring(0, 7) : 'N/A'}`;
-        document.body.appendChild(versionDiv);
+        const versionText = `Version: Branch: ${data.branch || 'N/A'} | Commit: ${data.commit ? data.commit.substring(0, 7) : 'N/A'}`;
+        const versionElement = createVersionElement(versionText, false);
+
+        const footerFr = document.querySelector('.lang-fr footer .container:last-of-type');
+        if (footerFr) {
+          footerFr.appendChild(versionElement.cloneNode(true));
+        }
+
+        const footerEn = document.querySelector('.lang-en footer .container:last-of-type');
+        if (footerEn) {
+          footerEn.appendChild(versionElement.cloneNode(true));
+        }
       })
       .catch(error => {
         console.warn('Could not load version information:', error);
-        // Optionally display a simpler message or nothing if version.json is missing
-        const versionDiv = document.createElement('div');
-        versionDiv.id = 'page-version-display';
-        versionDiv.style.position = 'fixed';
-        versionDiv.style.bottom = '5px';
-        versionDiv.style.right = '5px';
-        versionDiv.style.padding = '2px 5px';
-        versionDiv.style.backgroundColor = 'rgba(200,0,0,0.7)'; // Red background for error
-        versionDiv.style.color = 'white';
-        versionDiv.style.fontSize = '10px';
-        versionDiv.style.fontFamily = 'monospace';
-        versionDiv.style.zIndex = '10000'; // Ensure it's on top
-        versionDiv.textContent = 'Version info not available';
-        document.body.appendChild(versionDiv);
+        const errorText = 'Version info not available';
+        const errorElement = createVersionElement(errorText, true);
+
+        const footerFr = document.querySelector('.lang-fr footer .container:last-of-type');
+        if (footerFr) {
+          footerFr.appendChild(errorElement.cloneNode(true));
+        }
+
+        const footerEn = document.querySelector('.lang-en footer .container:last-of-type');
+        if (footerEn) {
+          footerEn.appendChild(errorElement.cloneNode(true));
+        }
       });
   });
 </script>
