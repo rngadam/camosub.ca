@@ -36,10 +36,10 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Language-specific content will be shown/hidden by JavaScript */
-    </style>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
+/* French content shown by default (as per html[lang=fr]). English content hidden initially. JS manages language switching. */
+.lang-en {
+    display: none; /* Hide English content by default to prevent flash and provide a no-JS fallback */
+}
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({
                 duration: 1000, // Durée de l'animation en millisecondes
