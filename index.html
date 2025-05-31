@@ -566,14 +566,12 @@
             // Auto-detect browser language
             const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
 
-            if (browserLang === 'en') {
-                setLanguage('en');
-            } else if (browserLang === 'fr') {
-                setLanguage('fr');
-            } else {
-                // Default to French for other languages
-                setLanguage('fr');
-            }
+if (browserLang === 'en') {
+    setLanguage('en');
+} else {
+    // Default to French for 'fr' or any other detected language not explicitly handled as 'en'
+    setLanguage('fr');
+}
 
             langButtons.forEach(button => {
                 button.addEventListener('click', () => setLanguage(button.dataset.lang));
