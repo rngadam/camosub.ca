@@ -552,18 +552,22 @@
   document.addEventListener('DOMContentLoaded', function() {
     function createVersionElement(text, isError) {
       const versionP = document.createElement('p');
-      versionP.style.fontSize = '0.8em';
-      versionP.style.textAlign = 'center';
-      versionP.style.marginTop = '15px'; // Added more margin for separation
-      versionP.style.paddingTop = '10px'; // Padding on top
-      versionP.style.borderTop = '1px solid #4A5568'; // Separator line (Tailwind gray-600)
+      // Tailwind classes for styling:
+      // text-xs: font-size: 0.75rem; line-height: 1rem; (close to 0.8em)
+      // text-center: text-align: center;
+      // mt-4: margin-top: 1rem; (16px, close to 15px)
+      // pt-2: padding-top: 0.5rem; (8px, close to 10px)
+      // border-t: border-top-width: 1px;
+      // border-gray-600: border-color: #4A5568; (Tailwind's gray-600)
+      versionP.classList.add('text-xs', 'text-center', 'mt-4', 'pt-2', 'border-t', 'border-gray-600');
       versionP.textContent = text;
       if (isError) {
-        versionP.style.color = '#E53E3E'; // Red color for error (Tailwind red-600)
+        // text-red-600: color: #E53E3E; (Tailwind's red-600)
+        versionP.classList.add('text-red-600');
       } else {
-        // Assuming the footer text color is generally light (gray-400 in Tailwind)
-        // If not, this might need adjustment or inherit.
-        versionP.style.color = '#A0AEC0'; // Tailwind gray-500, adjust if needed
+        // text-gray-500: color: #6B7280; (Tailwind's gray-500, #A0AEC0 is also gray-500 in some palettes or gray-400 in others)
+        // Using text-gray-500 for a common light-ish text on dark footer.
+        versionP.classList.add('text-gray-500');
       }
       return versionP;
     }
