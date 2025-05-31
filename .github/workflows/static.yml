@@ -34,7 +34,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Create version.json for main site
-        run: echo "{"commit":"${{ github.sha }}", "branch":"${{ github.ref_name }}"}" > version.json
+      - name: Create version.json
+        run: echo "{\"commit\":\"${{ github.sha }}\", \"branch\":\"${{ github.head_ref }}\"}" > version.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
