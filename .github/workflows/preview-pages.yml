@@ -65,7 +65,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract main site artifact
-        run: find ${{ steps.download_main_artifact.outputs.download-path }} -maxdepth 1 -name '*.zip' -exec unzip -o {} -d temp_deploy \; -exec rm {} \;
+        run: find ${{ steps.download_main_artifact.outputs.download-path }} -maxdepth 1 -name '*.tar' -exec tar -xf {} -C temp_deploy \; -exec rm {} \;
 
       - name: Verify index.html exists at root
         run: |
