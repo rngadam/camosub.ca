@@ -549,6 +549,49 @@
     </div>
 
     <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('version.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('version.json not found or invalid');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const versionDiv = document.createElement('div');
+        versionDiv.id = 'page-version-display';
+        versionDiv.style.position = 'fixed';
+        versionDiv.style.bottom = '5px';
+        versionDiv.style.right = '5px';
+        versionDiv.style.padding = '2px 5px';
+        versionDiv.style.backgroundColor = 'rgba(0,0,0,0.7)';
+        versionDiv.style.color = 'white';
+        versionDiv.style.fontSize = '10px';
+        versionDiv.style.fontFamily = 'monospace';
+        versionDiv.style.zIndex = '10000'; // Ensure it's on top
+        versionDiv.textContent = `Branch: ${data.branch || 'N/A'} | Commit: ${data.commit ? data.commit.substring(0, 7) : 'N/A'}`;
+        document.body.appendChild(versionDiv);
+      })
+      .catch(error => {
+        console.warn('Could not load version information:', error);
+        // Optionally display a simpler message or nothing if version.json is missing
+        const versionDiv = document.createElement('div');
+        versionDiv.id = 'page-version-display';
+        versionDiv.style.position = 'fixed';
+        versionDiv.style.bottom = '5px';
+        versionDiv.style.right = '5px';
+        versionDiv.style.padding = '2px 5px';
+        versionDiv.style.backgroundColor = 'rgba(200,0,0,0.7)'; // Red background for error
+        versionDiv.style.color = 'white';
+        versionDiv.style.fontSize = '10px';
+        versionDiv.style.fontFamily = 'monospace';
+        versionDiv.style.zIndex = '10000'; // Ensure it's on top
+        versionDiv.textContent = 'Version info not available';
+        document.body.appendChild(versionDiv);
+      });
+  });
+</script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const langButtons = document.querySelectorAll('.lang-button');
             const langSections = document.querySelectorAll('.lang-fr, .lang-en');
