@@ -36,10 +36,7 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Hide English content by default */
-        .lang-en {
-            display: none;
-        }
+        /* Language-specific content will be shown/hidden by JavaScript */
     </style>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -566,11 +563,24 @@
                 document.documentElement.lang = lang;
             };
 
+            // Auto-detect browser language
+            const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
+
+            if (browserLang === 'en') {
+                setLanguage('en');
+            } else if (browserLang === 'fr') {
+                setLanguage('fr');
+            } else {
+                // Default to French for other languages
+                setLanguage('fr');
+            }
+
             langButtons.forEach(button => {
                 button.addEventListener('click', () => setLanguage(button.dataset.lang));
             });
 
-            setLanguage('fr');
+            // The initial setLanguage call based on default 'fr' is now handled by the auto-detection logic.
+            // If no specific language is detected and matches 'en' or 'fr', it defaults to 'fr'.
         });
     </script>
 
