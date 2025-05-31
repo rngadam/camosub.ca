@@ -32,14 +32,17 @@
     <meta name="twitter:title" content="Club CAMO Subaquatique - Sports Subaquatiques à Montréal">
     <meta name="twitter:description" content="Découvrez les sports subaquatiques avec le Club CAMO Subaquatique à Montréal. Hockey et rugby subaquatique pour tous les niveaux.">
     <meta name="twitter:image" content="images/camo-subaquatique.png">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-/* French content shown by default (as per html[lang=fr]). English content hidden initially. JS manages language switching. */
-.lang-en {
-    display: none; /* Hide English content by default to prevent flash and provide a no-JS fallback */
-}
+        /* French content shown by default (as per html[lang=fr]). English content hidden initially. JS manages language switching. */
+        .lang-en {
+            display: none; /* Hide English content by default to prevent flash and provide a no-JS fallback */
+        }
+    </style>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({
                 duration: 1000, // Durée de l'animation en millisecondes
