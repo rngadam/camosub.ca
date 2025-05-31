@@ -56,6 +56,7 @@ jobs:
 
       - name: Download latest main site artifact
         uses: actions/download-artifact@v4
+        id: download_main_artifact
         with:
           name: github-pages
           path: temp_deploy # Download directly into the temp directory
@@ -64,7 +65,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract main site artifact
-        run: unzip temp_deploy/github-pages/github-pages.zip -d temp_deploy && rm temp_deploy/github-pages/github-pages.zip
+        run: unzip ${{ steps.download_main_artifact.outputs.download-path }}/github-pages.zip -d temp_deploy && rm ${{ steps.download_main_artifact.outputs.download-path }}/github-pages.zip
 
       - name: Create preview subdirectory
         run: mkdir -p temp_deploy/previews/${{ steps.pr_number.outputs.PR_NUM }}
