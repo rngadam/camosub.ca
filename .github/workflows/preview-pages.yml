@@ -67,6 +67,17 @@ jobs:
       - name: Extract main site artifact
         run: find ${{ steps.download_main_artifact.outputs.download-path }} -maxdepth 1 -name '*.zip' -exec unzip -o {} -d temp_deploy \; -exec rm {} \;
 
+      - name: Verify index.html exists at root
+        run: |
+          if [ ! -f temp_deploy/index.html ]; then
+            echo "ERROR: temp_deploy/index.html not found after unzip!"
+            echo "This likely means the downloaded archive has an unexpected internal directory structure."
+            echo "Listing contents of temp_deploy for debugging:"
+            ls -R temp_deploy
+            exit 1
+          fi
+          echo "temp_deploy/index.html found. Proceeding."
+
       - name: Create preview subdirectory
         run: mkdir -p temp_deploy/previews/${{ steps.pr_number.outputs.PR_NUM }}
 
