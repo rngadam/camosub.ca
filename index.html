@@ -550,6 +550,16 @@
 
     <script>
   document.addEventListener('DOMContentLoaded', function() {
+    function appendVersionInfoToFooters(element) {
+      const selectors = ['.lang-fr footer .container:last-of-type', '.lang-en footer .container:last-of-type'];
+      selectors.forEach(selector => {
+        const footerContainer = document.querySelector(selector);
+        if (footerContainer) {
+          footerContainer.appendChild(element.cloneNode(true));
+        }
+      });
+    }
+
     function createVersionElement(text, isError) {
       const versionP = document.createElement('p');
       // Tailwind classes for styling:
@@ -580,33 +590,15 @@
         return response.json();
       })
       .then(data => {
-        const versionText = `Version: Branch: ${data.branch || 'N/A'} | Commit: ${data.commit ? data.commit.substring(0, 7) : 'N/A'}`;
+        const versionText = `Version: Branch: ${data.branch || 'main'} | Commit: ${data.commit ? data.commit.substring(0, 7) : 'N/A'}`;
         const versionElement = createVersionElement(versionText, false);
-
-        const footerFr = document.querySelector('.lang-fr footer .container:last-of-type');
-        if (footerFr) {
-          footerFr.appendChild(versionElement.cloneNode(true));
-        }
-
-        const footerEn = document.querySelector('.lang-en footer .container:last-of-type');
-        if (footerEn) {
-          footerEn.appendChild(versionElement.cloneNode(true));
-        }
+        appendVersionInfoToFooters(versionElement);
       })
       .catch(error => {
         console.warn('Could not load version information:', error);
         const errorText = 'Version info not available';
         const errorElement = createVersionElement(errorText, true);
-
-        const footerFr = document.querySelector('.lang-fr footer .container:last-of-type');
-        if (footerFr) {
-          footerFr.appendChild(errorElement.cloneNode(true));
-        }
-
-        const footerEn = document.querySelector('.lang-en footer .container:last-of-type');
-        if (footerEn) {
-          footerEn.appendChild(errorElement.cloneNode(true));
-        }
+        appendVersionInfoToFooters(errorElement);
       });
   });
 </script>
