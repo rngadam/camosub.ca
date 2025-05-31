@@ -64,7 +64,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract main site artifact
-        run: unzip temp_deploy/github-pages.zip -d temp_deploy && rm temp_deploy/github-pages.zip
+        run: unzip temp_deploy/github-pages/github-pages.zip -d temp_deploy && rm temp_deploy/github-pages/github-pages.zip
 
       - name: Create preview subdirectory
         run: mkdir -p temp_deploy/previews/${{ steps.pr_number.outputs.PR_NUM }}
