@@ -60,7 +60,6 @@ jobs:
           name: github-pages
           path: temp_deploy # Download directly into the temp directory
           repository: ${{ github.repository }}
-          workflow: static.yml # The name or ID of the workflow that publishes the main site
           run-id: ${{steps.get_run_id.outputs.run_id}}
 
       - name: Extract main site artifact
