@@ -550,6 +550,38 @@
 
     <script>
   document.addEventListener('DOMContentLoaded', function() {
+    function appendVersionInfoToFooters(element) {
+      const selectors = ['.lang-fr footer .container:last-of-type', '.lang-en footer .container:last-of-type'];
+      selectors.forEach(selector => {
+        const footerContainer = document.querySelector(selector);
+        if (footerContainer) {
+          footerContainer.appendChild(element.cloneNode(true));
+        }
+      });
+    }
+
+    function createVersionElement(text, isError) {
+      const versionP = document.createElement('p');
+      // Tailwind classes for styling:
+      // text-xs: font-size: 0.75rem; line-height: 1rem; (close to 0.8em)
+      // text-center: text-align: center;
+      // mt-4: margin-top: 1rem; (16px, close to 15px)
+      // pt-2: padding-top: 0.5rem; (8px, close to 10px)
+      // border-t: border-top-width: 1px;
+      // border-gray-600: border-color: #4A5568; (Tailwind's gray-600)
+      versionP.classList.add('text-xs', 'text-center', 'mt-4', 'pt-2', 'border-t', 'border-gray-600');
+      versionP.textContent = text;
+      if (isError) {
+        // text-red-600: color: #E53E3E; (Tailwind's red-600)
+        versionP.classList.add('text-red-600');
+      } else {
+        // text-gray-500: color: #6B7280; (Tailwind's gray-500, #A0AEC0 is also gray-500 in some palettes or gray-400 in others)
+        // Using text-gray-500 for a common light-ish text on dark footer.
+        versionP.classList.add('text-gray-500');
+      }
+      return versionP;
+    }
+
     fetch('version.json')
       .then(response => {
         if (!response.ok) {
@@ -558,36 +590,15 @@
         return response.json();
       })
       .then(data => {
-        const versionDiv = document.createElement('div');
-        versionDiv.id = 'page-version-display';
-        versionDiv.style.position = 'fixed';
-        versionDiv.style.bottom = '5px';
-        versionDiv.style.right = '5px';
-        versionDiv.style.padding = '2px 5px';
-        versionDiv.style.backgroundColor = 'rgba(0,0,0,0.7)';
-        versionDiv.style.color = 'white';
-        versionDiv.style.fontSize = '10px';
-        versionDiv.style.fontFamily = 'monospace';
-        versionDiv.style.zIndex = '10000'; // Ensure it's on top
-        versionDiv.textContent = `Branch: ${data.branch || 'N/A'} | Commit: ${data.commit ? data.commit.substring(0, 7) : 'N/A'}`;
-        document.body.appendChild(versionDiv);
+        const versionText = `Version: Branch: ${data.branch || 'main'} | Commit: ${data.commit ? data.commit.substring(0, 7) : 'N/A'}`;
+        const versionElement = createVersionElement(versionText, false);
+        appendVersionInfoToFooters(versionElement);
       })
       .catch(error => {
         console.warn('Could not load version information:', error);
-        // Optionally display a simpler message or nothing if version.json is missing
-        const versionDiv = document.createElement('div');
-        versionDiv.id = 'page-version-display';
-        versionDiv.style.position = 'fixed';
-        versionDiv.style.bottom = '5px';
-        versionDiv.style.right = '5px';
-        versionDiv.style.padding = '2px 5px';
-        versionDiv.style.backgroundColor = 'rgba(200,0,0,0.7)'; // Red background for error
-        versionDiv.style.color = 'white';
-        versionDiv.style.fontSize = '10px';
-        versionDiv.style.fontFamily = 'monospace';
-        versionDiv.style.zIndex = '10000'; // Ensure it's on top
-        versionDiv.textContent = 'Version info not available';
-        document.body.appendChild(versionDiv);
+        const errorText = 'Version info not available';
+        const errorElement = createVersionElement(errorText, true);
+        appendVersionInfoToFooters(errorElement);
       });
   });
 </script>

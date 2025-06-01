@@ -19,6 +19,17 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
+      - name: Setup Node.js for HTMLHint
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*' # Use a Long Term Support version of Node.js
+
+      - name: Install HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Lint HTML (index.html)
+        run: htmlhint index.html
+
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v4
 
