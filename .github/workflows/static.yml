@@ -31,6 +31,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js for HTMLHint
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*' # Use a Long Term Support version of Node.js
+
+      - name: Install HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Lint HTML (index.html)
+        run: htmlhint index.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Create version.json for main site
