@@ -32,13 +32,13 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-          # Check if there are changes in the working directory for assets/events.ics
-          if ! git diff --quiet assets/events.ics; then
-            echo "Changes detected in assets/events.ics."
-            git add assets/events.ics
+          # Check if there are changes in the working directory for events.ics (new path)
+          if ! git diff --quiet events.ics; then
+            echo "Changes detected in events.ics."
+            git add events.ics # Use new path
             git commit -m "Update events.ics from workflow"
             git push
           else
-            echo "No changes to assets/events.ics. Nothing to commit."
+            echo "No changes to events.ics. Nothing to commit."
           fi
 ```

@@ -1,6 +1,7 @@
 import json
 from datetime import datetime, date, time, timedelta
 from ics import Calendar, Event
+# Reverted ContentLine import attempt
 import os
 import re # For parsing time more flexibly
 import pytz
@@ -63,8 +64,8 @@ def parse_time_str(time_str, lang='fr'):
 
 def generate_ics():
     events_json_path = 'events.json'
-    ics_output_dir = 'assets'
-    ics_output_path = os.path.join(ics_output_dir, 'events.ics')
+    # Output path changed to root directory
+    ics_output_path = 'events.ics'
 
     if not os.path.exists(events_json_path):
         print(f"Error: {events_json_path} not found.")
@@ -81,6 +82,7 @@ def generate_ics():
         return
 
     cal = Calendar()
+    # X-Properties addition removed due to errors.
 
     for ev_json in events_data:
         e = Event()
@@ -211,15 +213,7 @@ def generate_ics():
 
         cal.events.add(e)
 
-    # Ensure output directory exists
-    if not os.path.exists(ics_output_dir):
-        try:
-            os.makedirs(ics_output_dir)
-            print(f"Created directory: {ics_output_dir}")
-        except OSError as exc: # Guard against race condition
-            print(f"Error creating directory {ics_output_dir}: {exc}")
-            return
-
+    # Removed directory creation logic as output is in root
 
     try:
         with open(ics_output_path, 'w', encoding='utf-8') as f:
