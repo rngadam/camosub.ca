@@ -41,7 +41,8 @@
       "city": "Montréal",
       "province": "QC",
       "postalCode": "H2E 1Z6",
-      "country": "Canada"
+      "country": "Canada",
+      "mapsLink": "https://www.google.com/maps/place/CAMO+Subaquatique+(Hockey+et+Rugby+subaquatique)/@45.5510127,-73.6255532,17z/data=!3m1!4b1!4m6!3m5!1s0x4cc91925c683704b:0x2eaef70b5889d969!8m2!3d45.5510127!4d-73.6230037!16s%2Fg%2F11gfcs33yx?entry=ttu"
     },
     "fr": {
       "title": "Entraînement pour Débutants : Joignez-vous à Nous !",

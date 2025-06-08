@@ -637,7 +637,46 @@ if (browserLang === 'en') {
 
                     const locDetailsP = document.createElement('p');
                     locDetailsP.className = 'text-lg font-semibold mb-4';
-                    locDetailsP.innerHTML = `${event.location.name}<br>${event.location.address}<br>${event.location.city}, ${event.location.province}${event.location.postalCode ? ' ' + event.location.postalCode : ''}${event.location.country && event.location.country !== 'Canada' ? '<br>' + event.location.country : ''}`;
+                    let locationText = `${event.location.name}<br>${event.location.address}<br>${event.location.city}, ${event.location.province}${event.location.postalCode ? ' ' + event.location.postalCode : ''}`;
+                    if (event.location.country && event.location.country.toLowerCase() !== 'canada') { // Add country if not Canada, or always if preferred
+                        locationText += `<br>${event.location.country}`;
+                    }
+                    locDetailsP.innerHTML = locationText;
+
+                    // Add map link icon
+                    const mapLink = document.createElement('a');
+                    mapLink.target = '_blank';
+                    mapLink.rel = 'noopener noreferrer';
+                    mapLink.style.marginLeft = '8px'; // Add some space next to the location text
+                    mapLink.style.textDecoration = 'none'; // Optional: remove underline from icon link
+
+                    let mapsHref;
+                    if (event.location.mapsLink && event.location.mapsLink.trim() !== "") {
+                        mapsHref = event.location.mapsLink;
+                    } else {
+                        const queryParts = [
+                            event.location.name,
+                            event.location.address,
+                            event.location.city,
+                            event.location.province,
+                            event.location.postalCode,
+                            event.location.country
+                        ].filter(part => part && String(part).trim() !== "").join(', ');
+                        mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(queryParts)}`;
+                    }
+                    mapLink.href = mapsHref;
+
+                    const mapIcon = document.createElement('i');
+                    mapIcon.className = 'fa fa-map-marker';
+                    mapIcon.setAttribute('aria-hidden', 'true');
+
+                    const ariaLabelText = lang === 'fr' ? 'Voir sur Google Maps' : 'View on Google Maps';
+                    mapLink.setAttribute('aria-label', ariaLabelText);
+                    mapLink.title = ariaLabelText; // Tooltip for mouse users
+
+                    mapLink.appendChild(mapIcon);
+                    locDetailsP.appendChild(mapLink); // Append link to the location paragraph
+
                     contentWrapperDiv.appendChild(locDetailsP);
                 }
 
