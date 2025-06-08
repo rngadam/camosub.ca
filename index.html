@@ -529,6 +529,18 @@ if (browserLang === 'en') {
                 "summer-tournament-2025": "bg-blue-100"
             };
 
+            function parseISODateStringToDate(dateString) {
+                if (!dateString) return null;
+                const parts = dateString.split('-');
+                if (parts.length === 3) {
+                    const year = parseInt(parts[0], 10);
+                    const month = parseInt(parts[1], 10) - 1; // Month is 0-indexed in JavaScript Date
+                    const day = parseInt(parts[2], 10);
+                    return new Date(Date.UTC(year, month, day)); // Use UTC to avoid timezone shifts from midnight
+                }
+                return null;
+            }
+
             function renderEvent(event, lang) {
                 const eventLangData = event[lang];
                 if (!eventLangData) return ''; // Skip if no language-specific data
@@ -568,18 +580,46 @@ if (browserLang === 'en') {
                 contentWrapperDiv.className = 'bg-white rounded-lg shadow-lg p-8 inline-block max-w-xl text-left';
 
                 // Date/Time display
-                if (event.startDate) {
-                    const dateText = event.endDate && event.endDate !== event.startDate ? `${event.startDate} - ${event.endDate}` : event.startDate;
+                const dateLabel = lang === 'fr' ? 'Date :' : 'Date:';
+                const whenLabel = lang === 'fr' ? 'Quand :' : 'When:';
+                let displayDateHtml = '';
+
+                if (event.recurrence && event.recurrence[lang]) {
+                    displayDateHtml = `${whenLabel} <span class="text-red-600">${event.recurrence[lang]}</span>`;
+                } else if (event.startDate) {
+                    const locale = lang === 'fr' ? 'fr-CA' : 'en-CA';
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }; // Ensure UTC for consistency
+
+                    const startDateObj = parseISODateStringToDate(event.startDate);
+                    let formattedStartDate = '';
+                    if(startDateObj) {
+                        formattedStartDate = startDateObj.toLocaleDateString(locale, options);
+                    } else {
+                        // Fallback to raw string if parsing failed, though parseISODateStringToDate should handle it
+                        formattedStartDate = event.startDate;
+                    }
+
+                    if (event.endDate && event.endDate !== event.startDate) {
+                        const endDateObj = parseISODateStringToDate(event.endDate);
+                        let formattedEndDate = '';
+                        if(endDateObj){
+                            formattedEndDate = endDateObj.toLocaleDateString(locale, options);
+                        } else {
+                            formattedEndDate = event.endDate;
+                        }
+                        displayDateHtml = `${dateLabel} <span class="text-red-600">${formattedStartDate} - ${formattedEndDate}</span>`;
+                    } else {
+                        displayDateHtml = `${dateLabel} <span class="text-red-600">${formattedStartDate}</span>`;
+                    }
+                }
+
+                if (displayDateHtml) {
                     const dateP = document.createElement('p');
                     dateP.className = 'text-2xl font-semibold mb-4';
-                    dateP.innerHTML = `${lang === 'fr' ? 'Date :' : 'Date:'} <span class="text-red-600">${dateText}</span>`;
+                    dateP.innerHTML = displayDateHtml;
                     contentWrapperDiv.appendChild(dateP);
-                } else if (event.recurrence && event.recurrence[lang]) {
-                    const recurP = document.createElement('p');
-                    recurP.className = 'text-2xl font-semibold mb-4';
-                    recurP.innerHTML = `${lang === 'fr' ? 'Quand :' : 'When:'} <span class="text-red-600">${event.recurrence[lang]}</span>`;
-                    contentWrapperDiv.appendChild(recurP);
                 }
+
 
                 if (event.time) {
                     const timeP = document.createElement('p');
