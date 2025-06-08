@@ -631,24 +631,28 @@ if (browserLang === 'en') {
                 // Location
                 if (event.location) {
                     const locTitleP = document.createElement('p');
-                    locTitleP.className = 'text-xl mb-4';
+                    locTitleP.className = 'text-xl mb-4'; // This class implies bottom margin
                     locTitleP.textContent = lang === 'fr' ? 'Lieu :' : 'Location:';
                     contentWrapperDiv.appendChild(locTitleP);
 
-                    const locDetailsP = document.createElement('p');
-                    locDetailsP.className = 'text-lg font-semibold mb-4';
-                    let locationText = `${event.location.name}<br>${event.location.address}<br>${event.location.city}, ${event.location.province}${event.location.postalCode ? ' ' + event.location.postalCode : ''}`;
-                    if (event.location.country && event.location.country.toLowerCase() !== 'canada') { // Add country if not Canada, or always if preferred
-                        locationText += `<br>${event.location.country}`;
-                    }
-                    locDetailsP.innerHTML = locationText;
+                    // Create a container for icon and text
+                    const locationContainer = document.createElement('div');
+                    locationContainer.style.display = 'flex';
+                    locationContainer.style.alignItems = 'center';
+                    // If locDetailsP had 'mb-4' for block spacing, move it to locationContainer like:
+                    // locationContainer.className = 'mb-4'; // Example if locDetailsP was the sole element providing this margin.
+                    // For now, assuming the original mb-4 on locTitleP is sufficient or other elements provide block spacing.
+                    // If locDetailsP itself (the text part) needs a bottom margin, it should be applied to locationContainer.
+                    // The original locDetailsP had 'mb-4'. Let's transfer this to the container.
+                    locationContainer.className = 'mb-4';
 
-                    // Add map link icon
+
+                    // Map Link and Icon (now first in the container)
                     const mapLink = document.createElement('a');
                     mapLink.target = '_blank';
                     mapLink.rel = 'noopener noreferrer';
-                    mapLink.style.marginLeft = '8px'; // Add some space next to the location text
-                    mapLink.style.textDecoration = 'none'; // Optional: remove underline from icon link
+                    mapLink.style.textDecoration = 'none';
+                    // No specific margin on mapLink itself, icon will have marginRight.
 
                     let mapsHref;
                     if (event.location.mapsLink && event.location.mapsLink.trim() !== "") {
@@ -668,6 +672,9 @@ if (browserLang === 'en') {
 
                     const mapIcon = document.createElement('i');
                     mapIcon.className = 'fa fa-map-marker';
+                    mapIcon.style.color = 'red';
+                    mapIcon.style.fontSize = '2.5em';
+                    mapIcon.style.marginRight = '10px';
                     mapIcon.setAttribute('aria-hidden', 'true');
 
                     const ariaLabelText = lang === 'fr' ? 'Voir sur Google Maps' : 'View on Google Maps';
@@ -675,9 +682,20 @@ if (browserLang === 'en') {
                     mapLink.title = ariaLabelText; // Tooltip for mouse users
 
                     mapLink.appendChild(mapIcon);
-                    locDetailsP.appendChild(mapLink); // Append link to the location paragraph
+                    locationContainer.appendChild(mapLink); // Icon link is first
 
-                    contentWrapperDiv.appendChild(locDetailsP);
+                    // Location Text Paragraph (now second in the container)
+                    const locDetailsP = document.createElement('p');
+                     // Preserve original text styling, but remove mb-4 as container handles it.
+                    locDetailsP.className = 'text-lg font-semibold'; // Removed 'mb-4'
+                    let locationText = `${event.location.name}<br>${event.location.address}<br>${event.location.city}, ${event.location.province}${event.location.postalCode ? ' ' + event.location.postalCode : ''}`;
+                    if (event.location.country && event.location.country.toLowerCase() !== 'canada') {
+                        locationText += `<br>${event.location.country}`;
+                    }
+                    locDetailsP.innerHTML = locationText;
+                    locationContainer.appendChild(locDetailsP); // Text is second
+
+                    contentWrapperDiv.appendChild(locationContainer); // Add the container to the main content wrapper
                 }
 
                 // Description (only if not newbie-training, as its description is handled above)
