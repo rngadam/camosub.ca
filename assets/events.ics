@@ -3,9 +3,9 @@ VERSION:2.0
 PRODID:ics.py - http://git.io/lLljaA
 BEGIN:VEVENT
 DESCRIPTION:Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 12 juillet. Les équipes intéressées doivent noter que le nombre de places est limité\, il est donc recommandé de réserver rapidement.
-DTEND:20250712T190000Z
+DTEND:20250712T230000Z
 LOCATION:Parc Jean-Drapeau\, Île Sainte-Hélène\, Montréal\, QC\, H3C 1A9\, Canada
-DTSTART:20250712T130000Z
+DTSTART:20250712T170000Z
 SUMMARY:Tournoi estival de Montréal 2025
 UID:summer-tournament-2025@camosub.ca
 URL:https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/
@@ -20,10 +20,10 @@ UID:canadians-2025@camosub.ca
 URL:https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals
 END:VEVENT
 BEGIN:VEVENT
-DESCRIPTION:Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique !\n\n\nDétails (FR):\nAu programme :\n- Initiation au hockey subaquatique\n- Techniques de nage avec palmes\n- Maniement de la rondelle\n- Stratégies de jeu et parties amicales\n\nOuvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes\, masque\, tuba\, crosse\, palet) peut être prêté sur demande.
+DESCRIPTION:Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique !
 DURATION:PT1H
 LOCATION:Piscine Joseph-Charbonneau\, 8200 rue Rousselot\, Montréal\, QC\, H2E 1Z6\, Canada
-DTSTART:20250610T193000Z
+DTSTART:20240903T233000Z
 SUMMARY:Entraînement pour Débutants : Joignez-vous à Nous !
 UID:newbie-training@camosub.ca
 URL:mailto:camo_underwater@hotmail.com

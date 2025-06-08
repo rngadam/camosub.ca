@@ -580,13 +580,17 @@ if (browserLang === 'en') {
                 contentWrapperDiv.className = 'bg-white rounded-lg shadow-lg p-8 inline-block max-w-xl text-left';
 
                 // Date/Time display
-                const dateLabel = lang === 'fr' ? 'Date :' : 'Date:';
-                const whenLabel = lang === 'fr' ? 'Quand :' : 'When:';
-                let displayDateHtml = '';
+                const dateP = document.createElement('p');
+                dateP.className = 'text-2xl font-semibold mb-4';
+                const dateLabelSpan = document.createElement('span'); // For "Date: " or "Quand: "
+                const dateValueSpan = document.createElement('span'); // For the actual date value
+                dateValueSpan.className = 'text-red-600';
 
                 if (event.recurrence && event.recurrence[lang]) {
-                    displayDateHtml = `${whenLabel} <span class="text-red-600">${event.recurrence[lang]}</span>`;
+                    dateLabelSpan.textContent = lang === 'fr' ? 'Quand : ' : 'When: ';
+                    dateValueSpan.textContent = event.recurrence[lang];
                 } else if (event.startDate) {
+                    dateLabelSpan.textContent = lang === 'fr' ? 'Date : ' : 'Date: ';
                     const locale = lang === 'fr' ? 'fr-CA' : 'en-CA';
                     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }; // Ensure UTC for consistency
 
@@ -595,8 +599,7 @@ if (browserLang === 'en') {
                     if(startDateObj) {
                         formattedStartDate = startDateObj.toLocaleDateString(locale, options);
                     } else {
-                        // Fallback to raw string if parsing failed, though parseISODateStringToDate should handle it
-                        formattedStartDate = event.startDate;
+                        formattedStartDate = event.startDate; // Fallback
                     }
 
                     if (event.endDate && event.endDate !== event.startDate) {
@@ -605,33 +608,36 @@ if (browserLang === 'en') {
                         if(endDateObj){
                             formattedEndDate = endDateObj.toLocaleDateString(locale, options);
                         } else {
-                            formattedEndDate = event.endDate;
+                            formattedEndDate = event.endDate; // Fallback
                         }
-                        displayDateHtml = `${dateLabel} <span class="text-red-600">${formattedStartDate} - ${formattedEndDate}</span>`;
+                        dateValueSpan.textContent = `${formattedStartDate} - ${formattedEndDate}`;
                     } else {
-                        displayDateHtml = `${dateLabel} <span class="text-red-600">${formattedStartDate}</span>`;
+                        dateValueSpan.textContent = formattedStartDate;
                     }
                 }
 
-                if (displayDateHtml) {
-                    const dateP = document.createElement('p');
-                    dateP.className = 'text-2xl font-semibold mb-4';
-                    dateP.innerHTML = displayDateHtml;
+                if (dateValueSpan.textContent) { // Only append if there's a date to show
+                    dateP.appendChild(dateLabelSpan);
+                    dateP.appendChild(dateValueSpan);
                     contentWrapperDiv.appendChild(dateP);
                 }
-
 
                 if (event.time) {
                     const timeP = document.createElement('p');
                     timeP.className = 'text-xl mb-4';
-                    timeP.innerHTML = `${lang === 'fr' ? 'Heure :' : 'Time:'} <span class="font-semibold">${event.time}</span>`;
+                    const timeLabel = lang === 'fr' ? 'Heure : ' : 'Time: ';
+                    const timeValueSpan = document.createElement('span');
+                    timeValueSpan.className = 'font-semibold';
+                    timeValueSpan.textContent = event.time;
+                    timeP.textContent = timeLabel;
+                    timeP.appendChild(timeValueSpan);
                     contentWrapperDiv.appendChild(timeP);
                 }
 
                 // Location
                 if (event.location) {
                     const locTitleP = document.createElement('p');
-                    locTitleP.className = 'text-xl mb-4'; // This class implies bottom margin
+                    locTitleP.className = 'text-xl mb-4';
                     locTitleP.textContent = lang === 'fr' ? 'Lieu :' : 'Location:';
                     contentWrapperDiv.appendChild(locTitleP);
 
@@ -643,9 +649,7 @@ if (browserLang === 'en') {
                     // locationContainer.className = 'mb-4'; // Example if locDetailsP was the sole element providing this margin.
                     // For now, assuming the original mb-4 on locTitleP is sufficient or other elements provide block spacing.
                     // If locDetailsP itself (the text part) needs a bottom margin, it should be applied to locationContainer.
-                    // The original locDetailsP had 'mb-4'. Let's transfer this to the container.
-                    locationContainer.className = 'mb-4';
-
+                    locationContainer.className = 'mb-4'; // Transferred from locDetailsP
 
                     // Map Link and Icon (now first in the container)
                     const mapLink = document.createElement('a');
@@ -687,18 +691,24 @@ if (browserLang === 'en') {
                     // Location Text Paragraph (now second in the container)
                     const locDetailsP = document.createElement('p');
                      // Preserve original text styling, but remove mb-4 as container handles it.
-                    locDetailsP.className = 'text-lg font-semibold'; // Removed 'mb-4'
-                    let locationText = `${event.location.name}<br>${event.location.address}<br>${event.location.city}, ${event.location.province}${event.location.postalCode ? ' ' + event.location.postalCode : ''}`;
-                    if (event.location.country && event.location.country.toLowerCase() !== 'canada') {
-                        locationText += `<br>${event.location.country}`;
-                    }
-                    locDetailsP.innerHTML = locationText;
-                    locationContainer.appendChild(locDetailsP); // Text is second
+                    locDetailsP.className = 'text-lg font-semibold';
 
+                    // Split location text by <br> and append as text nodes and <br> elements
+                    const locationParts = (event.location.name + "<br>" + event.location.address + "<br>" + event.location.city + ", " + event.location.province + (event.location.postalCode ? ' ' + event.location.postalCode : '') + (event.location.country && event.location.country.toLowerCase() !== 'canada' ? '<br>' + event.location.country : '')).split('<br>');
+                    locationParts.forEach((part, index) => {
+                        locDetailsP.appendChild(document.createTextNode(part));
+                        if (index < locationParts.length - 1) {
+                            locDetailsP.appendChild(document.createElement('br'));
+                        }
+                    });
+
+                    locationContainer.appendChild(locDetailsP); // Text is second
                     contentWrapperDiv.appendChild(locationContainer); // Add the container to the main content wrapper
                 }
 
-                // Description (only if not newbie-training, as its description is handled above)
+                // Description (only if not newbie-training, as its description is handled above or if it's generic)
+                // The main description for newbie-training is already rendered above the white box.
+                // This part is for other events, or additional description for newbie-training if it were in eventLangData.description
                 if (event.id !== 'newbie-training' && eventLangData.description) {
                     const descP = document.createElement('p');
                     descP.className = 'text-lg mb-6';
@@ -706,50 +716,58 @@ if (browserLang === 'en') {
                     contentWrapperDiv.appendChild(descP);
                 }
 
-
-                // For newbie training, add Cost and Equipment
-                if (event.id === 'newbie-training') {
-                    // Cost
+                // Render new structured fields (cost, equipment, program, notes)
+                // These will typically be present for "newbie-training" based on events.json update
+                const costLabel = lang === 'fr' ? 'Coût : ' : 'Cost: ';
+                if (eventLangData.cost) {
                     const costP = document.createElement('p');
                     costP.className = 'text-xl font-semibold mb-4';
-                    costP.innerHTML = `${lang === 'fr' ? 'Coût :' : 'Cost:'} <span class="font-normal">${lang === 'fr' ? '10 $ (gratuit pour la première session)' : '$10 (free for the first session)'}</span>`;
+                    costP.textContent = costLabel;
+                    const costValueSpan = document.createElement('span');
+                    costValueSpan.className = 'font-normal';
+                    costValueSpan.textContent = eventLangData.cost;
+                    costP.appendChild(costValueSpan);
                     contentWrapperDiv.appendChild(costP);
+                }
 
-                    // Equipment
+                const equipmentLabel = lang === 'fr' ? 'Équipement nécessaire : ' : 'Required equipment: ';
+                if (eventLangData.equipmentNeeded) {
                     const equipP = document.createElement('p');
-                    equipP.className = 'text-xl font-semibold mb-6';
-                    equipP.innerHTML = `${lang === 'fr' ? 'Équipement nécessaire :' : 'Required equipment:'} <span class="font-normal">${lang === 'fr' ? 'Maillot de bain' : 'Swimsuit'}</span>`;
+                    equipP.className = 'text-xl font-semibold mb-6'; // mb-6 as per original
+                    equipP.textContent = equipmentLabel;
+                    const equipValueSpan = document.createElement('span');
+                    equipValueSpan.className = 'font-normal';
+                    equipValueSpan.textContent = eventLangData.equipmentNeeded;
+                    equipP.appendChild(equipValueSpan);
                     contentWrapperDiv.appendChild(equipP);
                 }
 
+                if (eventLangData.programTitle && eventLangData.programDetails && eventLangData.programDetails.length > 0) {
+                    const programTitleEl = document.createElement('h2');
+                    programTitleEl.className = 'text-2xl font-bold mb-4 text-gray-800';
+                    programTitleEl.textContent = eventLangData.programTitle;
+                    contentWrapperDiv.appendChild(programTitleEl);
 
-                if (eventLangData.details) {
-                    // For newbie training, this is "Au programme" / "On the program"
-                     if (event.id === 'newbie-training') {
-                        const detailsTitle = document.createElement('h2');
-                        detailsTitle.className = 'text-2xl font-bold mb-4 text-gray-800';
-                        detailsTitle.textContent = lang === 'fr' ? 'Au programme :' : 'On the program:';
-                        contentWrapperDiv.appendChild(detailsTitle);
-                    }
-                    const detailsUl = document.createElement('ul');
-                    detailsUl.className = 'list-disc list-inside text-gray-700 space-y-2 mb-6';
-                    // Assuming details is a string with items separated by newlines and starting with '-'
-                    eventLangData.details.split('\n').forEach(itemText => {
-                        if(itemText.startsWith('- ')) {
-                            const li = document.createElement('li');
-                            li.textContent = itemText.substring(2); // Remove '- '
-                            detailsUl.appendChild(li);
-                        }
+                    const ul = document.createElement('ul');
+                    ul.className = 'list-disc list-inside text-gray-700 space-y-2 mb-6';
+                    eventLangData.programDetails.forEach(itemText => {
+                        const li = document.createElement('li');
+                        li.textContent = itemText;
+                        ul.appendChild(li);
                     });
-                    contentWrapperDiv.appendChild(detailsUl);
-                     // Italic text for newbie training
-                    if (event.id === 'newbie-training') {
-                        const italicP = document.createElement('p');
-                        italicP.className = 'text-lg italic';
-                        italicP.textContent = lang === 'fr' ? "Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet) peut être prêté sur demande." : "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck) can be lent upon request.";
-                        contentWrapperDiv.appendChild(italicP);
-                    }
+                    contentWrapperDiv.appendChild(ul);
                 }
+
+                // Remove the old way of rendering details for newbie-training (which was based on eventLangData.details string)
+                // The new fields (programTitle, programDetails, notes) replace the need for parsing eventLangData.details for "newbie-training"
+
+                if (eventLangData.notes) {
+                    const notesP = document.createElement('p');
+                    notesP.className = 'text-lg italic'; // As per original styling for this type of note
+                    notesP.textContent = eventLangData.notes;
+                    contentWrapperDiv.appendChild(notesP);
+                }
+
 
                 containerDiv.appendChild(contentWrapperDiv); // Add the white box to the main container
 
@@ -761,36 +779,38 @@ if (browserLang === 'en') {
                     linkA.rel = 'noopener noreferrer';
 
                     let buttonClasses = 'mt-6 inline-block text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-opacity-80 transition duration-300 shadow-md';
-                    let iconClass = 'fa fa-external-link-alt mr-2'; // Default icon
-                    let buttonText = lang === 'fr' ? "Voir l'événement" : "View Event";
+                    let iconClass = 'fa fa-external-link-alt mr-2';
+                    let buttonTextContent = lang === 'fr' ? "Voir l'événement" : "View Event";
 
                     if (eventLangData.url.includes('uwhportal')) {
                         buttonClasses += ' bg-green-600 hover:bg-green-700';
                     } else if (eventLangData.url.includes('facebook')) {
                         buttonClasses += ' bg-blue-600 hover:bg-blue-700';
-                         iconClass = 'fa fa-facebook mr-2';
-                         buttonText = lang === 'fr' ? "Voir l'événement Facebook" : "View Facebook Event";
+                         iconClass = 'fa fa-facebook mr-2'; // Update icon class
+                         buttonTextContent = lang === 'fr' ? "Voir l'événement Facebook" : "View Facebook Event";
                     } else if (eventLangData.url.startsWith('mailto:')) {
                         buttonClasses += ' bg-gray-800 hover:bg-gray-900';
-                        iconClass = 'fa fa-envelope mr-2';
-                        buttonText = lang === 'fr' ? "Envoyez-nous un courriel" : "Email us";
-                        // For newbie training, this button is outside the white box
-                        if (event.id === 'newbie-training') {
+                        iconClass = 'fa fa-envelope mr-2'; // Update icon class
+                        buttonTextContent = lang === 'fr' ? "Envoyez-nous un courriel" : "Email us";
+
+                        if (event.id === 'newbie-training') { // Specific styling for newbie training email button
                              linkA.className = 'mt-4 inline-block bg-gray-800 text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-gray-900 transition duration-300 shadow-lg';
                         } else {
                             linkA.className = buttonClasses;
                         }
-                    } else {
-                        buttonClasses += ' bg-gray-500 hover:bg-gray-600'; // Generic fallback
+                    } else { // Generic fallback
+                        buttonClasses += ' bg-gray-500 hover:bg-gray-600';
                     }
-                     if (event.id !== 'newbie-training' || !eventLangData.url.startsWith('mailto:')) {
+                    // Apply classes if not the specific newbie training mailto case
+                     if (!(event.id === 'newbie-training' && eventLangData.url.startsWith('mailto:'))) {
                         linkA.className = buttonClasses;
                     }
 
+                    const iconElement = document.createElement('i');
+                    iconElement.className = iconClass;
+                    linkA.appendChild(iconElement);
+                    linkA.appendChild(document.createTextNode(" " + buttonTextContent)); // Add space before text
 
-                    linkA.innerHTML = `<i class="${iconClass}"></i>${buttonText}`;
-
-                    // For newbie training, the mailto link is outside the white box
                     if (event.id === 'newbie-training' && eventLangData.url.startsWith('mailto:')) {
                         const contactP = document.createElement('p');
                         contactP.className = 'text-xl md:text-2xl mt-8 mb-6 font-semibold';
@@ -798,7 +818,6 @@ if (browserLang === 'en') {
                         containerDiv.appendChild(contactP);
                         containerDiv.appendChild(linkA);
                     } else {
-                        // Append link to contentWrapperDiv for other events
                          contentWrapperDiv.appendChild(linkA);
                     }
                 }

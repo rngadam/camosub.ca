@@ -3,6 +3,10 @@ from datetime import datetime, date, time, timedelta
 from ics import Calendar, Event
 import os
 import re # For parsing time more flexibly
+import pytz
+
+# --- Timezone Definition ---
+TARGET_TZ = pytz.timezone("America/Montreal")
 
 # --- Helper Functions ---
 
@@ -53,16 +57,7 @@ def parse_time_str(time_str, lang='fr'):
 
     return parsed_start_time, parsed_end_time
 
-
-def get_next_weekday(start_date, weekday):
-    """
-    Calculates the next occurrence of a specific weekday (0=Mon, 1=Tue, ..., 6=Sun)
-    on or after start_date.
-    """
-    days_ahead = weekday - start_date.weekday()
-    if days_ahead < 0:  # Target day already passed this week
-        days_ahead += 7
-    return start_date + timedelta(days=days_ahead)
+# Removed get_next_weekday as it's no longer needed for new recurrence logic
 
 # --- Main Script Logic ---
 
@@ -140,74 +135,78 @@ def generate_ics():
 
         parsed_start_time, parsed_end_time = parse_time_str(time_str, lang=time_parse_lang)
 
-        if ev_json.get('recurrence'):
-            # Recurring event (e.g., Newbie Training)
+        rrule = ev_json.get('rrule')
+        first_event_start_date_str = ev_json.get('firstEventStartDate')
+
+        if rrule and first_event_start_date_str:
+            # New recurring event logic
             if parsed_start_time:
-                # Determine the first DTSTART
-                # For "Every Tuesday", BYDAY=TU. For "Tous les Mardis", also BYDAY=TU
-                # This assumes recurrence is weekly. More complex recurrences would need more data in JSON.
-                # For "Tous les Mardis" / "Every Tuesday"
-                # For simplicity, let's assume recurrence is always weekly on a specific day.
-                # The JSON should ideally provide the BYDAY value (e.g., "TU" for Tuesday).
-                # Hardcoding for "newbie-training" as an example.
-                rrule_byday = None
-                if event_id == "newbie-training": # Assuming this is the only recurring one for now
-                    rrule_byday = "TU" # Tuesday
-
-                if rrule_byday:
-                    today = date.today()
-                    # Find the next occurrence of that weekday
-                    event_date_for_dtstart = get_next_weekday(today, ["MO", "TU", "WE", "TH", "FR", "SA", "SU"].index(rrule_byday))
-
-                    dtstart_datetime = datetime.combine(event_date_for_dtstart, parsed_start_time)
-                    e.begin = dtstart_datetime
-                    e.rrule = f'FREQ=WEEKLY;BYDAY={rrule_byday}'
+                try:
+                    first_event_date = datetime.strptime(first_event_start_date_str, '%Y-%m-%d').date()
+                    naive_dt_start = datetime.combine(first_event_date, parsed_start_time)
+                    e.begin = TARGET_TZ.localize(naive_dt_start)
+                    e.rrule = rrule
 
                     if parsed_end_time:
-                        # Calculate duration if end time is available for the recurring event
-                        duration_seconds = (datetime.combine(date.min, parsed_end_time) - datetime.combine(date.min, parsed_start_time)).total_seconds()
-                        if duration_seconds < 0: # End time is on the next day (e.g. 10 PM - 2 AM)
-                             duration_seconds += 24 * 3600
-                        e.duration = timedelta(seconds=duration_seconds)
+                        # Calculate duration
+                        # Create full datetime for end to handle potential overnight
+                        naive_dt_end_on_start_date = datetime.combine(first_event_date, parsed_end_time)
+                        if naive_dt_end_on_start_date <= naive_dt_start: # End time is on the next day or duration is 24h
+                            naive_dt_end_on_start_date += timedelta(days=1)
+                        e.duration = naive_dt_end_on_start_date - naive_dt_start
                     else:
                         e.duration = timedelta(hours=1) # Default duration for recurring if no end time
+                except ValueError:
+                    print(f"Warning: Could not parse firstEventStartDate for recurring event '{e.name}'. Skipping.")
+                    continue
             else:
-                print(f"Warning: Recurring event '{e.name}' has no time specified. Skipping.")
-                continue # Cannot create a recurring event without a start time
+                print(f"Warning: Recurring event '{e.name}' has no valid time specified. Skipping.")
+                continue
 
         elif start_date_str:
             # Standard event with a start date
             try:
-                event_start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
+                event_start_date_obj = datetime.strptime(start_date_str, '%Y-%m-%d').date()
 
                 if parsed_start_time:
-                    e.begin = datetime.combine(event_start_date, parsed_start_time)
+                    naive_dt_start = datetime.combine(event_start_date_obj, parsed_start_time)
+                    e.begin = TARGET_TZ.localize(naive_dt_start)
+
                     if parsed_end_time:
-                        # Determine if end_date_str is present and different
-                        event_end_date_for_end_time = event_start_date
+                        event_end_date_obj = event_start_date_obj # Assume same day unless endDate is different
                         if end_date_str and end_date_str != start_date_str:
-                             event_end_date_for_end_time = datetime.strptime(end_date_str, '%Y-%m-%d').date()
-                        e.end = datetime.combine(event_end_date_for_end_time, parsed_end_time)
-                    elif end_date_str and end_date_str != start_date_str: # Has end date but no specific end time, assume same time as start
-                         event_end_date_for_end_time = datetime.strptime(end_date_str, '%Y-%m-%d').date()
-                         e.end = datetime.combine(event_end_date_for_end_time, parsed_start_time)
-                    else: # No end time, no different end date
-                        e.duration = timedelta(hours=2) # Default duration if only start time
+                             event_end_date_obj = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+
+                        naive_dt_end = datetime.combine(event_end_date_obj, parsed_end_time)
+                        if naive_dt_end <= naive_dt_start and event_end_date_obj == event_start_date_obj : # Handle overnight for single day event
+                            naive_dt_end += timedelta(days=1)
+                        e.end = TARGET_TZ.localize(naive_dt_end)
+
+                    elif end_date_str and end_date_str != start_date_str:
+                         # Multi-day event, but no specific end time. Assume ends at same time as start.
+                         event_end_date_obj = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+                         naive_dt_end = datetime.combine(event_end_date_obj, parsed_start_time)
+                         e.end = TARGET_TZ.localize(naive_dt_end)
+                    else: # Single day event, no specific end time, use duration
+                        e.duration = timedelta(hours=2)
                 else:
                     # All-day event
-                    e.begin = event_start_date
+                    e.begin = event_start_date_obj # This should be a date object
                     e.make_all_day()
                     if end_date_str and end_date_str != start_date_str:
-                        event_end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
-                        # For all-day events, DTEND is exclusive, so add one day
-                        e.end = event_end_date + timedelta(days=1)
-                    # If no end_date_str or same as start_date_str, it's a single all-day event, ics.py handles this by default.
-
+                        event_end_date_obj = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+                        # For multi-day all-day events, DTEND is the start of the day *after* the last day.
+                        e.end = event_end_date_obj + timedelta(days=1)
+                    # If single all-day event, ics.py handles DTEND correctly if not set (or set to begin_date + 1 day)
             except ValueError:
                 print(f"Warning: Could not parse date for event '{e.name}'. Skipping.")
                 continue
         else:
-            print(f"Warning: Event '{e.name}' has no startDate or recurrence. Skipping.")
+            # Fallback for old recurring events if any, or events missing crucial date info
+            if ev_json.get('recurrence') and parsed_start_time : # Old recurrence field
+                 print(f"Warning: Event '{e.name}' uses old recurrence format. Please update to rrule and firstEventStartDate. Skipping.")
+            else:
+                 print(f"Warning: Event '{e.name}' has no startDate or new recurrence fields. Skipping.")
             continue
 
         cal.events.add(e)
@@ -232,20 +231,9 @@ def generate_ics():
 if __name__ == '__main__':
     generate_ics()
     # Test the time parser
-    # print(parse_time_str("19h30 - 20h30", 'fr'))
+    # print(parse_time_str("19h30 - 20h30", 'fr')) # Test cases
     # print(parse_time_str("7:30PM - 8:30PM", 'en'))
     # print(parse_time_str("19:30", 'fr'))
-    # print(parse_time_str("10:00 AM", 'en'))
+    # print(parse_time_str("10:00 AM", 'en')) # Test cases
     # print(parse_time_str(None))
     # print(parse_time_str("Invalid Time String"))
-
-    # today = date.today()
-    # print(f"Today is {today} ({today.weekday()})")
-    # print(f"Next Monday: {get_next_weekday(today, 0)}") # Monday
-    # print(f"Next Tuesday: {get_next_weekday(today, 1)}") # Tuesday
-    # print(f"Next Wednesday: {get_next_weekday(today, 2)}")
-    # print(f"Next Sunday: {get_next_weekday(today, 6)}")
-    # print(f"Next {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][today.weekday()]}: {get_next_weekday(today, today.weekday())}")
-    # if date.today().weekday() == 1 : # If today is Tuesday
-    #     print(f"Next Tuesday (should be today): {get_next_weekday(today, 1)}")
-    #     print(f"Next Tuesday after a week: {get_next_weekday(today + timedelta(days=1), 1)}")

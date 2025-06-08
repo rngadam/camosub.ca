@@ -35,6 +35,8 @@
         "fr": "Tous les Mardis",
         "en": "Every Tuesday"
     },
+    "rrule": "FREQ=WEEKLY;BYDAY=TU",
+    "firstEventStartDate": "2024-09-03",
     "location": {
       "name": "Piscine Joseph-Charbonneau",
       "address": "8200 rue Rousselot",
@@ -47,13 +49,33 @@
     "fr": {
       "title": "Entraînement pour Débutants : Joignez-vous à Nous !",
       "description": "Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique !",
-      "details": "Au programme :\n- Initiation au hockey subaquatique\n- Techniques de nage avec palmes\n- Maniement de la rondelle\n- Stratégies de jeu et parties amicales\n\nOuvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet) peut être prêté sur demande.",
+      "details": null,
+      "cost": "10 $ (gratuit pour la première session)",
+      "equipmentNeeded": "Maillot de bain",
+      "programTitle": "Au programme :",
+      "programDetails": [
+        "Initiation au hockey subaquatique",
+        "Techniques de nage avec palmes",
+        "Maniement de la rondelle",
+        "Stratégies de jeu et parties amicales"
+      ],
+      "notes": "Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet) peut être prêté sur demande.",
       "url": "mailto:camo_underwater@hotmail.com"
     },
     "en": {
       "title": "Newbie Training: Join Us!",
       "description": "Join our newbie training sessions every Tuesday evening and discover underwater hockey!",
-      "details": "On the program:\n- Introduction to underwater hockey\n- Fin swimming techniques\n- Puck handling\n- Game strategies and friendly matches\n\nOpen to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck) can be lent upon request.",
+      "details": null,
+      "cost": "$10 (free for the first session)",
+      "equipmentNeeded": "Swimsuit",
+      "programTitle": "On the program:",
+      "programDetails": [
+        "Introduction to underwater hockey",
+        "Fin swimming techniques",
+        "Puck handling",
+        "Game strategies and friendly matches"
+      ],
+      "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck) can be lent upon request.",
       "url": "mailto:camo_underwater@hotmail.com"
     },
     "image": null
