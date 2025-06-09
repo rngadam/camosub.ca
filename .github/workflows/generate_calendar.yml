@@ -22,7 +22,7 @@ jobs:
           python-version: '3.9' # Or a newer stable version like 3.11
 
       - name: Install Python dependencies
-        run: pip install ics pytz
+        run: pip install icalendar pytz
 
       - name: Run script to generate events.ics
         run: python scripts/generate_ics.py
