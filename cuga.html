@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Clubs</title>
+    <title>CUGA Clubs</title>
+    <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +18,11 @@
         h1 {
             text-align: center;
             color: #2c3e50;
+        }
+
+        /* Ensure h1 is not too far from controls if it was the only thing with large margin */
+        body > h1 {
+            margin-bottom: 20px;
         }
 
         #language-selection, #filter-controls {
@@ -84,14 +90,16 @@
         }
 
         #clubs-container .ics-button {
-            padding: 6px 10px;
+            padding: 5px 8px; /* Adjusted padding for icon */
             background-color: #27ae60;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 13px;
-            white-space: nowrap; /* Prevent button text from wrapping */
+            font-size: 18px; /* Adjusted font size for icon */
+            line-height: 1; /* Ensure icon aligns well */
+            min-width: 30px; /* Ensure button has a decent tap target size */
+            text-align: center;
         }
 
         #clubs-container .ics-button:disabled {
@@ -103,10 +111,21 @@
             background-color: #229954;
         }
 
+        .link-icon {
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        .link-icon i {
+            /* Ensure Font Awesome icons inherit the link's color */
+            color: inherit;
+            /* Font Awesome icons generally inherit size well.
+               Adjust if necessary, e.g., font-size: 0.9em; or font-size: 1.1em; */
+        }
     </style>
 </head>
 <body>
-    <h1>University Clubs</h1>
+    <h1>CUGA (Canadian Underwater Games Association) Clubs</h1>
 
     <div id="language-selection">
         <button id="lang-en">English</button>
@@ -127,26 +146,53 @@
         let selectedSport = 'All';
         let selectedProvince = 'All';
 
+        const provinceTimezones = {
+            "Alberta": "America/Edmonton",
+            "British Columbia": "America/Vancouver",
+            "Manitoba": "America/Winnipeg",
+            "New Brunswick": "America/Moncton",
+            "Newfoundland and Labrador": "America/St_Johns",
+            "Nova Scotia": "America/Halifax",
+            "Ontario": "America/Toronto",
+            "Prince Edward Island": "America/Halifax",
+            "Quebec": "America/Montreal",
+            "Saskatchewan": "America/Regina",
+            "Northwest Territories": "America/Yellowknife",
+            "Nunavut": "America/Iqaluit", // Note: Nunavut has multiple timezones
+            "Yukon": "America/Whitehorse"
+        };
+        const defaultTimezone = "America/Toronto";
+
         const headersMap = {
             'en': {
                 sportType: "Sport Type",
                 clubName: "Club Name",
                 city: "City",
                 practiceTimes: "Practice Times",
+                contact: "Contact",
+                website: "Website",
+                facebook: "Facebook",
+                instagram: "Instagram",
                 filterSportTypeLabel: "Filter by Sport Type:",
                 filterProvinceLabel: "Filter by Province:",
                 allOption: "All",
-                downloadICS: "Download ICS"
+                ScheduleHeader: "Schedule",
+                AriaDownloadICS: "Download schedule as ICS"
             },
             'fr': {
                 sportType: "Type de sport",
                 clubName: "Nom du club",
                 city: "Ville",
                 practiceTimes: "Heures de pratique",
+                contact: "Contact",
+                website: "Site Web",
+                facebook: "Facebook",
+                instagram: "Instagram",
                 filterSportTypeLabel: "Filtrer par type de sport :",
                 filterProvinceLabel: "Filtrer par province :",
                 allOption: "Tous",
-                downloadICS: "Télécharger ICS"
+                ScheduleHeader: "Horaire",
+                AriaDownloadICS: "Télécharger l'horaire en ICS"
             }
         };
 
@@ -169,12 +215,9 @@
             const sportTypeFilter = document.createElement('select');
             sportTypeFilter.id = 'sport-type-filter';
 
-            // Get unique English sport types for values, ensure 'All' is first
             const sportTypes = ['All', ...new Set(allClubs.map(club => club.SportType).filter(st => st))].sort();
-            // Correctly handle 'All' for sorting if it's not first by default or make it explicitly first.
-            // For simplicity, we add 'All' manually and then sorted unique types.
 
-            sportTypeFilter.innerHTML = ''; // Clear previous options before repopulating
+            sportTypeFilter.innerHTML = '';
 
             const defaultSportOption = document.createElement('option');
             defaultSportOption.value = 'All';
@@ -185,7 +228,7 @@
 
             uniqueSportTypes.forEach(sportType => {
                 const option = document.createElement('option');
-                option.value = sportType; // Value is always English
+                option.value = sportType;
                 const representativeClub = allClubs.find(club => club.SportType === sportType);
                 option.textContent = (language === 'fr' && representativeClub && representativeClub.SportTypeFR) ? representativeClub.SportTypeFR : sportType;
                 sportTypeFilter.appendChild(option);
@@ -193,10 +236,10 @@
             sportTypeFilter.value = selectedSport;
             sportTypeFilter.addEventListener('change', (e) => {
                 selectedSport = e.target.value;
-                displayClubs(currentLanguage); // Re-render with current language
+                displayClubs(currentLanguage);
             });
             filterControlsContainer.appendChild(sportTypeFilter);
-            filterControlsContainer.appendChild(document.createTextNode(' ')); // Add space
+            filterControlsContainer.appendChild(document.createTextNode(' '));
 
             // Province Filter
             const provinceLabel = document.createElement('label');
@@ -206,7 +249,7 @@
 
             const provinceFilter = document.createElement('select');
             provinceFilter.id = 'province-filter';
-            provinceFilter.innerHTML = ''; // Clear previous options
+            provinceFilter.innerHTML = '';
 
             const defaultProvinceOption = document.createElement('option');
             defaultProvinceOption.value = 'All';
@@ -217,7 +260,7 @@
 
             uniqueProvinces.forEach(province => {
                 const option = document.createElement('option');
-                option.value = province; // Value is always English
+                option.value = province;
                 const representativeClub = allClubs.find(club => club.Province === province);
                 option.textContent = (language === 'fr' && representativeClub && representativeClub.ProvinceFR) ? representativeClub.ProvinceFR : province;
                 provinceFilter.appendChild(option);
@@ -225,7 +268,7 @@
             provinceFilter.value = selectedProvince;
             provinceFilter.addEventListener('change', (e) => {
                 selectedProvince = e.target.value;
-                displayClubs(currentLanguage); // Re-render with current language
+                displayClubs(currentLanguage);
             });
             filterControlsContainer.appendChild(provinceFilter);
         }
@@ -281,7 +324,6 @@
                 }).filter(club => club !== null);
 
                 console.log("Processed club data:", allClubs);
-                // Initial display and filter population
                 displayClubs(currentLanguage);
 
             } catch (error) {
@@ -294,24 +336,20 @@
         }
 
         function displayClubs(language) {
-            currentLanguage = language; // Update global language state
+            currentLanguage = language;
 
-            // (Re-)Populate filter dropdowns to update language and maintain selection
-            // This should be called before clearing the clubsContainer if filters are outside of it,
-            // or if their state depends on the current display language.
-            if (allClubs.length > 0) { // Only populate filters if there's data
+            if (allClubs.length > 0) {
                 populateFilterDropdowns(language);
-            } else if (document.getElementById('filter-controls')) { // Clear filters if no data
+            } else if (document.getElementById('filter-controls')) {
                  document.getElementById('filter-controls').innerHTML = '';
             }
-
 
             const clubsContainer = document.getElementById('clubs-container');
             if (!clubsContainer) {
                 console.error('Clubs container not found!');
                 return;
             }
-            clubsContainer.innerHTML = ''; // Clear previous club listing
+            clubsContainer.innerHTML = '';
 
             const langHeaders = headersMap[language];
 
@@ -323,7 +361,11 @@
                         <th>${langHeaders.sportType}</th>
                         <th>${langHeaders.city}</th>
                         <th>${langHeaders.practiceTimes}</th>
-                        <th>${langHeaders.downloadICS}</th>
+                        <th>${langHeaders.contact}</th>
+                        <th>${langHeaders.website}</th>
+                        <th>${langHeaders.facebook}</th>
+                        <th>${langHeaders.instagram}</th>
+                        <th>${langHeaders.ScheduleHeader}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -352,12 +394,13 @@
                     const clubName = language === 'fr' ? (club.ClubNameFR || club.ClubName) : club.ClubName;
                     const sportType = language === 'fr' ? (club.SportTypeFR || club.SportType) : club.SportType;
                     const city = language === 'fr' ? (club.CityFR || club.City) : club.City;
-                    const practiceTimes = club.PracticeTimes; // Assuming no FR version for this specific field
+                    const practiceTimes = club.PracticeTimes;
 
                     const downloadButtonCell = document.createElement('td');
                     const downloadButton = document.createElement('button');
-                    downloadButton.textContent = langHeaders.downloadICS;
-                    downloadButton.className = 'ics-button'; // Add class for styling
+                    downloadButton.innerHTML = '<i class="fa fa-calendar" aria-hidden="true"></i>'; // Font Awesome icon
+                    downloadButton.className = 'ics-button';
+                    downloadButton.setAttribute('aria-label', langHeaders.AriaDownloadICS);
                     if (!club.RRULE || club.RRULE.toLowerCase() === "na (contact for times)") {
                         downloadButton.disabled = true;
                     } else {
@@ -365,13 +408,60 @@
                     }
                     downloadButtonCell.appendChild(downloadButton);
 
-                    tr.innerHTML = `
-                        <td>${clubName}</td>
-                        <td>${sportType}</td>
-                        <td>${city}</td>
-                        <td>${practiceTimes}</td>
-                    `;
-                    tr.appendChild(downloadButtonCell); // Append the cell with the button
+                    // Create cells for each piece of data
+                    const clubNameCell = document.createElement('td');
+                    clubNameCell.textContent = clubName;
+                    tr.appendChild(clubNameCell);
+
+                    const sportTypeCell = document.createElement('td');
+                    sportTypeCell.textContent = sportType;
+                    tr.appendChild(sportTypeCell);
+
+                    const cityCell = document.createElement('td');
+                    cityCell.textContent = city;
+                    tr.appendChild(cityCell);
+
+                    const practiceTimesCell = document.createElement('td');
+                    practiceTimesCell.textContent = practiceTimes;
+                    tr.appendChild(practiceTimesCell);
+
+                    // Contact Email
+                    const contactCell = document.createElement('td');
+                    if (club.ContactEmail && club.ContactEmail !== "NA") {
+                        contactCell.innerHTML = `<span class="link-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="mailto:${club.ContactEmail}">${club.ContactEmail}</a>`;
+                    } else {
+                        contactCell.textContent = "NA";
+                    }
+                    tr.appendChild(contactCell);
+
+                    // Website URL
+                    const websiteCell = document.createElement('td');
+                    if (club.WebsiteURL && club.WebsiteURL !== "NA") {
+                        websiteCell.innerHTML = `<span class="link-icon"><i class="fa fa-globe" aria-hidden="true"></i></span><a href="${club.WebsiteURL}" target="_blank" rel="noopener noreferrer">${club.WebsiteURL}</a>`;
+                    } else {
+                        websiteCell.textContent = "NA";
+                    }
+                    tr.appendChild(websiteCell);
+
+                    // Facebook URL
+                    const facebookCell = document.createElement('td');
+                    if (club.FacebookURL && club.FacebookURL !== "NA") {
+                        facebookCell.innerHTML = `<span class="link-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span><a href="${club.FacebookURL}" target="_blank" rel="noopener noreferrer">${club.FacebookURL}</a>`;
+                    } else {
+                        facebookCell.textContent = "NA";
+                    }
+                    tr.appendChild(facebookCell);
+
+                    // Instagram URL
+                    const instagramCell = document.createElement('td');
+                    if (club.InstagramURL && club.InstagramURL !== "NA") {
+                        instagramCell.innerHTML = `<span class="link-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span><a href="${club.InstagramURL}" target="_blank" rel="noopener noreferrer">${club.InstagramURL}</a>`;
+                    } else {
+                        instagramCell.textContent = "NA";
+                    }
+                    tr.appendChild(instagramCell);
+
+                    tr.appendChild(downloadButtonCell);
                     tbody.appendChild(tr);
                 });
             }
@@ -388,11 +478,8 @@
         }
 
         function calculateNextDtFromRrule(rruleString, clubPracticeTimeString) {
-            // Simplified: Assumes RRULE has BYDAY, BYHOUR, BYMINUTE.
-            // Does not support complex RRULEs, multiple BYDAYs, etc.
-            // Tries to find the next occurrence.
             const now = new Date();
-            let eventDate = new Date(now); // Start with today
+            let eventDate = new Date(now);
 
             const dayMap = { 'SU': 0, 'MO': 1, 'TU': 2, 'WE': 3, 'TH': 4, 'FR': 5, 'SA': 6 };
 
@@ -407,42 +494,38 @@
             });
 
             if (targetDay === -1 || targetHour === -1 || targetMinute === -1) {
-                // Fallback: try to parse from clubPracticeTimeString if RRULE is incomplete for DTSTART
-                // This is a very basic heuristic
                 if (clubPracticeTimeString) {
                     const timeMatch = clubPracticeTimeString.match(/(\d{1,2})[:h](\d{2})?/i);
                     if (timeMatch) {
                         targetHour = parseInt(timeMatch[1], 10);
                         targetMinute = timeMatch[2] ? parseInt(timeMatch[2], 10) : 0;
-                        // Attempt to find a day from practice string e.g. "Monday"
                         for (const dayKey in dayMap) {
                             if (clubPracticeTimeString.toLowerCase().includes(dayKey.toLowerCase())) {
                                 targetDay = dayMap[dayKey];
                                 break;
                             }
                         }
-                         if (targetDay === -1) targetDay = now.getDay(); // Default to today if no day found
+                         if (targetDay === -1) targetDay = now.getDay();
                     } else {
-                         return null; // Cannot determine time
+                         return null;
                     }
                 } else {
-                    return null; // Not enough info in RRULE or practice time string
+                    return null;
                 }
             }
 
             eventDate.setHours(targetHour, targetMinute, 0, 0);
 
             let daysToAdd = (targetDay - eventDate.getDay() + 7) % 7;
-            if (daysToAdd === 0 && eventDate.getTime() < now.getTime()) { // If it's today but time has passed
-                daysToAdd = 7; // Move to next week
+            if (daysToAdd === 0 && eventDate.getTime() < now.getTime()) {
+                daysToAdd = 7;
             }
             eventDate.setDate(eventDate.getDate() + daysToAdd);
 
             const dtstart = new Date(eventDate);
             const dtend = new Date(eventDate);
-            dtend.setHours(dtend.getHours() + 1); // Assume 1 hour duration
+            dtend.setHours(dtend.getHours() + 1);
 
-            // Format for ICS: YYYYMMDDTHHMMSS (local time, TZID will be added)
             const formatDateForICS = (d) => {
                 return d.getFullYear() +
                        ('0' + (d.getMonth() + 1)).slice(-2) +
@@ -468,18 +551,30 @@
             const description = `${club.PracticeTimes}${notes ? `\\n\\nNotes: ${notes.replace(/\r\n|\r|\n/g, "\\n")}` : ''}`;
             const summary = `${clubName} - ${sportType}`;
 
-            // RRULEs can be separated by <br> or &lt;br&gt;
-            const rrules = club.RRULE.split(/<br>|&lt;br&gt;/i).map(r => r.trim()).filter(r => r);
-            if (rrules.length === 0) {
+            const rruleString = club.RRULE || ""; // Ensure club.RRULE is not null
+            const individualRrules = rruleString
+                .replace(/<br\s*\/?>|&lt;br\s*\/?>/gi, '|') // Normalize <br> and &lt;br&gt; to |
+                .split('|')                                 // Split by |
+                .map(rule => rule.trim())                   // Trim whitespace
+                .filter(rule => rule.length > 0);           // Remove empty rules
+
+            if (individualRrules.length === 0) {
                 alert("No valid recurrence rule found for this club.");
                 return;
             }
 
             let icsEvents = [];
             const dtstamp = formatUTCDate(new Date());
-            const tzid = "America/Toronto"; // Assumption
 
-            for (const rrule of rrules) {
+            let resolvedTzid = defaultTimezone;
+            if (club.Province && provinceTimezones[club.Province]) {
+                resolvedTzid = provinceTimezones[club.Province];
+            } else if (club.Province) {
+                console.warn(`No specific timezone mapping for province: ${club.Province}. Using default: ${defaultTimezone}`);
+            }
+            // If club.Province is empty/null, it will just use defaultTimezone without a warning.
+
+            for (const rrule of individualRrules) {
                 if (rrule.toLowerCase() === "na (contact for times)") continue;
 
                 const dtTimes = calculateNextDtFromRrule(rrule, club.PracticeTimes);
@@ -498,8 +593,8 @@
                     `LOCATION:${location}`,
                     `DESCRIPTION:${description}`,
                     `RRULE:${rrule}`,
-                    `DTSTART;TZID=${tzid}:${dtTimes.dtstart}`,
-                    `DTEND;TZID=${tzid}:${dtTimes.dtend}`,
+                    `DTSTART;TZID=${resolvedTzid}:${dtTimes.dtstart}`,
+                    `DTEND;TZID=${resolvedTzid}:${dtTimes.dtend}`,
                     'END:VEVENT'
                 ].join('\r\n');
                 icsEvents.push(eventStr);
@@ -529,21 +624,21 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            fetchClubData(); // Fetch data, which then calls displayClubs
+            fetchClubData();
 
             const langEnButton = document.getElementById('lang-en');
             const langFrButton = document.getElementById('lang-fr');
 
             if (langEnButton) {
                 langEnButton.addEventListener('click', () => {
-                    selectedSport = 'All'; // Reset filters on language change
+                    selectedSport = 'All';
                     selectedProvince = 'All';
                     displayClubs('en');
                 });
             }
             if (langFrButton) {
                 langFrButton.addEventListener('click', () => {
-                    selectedSport = 'All'; // Reset filters on language change
+                    selectedSport = 'All';
                     selectedProvince = 'All';
                     displayClubs('fr');
                 });
