@@ -100,6 +100,9 @@
             line-height: 1; /* Ensure icon aligns well */
             min-width: 30px; /* Ensure button has a decent tap target size */
             text-align: center;
+            margin-right: 8px; /* Consistent spacing with other link items */
+            margin-bottom: 4px; /* For better spacing if wrapped */
+            vertical-align: middle; /* Align with link icons */
         }
 
         #clubs-container .ics-button:disabled {
@@ -113,7 +116,9 @@
 
         .link-icon {
             vertical-align: middle;
-            margin-right: 4px;
+            margin-right: 8px; /* Increased for consistent spacing */
+            display: inline-block; /* Helps with consistent spacing and wrapping */
+            margin-bottom: 4px; /* For better spacing if wrapped */
         }
 
         .link-icon i {
@@ -169,30 +174,24 @@
                 clubName: "Club Name",
                 city: "City",
                 practiceTimes: "Practice Times",
-                contact: "Contact",
-                website: "Website",
-                facebook: "Facebook",
-                instagram: "Instagram",
+                // Removed contact, website, facebook, instagram, ScheduleHeader
+                linksColumn: "Links", // Added for consolidated column
                 filterSportTypeLabel: "Filter by Sport Type:",
                 filterProvinceLabel: "Filter by Province:",
                 allOption: "All",
-                ScheduleHeader: "Schedule",
-                AriaDownloadICS: "Download schedule as ICS"
+                AriaDownloadICS: "Download schedule as ICS" // Kept for the ICS button
             },
             'fr': {
                 sportType: "Type de sport",
                 clubName: "Nom du club",
                 city: "Ville",
                 practiceTimes: "Heures de pratique",
-                contact: "Contact",
-                website: "Site Web",
-                facebook: "Facebook",
-                instagram: "Instagram",
+                // Removed contact, website, facebook, instagram, ScheduleHeader
+                linksColumn: "Liens", // Added for consolidated column
                 filterSportTypeLabel: "Filtrer par type de sport :",
                 filterProvinceLabel: "Filtrer par province :",
                 allOption: "Tous",
-                ScheduleHeader: "Horaire",
-                AriaDownloadICS: "Télécharger l'horaire en ICS"
+                AriaDownloadICS: "Télécharger l'horaire en ICS" // Kept for the ICS button
             }
         };
 
@@ -361,11 +360,7 @@
                         <th>${langHeaders.sportType}</th>
                         <th>${langHeaders.city}</th>
                         <th>${langHeaders.practiceTimes}</th>
-                        <th>${langHeaders.contact}</th>
-                        <th>${langHeaders.website}</th>
-                        <th>${langHeaders.facebook}</th>
-                        <th>${langHeaders.instagram}</th>
-                        <th>${langHeaders.ScheduleHeader}</th>
+                        <th>${langHeaders.linksColumn}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -396,72 +391,45 @@
                     const city = language === 'fr' ? (club.CityFR || club.City) : club.City;
                     const practiceTimes = club.PracticeTimes;
 
-                    const downloadButtonCell = document.createElement('td');
-                    const downloadButton = document.createElement('button');
-                    downloadButton.innerHTML = '<i class="fa fa-calendar" aria-hidden="true"></i>'; // Font Awesome icon
-                    downloadButton.className = 'ics-button';
-                    downloadButton.setAttribute('aria-label', langHeaders.AriaDownloadICS);
-                    if (!club.RRULE || club.RRULE.toLowerCase() === "na (contact for times)") {
-                        downloadButton.disabled = true;
-                    } else {
-                        downloadButton.onclick = () => generateICS(club);
-                    }
-                    downloadButtonCell.appendChild(downloadButton);
+                    tr.insertCell().textContent = clubName;
+                    tr.insertCell().textContent = sportType;
+                    tr.insertCell().textContent = city;
+                    tr.insertCell().textContent = practiceTimes;
 
-                    // Create cells for each piece of data
-                    const clubNameCell = document.createElement('td');
-                    clubNameCell.textContent = clubName;
-                    tr.appendChild(clubNameCell);
+                    const linksCell = tr.insertCell();
+                    let linksHTML = '';
 
-                    const sportTypeCell = document.createElement('td');
-                    sportTypeCell.textContent = sportType;
-                    tr.appendChild(sportTypeCell);
-
-                    const cityCell = document.createElement('td');
-                    cityCell.textContent = city;
-                    tr.appendChild(cityCell);
-
-                    const practiceTimesCell = document.createElement('td');
-                    practiceTimesCell.textContent = practiceTimes;
-                    tr.appendChild(practiceTimesCell);
-
-                    // Contact Email
-                    const contactCell = document.createElement('td');
                     if (club.ContactEmail && club.ContactEmail !== "NA") {
-                        contactCell.innerHTML = `<span class="link-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="mailto:${club.ContactEmail}">${club.ContactEmail}</a>`;
-                    } else {
-                        contactCell.textContent = "NA";
+                        linksHTML += `<span class="link-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="mailto:${club.ContactEmail}">${club.ContactEmail}</a>`;
                     }
-                    tr.appendChild(contactCell);
-
-                    // Website URL
-                    const websiteCell = document.createElement('td');
                     if (club.WebsiteURL && club.WebsiteURL !== "NA") {
-                        websiteCell.innerHTML = `<span class="link-icon"><i class="fa fa-globe" aria-hidden="true"></i></span><a href="${club.WebsiteURL}" target="_blank" rel="noopener noreferrer">${club.WebsiteURL}</a>`;
-                    } else {
-                        websiteCell.textContent = "NA";
+                        linksHTML += `<span class="link-icon"><i class="fa fa-globe" aria-hidden="true"></i></span><a href="${club.WebsiteURL}" target="_blank" rel="noopener noreferrer">${club.WebsiteURL}</a>`;
                     }
-                    tr.appendChild(websiteCell);
-
-                    // Facebook URL
-                    const facebookCell = document.createElement('td');
                     if (club.FacebookURL && club.FacebookURL !== "NA") {
-                        facebookCell.innerHTML = `<span class="link-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span><a href="${club.FacebookURL}" target="_blank" rel="noopener noreferrer">${club.FacebookURL}</a>`;
-                    } else {
-                        facebookCell.textContent = "NA";
+                        linksHTML += `<span class="link-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span><a href="${club.FacebookURL}" target="_blank" rel="noopener noreferrer">Facebook</a>`;
                     }
-                    tr.appendChild(facebookCell);
-
-                    // Instagram URL
-                    const instagramCell = document.createElement('td');
                     if (club.InstagramURL && club.InstagramURL !== "NA") {
-                        instagramCell.innerHTML = `<span class="link-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span><a href="${club.InstagramURL}" target="_blank" rel="noopener noreferrer">${club.InstagramURL}</a>`;
-                    } else {
-                        instagramCell.textContent = "NA";
+                        linksHTML += `<span class="link-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span><a href="${club.InstagramURL}" target="_blank" rel="noopener noreferrer">Instagram</a>`;
                     }
-                    tr.appendChild(instagramCell);
 
-                    tr.appendChild(downloadButtonCell);
+                    // ICS Button (Schedule)
+                    const scheduleButton = document.createElement('button');
+                    scheduleButton.innerHTML = '<i class="fa fa-calendar" aria-hidden="true"></i>';
+                    scheduleButton.className = 'ics-button';
+                    scheduleButton.setAttribute('aria-label', langHeaders.AriaDownloadICS);
+                    if (!club.RRULE || club.RRULE.toLowerCase() === "na (contact for times)") {
+                        scheduleButton.disabled = true;
+                    } else {
+                        scheduleButton.onclick = () => generateICS(club);
+                    }
+
+                    // Temporarily append to a disconnected element to get its outerHTML
+                    const tempDiv = document.createElement('div');
+                    tempDiv.appendChild(scheduleButton);
+                    linksHTML += tempDiv.innerHTML;
+
+                    linksCell.innerHTML = linksHTML.trim() ? linksHTML : "NA";
+
                     tbody.appendChild(tr);
                 });
             }
