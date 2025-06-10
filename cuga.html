@@ -509,44 +509,70 @@
                     practiceLocationCell.innerHTML = locationContent; // Use innerHTML in case of special chars, though textContent is safer if not needed. Given data, textContent is fine.
 
                     const linksCell = tr.insertCell();
-                    let linksHTML = '';
                     const langHeaders = headersMap[currentLanguage]; // Ensure langHeaders is accessible
 
+                    // Helper function to create icon links
+                    const createIconLink = (href, ariaLabelKey, iconClass, isMailto = false) => {
+                        const anchor = document.createElement('a');
+                        anchor.className = 'link-icon-anchor';
+                        if (!isMailto) {
+                            anchor.target = '_blank';
+                            anchor.rel = 'noopener noreferrer';
+                        }
+                        anchor.href = href;
+                        const ariaLabelText = langHeaders[ariaLabelKey] || ""; // Get base ARIA label
+                        // Append actual href for context, ensuring it's not undefined/null
+                        const fullAriaLabel = href ? `${ariaLabelText} ${href}` : ariaLabelText;
+                        anchor.setAttribute('aria-label', fullAriaLabel);
+
+                        const span = document.createElement('span');
+                        span.className = 'link-icon';
+                        const iconTag = document.createElement('i'); // Changed variable name from 'icon' to 'iconTag'
+                        iconTag.className = `fa ${iconClass}`; // e.g., fa-envelope
+                        iconTag.setAttribute('aria-hidden', 'true');
+                        span.appendChild(iconTag);
+                        anchor.appendChild(span);
+                        return anchor;
+                    };
+
                     if (club.ContactEmail && club.ContactEmail !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaEmailLink}: ${club.ContactEmail}`;
-                        linksHTML += `<a href="mailto:${club.ContactEmail}" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(`mailto:${club.ContactEmail}`, 'AriaEmailLink', 'fa-envelope', true));
                     }
                     if (club.WebsiteURL && club.WebsiteURL !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaWebsiteLink}: ${club.WebsiteURL}`;
-                        linksHTML += `<a href="${club.WebsiteURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-globe" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(club.WebsiteURL, 'AriaWebsiteLink', 'fa-globe'));
                     }
                     if (club.FacebookURL && club.FacebookURL !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaFacebookLink}: ${club.FacebookURL}`;
-                        linksHTML += `<a href="${club.FacebookURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(club.FacebookURL, 'AriaFacebookLink', 'fa-facebook-square'));
                     }
                     if (club.InstagramURL && club.InstagramURL !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaInstagramLink}: ${club.InstagramURL}`;
-                        linksHTML += `<a href="${club.InstagramURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(club.InstagramURL, 'AriaInstagramLink', 'fa-instagram'));
                     }
 
-                    // ICS Button (Schedule)
+                    // Create and append the ICS button
                     const scheduleButton = document.createElement('button');
-                    scheduleButton.innerHTML = '<i class="fa fa-calendar" aria-hidden="true"></i>';
                     scheduleButton.className = 'ics-button';
-                    scheduleButton.setAttribute('aria-label', langHeaders.AriaDownloadICS);
-                    if (!club.RRULE || club.RRULE.toLowerCase() === "na (contact for times)") {
+                    scheduleButton.innerHTML = '<i class="fa fa-calendar" aria-hidden="true"></i>';
+                    const ariaLabelICS = langHeaders.AriaDownloadICS || "Download schedule as ICS";
+                    scheduleButton.setAttribute('aria-label', ariaLabelICS);
+
+                    if (!club.RRULE || club.RRULE.trim() === "" || club.RRULE.toLowerCase() === "na (contact for times)") {
                         scheduleButton.disabled = true;
+                        appLog('debug', `ICS button disabled for club: ${club.ClubName || 'Unnamed Club'} due to missing/invalid RRULE.`);
                     } else {
-                        scheduleButton.onclick = () => generateICS(club);
-                        appLog('debug', `Attached generateICS listener for club: ${club.ClubName || 'Unnamed Club'}`, club);
+                        scheduleButton.disabled = false;
+                        const currentClub = club; // Capture club for the closure
+                        scheduleButton.onclick = () => {
+                            appLog('debug', 'ICS button clicked for club (via direct onclick):', currentClub.ClubName);
+                            generateICS(currentClub);
+                        };
+                        appLog('debug', `Attached generateICS listener via onclick for club: ${currentClub.ClubName || 'Unnamed Club'}`);
                     }
+                    linksCell.appendChild(scheduleButton);
 
-                    // Temporarily append to a disconnected element to get its outerHTML
-                    const tempDiv = document.createElement('div');
-                    tempDiv.appendChild(scheduleButton);
-                    linksHTML += tempDiv.innerHTML;
-
-                    linksCell.innerHTML = linksHTML.trim() ? linksHTML : "NA";
+                    // If linksCell is empty (no links, and ICS button also not added if it were conditional), add "NA"
+                    if (linksCell.children.length === 0) {
+                        linksCell.textContent = "NA";
+                    }
 
                     tbody.appendChild(tr);
                 });
