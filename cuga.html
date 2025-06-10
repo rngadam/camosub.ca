@@ -561,11 +561,13 @@
                     } else {
                         scheduleButton.disabled = false;
                         const currentClub = club; // Capture club for the closure
-                        scheduleButton.onclick = () => {
-                            appLog('debug', 'ICS button clicked for club (via direct onclick):', currentClub.ClubName);
+
+                        scheduleButton.addEventListener("click", () => {
+                            appLog('debug', 'ICS button clicked for club (via addEventListener):', currentClub.ClubName);
                             generateICS(currentClub);
-                        };
-                        appLog('debug', `Attached generateICS listener via onclick for club: ${currentClub.ClubName || 'Unnamed Club'}`);
+                        });
+
+                        appLog('debug', `Attached generateICS listener via addEventListener for club: ${currentClub.ClubName || 'Unnamed Club'}`);
                     }
                     linksCell.appendChild(scheduleButton);
 
