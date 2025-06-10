@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CAMO Subaquatique//icalendar-generator//EN
+X-WR-CALDESC;LANGUAGE=fr:Évènements de CAMO Sports Subaquatiques
+X-WR-CALDESC;LANGUAGE=en:Events of CAMO Underwater Sports
+X-WR-CALNAME;LANGUAGE=fr:CAMO Sports Subaquatiques
+X-WR-CALNAME;LANGUAGE=en:CAMO Underwater Sports
+X-PUBLISHED-TTL:P1D
+X-WR-TIMEZONE:America/Montreal
+BEGIN:VEVENT
+SUMMARY:Championnats Canadiens de Hockey Subaquatique 2025
+DTSTART;VALUE=DATE:20250613
+DTEND;VALUE=DATE:20250616
+UID:canadians-2025@camosub.ca
+DESCRIPTION:Le Club CAMO est ravi de supporter nos athlètes qui participe
+ ront aux Championnats Canadiens de Hockey Subaquatique 2025 à Gatineau! V
+ enez encourager les meilleures équipes du pays.
+LOCATION:Centre Sportif de Gatineau\, 850 Bd de la Gappe\, Gatineau\, QC\,
+  J8T 7T7\, Canada
+URL:https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nation
+ als
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Entraînement pour Débutants : Joignez-vous à Nous !
+DTSTART;TZID=America/Montreal:20240903T193000
+DURATION:PT1H
+UID:newbie-training@camosub.ca
+RRULE:FREQ=WEEKLY;BYDAY=TU
+DESCRIPTION:Au programme :\n- Initiation au hockey subaquatique\n- Techniq
+ ues de nage avec palmes\n- Maniement de la rondelle\n- Stratégies de jeu
+ et parties amicales\n\nCoût (FR): 10 $ (gratuit pour la première session
+ )\nÉquipement (FR): Maillot de bain\n\nNotes (FR):\nOuvert à tous les ni
+ veaux. Savoir nager confortablement est un prérequis. Équipement de base
+  (palmes\, masque\, tuba\, crosse\, palet) peut être prêté sur demande.
+ \n\nOn the program:\n- Introduction to underwater hockey\n- Fin swimming t
+ echniques\n- Puck handling\n- Game strategies and friendly matches\n\nCost
+  (EN): $10 (free for the first session)\nEquipment (EN): Swimsuit\n\nNotes
+  (EN):\nOpen to all levels. Ability to swim comfortably is a prerequisite.
+  Basic equipment (fins\, mask\, snorkel\, stick\, puck) can be lent upon r
+ equest.
+LOCATION:Piscine Joseph-Charbonneau\, 8200 rue Rousselot\, Montréal\, QC\
+ , H2E 1Z6\, Canada
+URL:mailto:camo_underwater@hotmail.com
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Tournoi estival de Montréal 2025
+DTSTART;TZID=America/Montreal:20250712T130000
+DTEND;TZID=America/Montreal:20250712T190000
+UID:summer-tournament-2025@camosub.ca
+DESCRIPTION:Le club CAMO est fier de vous annoncer la quatrième édition
+ de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 12 juil
+ let. Les équipes intéressées doivent noter que le nombre de places est
+ limité\, il est donc recommandé de réserver rapidement.
+LOCATION:Parc Jean-Drapeau\, Île Sainte-Hélène\, Montréal\, QC\, H3C 1
+ A9\, Canada
+URL:https://facebook.com/events/s/tournoi-estival-de-montreal-20/105676748
+ 6301457/
+END:VEVENT
+END:VCALENDAR
