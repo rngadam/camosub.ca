@@ -158,6 +158,75 @@
     </div>
 
     <script>
+        // --- App Logging Configuration (with defaults, will be updated from config.json) ---
+        let AppLoggerConfig = {
+            enabled: false, // Default to false or a less verbose state like 'warn'
+            logLevel: 'warn',
+        };
+
+        /**
+         * Application logging function.
+         * Must be defined after the initial AppLoggerConfig.
+         * Logs messages to the console if AppLoggerConfig.enabled is true and the message's
+         * level is at or above AppLoggerConfig.logLevel.
+         * @param {string} level - The log level (e.g., 'debug', 'info', 'warn', 'error').
+         * @param {...any} args - Messages or objects to log.
+         */
+        function appLog(level, ...args) {
+            if (!AppLoggerConfig.enabled) {
+                return;
+            }
+
+            const levels = ['debug', 'info', 'warn', 'error'];
+            const configLevelIndex = levels.indexOf(AppLoggerConfig.logLevel.toLowerCase());
+            const messageLevelIndex = levels.indexOf(level.toLowerCase());
+
+            // If the level is not recognized, or if the message level is below the config level, don't log.
+            if (messageLevelIndex === -1 || messageLevelIndex < configLevelIndex) {
+                return;
+            }
+
+            const timestamp = new Date().toISOString();
+            let consoleMethod = console.log; // Default to console.log
+
+            // Use specific console methods if they exist (e.g., console.error, console.warn)
+            // This also helps them appear with different styling in some browser consoles.
+            if (console[level.toLowerCase()] && typeof console[level.toLowerCase()] === 'function') {
+                consoleMethod = console[level.toLowerCase()];
+            }
+
+            // Prepend timestamp and level to the log arguments
+            consoleMethod(`[\${timestamp}] [\${level.toUpperCase()}]`, ...args); // Corrected to use backticks
+        }
+        // --- End App Logging ---
+
+        async function loadAppConfig() {
+            try {
+                const response = await fetch('config.json'); // Assuming config.json is in the same directory or accessible via this path
+                if (!response.ok) {
+                    console.error('Failed to fetch config.json. Status:', response.status, 'Using default AppLoggerConfig.');
+                    return;
+                }
+                const fetchedConfig = await response.json();
+
+                // Update AppLoggerConfig, merging fetched settings with defaults
+                if (fetchedConfig.logging) {
+                    AppLoggerConfig.enabled = typeof fetchedConfig.logging.enabled === 'boolean' ? fetchedConfig.logging.enabled : AppLoggerConfig.enabled;
+                    AppLoggerConfig.logLevel = fetchedConfig.logging.logLevel || AppLoggerConfig.logLevel;
+                }
+
+                // Example for other settings (if any were defined in AppLoggerConfig defaults or elsewhere)
+                // if (fetchedConfig.otherSettings) { ... }
+
+                // Use console.log here for reliable feedback on what config was loaded,
+                // as appLog's behavior depends on this loaded config.
+                console.log("AppLoggerConfig after attempting to load config.json:", JSON.parse(JSON.stringify(AppLoggerConfig)));
+
+            } catch (error) {
+                console.error('Error loading or parsing config.json:', error, 'Using default AppLoggerConfig.');
+            }
+        }
+
         let allClubs = [];
         let currentLanguage = 'en'; // Default language
         let selectedSport = 'All';
@@ -440,43 +509,72 @@
                     practiceLocationCell.innerHTML = locationContent; // Use innerHTML in case of special chars, though textContent is safer if not needed. Given data, textContent is fine.
 
                     const linksCell = tr.insertCell();
-                    let linksHTML = '';
                     const langHeaders = headersMap[currentLanguage]; // Ensure langHeaders is accessible
 
+                    // Helper function to create icon links
+                    const createIconLink = (href, ariaLabelKey, iconClass, isMailto = false) => {
+                        const anchor = document.createElement('a');
+                        anchor.className = 'link-icon-anchor';
+                        if (!isMailto) {
+                            anchor.target = '_blank';
+                            anchor.rel = 'noopener noreferrer';
+                        }
+                        anchor.href = href;
+                        const ariaLabelText = langHeaders[ariaLabelKey] || ""; // Get base ARIA label
+                        // Append actual href for context, ensuring it's not undefined/null
+                        const fullAriaLabel = href ? `${ariaLabelText} ${href}` : ariaLabelText;
+                        anchor.setAttribute('aria-label', fullAriaLabel);
+
+                        const span = document.createElement('span');
+                        span.className = 'link-icon';
+                        const iconTag = document.createElement('i'); // Changed variable name from 'icon' to 'iconTag'
+                        iconTag.className = `fa ${iconClass}`; // e.g., fa-envelope
+                        iconTag.setAttribute('aria-hidden', 'true');
+                        span.appendChild(iconTag);
+                        anchor.appendChild(span);
+                        return anchor;
+                    };
+
                     if (club.ContactEmail && club.ContactEmail !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaEmailLink}: ${club.ContactEmail}`;
-                        linksHTML += `<a href="mailto:${club.ContactEmail}" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(`mailto:${club.ContactEmail}`, 'AriaEmailLink', 'fa-envelope', true));
                     }
                     if (club.WebsiteURL && club.WebsiteURL !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaWebsiteLink}: ${club.WebsiteURL}`;
-                        linksHTML += `<a href="${club.WebsiteURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-globe" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(club.WebsiteURL, 'AriaWebsiteLink', 'fa-globe'));
                     }
                     if (club.FacebookURL && club.FacebookURL !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaFacebookLink}: ${club.FacebookURL}`;
-                        linksHTML += `<a href="${club.FacebookURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(club.FacebookURL, 'AriaFacebookLink', 'fa-facebook-square'));
                     }
                     if (club.InstagramURL && club.InstagramURL !== "NA") {
-                        const ariaLabel = `${langHeaders.AriaInstagramLink}: ${club.InstagramURL}`;
-                        linksHTML += `<a href="${club.InstagramURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span></a>`;
+                        linksCell.appendChild(createIconLink(club.InstagramURL, 'AriaInstagramLink', 'fa-instagram'));
                     }
 
-                    // ICS Button (Schedule)
+                    // Create and append the ICS button
                     const scheduleButton = document.createElement('button');
-                    scheduleButton.innerHTML = '<i class="fa fa-calendar" aria-hidden="true"></i>';
                     scheduleButton.className = 'ics-button';
-                    scheduleButton.setAttribute('aria-label', langHeaders.AriaDownloadICS);
-                    if (!club.RRULE || club.RRULE.toLowerCase() === "na (contact for times)") {
+                    scheduleButton.innerHTML = '<i class="fa fa-calendar" aria-hidden="true"></i>';
+                    const ariaLabelICS = langHeaders.AriaDownloadICS || "Download schedule as ICS";
+                    scheduleButton.setAttribute('aria-label', ariaLabelICS);
+
+                    if (!club.RRULE || club.RRULE.trim() === "" || club.RRULE.toLowerCase() === "na (contact for times)") {
                         scheduleButton.disabled = true;
+                        appLog('debug', `ICS button disabled for club: ${club.ClubName || 'Unnamed Club'} due to missing/invalid RRULE.`);
                     } else {
-                        scheduleButton.onclick = () => generateICS(club);
+                        scheduleButton.disabled = false;
+                        const currentClub = club; // Capture club for the closure
+
+                        scheduleButton.addEventListener("click", () => {
+                            appLog('debug', 'ICS button clicked for club (via addEventListener):', currentClub.ClubName);
+                            generateICS(currentClub);
+                        });
+
+                        appLog('debug', `Attached generateICS listener via addEventListener for club: ${currentClub.ClubName || 'Unnamed Club'}`);
                     }
+                    linksCell.appendChild(scheduleButton);
 
-                    // Temporarily append to a disconnected element to get its outerHTML
-                    const tempDiv = document.createElement('div');
-                    tempDiv.appendChild(scheduleButton);
-                    linksHTML += tempDiv.innerHTML;
-
-                    linksCell.innerHTML = linksHTML.trim() ? linksHTML : "NA";
+                    // If linksCell is empty (no links, and ICS button also not added if it were conditional), add "NA"
+                    if (linksCell.children.length === 0) {
+                        linksCell.textContent = "NA";
+                    }
 
                     tbody.appendChild(tr);
                 });
@@ -559,6 +657,7 @@
 
 
         function generateICS(club) {
+            appLog('debug', 'generateICS called for club:', club);
             const lang = currentLanguage; // Used for summary components
             const clubName = lang === 'fr' ? (club.ClubNameFR || club.ClubName) : club.ClubName;
             const sportType = lang === 'fr' ? (club.SportTypeFR || club.SportType) : club.SportType;
@@ -591,16 +690,24 @@
             const summary = `${clubName} - ${sportType}`;
 
             const rruleString = club.RRULE || "";
+            if (!rruleString.trim() || rruleString.toLowerCase() === "na (contact for times)") {
+                appLog('debug', 'No RRULE found or RRULE is "NA (contact for times)" for club:', clubName);
+                alert("No valid recurrence rule found for this club (RRULE is empty or NA).");
+                return;
+            }
             const individualRrules = rruleString
-                .replace(/<br\s*\/?>|&lt;br\s*\/?>/gi, '|') // Normalize <br> and &lt;br&gt; to |
+                .replace(/<br\s*\/?>|&lt;br\s*\/?>/gi, '|')
                 .split('|')                                 // Split by |
                 .map(rule => rule.trim())                   // Trim whitespace
                 .filter(rule => rule.length > 0);           // Remove empty rules
 
             if (individualRrules.length === 0) {
-                alert("No valid recurrence rule found for this club.");
+                appLog('debug', 'No valid individual RRULEs found after parsing for club:', clubName, 'Original RRULE:', club.RRULE);
+                alert("No valid individual recurrence rules could be parsed for this club.");
                 return;
             }
+            appLog('debug', 'About to process individual RRULEs. Count:', individualRrules.length, 'Rules:', individualRrules);
+
 
             let icsEvents = [];
             const dtstamp = formatUTCDate(new Date());
@@ -640,7 +747,8 @@
             }
 
             if (icsEvents.length === 0) {
-                alert("Could not generate any valid events for this club's schedule.");
+                appLog('debug', 'No VEVENTs were created for club:', clubName);
+                alert("Could not generate any valid events for this club's schedule (no valid VEVENTs created).");
                 return;
             }
 
@@ -653,16 +761,39 @@
             ].join('\r\n');
 
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
+            appLog('debug', 'Blob created:', blob);
+            const objectURL = URL.createObjectURL(blob);
+            appLog('debug', 'Object URL created:', objectURL);
+
             const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", `${clubName.replace(/[^a-zA-Z0-9]/g, "_")}_schedule.ics`);
+            link.href = objectURL;
+            const fileName = `${clubName.replace(/[^a-zA-Z0-9]/g, "_")}_schedule.ics`;
+            link.setAttribute("download", fileName);
+
             document.body.appendChild(link);
+            appLog('debug', 'Link appended to body. About to click download link. Href:', link.href, 'Download attr:', link.download);
             link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(link.href);
+
+            setTimeout(() => {
+                appLog('debug', 'link.click() executed for file:', fileName);
+                document.body.removeChild(link);
+                URL.revokeObjectURL(objectURL);
+                appLog('debug', 'Cleanup: Removed temporary link and revoked object URL for club:', clubName);
+            }, 100);
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => { // Make the callback async
+            try {
+                await loadAppConfig(); // Wait for config to be loaded
+                appLog('info', 'Application configuration loaded successfully.'); // Log using appLog
+            } catch (error) {
+                // This catch is for unexpected errors if loadAppConfig itself threw an unhandled exception
+                console.error("Critical error during app configuration loading sequence:", error);
+                // AppLoggerConfig will have defaults, appLog might still work with those defaults.
+                appLog('error', 'Critical error during app configuration loading sequence. Proceeding with default logging.', error);
+            }
+
+            // Proceed to fetch data regardless of config load outcome (loadAppConfig handles its own errors and defaults)
             fetchClubData();
 
             const langEnButton = document.getElementById('lang-en');
