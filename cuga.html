@@ -195,7 +195,8 @@
                 AriaEmailLink: "Email",
                 AriaWebsiteLink: "Visit website",
                 AriaFacebookLink: "Visit Facebook page",
-                AriaInstagramLink: "Visit Instagram page"
+                AriaInstagramLink: "Visit Instagram page",
+                NotesPrefix: "Notes:"
             },
             'fr': {
                 sportType: "Type de sport",
@@ -210,7 +211,8 @@
                 AriaEmailLink: "Courriel",
                 AriaWebsiteLink: "Visiter le site web",
                 AriaFacebookLink: "Visiter la page Facebook",
-                AriaInstagramLink: "Visiter la page Instagram"
+                AriaInstagramLink: "Visiter la page Instagram",
+                NotesPrefix: "Remarques:"
             }
         };
 
@@ -329,6 +331,7 @@
                     if (header === 'Notes') headerKeyToIndex['Notes'] = index;
                     if (header === 'Notes FR') headerKeyToIndex['NotesFR'] = index;
                     if (header === 'RRULE') headerKeyToIndex['RRULE'] = index;
+                    if (header === 'Practice Times FR') headerKeyToIndex['PracticeTimesFR'] = index; // Added this line
                 });
 
                 allClubs = parsedData.table.rows.slice(1).map(row => {
@@ -413,7 +416,17 @@
                     tr.insertCell().textContent = clubName;
                     tr.insertCell().textContent = sportType;
                     tr.insertCell().textContent = city;
-                    tr.insertCell().textContent = practiceTimes;
+
+                    // Determine Practice Times content based on language
+                    const practiceTimesCell = tr.insertCell();
+                    let practiceTimeText = club.PracticeTimes; // Default to English version
+                    if (language === 'fr' && club.PracticeTimesFR && club.PracticeTimesFR.trim() !== "" && club.PracticeTimesFR.toLowerCase() !== 'na') {
+                        practiceTimeText = club.PracticeTimesFR;
+                    } else if (!practiceTimeText || practiceTimeText.trim() === "" || practiceTimeText.toLowerCase() === 'na') {
+                        // If default (English) is also empty or NA (or was initially undefined/null), display "NA"
+                        practiceTimeText = "NA";
+                    }
+                    practiceTimesCell.textContent = practiceTimeText;
 
                     const linksCell = tr.insertCell();
                     let linksHTML = '';
@@ -539,11 +552,27 @@
             const clubName = lang === 'fr' ? (club.ClubNameFR || club.ClubName) : club.ClubName;
             const sportType = lang === 'fr' ? (club.SportTypeFR || club.SportType) : club.SportType;
             const location = lang === 'fr' ? (club.PracticeLocationFR || club.PracticeLocation) : club.PracticeLocation;
-            const notes = lang === 'fr' ? (club.NotesFR || club.Notes) : club.Notes;
-            const description = `${club.PracticeTimes}${notes ? `\\n\\nNotes: ${notes.replace(/\r\n|\r|\n/g, "\\n")}` : ''}`;
+
+            // Determine localized practice times and notes for description
+            let practiceTimesForDesc = club.PracticeTimes || "";
+            if (currentLanguage === 'fr' && club.PracticeTimesFR && club.PracticeTimesFR.trim() !== "" && club.PracticeTimesFR.toLowerCase() !== "na") {
+                practiceTimesForDesc = club.PracticeTimesFR;
+            }
+
+            let notesForDesc = club.Notes || "";
+            if (currentLanguage === 'fr' && club.NotesFR && club.NotesFR.trim() !== "" && club.NotesFR.toLowerCase() !== "na") {
+                notesForDesc = club.NotesFR;
+            }
+
+            const langHeaders = headersMap[currentLanguage];
+            let description = practiceTimesForDesc.replace(/\r\n|\r|\n/g, "\\n");
+            if (notesForDesc) {
+                description += `\\n\\n${langHeaders.NotesPrefix} ${notesForDesc.replace(/\r\n|\r|\n/g, "\\n")}`;
+            }
+
             const summary = `${clubName} - ${sportType}`;
 
-            const rruleString = club.RRULE || ""; // Ensure club.RRULE is not null
+            const rruleString = club.RRULE || "";
             const individualRrules = rruleString
                 .replace(/<br\s*\/?>|&lt;br\s*\/?>/gi, '|') // Normalize <br> and &lt;br&gt; to |
                 .split('|')                                 // Split by |

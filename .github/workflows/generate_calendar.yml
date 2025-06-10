@@ -41,3 +41,4 @@ jobs:
           else
             echo "No changes to events.ics. Nothing to commit."
           fi
+```
