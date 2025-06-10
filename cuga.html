@@ -196,7 +196,7 @@
             }
 
             // Prepend timestamp and level to the log arguments
-            consoleMethod(`[\${timestamp}] [\${level.toUpperCase()}] `, ...args);
+            consoleMethod(`[\${timestamp}] [\${level.toUpperCase()}]`, ...args); // Corrected to use backticks
         }
         // --- End App Logging ---
 
