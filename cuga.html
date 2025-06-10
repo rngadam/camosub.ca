@@ -186,7 +186,7 @@
                 clubName: "Club Name",
                 city: "City",
                 practiceTimes: "Practice Times",
-                // Removed contact, website, facebook, instagram, ScheduleHeader
+                practiceLocationColumn: "Practice Location", // Added this
                 linksColumn: "Links",
                 filterSportTypeLabel: "Filter by Sport Type:",
                 filterProvinceLabel: "Filter by Province:",
@@ -321,6 +321,7 @@
                     if (header === 'Club Name FR') headerKeyToIndex['ClubNameFR'] = index;
                     if (header === 'City') headerKeyToIndex['City'] = index;
                     if (header === 'City FR') headerKeyToIndex['CityFR'] = index;
+                    // Ensure 'Practice Location' and 'Practice Location FR' are explicitly mapped
                     if (header === 'Practice Location') headerKeyToIndex['PracticeLocation'] = index;
                     if (header === 'Practice Location FR') headerKeyToIndex['PracticeLocationFR'] = index;
                     if (header === 'Practice Times') headerKeyToIndex['PracticeTimes'] = index;
@@ -382,6 +383,7 @@
                         <th>${langHeaders.sportType}</th>
                         <th>${langHeaders.city}</th>
                         <th>${langHeaders.practiceTimes}</th>
+                        <th>${langHeaders.practiceLocationColumn}</th>
                         <th>${langHeaders.linksColumn}</th>
                     </tr>
                 </thead>
@@ -423,10 +425,19 @@
                     if (language === 'fr' && club.PracticeTimesFR && club.PracticeTimesFR.trim() !== "" && club.PracticeTimesFR.toLowerCase() !== 'na') {
                         practiceTimeText = club.PracticeTimesFR;
                     } else if (!practiceTimeText || practiceTimeText.trim() === "" || practiceTimeText.toLowerCase() === 'na') {
-                        // If default (English) is also empty or NA (or was initially undefined/null), display "NA"
                         practiceTimeText = "NA";
                     }
                     practiceTimesCell.textContent = practiceTimeText;
+
+                    // Determine Practice Location content based on language
+                    const practiceLocationCell = tr.insertCell();
+                    let locationContent = club.PracticeLocation; // Default to English or NA
+                    if (language === 'fr' && club.PracticeLocationFR && club.PracticeLocationFR.trim() !== "" && club.PracticeLocationFR.toLowerCase() !== 'na') {
+                        locationContent = club.PracticeLocationFR;
+                    } else if (!locationContent || locationContent.trim() === "" || locationContent.toLowerCase() === 'na') {
+                        locationContent = "NA";
+                    }
+                    practiceLocationCell.innerHTML = locationContent; // Use innerHTML in case of special chars, though textContent is safer if not needed. Given data, textContent is fine.
 
                     const linksCell = tr.insertCell();
                     let linksHTML = '';
@@ -548,10 +559,17 @@
 
 
         function generateICS(club) {
-            const lang = currentLanguage;
+            const lang = currentLanguage; // Used for summary components
             const clubName = lang === 'fr' ? (club.ClubNameFR || club.ClubName) : club.ClubName;
             const sportType = lang === 'fr' ? (club.SportTypeFR || club.SportType) : club.SportType;
-            const location = lang === 'fr' ? (club.PracticeLocationFR || club.PracticeLocation) : club.PracticeLocation;
+
+            // Determine localized location for ICS
+            let locationForICS = club.PracticeLocation || "";
+            if (currentLanguage === 'fr' && club.PracticeLocationFR && club.PracticeLocationFR.trim() !== "" && club.PracticeLocationFR.toLowerCase() !== "na") {
+                locationForICS = club.PracticeLocationFR;
+            } else if (!locationForICS || locationForICS.trim() === "" || locationForICS.toLowerCase() === "na") {
+                locationForICS = ""; // If English/default is also NA or empty, make location empty for ICS
+            }
 
             // Determine localized practice times and notes for description
             let practiceTimesForDesc = club.PracticeTimes || "";
@@ -611,7 +629,7 @@
                     `UID:${uid}`,
                     `DTSTAMP:${dtstamp}`,
                     `SUMMARY:${summary}`,
-                    `LOCATION:${location}`,
+                    `LOCATION:${locationForICS.replace(/([,;\\])/g, '\\$1').replace(/\r\n|\r|\n/g, "\\n")}`, // Added ICS escaping
                     `DESCRIPTION:${description}`,
                     `RRULE:${rrule}`,
                     `DTSTART;TZID=${resolvedTzid}:${dtTimes.dtstart}`,
