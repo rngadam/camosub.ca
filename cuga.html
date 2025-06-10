@@ -158,6 +158,48 @@
     </div>
 
     <script>
+        // --- App Logging Configuration ---
+        const AppLoggerConfig = {
+            enabled: true,      // Master switch for all app logging. Set to false to disable all logs from appLog.
+            logLevel: 'debug'   // Current log level. Possible values: 'debug', 'info', 'warn', 'error'.
+                                // Messages with a level lower than this will not be logged.
+        };
+
+        /**
+         * Application logging function.
+         * Logs messages to the console if AppLoggerConfig.enabled is true and the message's
+         * level is at or above AppLoggerConfig.logLevel.
+         * @param {string} level - The log level (e.g., 'debug', 'info', 'warn', 'error').
+         * @param {...any} args - Messages or objects to log.
+         */
+        function appLog(level, ...args) {
+            if (!AppLoggerConfig.enabled) {
+                return;
+            }
+
+            const levels = ['debug', 'info', 'warn', 'error'];
+            const configLevelIndex = levels.indexOf(AppLoggerConfig.logLevel.toLowerCase());
+            const messageLevelIndex = levels.indexOf(level.toLowerCase());
+
+            // If the level is not recognized, or if the message level is below the config level, don't log.
+            if (messageLevelIndex === -1 || messageLevelIndex < configLevelIndex) {
+                return;
+            }
+
+            const timestamp = new Date().toISOString();
+            let consoleMethod = console.log; // Default to console.log
+
+            // Use specific console methods if they exist (e.g., console.error, console.warn)
+            // This also helps them appear with different styling in some browser consoles.
+            if (console[level.toLowerCase()] && typeof console[level.toLowerCase()] === 'function') {
+                consoleMethod = console[level.toLowerCase()];
+            }
+
+            // Prepend timestamp and level to the log arguments
+            consoleMethod(`[\${timestamp}] [\${level.toUpperCase()}] `, ...args);
+        }
+        // --- End App Logging ---
+
         let allClubs = [];
         let currentLanguage = 'en'; // Default language
         let selectedSport = 'All';
@@ -469,7 +511,7 @@
                         scheduleButton.disabled = true;
                     } else {
                         scheduleButton.onclick = () => generateICS(club);
-                        // console.log(`[Debug] Attached generateICS listener for club: ${club.ClubName || 'Unnamed Club'}`, club);
+                        appLog('debug', `Attached generateICS listener for club: ${club.ClubName || 'Unnamed Club'}`, club);
                     }
 
                     // Temporarily append to a disconnected element to get its outerHTML
@@ -560,7 +602,7 @@
 
 
         function generateICS(club) {
-            // console.log(`[Debug] generateICS called for club:`, club);
+            appLog('debug', 'generateICS called for club:', club);
             const lang = currentLanguage; // Used for summary components
             const clubName = lang === 'fr' ? (club.ClubNameFR || club.ClubName) : club.ClubName;
             const sportType = lang === 'fr' ? (club.SportTypeFR || club.SportType) : club.SportType;
@@ -594,7 +636,7 @@
 
             const rruleString = club.RRULE || "";
             if (!rruleString.trim() || rruleString.toLowerCase() === "na (contact for times)") {
-                // console.log('[Debug] No RRULE found or RRULE is "NA (contact for times)" for club:', clubName);
+                appLog('debug', 'No RRULE found or RRULE is "NA (contact for times)" for club:', clubName);
                 alert("No valid recurrence rule found for this club (RRULE is empty or NA).");
                 return;
             }
@@ -605,11 +647,11 @@
                 .filter(rule => rule.length > 0);           // Remove empty rules
 
             if (individualRrules.length === 0) {
-                // console.log('[Debug] No valid individual RRULEs found after parsing for club:', clubName, 'Original RRULE:', club.RRULE);
+                appLog('debug', 'No valid individual RRULEs found after parsing for club:', clubName, 'Original RRULE:', club.RRULE);
                 alert("No valid individual recurrence rules could be parsed for this club.");
                 return;
             }
-            // console.log('[Debug] About to process individual RRULEs. Count:', individualRrules.length, 'Rules:', individualRrules);
+            appLog('debug', 'About to process individual RRULEs. Count:', individualRrules.length, 'Rules:', individualRrules);
 
 
             let icsEvents = [];
@@ -650,7 +692,7 @@
             }
 
             if (icsEvents.length === 0) {
-                // console.log('[Debug] No VEVENTs were created for club:', clubName);
+                appLog('debug', 'No VEVENTs were created for club:', clubName);
                 alert("Could not generate any valid events for this club's schedule (no valid VEVENTs created).");
                 return;
             }
@@ -664,9 +706,9 @@
             ].join('\r\n');
 
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
-            // console.log('[Debug] Blob created:', blob);
+            appLog('debug', 'Blob created:', blob);
             const objectURL = URL.createObjectURL(blob);
-            // console.log('[Debug] Object URL created:', objectURL);
+            appLog('debug', 'Object URL created:', objectURL);
 
             const link = document.createElement("a");
             link.href = objectURL;
@@ -674,14 +716,14 @@
             link.setAttribute("download", fileName);
 
             document.body.appendChild(link);
-            // console.log('[Debug] Link appended to body. About to click download link. Href:', link.href, 'Download attr:', link.download);
+            appLog('debug', 'Link appended to body. About to click download link. Href:', link.href, 'Download attr:', link.download);
             link.click();
 
             setTimeout(() => {
-                // console.log('[Debug] link.click() executed for file:', fileName);
+                appLog('debug', 'link.click() executed for file:', fileName);
                 document.body.removeChild(link);
                 URL.revokeObjectURL(objectURL);
-                // console.log('[Debug] Cleanup: Removed temporary link and revoked object URL for club:', clubName);
+                appLog('debug', 'Cleanup: Removed temporary link and revoked object URL for club:', clubName);
             }, 100);
         }
 
