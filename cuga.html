@@ -158,15 +158,15 @@
     </div>
 
     <script>
-        // --- App Logging Configuration ---
-        const AppLoggerConfig = {
-            enabled: true,      // Master switch for all app logging. Set to false to disable all logs from appLog.
-            logLevel: 'debug'   // Current log level. Possible values: 'debug', 'info', 'warn', 'error'.
-                                // Messages with a level lower than this will not be logged.
+        // --- App Logging Configuration (with defaults, will be updated from config.json) ---
+        let AppLoggerConfig = {
+            enabled: false, // Default to false or a less verbose state like 'warn'
+            logLevel: 'warn',
         };
 
         /**
          * Application logging function.
+         * Must be defined after the initial AppLoggerConfig.
          * Logs messages to the console if AppLoggerConfig.enabled is true and the message's
          * level is at or above AppLoggerConfig.logLevel.
          * @param {string} level - The log level (e.g., 'debug', 'info', 'warn', 'error').
@@ -199,6 +199,33 @@
             consoleMethod(`[\${timestamp}] [\${level.toUpperCase()}] `, ...args);
         }
         // --- End App Logging ---
+
+        async function loadAppConfig() {
+            try {
+                const response = await fetch('config.json'); // Assuming config.json is in the same directory or accessible via this path
+                if (!response.ok) {
+                    console.error('Failed to fetch config.json. Status:', response.status, 'Using default AppLoggerConfig.');
+                    return;
+                }
+                const fetchedConfig = await response.json();
+
+                // Update AppLoggerConfig, merging fetched settings with defaults
+                if (fetchedConfig.logging) {
+                    AppLoggerConfig.enabled = typeof fetchedConfig.logging.enabled === 'boolean' ? fetchedConfig.logging.enabled : AppLoggerConfig.enabled;
+                    AppLoggerConfig.logLevel = fetchedConfig.logging.logLevel || AppLoggerConfig.logLevel;
+                }
+
+                // Example for other settings (if any were defined in AppLoggerConfig defaults or elsewhere)
+                // if (fetchedConfig.otherSettings) { ... }
+
+                // Use console.log here for reliable feedback on what config was loaded,
+                // as appLog's behavior depends on this loaded config.
+                console.log("AppLoggerConfig after attempting to load config.json:", JSON.parse(JSON.stringify(AppLoggerConfig)));
+
+            } catch (error) {
+                console.error('Error loading or parsing config.json:', error, 'Using default AppLoggerConfig.');
+            }
+        }
 
         let allClubs = [];
         let currentLanguage = 'en'; // Default language
@@ -727,7 +754,18 @@
             }, 100);
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => { // Make the callback async
+            try {
+                await loadAppConfig(); // Wait for config to be loaded
+                appLog('info', 'Application configuration loaded successfully.'); // Log using appLog
+            } catch (error) {
+                // This catch is for unexpected errors if loadAppConfig itself threw an unhandled exception
+                console.error("Critical error during app configuration loading sequence:", error);
+                // AppLoggerConfig will have defaults, appLog might still work with those defaults.
+                appLog('error', 'Critical error during app configuration loading sequence. Proceeding with default logging.', error);
+            }
+
+            // Proceed to fetch data regardless of config load outcome (loadAppConfig handles its own errors and defaults)
             fetchClubData();
 
             const langEnButton = document.getElementById('lang-en');
