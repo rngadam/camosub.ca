@@ -469,6 +469,7 @@
                         scheduleButton.disabled = true;
                     } else {
                         scheduleButton.onclick = () => generateICS(club);
+                        // console.log(`[Debug] Attached generateICS listener for club: ${club.ClubName || 'Unnamed Club'}`, club);
                     }
 
                     // Temporarily append to a disconnected element to get its outerHTML
@@ -559,6 +560,7 @@
 
 
         function generateICS(club) {
+            // console.log(`[Debug] generateICS called for club:`, club);
             const lang = currentLanguage; // Used for summary components
             const clubName = lang === 'fr' ? (club.ClubNameFR || club.ClubName) : club.ClubName;
             const sportType = lang === 'fr' ? (club.SportTypeFR || club.SportType) : club.SportType;
@@ -591,16 +593,24 @@
             const summary = `${clubName} - ${sportType}`;
 
             const rruleString = club.RRULE || "";
+            if (!rruleString.trim() || rruleString.toLowerCase() === "na (contact for times)") {
+                // console.log('[Debug] No RRULE found or RRULE is "NA (contact for times)" for club:', clubName);
+                alert("No valid recurrence rule found for this club (RRULE is empty or NA).");
+                return;
+            }
             const individualRrules = rruleString
-                .replace(/<br\s*\/?>|&lt;br\s*\/?>/gi, '|') // Normalize <br> and &lt;br&gt; to |
+                .replace(/<br\s*\/?>|&lt;br\s*\/?>/gi, '|')
                 .split('|')                                 // Split by |
                 .map(rule => rule.trim())                   // Trim whitespace
                 .filter(rule => rule.length > 0);           // Remove empty rules
 
             if (individualRrules.length === 0) {
-                alert("No valid recurrence rule found for this club.");
+                // console.log('[Debug] No valid individual RRULEs found after parsing for club:', clubName, 'Original RRULE:', club.RRULE);
+                alert("No valid individual recurrence rules could be parsed for this club.");
                 return;
             }
+            // console.log('[Debug] About to process individual RRULEs. Count:', individualRrules.length, 'Rules:', individualRrules);
+
 
             let icsEvents = [];
             const dtstamp = formatUTCDate(new Date());
@@ -640,7 +650,8 @@
             }
 
             if (icsEvents.length === 0) {
-                alert("Could not generate any valid events for this club's schedule.");
+                // console.log('[Debug] No VEVENTs were created for club:', clubName);
+                alert("Could not generate any valid events for this club's schedule (no valid VEVENTs created).");
                 return;
             }
 
@@ -653,13 +664,25 @@
             ].join('\r\n');
 
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
+            // console.log('[Debug] Blob created:', blob);
+            const objectURL = URL.createObjectURL(blob);
+            // console.log('[Debug] Object URL created:', objectURL);
+
             const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", `${clubName.replace(/[^a-zA-Z0-9]/g, "_")}_schedule.ics`);
+            link.href = objectURL;
+            const fileName = `${clubName.replace(/[^a-zA-Z0-9]/g, "_")}_schedule.ics`;
+            link.setAttribute("download", fileName);
+
             document.body.appendChild(link);
+            // console.log('[Debug] Link appended to body. About to click download link. Href:', link.href, 'Download attr:', link.download);
             link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(link.href);
+
+            setTimeout(() => {
+                // console.log('[Debug] link.click() executed for file:', fileName);
+                document.body.removeChild(link);
+                URL.revokeObjectURL(objectURL);
+                // console.log('[Debug] Cleanup: Removed temporary link and revoked object URL for club:', clubName);
+            }, 100);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
