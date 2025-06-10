@@ -115,18 +115,30 @@
         }
 
         .link-icon {
-            vertical-align: middle;
-            margin-right: 8px; /* Increased for consistent spacing */
-            display: inline-block; /* Helps with consistent spacing and wrapping */
-            margin-bottom: 4px; /* For better spacing if wrapped */
+            vertical-align: middle; /* Aligns the span (and thus icon) within the anchor */
+            /* margin-right is removed from here and applied to the anchor */
         }
 
         .link-icon i {
-            /* Ensure Font Awesome icons inherit the link's color */
-            color: inherit;
-            /* Font Awesome icons generally inherit size well.
-               Adjust if necessary, e.g., font-size: 0.9em; or font-size: 1.1em; */
+            color: inherit; /* Icon inherits color from parent <a> tag */
+            font-size: 18px; /* Target size to match .ics-button icon */
+            vertical-align: middle; /* Explicitly align icon if needed */
         }
+
+        a.link-icon-anchor {
+            display: inline-block;
+            text-decoration: none;
+            color: #337ab7; /* Standard link blue */
+            margin-right: 8px; /* Spacing between icon links/buttons */
+            margin-bottom: 4px; /* Spacing if wrapped */
+            padding: 2px; /* Small padding to increase clickable area slightly */
+        }
+
+        a.link-icon-anchor:hover {
+            color: #23527c; /* Darker blue on hover */
+        }
+        /* Ensure .ics-button also has similar bottom margin for wrapped consistency if not already present */
+        /* .ics-button already has margin-right: 8px and margin-bottom: 4px from previous steps */
     </style>
 </head>
 <body>
@@ -175,23 +187,30 @@
                 city: "City",
                 practiceTimes: "Practice Times",
                 // Removed contact, website, facebook, instagram, ScheduleHeader
-                linksColumn: "Links", // Added for consolidated column
+                linksColumn: "Links",
                 filterSportTypeLabel: "Filter by Sport Type:",
                 filterProvinceLabel: "Filter by Province:",
                 allOption: "All",
-                AriaDownloadICS: "Download schedule as ICS" // Kept for the ICS button
+                AriaDownloadICS: "Download schedule as ICS",
+                AriaEmailLink: "Email",
+                AriaWebsiteLink: "Visit website",
+                AriaFacebookLink: "Visit Facebook page",
+                AriaInstagramLink: "Visit Instagram page"
             },
             'fr': {
                 sportType: "Type de sport",
                 clubName: "Nom du club",
                 city: "Ville",
                 practiceTimes: "Heures de pratique",
-                // Removed contact, website, facebook, instagram, ScheduleHeader
-                linksColumn: "Liens", // Added for consolidated column
+                linksColumn: "Liens",
                 filterSportTypeLabel: "Filtrer par type de sport :",
                 filterProvinceLabel: "Filtrer par province :",
                 allOption: "Tous",
-                AriaDownloadICS: "Télécharger l'horaire en ICS" // Kept for the ICS button
+                AriaDownloadICS: "Télécharger l'horaire en ICS",
+                AriaEmailLink: "Courriel",
+                AriaWebsiteLink: "Visiter le site web",
+                AriaFacebookLink: "Visiter la page Facebook",
+                AriaInstagramLink: "Visiter la page Instagram"
             }
         };
 
@@ -398,18 +417,23 @@
 
                     const linksCell = tr.insertCell();
                     let linksHTML = '';
+                    const langHeaders = headersMap[currentLanguage]; // Ensure langHeaders is accessible
 
                     if (club.ContactEmail && club.ContactEmail !== "NA") {
-                        linksHTML += `<span class="link-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="mailto:${club.ContactEmail}">${club.ContactEmail}</a>`;
+                        const ariaLabel = `${langHeaders.AriaEmailLink}: ${club.ContactEmail}`;
+                        linksHTML += `<a href="mailto:${club.ContactEmail}" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span></a>`;
                     }
                     if (club.WebsiteURL && club.WebsiteURL !== "NA") {
-                        linksHTML += `<span class="link-icon"><i class="fa fa-globe" aria-hidden="true"></i></span><a href="${club.WebsiteURL}" target="_blank" rel="noopener noreferrer">${club.WebsiteURL}</a>`;
+                        const ariaLabel = `${langHeaders.AriaWebsiteLink}: ${club.WebsiteURL}`;
+                        linksHTML += `<a href="${club.WebsiteURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-globe" aria-hidden="true"></i></span></a>`;
                     }
                     if (club.FacebookURL && club.FacebookURL !== "NA") {
-                        linksHTML += `<span class="link-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span><a href="${club.FacebookURL}" target="_blank" rel="noopener noreferrer">Facebook</a>`;
+                        const ariaLabel = `${langHeaders.AriaFacebookLink}: ${club.FacebookURL}`;
+                        linksHTML += `<a href="${club.FacebookURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>`;
                     }
                     if (club.InstagramURL && club.InstagramURL !== "NA") {
-                        linksHTML += `<span class="link-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span><a href="${club.InstagramURL}" target="_blank" rel="noopener noreferrer">Instagram</a>`;
+                        const ariaLabel = `${langHeaders.AriaInstagramLink}: ${club.InstagramURL}`;
+                        linksHTML += `<a href="${club.InstagramURL}" target="_blank" rel="noopener noreferrer" aria-label="${ariaLabel}" class="link-icon-anchor"><span class="link-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span></a>`;
                     }
 
                     // ICS Button (Schedule)
