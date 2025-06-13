@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-g">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>History of CAMO Underwater Hockey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <!-- Add any custom styles here if needed -->
+    <style>
+        /* Basic styles for language switcher */
+        .language-switcher {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .language-switcher button {
+            margin-left: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slides will be loaded here -->
+            <section data-markdown="docs/histoire_camo_hockey_subaquatique.fr.md"
+                     data-separator="^\n---\n"
+                     data-separator-vertical="^\n--\n"
+                     data-separator-notes="^Note:"
+                     data-charset="utf-8">
+            </section>
+        </div>
+    </div>
+
+    <div class="language-switcher">
+        <button id="lang-fr">FR</button>
+        <button id="lang-en">EN</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [ RevealMarkdown, RevealNotes ],
+            // Adjust slide numbers to be visible
+            slideNumber: 'c/t',
+            // Other reveal.js options if needed
+        });
+
+        // Basic language switching logic (placeholder)
+        document.getElementById('lang-fr').addEventListener('click', function() {
+            // For now, clicking FR will ensure the French content is shown (which it is by default)
+            // In the future, this would explicitly load/show French content if English was active
+            alert('Version française affichée.');
+            // Potentially: Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.fr.md');
+            // Reveal.sync(); // Refresh reveal
+        });
+
+        document.getElementById('lang-en').addEventListener('click', function() {
+            // Placeholder for English version
+            // In the future, this would load 'docs/histoire_camo_hockey_subaquatique.en.md'
+            alert('English version is not yet available. Please provide the translation for docs/histoire_camo_hockey_subaquatique.en.md');
+            // Example of how it might work:
+            // Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.en.md'); // Imaginary EN file
+            // Reveal.sync(); // Refresh reveal
+        });
+    </script>
+</body>
+</html>
