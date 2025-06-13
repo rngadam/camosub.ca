@@ -22,35 +22,35 @@
             cursor: pointer;
         }
 
+        /* Improve spacing for headings within slides */
         .reveal .slides section h1,
-        .reveal .slides section h2 { /* Target h1 and h2 for color styling */
-            /* Add a common style if needed, or leave it to specific nth-child rules */
+        .reveal .slides section h2,
+        .reveal .slides section h3,
+        .reveal .slides section h4,
+        .reveal .slides section h5,
+        .reveal .slides section h6 {
+            margin-bottom: 15px !important; /* Add space below all headings */
+        }
+
+        /* Ensure default theme's h1/h2 color is overridden if it's too strong */
+        .reveal .slides section h1,
+        .reveal .slides section h2 {
+            color: #DDDDDD; /* Default light color for headings if not specified otherwise */
         }
 
         /* Style for the main title (first slide, usually h1) */
-        .reveal .slides section:first-child h1 {
-            color: #FFFFFF; /* White, or another prominent color for the main title */
-        }
-        .reveal .slides section:first-child h2 {
-            color: #FFFFFF; /* White, or another prominent color for the main title */
+        .reveal .slides section:nth-child(1) h1,
+        .reveal .slides section:nth-child(1) h2 { /* If h2 on first slide */
+            color: #FFFFFF !important; /* White, added !important as a test */
         }
 
-
-        /* Cycle through 5 different colors for subsequent slide headings (h2) */
-        .reveal .slides section:not(:first-child):nth-of-type(5n+1) h2 { /* Start cycle after the first slide */
-            color: #FFB6C1; /* LightPink */
-        }
-        .reveal .slides section:not(:first-child):nth-of-type(5n+2) h2 {
-            color: #ADD8E6; /* LightBlue */
-        }
-        .reveal .slides section:not(:first-child):nth-of-type(5n+3) h2 {
-            color: #90EE90; /* LightGreen */
-        }
-        .reveal .slides section:not(:first-child):nth-of-type(5n+4) h2 {
-            color: #FFDAB9; /* PeachPuff */
-        }
-        .reveal .slides section:not(:first-child):nth-of-type(5n+5) h2 {
-            color: #E6E6FA; /* Lavender */
+        /* For subsequent slides */
+        .reveal .slides section:nth-child(5n+2) h2 { color: #FFB6C1 !important; /* LightPink - Slide 2, 7, 12... */ }
+        .reveal .slides section:nth-child(5n+3) h2 { color: #ADD8E6 !important; /* LightBlue - Slide 3, 8, 13... */ }
+        .reveal .slides section:nth-child(5n+4) h2 { color: #90EE90 !important; /* LightGreen - Slide 4, 9, 14... */ }
+        .reveal .slides section:nth-child(5n+5) h2 { color: #FFDAB9 !important; /* PeachPuff - Slide 5, 10, 15... */ }
+        .reveal .slides section:nth-child(5n+6) h2 { /* This covers the 5th color in the cycle for slides 6, 11, 16... */
+            color: #E6E6FA !important; /* Lavender */
         }
     </style>
 </head>
