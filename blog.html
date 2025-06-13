@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Club CAMO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
+    <link rel="preload" as="image" href="images/camo-subaquatique.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9V8Q4XJXLD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9V8Q4XJXLD');
+    </script>
+    <meta name="description" content="Blog du Club CAMO Subaquatique - Nouvelles, mises à jour et articles sur le hockey et le rugby subaquatique à Montréal.">
+    <meta name="keywords" content="Blog, Club CAMO Subaquatique, actualités, hockey subaquatique, rugby subaquatique, Montréal">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .lang-en-post, .lang-en-header-footer { /* Initially hide English parts for posts and common sections */
+            display: none;
+        }
+        .prose a {
+            color: #2563eb; /* Tailwind blue-600 */
+            text-decoration: underline;
+        }
+        .prose a:hover {
+            color: #1d4ed8; /* Tailwind blue-700 */
+        }
+        .bubbles {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: rise 10s infinite ease-in;
+        }
+        @keyframes rise {
+            0% { bottom: -100px; transform: translateX(0); }
+            50% { transform: translateX(100px); }
+            100% { bottom: 1080px; transform: translateX(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-blue-700 text-white">
+    <div class="bubbles"></div>
+
+    <div class="text-center py-4 bg-gray-200">
+        <button id="lang-fr-btn" class="lang-button px-4 py-2 mr-2 rounded bg-blue-500 text-white" data-lang="fr">
+            <i class="fa fa-fleur-de-lis"></i> Français
+        </button>
+        <button id="lang-en-btn" class="lang-button px-4 py-2 rounded bg-gray-400 text-gray-800" data-lang="en">
+            <i class="fa fa-canadian-maple-leaf"></i> English
+        </button>
+    </div>
+
+    <header class="bg-[#386DC0] text-white py-8 text-center shadow-lg">
+        <div class="lang-fr-header-footer">
+            <img src="images/camo-subaquatique.png" alt="Logo du Club CAMO Subaquatique à Montréal" class="mx-auto h-32 md:h-40">
+            <h1 class="text-3xl md:text-4xl font-bold mt-4">Blog du Club CAMO</h1>
+            <p class="mt-1 text-md md:text-lg italic">Nouvelles et mises à jour de votre club de Sports Subaquatiques</p>
+        </div>
+        <div class="lang-en-header-footer" style="display:none;">
+            <img src="images/camo-subaquatique.png" alt="CAMO Subaquatique Logo in Montreal" class="mx-auto h-32 md:h-40">
+            <h1 class="text-3xl md:text-4xl font-bold mt-4">Club CAMO Blog</h1>
+            <p class="mt-1 text-md md:text-lg italic">News and updates from your Underwater Sports club</p>
+        </div>
+    </header>
+
+    <main id="blog-posts-container" class="container mx-auto px-4 py-8"></main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="lang-fr-header-footer">
+            <div class="container mx-auto px-4">
+                 <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
+                    <span><i class="fa fa-home"></i> <a href="index.html" class="text-blue-400 hover:underline">Accueil</a></span>
+                    <span class="mx-2">|</span>
+                    <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Hockey Québec</a></span>
+                    <span class="mx-2">|</span>
+                    <span><i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i> <a href="https://cuga.org/fr/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">CUGA</a></span>
+                </p>
+            </div>
+            <div class="container mx-auto px-4 mt-4">
+                <p>&copy; <span id="footer-year-fr"></span> Club CAMO. Tous droits réservés.</p>
+                <p class="mt-2"><a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de Confidentialité</a> | <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'Utilisation</a></p>
+            </div>
+        </div>
+        <div class="lang-en-header-footer" style="display:none;">
+            <div class="container mx-auto px-4">
+                <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
+                    <span><i class="fa fa-home"></i> <a href="index.html" class="text-blue-400 hover:underline">Home</a></span>
+                    <span class="mx-2">|</span>
+                    <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/en/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Hockey Quebec</a></span>
+                    <span class="mx-2">|</span>
+                    <span><i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i> <a href="https://cuga.org/en/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">CUGA</a></span>
+                </p>
+            </div>
+            <div class="container mx-auto px-4 mt-4">
+                <p>&copy; <span id="footer-year-en"></span> Club CAMO. All rights reserved.</p>
+                <p class="mt-2"><a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="terms-of-use.html" class="text-blue-400 hover:underline">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('footer-year-fr').textContent = new Date().getFullYear();
+        document.getElementById('footer-year-en').textContent = new Date().getFullYear();
+
+        // --- Language Switching ---
+        const langButtons = document.querySelectorAll('.lang-button');
+        const frHeaderFooter = document.querySelectorAll('.lang-fr-header-footer');
+        const enHeaderFooter = document.querySelectorAll('.lang-en-header-footer');
+        // Post content specific elements will be handled by renderPosts
+        let currentLang = 'fr'; // Default language
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            frHeaderFooter.forEach(el => el.style.display = (lang === 'fr' ? 'block' : 'none'));
+            enHeaderFooter.forEach(el => el.style.display = (lang === 'en' ? 'block' : 'none'));
+
+            langButtons.forEach(button => {
+                button.classList.toggle('bg-blue-500', button.dataset.lang === lang);
+                button.classList.toggle('text-white', button.dataset.lang === lang);
+                button.classList.toggle('bg-gray-400', button.dataset.lang !== lang);
+                button.classList.toggle('text-gray-800', button.dataset.lang !== lang);
+            });
+            // Re-render posts for the selected language
+            fetchAndRenderPosts();
+        }
+
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => setLanguage(button.dataset.lang));
+        });
+
+        // --- Markdown to HTML ---
+        function basicMarkdownToHtml(md) {
+            if (!md) return '';
+            return md
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')     // Italics
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">$1</a>'); // Links
+        }
+
+        // --- Fetch and Render Blog Posts ---
+        const postsContainer = document.getElementById('blog-posts-container');
+
+        function renderPosts(posts) {
+            postsContainer.innerHTML = ''; // Clear existing posts
+
+            if (!posts || posts.length === 0) {
+                const noPostsMessage = document.createElement('p');
+                noPostsMessage.className = 'text-center text-gray-300';
+                noPostsMessage.textContent = currentLang === 'fr' ? 'Aucun article de blog pour le moment.' : 'No blog posts yet.';
+                postsContainer.appendChild(noPostsMessage);
+                return;
+            }
+
+            // Sort posts by timestamp, newest first
+            posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            posts.forEach(post => {
+                const postData = post[currentLang] || post['fr']; // Fallback to French if current lang not available
+                const postTitle = postData.title || (currentLang === 'fr' ? 'Titre non disponible' : 'Title not available');
+                const postContent = postData.content || (currentLang === 'fr' ? 'Contenu non disponible' : 'Content not available');
+                const postImage = post.image;
+
+                const article = document.createElement('article');
+                article.className = 'blog-post bg-white text-gray-800 p-6 rounded-lg shadow-xl mb-8';
+
+                const titleEl = document.createElement('h2');
+                titleEl.className = 'text-3xl font-bold mb-3 text-gray-900';
+                titleEl.textContent = postTitle;
+                article.appendChild(titleEl);
+
+                const timestampEl = document.createElement('p');
+                timestampEl.className = 'text-sm text-gray-500 mb-4';
+                try {
+                    const date = new Date(post.timestamp);
+                    timestampEl.textContent = date.toLocaleDateString(currentLang === 'fr' ? 'fr-CA' : 'en-CA', {
+                        year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                    });
+                } catch (e) {
+                    timestampEl.textContent = post.timestamp; // Fallback
+                }
+                article.appendChild(timestampEl);
+
+                if (postImage) {
+                    const imgEl = document.createElement('img');
+                    imgEl.src = postImage;
+                    imgEl.alt = postTitle; // Use post title as alt text
+                    imgEl.className = 'mb-4 max-w-full h-auto rounded-md shadow';
+                    article.appendChild(imgEl);
+                }
+
+                const contentEl = document.createElement('div');
+                contentEl.className = 'prose max-w-none text-gray-700 leading-relaxed'; // Tailwind prose for nice typography
+                contentEl.innerHTML = basicMarkdownToHtml(postContent);
+                article.appendChild(contentEl);
+
+                postsContainer.appendChild(article);
+            });
+        }
+
+        let allPostsData = []; // To store fetched posts
+
+        function fetchAndRenderPosts() {
+            if (allPostsData.length > 0) {
+                renderPosts(allPostsData); // Use cached data if available
+            } else {
+                fetch('blog.json')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(posts => {
+                        allPostsData = posts;
+                        renderPosts(posts);
+                    })
+                    .catch(error => {
+                        console.error("Could not load or render blog posts:", error);
+                        postsContainer.innerHTML = `<p class="text-red-400 text-center py-8">Error loading blog posts: ${error.message}</p>`;
+                    });
+            }
+        }
+
+        // --- Initial Setup ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial language based on browser or default
+            const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
+            if (browserLang === 'en') {
+                setLanguage('en');
+            } else {
+                setLanguage('fr'); // Default to French
+            }
+            // Initial fetch and render is done by setLanguage calling fetchAndRenderPosts
+        });
+    </script>
+    <script>
+        // Bubble script from index.html
+        document.addEventListener('DOMContentLoaded', () => {
+            const bubblesContainer = document.querySelector('.bubbles');
+            if (!bubblesContainer) return;
+
+            function createBubble() {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                const size = Math.random() * 40 + 10; // 10px to 50px
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                const animationDuration = Math.random() * 10 + 5; // 5s to 15s
+                bubble.style.animationDuration = `${animationDuration}s`;
+                bubblesContainer.appendChild(bubble);
+                setTimeout(() => {
+                    bubble.remove();
+                }, animationDuration * 1000);
+            }
+            setInterval(createBubble, 500);
+        });
+    </script>
+</body>
+</html>
