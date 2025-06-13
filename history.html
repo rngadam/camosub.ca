@@ -21,6 +21,37 @@
             padding: 5px 10px;
             cursor: pointer;
         }
+
+        .reveal .slides section h1,
+        .reveal .slides section h2 { /* Target h1 and h2 for color styling */
+            /* Add a common style if needed, or leave it to specific nth-child rules */
+        }
+
+        /* Style for the main title (first slide, usually h1) */
+        .reveal .slides section:first-child h1 {
+            color: #FFFFFF; /* White, or another prominent color for the main title */
+        }
+        .reveal .slides section:first-child h2 {
+            color: #FFFFFF; /* White, or another prominent color for the main title */
+        }
+
+
+        /* Cycle through 5 different colors for subsequent slide headings (h2) */
+        .reveal .slides section:not(:first-child):nth-of-type(5n+1) h2 { /* Start cycle after the first slide */
+            color: #FFB6C1; /* LightPink */
+        }
+        .reveal .slides section:not(:first-child):nth-of-type(5n+2) h2 {
+            color: #ADD8E6; /* LightBlue */
+        }
+        .reveal .slides section:not(:first-child):nth-of-type(5n+3) h2 {
+            color: #90EE90; /* LightGreen */
+        }
+        .reveal .slides section:not(:first-child):nth-of-type(5n+4) h2 {
+            color: #FFDAB9; /* PeachPuff */
+        }
+        .reveal .slides section:not(:first-child):nth-of-type(5n+5) h2 {
+            color: #E6E6FA; /* Lavender */
+        }
     </style>
 </head>
 <body>
@@ -53,22 +84,19 @@
             // Other reveal.js options if needed
         });
 
-        // Basic language switching logic (placeholder)
+        // Language switching logic
+        const markdownSection = document.querySelector('.slides section[data-markdown]');
+
         document.getElementById('lang-fr').addEventListener('click', function() {
-            // For now, clicking FR will ensure the French content is shown (which it is by default)
-            // In the future, this would explicitly load/show French content if English was active
-            console.log('Version française affichée.');
-            // Potentially: Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.fr.md');
-            // Reveal.sync(); // Refresh reveal
+            markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.fr.md');
+            Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.fr.md');
+            Reveal.sync();
         });
 
         document.getElementById('lang-en').addEventListener('click', function() {
-            // Placeholder for English version
-            // In the future, this would load 'docs/histoire_camo_hockey_subaquatique.en.md'
-            console.log('English version is not yet available. Please provide the translation for docs/histoire_camo_hockey_subaquatique.en.md');
-            // Example of how it might work:
-            // Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.en.md'); // Imaginary EN file
-            // Reveal.sync(); // Refresh reveal
+            markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.en.md');
+            Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.en.md');
+            Reveal.sync();
         });
     </script>
 </body>
