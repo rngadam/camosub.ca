@@ -138,88 +138,193 @@
                 button.classList.toggle('bg-gray-400', button.dataset.lang !== lang);
                 button.classList.toggle('text-gray-800', button.dataset.lang !== lang);
             });
-            // Re-render posts for the selected language
-            fetchAndRenderPosts();
+
+            // Toggle visibility of language-specific content within posts
+            document.querySelectorAll('.lang-fr-content, .lang-fr-tag').forEach(el => el.style.display = (lang === 'fr' ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none'));
+            document.querySelectorAll('.lang-en-content, .lang-en-tag').forEach(el => el.style.display = (lang === 'en' ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none'));
         }
 
         langButtons.forEach(button => {
             button.addEventListener('click', () => setLanguage(button.dataset.lang));
+            // No need to call fetchAndRenderPosts() here anymore after initial load.
         });
 
         // --- Markdown to HTML ---
         function basicMarkdownToHtml(md) {
             if (!md) return '';
-            return md
-                .replace(/\n/g, '<br>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
-                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">$1</a>'); // Links
+
+  let html = md; // Start with the original markdown text
+
+  // Convert list items: `* item` or `- item` to `<li>item</li>`
+  // This regex finds blocks of list items.
+  html = html.replace(/^(\s*(?:\*|-)\s+.*(?:$|\n))+/gm, (match) => {
+    // If the match doesn't end with a newline, add one to ensure split works as expected for single-line matches
+    const currentMatch = match.endsWith('\n') ? match : match + '\n';
+    const items = currentMatch.trim().split('\n');
+    let listHtml = '<ul>\n';
+    items.forEach(item => {
+      // Remove marker (`* ` or `- `)
+      const itemContent = item.replace(/^\s*(?:\*|-)\s+/, '');
+      listHtml += '  <li>' + itemContent + '</li>\n';
+    });
+    listHtml += '</ul>\n';
+    return listHtml;
+  });
+
+  // Apply bold and link transformations AFTER list processing
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+  html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">$1</a>'); // Links
+
+  // Convert remaining newlines to <br>.
+  html = html.replace(/\n/g, '<br>');
+
+  // Remove <br> tags that might have been inserted around list tags or list items.
+  html = html.replace(/<ul><br>/g, '<ul>').replace(/<br><\/ul>/g, '</ul>');
+  html = html.replace(/<li><br>/g, '<li>').replace(/<br><\/li>/g, '</li>');
+  // Remove <br> if it's the first thing in a <li> (after list processing, content might start with newline)
+  html = html.replace(/<li>\s*<br>/g, '<li>');
+  // Remove <br> if it's directly before <ul> or <li> (less common but for safety)
+  html = html.replace(/<br>\s*<ul>/g, '<ul>');
+  html = html.replace(/<br>\s*<li>/g, '<li>');
+
+
+  return html;
         }
 
         // --- Fetch and Render Blog Posts ---
         const postsContainer = document.getElementById('blog-posts-container');
+        let blogData = null; // Will store the full {config, posts} object
 
-        function renderPosts(posts) {
+        function renderPosts(data) {
             postsContainer.innerHTML = ''; // Clear existing posts
 
-            if (!posts || posts.length === 0) {
+            const postsToRender = data.posts;
+            const tagLabels = data.config && data.config.tag_labels ? data.config.tag_labels : {};
+
+            if (!postsToRender || postsToRender.length === 0) {
                 const noPostsMessage = document.createElement('p');
                 noPostsMessage.className = 'text-center text-gray-300';
+                // Use currentLang for this message as it's outside the post-specific content.
                 noPostsMessage.textContent = currentLang === 'fr' ? 'Aucun article de blog pour le moment.' : 'No blog posts yet.';
                 postsContainer.appendChild(noPostsMessage);
                 return;
             }
 
-            // Sort posts by timestamp, newest first
-            posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            postsToRender.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-            posts.forEach(post => {
-                const postData = post[currentLang] || post['fr']; // Fallback to French if current lang not available
-                const postTitle = postData.title || (currentLang === 'fr' ? 'Titre non disponible' : 'Title not available');
-                const postContent = postData.content || (currentLang === 'fr' ? 'Contenu non disponible' : 'Content not available');
-                const postImage = post.image;
-
+            postsToRender.forEach(post => {
                 const article = document.createElement('article');
                 article.className = 'blog-post bg-white text-gray-800 p-6 rounded-lg shadow-xl mb-8';
 
-                const titleEl = document.createElement('h2');
-                titleEl.className = 'text-3xl font-bold mb-3 text-gray-900';
-                titleEl.textContent = postTitle;
-                article.appendChild(titleEl);
+                if (post.sport_logo) {
+                    const logoImg = document.createElement('img');
+                    logoImg.src = post.sport_logo;
+                    let logoAltText = "Sport Logo";
+                    if (post.fr && post.fr.title) logoAltText = post.fr.title + " Logo";
+                    else if (post.en && post.en.title) logoAltText = post.en.title + " Logo";
+                    logoImg.alt = logoAltText;
+                    logoImg.className = 'w-16 h-16 mb-3 mx-auto rounded-md shadow-sm';
+                    article.appendChild(logoImg);
+                }
 
-                const timestampEl = document.createElement('p');
-                timestampEl.className = 'text-sm text-gray-500 mb-4';
+                // French Content Div
+                const frDiv = document.createElement('div');
+                frDiv.className = 'lang-fr-content';
+                const frPostData = post.fr || {};
+                const frTitleText = frPostData.title || 'Titre non disponible';
+                const frContentText = frPostData.content || 'Contenu non disponible';
+
+                const frTitleEl = document.createElement('h2');
+                frTitleEl.className = 'text-3xl font-bold mb-3 text-gray-900 text-center';
+                frTitleEl.textContent = frTitleText;
+                frDiv.appendChild(frTitleEl);
+
+                const timestampElFr = document.createElement('p');
+                timestampElFr.className = 'text-sm text-gray-500 mb-4 text-center';
                 try {
-                    const date = new Date(post.timestamp);
-                    timestampEl.textContent = date.toLocaleDateString(currentLang === 'fr' ? 'fr-CA' : 'en-CA', {
-                        year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                    timestampElFr.textContent = new Date(post.timestamp).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                } catch (e) { timestampElFr.textContent = post.timestamp; }
+                frDiv.appendChild(timestampElFr);
+
+                if (post.image) {
+                    const imgElFr = document.createElement('img');
+                    imgElFr.src = post.image;
+                    imgElFr.alt = frTitleText;
+                    imgElFr.className = 'mb-4 max-w-full h-auto rounded-md shadow';
+                    frDiv.appendChild(imgElFr);
+                }
+                const frContentEl = document.createElement('div');
+                frContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
+                frContentEl.innerHTML = basicMarkdownToHtml(frContentText);
+                frDiv.appendChild(frContentEl);
+                article.appendChild(frDiv);
+
+                // English Content Div
+                const enDiv = document.createElement('div');
+                enDiv.className = 'lang-en-content';
+                const enPostData = post.en || {};
+                const enTitleText = enPostData.title || 'Title not available';
+                const enContentText = enPostData.content || 'Content not available';
+
+                const enTitleEl = document.createElement('h2');
+                enTitleEl.className = 'text-3xl font-bold mb-3 text-gray-900 text-center';
+                enTitleEl.textContent = enTitleText;
+                enDiv.appendChild(enTitleEl);
+
+                const timestampElEn = document.createElement('p');
+                timestampElEn.className = 'text-sm text-gray-500 mb-4 text-center';
+                try {
+                    timestampElEn.textContent = new Date(post.timestamp).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                } catch (e) { timestampElEn.textContent = post.timestamp; }
+                enDiv.appendChild(timestampElEn);
+
+                if (post.image) {
+                    const imgElEn = document.createElement('img');
+                    imgElEn.src = post.image;
+                    imgElEn.alt = enTitleText;
+                    imgElEn.className = 'mb-4 max-w-full h-auto rounded-md shadow';
+                    enDiv.appendChild(imgElEn);
+                }
+                const enContentEl = document.createElement('div');
+                enContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
+                enContentEl.innerHTML = basicMarkdownToHtml(enContentText);
+                enDiv.appendChild(enContentEl);
+                article.appendChild(enDiv);
+
+                // Tags (translatable and visibility toggled by setLanguage)
+                if (post.tags && Array.isArray(post.tags) && post.tags.length > 0) {
+                    const tagsContainer = document.createElement('div');
+                    tagsContainer.className = 'mt-4 pt-3 border-t border-gray-300 text-center';
+                    post.tags.forEach(tagId => {
+                        if (tagLabels[tagId]) {
+                            const tagSpanFr = document.createElement('span');
+                            tagSpanFr.textContent = tagLabels[tagId]['fr'] || tagLabels[tagId]['en'] || tagId;
+                            tagSpanFr.className = 'lang-fr-tag inline-block bg-blue-100 text-blue-800 text-sm font-medium mr-2 my-1 px-3 py-1 rounded-full shadow-xs';
+                            tagsContainer.appendChild(tagSpanFr);
+
+                            const tagSpanEn = document.createElement('span');
+                            tagSpanEn.textContent = tagLabels[tagId]['en'] || tagLabels[tagId]['fr'] || tagId;
+                            tagSpanEn.className = 'lang-en-tag inline-block bg-blue-100 text-blue-800 text-sm font-medium mr-2 my-1 px-3 py-1 rounded-full shadow-xs';
+                            tagsContainer.appendChild(tagSpanEn);
+                        } else {
+                            const fallbackTagSpan = document.createElement('span');
+                            fallbackTagSpan.textContent = tagId;
+                            fallbackTagSpan.className = 'inline-block bg-gray-200 text-gray-800 text-sm font-medium mr-2 my-1 px-3 py-1 rounded-full shadow-xs';
+                            tagsContainer.appendChild(fallbackTagSpan);
+                        }
                     });
-                } catch (e) {
-                    timestampEl.textContent = post.timestamp; // Fallback
+                    article.appendChild(tagsContainer);
                 }
-                article.appendChild(timestampEl);
-
-                if (postImage) {
-                    const imgEl = document.createElement('img');
-                    imgEl.src = postImage;
-                    imgEl.alt = postTitle; // Use post title as alt text
-                    imgEl.className = 'mb-4 max-w-full h-auto rounded-md shadow';
-                    article.appendChild(imgEl);
-                }
-
-                const contentEl = document.createElement('div');
-                contentEl.className = 'prose max-w-none text-gray-700 leading-relaxed'; // Tailwind prose for nice typography
-                contentEl.innerHTML = basicMarkdownToHtml(postContent);
-                article.appendChild(contentEl);
-
                 postsContainer.appendChild(article);
             });
+            // Ensure correct language content is shown after rendering all posts
+            setLanguage(currentLang);
         }
 
-        let allPostsData = []; // To store fetched posts
-
         function fetchAndRenderPosts() {
-            if (allPostsData.length > 0) {
-                renderPosts(allPostsData); // Use cached data if available
+            if (blogData) { // Use cached data if available
+                renderPosts(blogData);
+                 setLanguage(currentLang); // Re-apply language visibility
             } else {
                 fetch('blog.json')
                     .then(response => {
@@ -228,9 +333,12 @@
                         }
                         return response.json();
                     })
-                    .then(posts => {
-                        allPostsData = posts;
-                        renderPosts(posts);
+                    .then(data => {
+                        blogData = data; // Cache the entire object {config, posts}
+                        renderPosts(data);
+                        // setLanguage(currentLang) is called at the end of renderPosts or here.
+                        // No, it's better to call it once after renderPosts completes fully.
+                        // RenderPosts now calls setLanguage at its end.
                     })
                     .catch(error => {
                         console.error("Could not load or render blog posts:", error);
@@ -241,14 +349,11 @@
 
         // --- Initial Setup ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Set initial language based on browser or default
             const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
-            if (browserLang === 'en') {
-                setLanguage('en');
-            } else {
-                setLanguage('fr'); // Default to French
-            }
-            // Initial fetch and render is done by setLanguage calling fetchAndRenderPosts
+            currentLang = (browserLang === 'en' ? 'en' : 'fr'); // Update global currentLang
+
+            setLanguage(currentLang); // Set language for static parts and prepare currentLang
+            fetchAndRenderPosts(); // Fetch data and render posts
         });
     </script>
     <script>
