@@ -1,47 +1,57 @@
-[
-  {
-    "id": "post-20240728100000",
-    "timestamp": "2025-06-13T15:00:00Z",
-    "image": "competitions/day1-schedule.png",
-    "sport_logo": "images/logos/uwh-logo.jpg",
-    "tags": ["UWH Nationals 2025"],
-    "fr": {
-      "title": "Championnat Canadien de Hockey Subaquatique à Gatineau - Jour 1!",
-      "content": "L'équipe CAMO (camosub.ca) est en pleine action! Une journée forte en émotions.\n\n*   **Résultat du match :** Victoire 6-1 contre Vert Huard (Club de Sherbrooke)!\n    *   Score à la première période : 2-1.\n    *   Notre joueur étoile Joseph nous a rejoint en deuxième période après un petit contretemps automobile.\n*   **Horaire complet :** [Suivez l'action ici](https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule)\n\nRestez à l'écoute pour plus de mises à jour!"
-    },
-    "en": {
-      "title": "Canadian Underwater Hockey Nationals in Gatineau - Day 1!",
-      "content": "Team CAMO (camosub.ca) is in full swing! An emotion-packed day.\n\n*   **Match Result:** Victory 6-1 against Vert Huard (Sherbrooke Club)!\n    *   Score at the first half: 2-1.\n    *   Our star player Joseph joined us in the second half after a slight delay due to car trouble.\n*   **Full Schedule:** [Follow the action here](https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule)\n\nStay tuned for more updates!"
+{
+  "config": {
+    "tag_labels": {
+      "uwh_nationals_2025": {
+        "en": "UWH Nationals 2025",
+        "fr": "Nationaux HSA 2025"
+      }
     }
   },
-  {
-    "id": "post-20250613123000",
-    "timestamp": "2025-06-13T16:30:00Z",
-    "image": null,
-    "sport_logo": "images/logos/uwh-logo.jpg",
-    "tags": ["UWH Nationals 2025"],
-    "fr": {
-      "title": "Match #2 (Jour 1) : CAMO vs Deimos (EX) - Égalité Serrée!",
-      "content": "Deuxième mise à jour du Championnat National !\n\n*   **Résultat du match :** CAMO fait match nul 2-2 contre Deimos (EX) !\n    *   Deimos est une excellente équipe américaine, composée de candidates pour l'équipe nationale des États-Unis.\n    *   Elles ne participeront pas aux rondes éliminatoires (non-canadiennes).\n*   **Fait saillant :** Un tir de pénalité contre nous a été brillamment défendu par Joseph ! Malheureusement, le but a été refusé par les arbitres en raison d'une faute défensive.\n\nQuelle partie intense !"
+  "posts": [
+    {
+      "id": "post-20240728100000",
+      "timestamp": "2025-06-13T15:00:00Z",
+      "image": "competitions/day1-schedule.png",
+      "sport_logo": "images/logos/uwh-logo.jpg",
+      "tags": ["uwh_nationals_2025"],
+      "fr": {
+        "title": "Championnat Canadien de Hockey Subaquatique à Gatineau - Jour 1!",
+        "content": "L'équipe CAMO (camosub.ca) est en pleine action! Une journée forte en émotions.\n\n*   **Résultat du match :** Victoire 6-1 contre Vert Huard (Club de Sherbrooke)!\n    *   Score à la première période : 2-1.\n    *   Notre joueur étoile Joseph nous a rejoint en deuxième période après un petit contretemps automobile.\n*   **Horaire complet :** [Suivez l'action ici](https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule)\n\nRestez à l'écoute pour plus de mises à jour!"
+      },
+      "en": {
+        "title": "Canadian Underwater Hockey Nationals in Gatineau - Day 1!",
+        "content": "Team CAMO (camosub.ca) is in full swing! An emotion-packed day.\n\n*   **Match Result:** Victory 6-1 against Vert Huard (Sherbrooke Club)!\n    *   Score at the first half: 2-1.\n    *   Our star player Joseph joined us in the second half after a slight delay due to car trouble.\n*   **Full Schedule:** [Follow the action here](https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule)\n\nStay tuned for more updates!"
+      }
     },
-    "en": {
-      "title": "Match #2 (Day 1): CAMO vs Deimos (EX) - A Tight Draw!",
-      "content": "Second update from the National Championship!\n\n*   **Match Result:** CAMO draws 2-2 against Deimos (EX)!\n    *   Deimos is an excellent American team, with players who are candidates for the U.S. National Team.\n    *   They will not participate in the playoff rounds (as they are non-Canadian).\n*   **Highlight:** A penalty shot against us was brilliantly defended by Joseph! Unfortunately, the goal was disallowed by the referees due to a defensive foul.\n\nWhat an intense game!"
-    }
-  },
-  {
-    "id": "post-20250613143000",
-    "timestamp": "2025-06-13T18:30:00Z",
-    "image": null,
-    "sport_logo": "images/logos/uwh-logo.jpg",
-    "tags": ["UWH Nationals 2025"],
-    "fr": {
-      "title": "Match #3 (Jour 1) : Victoire Éclatante de CAMO contre GTA Raccoons!",
-      "content": "Troisième compte-rendu du Championnat National - Jour 1 !\n\n*   **Résultat du match :** CAMO remporte une victoire décisive de 10-0 contre les GTA Raccoons !\n    *   Excellente défense de notre part, bloquant de nombreuses tentatives de buts adverses.\n    *   Les GTA Raccoons sont une jeune équipe prometteuse de la région de Toronto. Une belle relève qui s'annonce compétitive !\n*   **Notes de match :**\n    *   Un avertissement a été donné à notre capitaine, Philippe.\n    *   Début de match un peu lent et moins réactif, mais l'équipe s'est bien reprise par la suite !\n\nBravo CAMO !"
+    {
+      "id": "post-20250613123000",
+      "timestamp": "2025-06-13T16:30:00Z",
+      "image": null,
+      "sport_logo": "images/logos/uwh-logo.jpg",
+      "tags": ["uwh_nationals_2025"],
+      "fr": {
+        "title": "Match #2 (Jour 1) : CAMO vs Deimos (EX) - Égalité Serrée!",
+        "content": "Deuxième mise à jour du Championnat National !\n\n*   **Résultat du match :** CAMO fait match nul 2-2 contre Deimos (EX) !\n    *   Deimos est une excellente équipe américaine, composée de candidates pour l'équipe nationale des États-Unis.\n    *   Elles ne participeront pas aux rondes éliminatoires (non-canadiennes).\n*   **Fait saillant :** Un tir de pénalité contre nous a été brillamment défendu par Joseph ! Malheureusement, le but a été refusé par les arbitres en raison d'une faute défensive.\n\nQuelle partie intense !"
+      },
+      "en": {
+        "title": "Match #2 (Day 1): CAMO vs Deimos (EX) - A Tight Draw!",
+        "content": "Second update from the National Championship!\n\n*   **Match Result:** CAMO draws 2-2 against Deimos (EX)!\n    *   Deimos is an excellent American team, with players who are candidates for the U.S. National Team.\n    *   They will not participate in the playoff rounds (as they are non-Canadian).\n*   **Highlight:** A penalty shot against us was brilliantly defended by Joseph! Unfortunately, the goal was disallowed by the referees due to a defensive foul.\n\nWhat an intense game!"
+      }
     },
-    "en": {
-      "title": "Match #3 (Day 1): CAMO's Resounding Victory Over GTA Raccoons!",
-      "content": "Third update from the National Championship - Day 1!\n\n*   **Match Result:** CAMO secures a decisive 10-0 victory against the GTA Raccoons!\n    *   Excellent defense on our part, blocking numerous goal attempts from the opposition.\n    *   The GTA Raccoons are a young and promising team from the Greater Toronto Area. A fine new generation that will be very competitive in a few years.\n*   **Match Notes:**\n    *   A warning was issued to our captain, Philippe.\n    *   We were a bit slow and less reactive at the start of the match, but the team improved as it progressed!\n\nGo CAMO!"
+    {
+      "id": "post-20250613143000",
+      "timestamp": "2025-06-13T18:30:00Z",
+      "image": null,
+      "sport_logo": "images/logos/uwh-logo.jpg",
+      "tags": ["uwh_nationals_2025"],
+      "fr": {
+        "title": "Match #3 (Jour 1) : Victoire Éclatante de CAMO contre GTA Raccoons!",
+        "content": "Troisième compte-rendu du Championnat National - Jour 1 !\n\n*   **Résultat du match :** CAMO remporte une victoire décisive de 10-0 contre les GTA Raccoons !\n    *   Excellente défense de notre part, bloquant de nombreuses tentatives de buts adverses.\n    *   Les GTA Raccoons sont une jeune équipe prometteuse de la région de Toronto. Une belle relève qui s'annonce compétitive !\n*   **Notes de match :**\n    *   Un avertissement a été donné à notre capitaine, Philippe.\n    *   Début de match un peu lent et moins réactif, mais l'équipe s'est bien reprise par la suite !\n\nBravo CAMO !"
+      },
+      "en": {
+        "title": "Match #3 (Day 1): CAMO's Resounding Victory Over GTA Raccoons!",
+        "content": "Third update from the National Championship - Day 1!\n\n*   **Match Result:** CAMO secures a decisive 10-0 victory against the GTA Raccoons!\n    *   Excellent defense on our part, blocking numerous goal attempts from the opposition.\n    *   The GTA Raccoons are a young and promising team from the Greater Toronto Area. A fine new generation that will be very competitive in a few years.\n*   **Match Notes:**\n    *   A warning was issued to our captain, Philippe.\n    *   We were a bit slow and less reactive at the start of the match, but the team improved as it progressed!\n\nGo CAMO!"
+      }
     }
-  }
-]
+  ]
+}
