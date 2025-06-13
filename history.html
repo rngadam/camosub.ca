@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="utf-g">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>History of CAMO Underwater Hockey</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
@@ -28,8 +28,8 @@
         <div class="slides">
             <!-- Slides will be loaded here -->
             <section data-markdown="docs/histoire_camo_hockey_subaquatique.fr.md"
-                     data-separator="^\n---\n"
-                     data-separator-vertical="^\n--\n"
+                     data-separator="\r?\n## "
+                     data-separator-vertical="^\n----UNUSED----\n"
                      data-separator-notes="^Note:"
                      data-charset="utf-8">
             </section>
@@ -57,7 +57,7 @@
         document.getElementById('lang-fr').addEventListener('click', function() {
             // For now, clicking FR will ensure the French content is shown (which it is by default)
             // In the future, this would explicitly load/show French content if English was active
-            alert('Version française affichée.');
+            console.log('Version française affichée.');
             // Potentially: Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.fr.md');
             // Reveal.sync(); // Refresh reveal
         });
@@ -65,7 +65,7 @@
         document.getElementById('lang-en').addEventListener('click', function() {
             // Placeholder for English version
             // In the future, this would load 'docs/histoire_camo_hockey_subaquatique.en.md'
-            alert('English version is not yet available. Please provide the translation for docs/histoire_camo_hockey_subaquatique.en.md');
+            console.log('English version is not yet available. Please provide the translation for docs/histoire_camo_hockey_subaquatique.en.md');
             // Example of how it might work:
             // Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.en.md'); // Imaginary EN file
             // Reveal.sync(); // Refresh reveal
