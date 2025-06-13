@@ -718,7 +718,7 @@ if (browserLang === 'en') {
                 if (event.id !== 'newbie-training' && eventLangData.description) {
                     const descP = document.createElement('p');
                     descP.className = 'text-lg mb-6';
-                    descP.textContent = eventLangData.description;
+                    descP.innerHTML = eventLangData.description;
                     contentWrapperDiv.appendChild(descP);
                 }
 
