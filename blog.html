@@ -181,8 +181,26 @@
                 const article = document.createElement('article');
                 article.className = 'blog-post bg-white text-gray-800 p-6 rounded-lg shadow-xl mb-8';
 
+                // Sport Logo (once per post, before language-specific content)
+                if (post.sport_logo) {
+                    const logoImg = document.createElement('img');
+                    logoImg.src = post.sport_logo;
+                    let altText = "Sport Logo"; // Default alt text
+                    // Try to get a more specific alt text from available titles
+                    if (postData.title && postData.title !== (currentLang === 'fr' ? 'Titre non disponible' : 'Title not available')) {
+                        altText = postData.title + " Logo";
+                    } else if (post.fr && post.fr.title) {
+                        altText = post.fr.title + " Logo";
+                    } else if (post.en && post.en.title) {
+                        altText = post.en.title + " Logo";
+                    }
+                    logoImg.alt = altText;
+                    logoImg.className = 'w-16 h-16 mb-3 mx-auto rounded-md shadow-sm'; // Centered
+                    article.appendChild(logoImg);
+                }
+
                 const titleEl = document.createElement('h2');
-                titleEl.className = 'text-3xl font-bold mb-3 text-gray-900';
+                titleEl.className = 'text-3xl font-bold mb-3 text-gray-900 text-center'; // Centered title
                 titleEl.textContent = postTitle;
                 article.appendChild(titleEl);
 
@@ -210,6 +228,19 @@
                 contentEl.className = 'prose max-w-none text-gray-700 leading-relaxed'; // Tailwind prose for nice typography
                 contentEl.innerHTML = basicMarkdownToHtml(postContent);
                 article.appendChild(contentEl);
+
+                // Tags (once per post, after language-specific content)
+                if (post.tags && Array.isArray(post.tags) && post.tags.length > 0) {
+                    const tagsContainer = document.createElement('div');
+                    tagsContainer.className = 'mt-4 pt-3 border-t border-gray-300 text-center';
+                    post.tags.forEach(tagText => {
+                        const tagSpan = document.createElement('span');
+                        tagSpan.textContent = tagText;
+                        tagSpan.className = 'inline-block bg-blue-100 text-blue-800 text-sm font-medium mr-2 my-1 px-3 py-1 rounded-full shadow-xs';
+                        tagsContainer.appendChild(tagSpan);
+                    });
+                    article.appendChild(tagsContainer);
+                }
 
                 postsContainer.appendChild(article);
             });
