@@ -1,7 +1,12 @@
 import json
 from datetime import datetime, timezone
 
-original_json_string = """
+# This is the content read from blog.json in the previous step.
+# It appears to be the result of the previous subtask's modification.
+# The tool output included the python code used to generate it, not the raw JSON.
+# For this step, I need the raw JSON content that was in blog.json.
+# Assuming the actual content of blog.json is what was printed by the python script in the previous step's output:
+json_content_from_previous_step = """
 {
   "config": {
     "tag_labels": {
@@ -96,34 +101,51 @@ original_json_string = """
         "title": "Nationals Day 2: CAMO Wins 1-0 Against Quebec!",
         "content": "Blog update: Day 2 (June 14).\\n\\nFirst match for CAMO (Montreal) against Quebec this morning at 8:30 AM.\\n\\n*   **Result:** CAMO wins 1-0!\\n*   **Comments:** Quebec is a very strong team, so we are very happy with the result. One goal scored in the first period was all we needed to win, followed by a fierce defense.\\n*   **Standings:** This victory already guarantees us at least 4th position!\\n"
       }
+    },
+    {
+      "id": "test-post-rss-workflow",
+      "timestamp": "2024-07-31T12:52:11.347938Z",
+      "fr": {
+        "title": "Test: Déclenchement Workflow RSS",
+        "content": "Ceci est un message de test pour vérifier le workflow RSS."
+      },
+      "en": {
+        "title": "Test: Trigger RSS Workflow",
+        "content": "This is a test post to verify the RSS workflow."
+      }
     }
   ]
 }
 """
 
-data = json.loads(original_json_string)
+# Parse the JSON string into a Python dictionary
+data = json.loads(json_content_from_previous_step)
 
-# Get current time in ISO 8601 format with Z for UTC
-current_timestamp = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+# Generate current timestamp and unique ID
+now = datetime.now(timezone.utc)
+current_timestamp_iso = now.isoformat().replace('+00:00', 'Z')
+unique_id = f"post-{now.strftime('%Y%m%d%H%M%S')}-jour2-match2-nova"
 
-new_post = {
-  "id": "test-post-rss-workflow",
-  "timestamp": current_timestamp,
-  "fr": {
-    "title": "Test: Déclenchement Workflow RSS",
-    "content": "Ceci est un message de test pour vérifier le workflow RSS."
-  },
-  "en": {
-    "title": "Test: Trigger RSS Workflow",
-    "content": "This is a test post to verify the RSS workflow."
-  }
+# Define the new post
+new_match_post = {
+    "id": unique_id,
+    "timestamp": current_timestamp_iso,
+    "sport_logo": "images/logos/uwh-logo.jpg",
+    "tags": ["uwh_nationals_2025"], # Assuming this is part of the same event
+    "fr": {
+        "title": "Jour 2 Match 2: CAMO vs Nova (Vancouver) - Victoire !",
+        "content": "L'équipe CAMO a affronté Nova (Vancouver) dans son deuxième match du jour 2. Résultat : Victoire de CAMO 2-1 ! Points notables : But adverse compté en désavantage numérique avec deux joueurs CAMO sur le banc de punition. De nombreuses punitions et désavantages contre nous. Un jeu d'équipe qui n'était pas au standard habituel de l'équipe, mais la victoire est là !"
+    },
+    "en": {
+        "title": "Day 2 Match 2: CAMO vs Nova (Vancouver) - Victory!",
+        "content": "Team CAMO faced Nova (Vancouver) in their second match of Day 2. Result: CAMO wins 2-1! Notable points: Opponent's goal scored while CAMO was shorthanded with two players in the penalty box. Numerous penalties and disadvantages against us. Team play was not up to the team's usual standard, but the win is secured!"
+    }
 }
 
-# Ensure the 'posts' key exists and is a list
+# Ensure 'posts' key exists and is a list, then append the new post
 if 'posts' not in data or not isinstance(data['posts'], list):
     data['posts'] = []
+data['posts'].append(new_match_post)
 
-data['posts'].append(new_post)
-
-# Output the modified JSON string
+# Convert back to JSON string and print (this will be the file content)
 print(json.dumps(data, indent=2, ensure_ascii=False))
