@@ -261,7 +261,7 @@
                 const timestampElFr = document.createElement('p');
                 timestampElFr.className = 'text-sm text-gray-500 mb-4 text-center';
                 try {
-                    timestampElFr.textContent = new Date(post.timestamp).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                    timestampElFr.textContent = new Date(post.timestamp).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
                 } catch (e) { timestampElFr.textContent = post.timestamp; }
                 frDiv.appendChild(timestampElFr);
 
@@ -303,7 +303,7 @@
                 const timestampElEn = document.createElement('p');
                 timestampElEn.className = 'text-sm text-gray-500 mb-4 text-center';
                 try {
-                    timestampElEn.textContent = new Date(post.timestamp).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                    timestampElEn.textContent = new Date(post.timestamp).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
                 } catch (e) { timestampElEn.textContent = post.timestamp; }
                 enDiv.appendChild(timestampElEn);
 
