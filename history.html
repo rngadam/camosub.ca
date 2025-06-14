@@ -105,19 +105,11 @@
 
         document.getElementById('lang-fr').addEventListener('click', function() {
             markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.fr.md');
-            Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.fr.md');
             Reveal.sync();
         });
 
         document.getElementById('lang-en').addEventListener('click', function() {
-            console.log('English button clicked');
-            const englishMarkdownPath = 'docs/histoire_camo_hockey_subaquatique.en.md';
-            console.log('Current data-markdown:', markdownSection.getAttribute('data-markdown'));
-            markdownSection.setAttribute('data-markdown', englishMarkdownPath);
-            console.log('Set data-markdown to:', englishMarkdownPath);
-            console.log('Calling Reveal.getPlugin("markdown").load() with:', englishMarkdownPath);
-            Reveal.getPlugin('markdown').load(englishMarkdownPath);
-            console.log('Calling Reveal.sync()');
+            markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.en.md');
             Reveal.sync();
         });
     </script>
