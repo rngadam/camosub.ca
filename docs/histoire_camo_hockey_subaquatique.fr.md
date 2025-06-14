@@ -65,12 +65,17 @@ Il faut attendre près de 10 ans avant de voir arriver une nouvelle génération
 
 ## Renouveau et développement durable (2010-2011)
 Le club CAMO hockey sous-marin vit un renouveau dans les années 2010. Les dernières années ont vu arriver un nouveau groupe d'administrateurs qui poussent pour un développement durable. En 2011, le club accueille le rugby sous-marin dans son giron.
+![Affiche 2009](../images/affiches/2009-affiche.jpg)
 
 ## Organisation du tournoi de Montréal (Depuis 2012)
 En 2012, succédant au feu Club Aquatique de JFK, CAMO prend sous sa gouverne l’organisation du tournoi de Montréal au Complexe sportif Claude-Robillard attirant annuellement, depuis la fin des années 90, une quinzaine d’équipes du Québec, de l’Ontario, de l’ouest du pays et des États-Unis.
+![Affiche 2014](../images/affiches/2014-affiche.jpg)
+![Affiche 2015](../images/affiches/2015-essaye-le.jpg)
 
 ## Le club CAMO aujourd'hui (Présent)
 Au club, on y rencontre autant des joueurs de l’ancienne génération que des joueurs de l’élite canadienne qui ont marqué l’histoire du hockey au Québec, au Canada et dans le monde. Le club accueille avec fierté les joueurs de tous niveaux d’ici et d’ailleurs.
+![Surface 2018](../images/affiches/2018-surface.jpg)
+![Affiche 2023](../images/affiches/2023-affiche.jpg)
 
 ## Entraînement et niveau de jeu (Présent)
 Comme par le passé, recrues et anciens s’y entraînent pour améliorer leur niveau de jeu et gagner en expérience. Le niveau de jeu est intense, rapide et compétitif.
