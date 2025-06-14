@@ -69,16 +69,21 @@ silver medals.
 
 ## Revival and Sustainable Development (2010-2011)
 The CAMO underwater hockey club experienced a revival in the 2010s. Recent years have seen the arrival of a new group of administrators pushing for sustainable development. In 2011, the club welcomed underwater rugby into its fold.
+## 2009 Poster
 ![2009 Poster](../images/affiches/2009-affiche.jpg)
 
 ## Organization of the Montreal Tournament (Since 2012)
 In 2012, succeeding the late JFK Aquatic Club, CAMO took over the organization of the Montreal tournament at the Claude-Robillard Sports Complex, annually attracting, since the late 90s, about fifteen teams from Quebec, Ontario, Western Canada, and the United States.
+## 2014 Poster
 ![2014 Poster](../images/affiches/2014-affiche.jpg)
+## 2015 "Try It" Poster
 ![2015 Try It Poster](../images/affiches/2015-essaye-le.jpg)
 
 ## The CAMO Club Today (Present)
 At the club, one can find players from the older generation as well as elite Canadian players who have marked the history of hockey in Quebec, Canada, and around the world. The club proudly welcomes players of all levels, from here and elsewhere.
+## 2018 "Surface" Poster
 ![2018 Surface Poster](../images/affiches/2018-surface.jpg)
+## 2023 Poster
 ![2023 Poster](../images/affiches/2023-affiche.jpg)
 
 ## Training and Level of Play (Present)
