@@ -1,9 +1,3 @@
-import json
-from datetime import datetime, timezone
-
-# This represents the actual JSON data that should be in blog.json after the previous successful update.
-# It includes the CAMO vs Nova post with its updated title and timestamp.
-correct_current_json_string = """
 {
   "config": {
     "tag_labels": {
@@ -124,39 +118,19 @@ correct_current_json_string = """
         "title": "Day 2 Match #5: CAMO vs Nova (Vancouver) - Victory!",
         "content": "Team CAMO faced Nova (Vancouver) in their second match of Day 2. Result: CAMO wins 2-1! Notable points: Opponent's goal scored while CAMO was shorthanded with two players in the penalty box. Numerous penalties and disadvantages against us. Team play was not up to the team's usual standard, but the win is secured!"
       }
-    }
+    },
+    {
+      "id": "post-20240731180519-jour2-match6-quebec"
+      "timestamp": "2025-06-14T17:15:00Z",
+      "sport_logo": "images/logos/uwh-logo.jpg",
+      "tags": ["uwh_nationals_2025"],
+      "fr": {
+          "title": "Jour 2 Match #6: CAMO vs Québec - Victoire Cruciale!",
+          "content": "CAMO a remporté une victoire de 3-2 contre Québec dans un match très intense et d'une importance extrême! Ce résultat était déterminant pour notre accès aux médailles. Les prochains matchs décideront de la couleur de la médaille que nous obtiendrons."
+      },
+      "en": {
+          "title": "Day 2 Match #6: CAMO vs Québec - Crucial Victory!",
+          "content": "CAMO secured a 3-2 victory against Québec in a very intense and extremely important match! This result was decisive for our access to the medals. The upcoming matches will decide which medal we get."
+      }
   ]
 }
-"""
-
-data = json.loads(correct_current_json_string)
-
-# Generate new unique ID for the Match #6 post
-now = datetime.now(timezone.utc)
-new_post_id = f"post-{now.strftime('%Y%m%d%H%M%S')}-jour2-match6-quebec"
-
-# Construct the new post for Match #6 vs Québec
-match6_post = {
-    "id": new_post_id,
-    "timestamp": "2025-06-14T17:15:00Z",
-    "sport_logo": "images/logos/uwh-logo.jpg",
-    "tags": ["uwh_nationals_2025"],
-    "fr": {
-        "title": "Jour 2 Match #6: CAMO vs Québec - Victoire Cruciale!",
-        "content": "CAMO a remporté une victoire de 3-2 contre Québec dans un match très intense et d'une importance extrême! Ce résultat était déterminant pour notre accès aux médailles. Les prochains matchs décideront de la couleur de la médaille que nous obtiendrons."
-    },
-    "en": {
-        "title": "Day 2 Match #6: CAMO vs Québec - Crucial Victory!",
-        "content": "CAMO secured a 3-2 victory against Québec in a very intense and extremely important match! This result was decisive for our access to the medals. The upcoming matches will decide which medal we get."
-    }
-}
-
-# Append the new post
-if 'posts' in data and isinstance(data['posts'], list):
-    data['posts'].append(match6_post)
-else:
-    # This case should ideally not happen if blog.json is well-formed
-    data['posts'] = [match6_post]
-
-# Print the updated JSON to be written to the file
-print(json.dumps(data, indent=2, ensure_ascii=False))
