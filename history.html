@@ -104,12 +104,22 @@
         const markdownSection = document.querySelector('.slides section[data-markdown]');
 
         document.getElementById('lang-fr').addEventListener('click', function() {
-            markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.fr.md');
+            console.log("French button clicked");
+            const oldPath = markdownSection.getAttribute('data-markdown');
+            console.log("Old path: " + oldPath);
+            const newPath = 'docs/histoire_camo_hockey_subaquatique.fr.md';
+            console.log("New path: " + newPath);
+            markdownSection.setAttribute('data-markdown', newPath);
             Reveal.sync();
         });
 
         document.getElementById('lang-en').addEventListener('click', function() {
-            markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.en.md');
+            console.log("English button clicked");
+            const oldPath = markdownSection.getAttribute('data-markdown');
+            console.log("Old path: " + oldPath);
+            const newPath = 'docs/histoire_camo_hockey_subaquatique.en.md';
+            console.log("New path: " + newPath);
+            markdownSection.setAttribute('data-markdown', newPath);
             Reveal.sync();
         });
     </script>
