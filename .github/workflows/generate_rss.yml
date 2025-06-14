@@ -2,8 +2,8 @@ name: Generate RSS Feeds
 
 on:
   push:
-    branches:
-      - main
+    branches: # Modified to trigger on all branches
+      - '**'
     paths:
       - 'blog.json'
       - 'events.json'
@@ -13,6 +13,8 @@ on:
 jobs:
   generate_rss_job:
     runs-on: ubuntu-latest
+    env: # Added environment variable for the job
+      RSS_BASE_URL: 'https://camosub.ca'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,23 +32,28 @@ jobs:
 
       - name: Commit and push if RSS files changed
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-          # Check if either RSS file has changed or been created
-          if ! git diff --quiet HEAD -- blog_rss.xml || ! git diff --quiet HEAD -- events_rss.xml || [ ! -f blog_rss.xml ] || [ ! -f events_rss.xml ]; then
-            # Stage both files regardless of which one changed, or if they are new
-            # This handles the case where one file changes and the other doesn't, or both are new/changed.
+          # Check if either RSS file has changed or been created (not in HEAD)
+          # This condition means: "if blog_rss.xml has changed OR events_rss.xml has changed"
+          # (A file not in HEAD is considered "changed" by git diff HEAD)
+          if ! (git diff --quiet HEAD -- blog_rss.xml && git diff --quiet HEAD -- events_rss.xml); then
+            echo "Changes detected in RSS files."
+            # Stage both files. If a file is unchanged but tracked, git add does nothing.
+            # If a file is new, it's staged. If modified, it's staged.
             git add blog_rss.xml events_rss.xml
 
-            # Check again if staging resulted in changes to be committed
+            # Check again if staging resulted in changes to be committed relative to HEAD
+            # This prevents empty commits if, for example, files were created but matched .gitignore,
+            # or if they were 'git add'ed but contained no actual changes from HEAD.
             if ! git diff --cached --quiet HEAD; then
-              git commit -m "Update RSS feeds (blog_rss.xml, events_rss.xml)"
-              git push
-              echo "RSS feeds updated and pushed."
+              git commit -m "Update RSS feeds (blog_rss.xml, events_rss.xml) [skip ci]"
+              git push origin HEAD:${{ github.ref_name }}
+              echo "RSS feeds updated and pushed to ${{ github.ref_name }}."
             else
               echo "No effective changes to RSS feeds after staging. Nothing to commit."
             fi
           else
-            echo "No changes to RSS feeds. Nothing to commit."
+            echo "No changes to RSS feeds relative to HEAD. Nothing to commit."
           fi
