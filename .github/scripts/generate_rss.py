@@ -3,6 +3,12 @@ import os
 from datetime import datetime, timezone
 from feedgen.feed import FeedGenerator
 
+# Determine base URL from environment variable or use default
+BASE_URL = os.environ.get('RSS_BASE_URL', 'https://camosub.ca')
+# Ensure no trailing slash for consistency
+if BASE_URL.endswith('/'):
+    BASE_URL = BASE_URL[:-1]
+
 # Define constants for file paths
 BLOG_JSON_PATH = 'blog.json'
 EVENTS_JSON_PATH = 'events.json'
@@ -21,7 +27,7 @@ def generate_blog_rss(blog_data_root):
     """Generates an RSS feed for blog posts."""
     fg = FeedGenerator()
     fg.title('Blog Posts')
-    fg.link(href='https://example.com/blog', rel='alternate')
+    fg.link(href=f'{BASE_URL}/blog', rel='alternate')
     fg.description('Latest blog posts')
 
     actual_blog_data = None
@@ -97,7 +103,7 @@ def generate_blog_rss(blog_data_root):
             if pub_datetime:
                 fe.pubDate(pub_datetime) # feedgen expects timezone-aware datetime
 
-        fe.link(href=f'https://example.com/blog/{post_id}', rel='alternate')
+        fe.link(href=f'{BASE_URL}/blog/{post_id}', rel='alternate')
 
     return fg
 
@@ -105,7 +111,7 @@ def generate_events_rss(events_data_root):
     """Generates an RSS feed for events."""
     fg = FeedGenerator()
     fg.title('Events')
-    fg.link(href='https://example.com/events', rel='alternate')
+    fg.link(href=f'{BASE_URL}/events', rel='alternate')
     fg.description('Upcoming events')
 
     if isinstance(events_data_root, dict):
@@ -154,7 +160,7 @@ def generate_events_rss(events_data_root):
                 print(f"Skipping event {event_id} due to invalid startDate format: {start_date_str}")
                 continue
 
-        event_url = event_details.get('url') or f'https://example.com/events/{event_id}'
+        event_url = event_details.get('url') or f'{BASE_URL}/events/{event_id}'
         fe.link(href=event_url, rel='alternate')
 
     return fg
