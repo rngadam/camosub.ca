@@ -52,6 +52,25 @@
             50% { transform: translateX(100px); }
             100% { bottom: 1080px; transform: translateX(-100px); opacity: 0; }
         }
+        .slideshow-container {
+            position: relative;
+            margin-bottom: 1rem;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+        .slideshow-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-blue-700 text-white">
@@ -246,11 +265,21 @@
                 } catch (e) { timestampElFr.textContent = post.timestamp; }
                 frDiv.appendChild(timestampElFr);
 
-                if (post.image) {
+                if (post.images && Array.isArray(post.images) && post.images.length > 0) {
+                    const slideshowContainerFr = document.createElement('div');
+                    slideshowContainerFr.className = 'slideshow-container';
+                    post.images.forEach(imgPath => {
+                        const img = document.createElement('img');
+                        img.src = imgPath;
+                        img.alt = frPostData.title ? `Slideshow image for ${frPostData.title}` : 'Slideshow image';
+                        slideshowContainerFr.appendChild(img);
+                    });
+                    frDiv.appendChild(slideshowContainerFr);
+                } else if (post.image) {
                     const imgElFr = document.createElement('img');
                     imgElFr.src = post.image;
-                    imgElFr.alt = frTitleText;
-                    imgElFr.className = 'mb-4 max-w-full h-auto rounded-md shadow';
+                    imgElFr.alt = frPostData.title || 'Post image';
+                    imgElFr.className = 'mb-4 max-w-full h-auto rounded-md shadow'; // Existing classes for single image
                     frDiv.appendChild(imgElFr);
                 }
                 const frContentEl = document.createElement('div');
@@ -278,11 +307,21 @@
                 } catch (e) { timestampElEn.textContent = post.timestamp; }
                 enDiv.appendChild(timestampElEn);
 
-                if (post.image) {
+                if (post.images && Array.isArray(post.images) && post.images.length > 0) {
+                    const slideshowContainerEn = document.createElement('div');
+                    slideshowContainerEn.className = 'slideshow-container';
+                    post.images.forEach(imgPath => {
+                        const img = document.createElement('img');
+                        img.src = imgPath;
+                        img.alt = enPostData.title ? `Slideshow image for ${enPostData.title}` : 'Slideshow image';
+                        slideshowContainerEn.appendChild(img);
+                    });
+                    enDiv.appendChild(slideshowContainerEn);
+                } else if (post.image) {
                     const imgElEn = document.createElement('img');
                     imgElEn.src = post.image;
-                    imgElEn.alt = enTitleText;
-                    imgElEn.className = 'mb-4 max-w-full h-auto rounded-md shadow';
+                    imgElEn.alt = enPostData.title || 'Post image';
+                    imgElEn.className = 'mb-4 max-w-full h-auto rounded-md shadow'; // Existing classes for single image
                     enDiv.appendChild(imgElEn);
                 }
                 const enContentEl = document.createElement('div');
@@ -321,10 +360,28 @@
             setLanguage(currentLang);
         }
 
+        function initializeSlideshows() {
+            const slideshowContainers = document.querySelectorAll('.slideshow-container');
+            slideshowContainers.forEach(container => {
+                const images = container.querySelectorAll('img');
+                if (images.length === 0) return;
+                let currentIndex = 0;
+                images[currentIndex].style.opacity = '1'; // Show first image
+
+                setInterval(() => {
+                    if (document.hidden) return; // Don't cycle if tab is not visible
+                    images[currentIndex].style.opacity = '0'; // Hide current
+                    currentIndex = (currentIndex + 1) % images.length; // Move to next
+                    images[currentIndex].style.opacity = '1'; // Show next
+                }, 3500); // Change image every 3.5 seconds
+            });
+        }
+
         function fetchAndRenderPosts() {
             if (blogData) { // Use cached data if available
                 renderPosts(blogData);
-                 setLanguage(currentLang); // Re-apply language visibility
+                // setLanguage(currentLang); // This is called by renderPosts at its end
+                initializeSlideshows(); // Call here for cached data
             } else {
                 fetch('blog.json')
                     .then(response => {
@@ -336,9 +393,8 @@
                     .then(data => {
                         blogData = data; // Cache the entire object {config, posts}
                         renderPosts(data);
-                        // setLanguage(currentLang) is called at the end of renderPosts or here.
-                        // No, it's better to call it once after renderPosts completes fully.
-                        // RenderPosts now calls setLanguage at its end.
+                        // setLanguage(currentLang) is called at the end of renderPosts
+                        initializeSlideshows(); // Call here after new data is rendered
                     })
                     .catch(error => {
                         console.error("Could not load or render blog posts:", error);
