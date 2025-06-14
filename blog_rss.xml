@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Blog Posts</title>
+    <link>https://example.com/blog</link>
+    <description>Latest blog posts</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <lastBuildDate>Sat, 14 Jun 2025 15:12:35 +0000</lastBuildDate>
+    <item>
+      <title>Jour 2 Nationaux: Victoire de CAMO 1-0 contre Québec!</title>
+      <link>https://example.com/blog/post-20250614083000</link>
+      <description>Mise à jour du blogue : Jour 2 (14 juin).
+
+Premier match pour CAMO (Montréal) contre Québec ce matin à 8h30.
+
+*   **Résultat :** Victoire de CAMO 1-0 !
+*   **Commentaire :** Québec est une équipe très forte, donc nous sommes très heureux du résultat. Un point compté dans la première période était tout ce dont nous avions besoin pour gagner, suivi d'une défense acharnée.
+*   **Classement :** Cette victoire nous garantit déjà une 4ième position !
+</description>
+      <guid isPermaLink="false">post-20250614083000</guid>
+      <pubDate>Sat, 14 Jun 2025 12:30:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Match #4 (Jour 1) : CAMO vs Raies de Rimouski</title>
+      <link>https://example.com/blog/post-20250613210000</link>
+      <description>Quatrième mise à jour du Championnat National - Jour 1 !
+
+*   **Résultat du match :** Victoire de CAMO 4-0 contre les Raies de Rimouski !
+*   **Notes de match :**
+    *   Jeu intense et quelques erreurs de notre part, avec plusieurs arrêts de jeu.
+    *   Notre joueur Richard a reçu la rondelle au visage (sans blessure, heureusement le masque a fait son travail!).
+Ce fut un match agréable malgré l'heure tardive (20h00). Une longue pause de 7 heures entre le troisième et ce quatrième match a nécessité de refaire le réchauffement.
+
+Encore une victoire pour CAMO !</description>
+      <guid isPermaLink="false">post-20250613210000</guid>
+      <pubDate>Sat, 14 Jun 2025 01:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Match #3 (Jour 1) : Victoire Éclatante de CAMO contre GTA Raccoons!</title>
+      <link>https://example.com/blog/post-20250613143000</link>
+      <description>Troisième compte-rendu du Championnat National - Jour 1 !
+
+*   **Résultat du match :** CAMO remporte une victoire décisive de 10-0 contre les GTA Raccoons !
+    *   Excellente défense de notre part, bloquant de nombreuses tentatives de buts adverses.
+    *   Les GTA Raccoons sont une jeune équipe prometteuse de la région de Toronto. Une belle relève qui s'annonce compétitive !
+*   **Notes de match :**
+    *   Un avertissement a été donné à notre capitaine, Philippe.
+    *   Début de match un peu lent et moins réactif, mais l'équipe s'est bien reprise par la suite !
+
+Bravo CAMO !</description>
+      <guid isPermaLink="false">post-20250613143000</guid>
+      <pubDate>Fri, 13 Jun 2025 18:30:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Match #2 (Jour 1) : CAMO vs Deimos (EX) - Égalité Serrée!</title>
+      <link>https://example.com/blog/post-20250613123000</link>
+      <description>Deuxième mise à jour du Championnat National !
+
+*   **Résultat du match :** CAMO fait match nul 2-2 contre Deimos (EX) !
+    *   Deimos est une excellente équipe américaine, composée de candidates pour l'équipe nationale des États-Unis.
+    *   Elles ne participeront pas aux rondes éliminatoires (non-canadiennes).
+*   **Fait saillant :** Un tir de pénalité contre nous a été brillamment défendu par Joseph ! Malheureusement, le but a été refusé par les arbitres en raison d'une faute défensive.
+
+Quelle partie intense !</description>
+      <guid isPermaLink="false">post-20250613123000</guid>
+      <pubDate>Fri, 13 Jun 2025 16:30:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Championnat Canadien de Hockey Subaquatique à Gatineau - Jour 1!</title>
+      <link>https://example.com/blog/post-20240728100000</link>
+      <description>L'équipe CAMO (camosub.ca) est en pleine action! Une journée forte en émotions.
+
+*   **Résultat du match :** Victoire 6-1 contre Vert Huard (Club de Sherbrooke)!
+    *   Score à la première période : 2-1.
+    *   Notre joueur étoile Joseph nous a rejoint en deuxième période après un petit contretemps automobile.
+*   **Horaire complet :** [Suivez l'action ici](https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule)
+
+Restez à l'écoute pour plus de mises à jour!</description>
+      <guid isPermaLink="false">post-20240728100000</guid>
+      <pubDate>Fri, 13 Jun 2025 15:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

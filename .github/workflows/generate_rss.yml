@@ -1,0 +1,52 @@
+name: Generate RSS Feeds
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'blog.json'
+      - 'events.json'
+      - '.github/scripts/generate_rss.py'
+  workflow_dispatch:
+
+jobs:
+  generate_rss_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install feedgen
+
+      - name: Run script to generate RSS feeds
+        run: python .github/scripts/generate_rss.py
+
+      - name: Commit and push if RSS files changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Check if either RSS file has changed or been created
+          if ! git diff --quiet HEAD -- blog_rss.xml || ! git diff --quiet HEAD -- events_rss.xml || [ ! -f blog_rss.xml ] || [ ! -f events_rss.xml ]; then
+            # Stage both files regardless of which one changed, or if they are new
+            # This handles the case where one file changes and the other doesn't, or both are new/changed.
+            git add blog_rss.xml events_rss.xml
+
+            # Check again if staging resulted in changes to be committed
+            if ! git diff --cached --quiet HEAD; then
+              git commit -m "Update RSS feeds (blog_rss.xml, events_rss.xml)"
+              git push
+              echo "RSS feeds updated and pushed."
+            else
+              echo "No effective changes to RSS feeds after staging. Nothing to commit."
+            fi
+          else
+            echo "No changes to RSS feeds. Nothing to commit."
+          fi
