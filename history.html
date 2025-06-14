@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>History of CAMO Underwater Hockey</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/theme/black.min.css" id="theme">
     <!-- Add any custom styles here if needed -->
     <style>
         /* Basic styles for language switcher */
@@ -88,9 +88,9 @@
         <button id="lang-en">EN</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/notes/notes.min.js"></script>
     <script>
         Reveal.initialize({
             hash: true,
@@ -104,14 +104,22 @@
         const markdownSection = document.querySelector('.slides section[data-markdown]');
 
         document.getElementById('lang-fr').addEventListener('click', function() {
-            markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.fr.md');
-            Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.fr.md');
+            console.log("French button clicked");
+            const oldPath = markdownSection.getAttribute('data-markdown');
+            console.log("Old path: " + oldPath);
+            const newPath = 'docs/histoire_camo_hockey_subaquatique.fr.md';
+            console.log("New path: " + newPath);
+            markdownSection.setAttribute('data-markdown', newPath);
             Reveal.sync();
         });
 
         document.getElementById('lang-en').addEventListener('click', function() {
-            markdownSection.setAttribute('data-markdown', 'docs/histoire_camo_hockey_subaquatique.en.md');
-            Reveal.getPlugin('markdown').load('docs/histoire_camo_hockey_subaquatique.en.md');
+            console.log("English button clicked");
+            const oldPath = markdownSection.getAttribute('data-markdown');
+            console.log("Old path: " + oldPath);
+            const newPath = 'docs/histoire_camo_hockey_subaquatique.en.md';
+            console.log("New path: " + newPath);
+            markdownSection.setAttribute('data-markdown', newPath);
             Reveal.sync();
         });
     </script>
