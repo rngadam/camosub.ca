@@ -15,6 +15,7 @@
       gtag('js', new Date());
       gtag('config', 'G-9V8Q4XJXLD');
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <meta name="description" content="Blog du Club CAMO Subaquatique - Nouvelles, mises à jour et articles sur le hockey et le rugby subaquatique à Montréal.">
     <meta name="keywords" content="Blog, Club CAMO Subaquatique, actualités, hockey subaquatique, rugby subaquatique, Montréal">
     <style>
@@ -184,49 +185,6 @@
             // No need to call fetchAndRenderPosts() here anymore after initial load.
         });
 
-        // --- Markdown to HTML ---
-        function basicMarkdownToHtml(md) {
-            if (!md) return '';
-
-  let html = md; // Start with the original markdown text
-
-  // Convert list items: `* item` or `- item` to `<li>item</li>`
-  // This regex finds blocks of list items.
-  html = html.replace(/^(\s*(?:\*|-)\s+.*(?:$|\n))+/gm, (match) => {
-    // If the match doesn't end with a newline, add one to ensure split works as expected for single-line matches
-    const currentMatch = match.endsWith('\n') ? match : match + '\n';
-    const items = currentMatch.trim().split('\n');
-    let listHtml = '<ul>\n';
-    items.forEach(item => {
-      // Remove marker (`* ` or `- `)
-      const itemContent = item.replace(/^\s*(?:\*|-)\s+/, '');
-      listHtml += '  <li>' + itemContent + '</li>\n';
-    });
-    listHtml += '</ul>\n';
-    return listHtml;
-  });
-
-  // Apply bold and link transformations AFTER list processing
-  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
-  html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">$1</a>'); // Links
-
-  // Convert remaining newlines to <br>.
-  html = html.replace(/\\n/g, '<br>'); // Handle escaped newlines first
-  html = html.replace(/\n/g, '<br>');
-
-  // Remove <br> tags that might have been inserted around list tags or list items.
-  html = html.replace(/<ul><br>/g, '<ul>').replace(/<br><\/ul>/g, '</ul>');
-  html = html.replace(/<li><br>/g, '<li>').replace(/<br><\/li>/g, '</li>');
-  // Remove <br> if it's the first thing in a <li> (after list processing, content might start with newline)
-  html = html.replace(/<li>\s*<br>/g, '<li>');
-  // Remove <br> if it's directly before <ul> or <li> (less common but for safety)
-  html = html.replace(/<br>\s*<ul>/g, '<ul>');
-  html = html.replace(/<br>\s*<li>/g, '<li>');
-
-
-  return html;
-        }
-
         // --- Fetch and Render Blog Posts ---
         const postsContainer = document.getElementById('blog-posts-container');
         let blogData = null; // Will store the full {config, posts} object
@@ -314,14 +272,18 @@
                         })
                         .then(markdownText => {
                             const normalizedText = markdownText.replace(/\\n/g, '\n'); // Normalize \\n to \n
-                            frContentEl.innerHTML = basicMarkdownToHtml(normalizedText);
+                            frContentEl.innerHTML = marked.parse(normalizedText); // Use marked.parse
                         })
                         .catch(error => {
                             console.error("Error fetching French Markdown:", error);
-                            frContentEl.innerHTML = basicMarkdownToHtml(frPostData.content || 'Contenu non disponible (erreur de chargement).');
+                            const fallbackContent = frPostData.content || 'Contenu non disponible (erreur de chargement).';
+                            const normalizedFallback = fallbackContent.replace(/\\n/g, '\n');
+                            frContentEl.innerHTML = marked.parse(normalizedFallback); // Use marked.parse
                         });
                 } else {
-                    frContentEl.innerHTML = basicMarkdownToHtml(frPostData.content || 'Contenu non disponible');
+                    const directContent = frPostData.content || 'Contenu non disponible';
+                    const normalizedDirectContent = directContent.replace(/\\n/g, '\n');
+                    frContentEl.innerHTML = marked.parse(normalizedDirectContent); // Use marked.parse
                 }
                 article.appendChild(frDiv);
 
@@ -376,14 +338,18 @@
                         })
                         .then(markdownText => {
                             const normalizedText = markdownText.replace(/\\n/g, '\n'); // Normalize \\n to \n
-                            enContentEl.innerHTML = basicMarkdownToHtml(normalizedText);
+                            enContentEl.innerHTML = marked.parse(normalizedText); // Use marked.parse
                         })
                         .catch(error => {
                             console.error("Error fetching English Markdown:", error);
-                            enContentEl.innerHTML = basicMarkdownToHtml(enPostData.content || 'Content not available (loading error).');
+                            const fallbackContent = enPostData.content || 'Content not available (loading error).';
+                            const normalizedFallback = fallbackContent.replace(/\\n/g, '\n');
+                            enContentEl.innerHTML = marked.parse(normalizedFallback); // Use marked.parse
                         });
                 } else {
-                    enContentEl.innerHTML = basicMarkdownToHtml(enPostData.content || 'Content not available');
+                    const directContent = enPostData.content || 'Content not available';
+                    const normalizedDirectContent = directContent.replace(/\\n/g, '\n');
+                    enContentEl.innerHTML = marked.parse(normalizedDirectContent); // Use marked.parse
                 }
                 article.appendChild(enDiv);
 
