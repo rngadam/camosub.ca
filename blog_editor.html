@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Editor</title>
+    <style>
+        body { font-family: sans-serif; display: flex; margin: 0; padding: 10px; box-sizing: border-box; min-height: 100vh; }
+        #editor-container { flex: 1; padding: 20px; border-right: 1px solid #ccc; overflow-y: auto; }
+        #preview-container { flex: 1; padding: 20px; overflow-y: auto; }
+        .post-form { border: 1px solid #eee; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], textarea, input[type="datetime-local"] { width: calc(100% - 22px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; }
+        textarea { min-height: 100px; }
+        .button-group { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed #ccc; }
+        button { padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; margin-right: 10px; }
+        button:hover { background-color: #0056b3; }
+        .delete-post-btn { background-color: #dc3545; }
+        .delete-post-btn:hover { background-color: #c82333; }
+        #preview-content > div { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 3px; background-color: #fff;}
+        h2 { margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div id="editor-container">
+        <h2>Blog Post Editor</h2>
+        <div class="button-group">
+            <button id="add-post-btn">Add New Post</button>
+            <button id="save-changes-btn">Save Changes to GitHub</button>
+        </div>
+        <div id="posts-editor">
+            <!-- Forms for each blog post will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <div id="preview-container">
+        <h2>Live Preview</h2>
+        <div id="preview-content">
+            <!-- Live preview of blog posts will be shown here -->
+        </div>
+    </div>
+
+    <script src="blog_editor.js"></script>
+</body>
+</html>
