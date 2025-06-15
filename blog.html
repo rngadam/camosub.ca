@@ -211,6 +211,7 @@
   html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">$1</a>'); // Links
 
   // Convert remaining newlines to <br>.
+  html = html.replace(/\\n/g, '<br>'); // Handle escaped newlines first
   html = html.replace(/\n/g, '<br>');
 
   // Remove <br> tags that might have been inserted around list tags or list items.
