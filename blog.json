@@ -20,7 +20,12 @@
       "en": {
         "title": "Match #9, Day 3: GTA vs CAMO - Gold Medal Final",
         "content_md": "blog/posts/match-9-gta-vs-camo.en.md"
-      }
+      },
+      "images": [
+         "competitions/uwh-nationals-2025/match9/10-prematch.jpg",
+         "competitions/uwh-nationals-2025/match9/20-postmatch.jpg",
+         "competitions/uwh-nationals-2025/match9/30-medaille.jpg"
+      ]
     },
     {
       "id": "post-20240728100000",
