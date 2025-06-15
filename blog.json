@@ -119,7 +119,12 @@
       "en": {
           "title": "Day 2 Match #7 (Game #103): CAMO vs Québec - Crucial Victory! (17h15)",
           "content": "CAMO secured a 3-2 victory against Québec in a very intense and extremely important match! This result was decisive for our access to the medals. The upcoming matches will decide which medal we get."
-      }
+      },
+      "images": [
+        "competitions/uwh-nationals-2025/match7/apres.jpg",
+        "competitions/uwh-nationals-2025/match7/avant.jpeg",
+        "competitions/uwh-nationals-2025/match7/stats.png",
+      ]
     }
   ]
 }
