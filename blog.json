@@ -114,16 +114,30 @@
       "tags": ["uwh_nationals_2025"],
       "fr": {
           "title": "Jour 2 Match #7 (Game #103): CAMO vs Québec - Victoire Cruciale! (17h15)",
-          "content": "CAMO a remporté une victoire de 3-2 contre Québec dans un match très intense et d'une importance extrême! Nous sommes revenus de l'arrière deux fois plutôt qu'une, démontrons le calme et l'expérience de notre équipe. Ce résultat était déterminant pour notre accès aux médailles. Le prochain match décidera la couleur de la médaille pour laquelle nous nous batterons."
+          "content": "CAMO a remporté une victoire de 3-2 contre Québec dans un match très intense et d'une importance extrême! Ce résultat était déterminant pour notre accès aux médailles. Les prochains matchs décideront de la couleur de la médaille que nous obtiendrons."
       },
       "en": {
           "title": "Day 2 Match #7 (Game #103): CAMO vs Québec - Crucial Victory! (17h15)",
-          "content": "CAMO won 3-2 against Quebec in a very intense and extremely important match! We came from behind twice rather than once, demonstrating our team's composure and experience. This result was crucial to our access to the medals. The next match will decide the color of the medal we will fight for."
+          "content": "CAMO secured a 3-2 victory against Québec in a very intense and extremely important match! This result was decisive for our access to the medals. The upcoming matches will decide which medal we get."
+      }
+    },
+    {
+      "id": "post-202506151130-jour3-match8-cornwall",
+      "timestamp": "2025-06-14T22:15:00Z",
+      "sport_logo": "images/logos/uwh-logo.jpg",
+      "tags": ["uwh_nationals_2025"],
+      "fr": {
+          "title": "Match #8 (Jour 3) Game #111 - demie-finale",
+          "content": "Nautilus (Cornwall) vs CAMO (Montréal) \n\nCAMO gagne avec 6-2 après une première période mouvementée.\n \nUn choc de se faire compter un but contre nous dès les deux premières minutes qui nous a réveillé. On a remonté la pente et finalement gagné la première manche avec un excellent travail d'équipe avec 2-1.\n\nCAMO a démarré la machine avec la pression d'un 3e, 4e, 5e buts.\n\nNautilus a répliqué avec l'énergie du désespoir après un timeout de CAMO et un relâchement de notre équipe avec un deuxième but à moins de 5 minutes de la fin. \n\nCAMO sort du match avec le 6e but 90 secondes avant la fin.\n\nDe nombreux arrêts au but par Nautilus, démontrant une forte défense de l'équipe adverse. Phil notre joueur étoile a laissé deux buts mais a aussi compté trois buts donc bilan positif de son côté.\n\nProchain match: la finale!\n\nTrès propre, fort et beau jeu sans être sauvage.\n\nPuisque seulement 10 jours sont autorisés dans l'eau et notre équipe a 11 joueurs, c'était au tour de Ricky d'être sur le banc pour cette partie profitant ainsi de prendre beaucoup de photos."
+      },
+      "en": {
+          "title": "Game #8 (Day 3) Game #111 - Semifinal",
+          "content": "Nautilus (Cornwall) vs. CAMO (Montreal)\n\nCAMO won 6-2 after a hectic first period.\n\nIt was a shock to be downed in the first two minutes, which woke us up. We came back and finally won the first set with excellent teamwork, 2-1.\n\nCAMO got the ball rolling with the pressure of a 3rd, 4th, and 5th goal.\n\nNautilus responded with desperation after a CAMO timeout and our team slackening, scoring a second goal with less than 5 minutes left.\n\nCAMO exited the game with a 6th goal 90 seconds before the end.\n\nNumerous saves by Nautilus demonstrated strong defense by the opposing team. Phil, our star player, let in two goals but also scored three, so it's a positive outcome for him.\n\nNext game: the final!\n\nSince only 10 days are allowed in the water and our team has 11 players, it was Ricky's turn to be on the bench for this game, thus taking advantage of taking lots of photos."
       },
       "images": [
-        "competitions/uwh-nationals-2025/match7/apres.jpg",
-        "competitions/uwh-nationals-2025/match7/avant.jpeg",
-        "competitions/uwh-nationals-2025/match7/stats.png"
+        "competitions/uwh-nationals-2025/match8/05-briefing.jpg",
+        "competitions/uwh-nationals-2025/match8/10-preparation.jpg",
+        "competitions/uwh-nationals-2025/match8/20-depart.png"
       ]
     }
   ]
