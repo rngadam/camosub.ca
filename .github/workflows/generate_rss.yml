@@ -8,7 +8,12 @@ on:
       - 'blog.json'
       - 'events.json'
       - '.github/scripts/generate_rss.py'
+      - '.github/workflows/generate_rss.yml'
   workflow_dispatch:
+
+permissions:
+  contents: write # Required to push changes to the repository
+  id-token: write # Required for GitHub Actions to authenticate with the repository
 
 jobs:
   generate_rss_job:
