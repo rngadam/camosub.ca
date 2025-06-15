@@ -9,6 +9,20 @@
   },
   "posts": [
     {
+      "id": "post-202506151800-jour3-match9-gta-camo",
+      "timestamp": "2025-06-15T22:00:00Z",
+      "sport_logo": "images/logos/uwh-logo.jpg",
+      "tags": ["uwh_nationals_2025"],
+      "fr": {
+        "title": "Match #9, Jour 3 : GTA contre CAMO - Finale pour la Médaille d'Or",
+        "content_md": "blog/posts/match-9-gta-vs-camo.fr.md"
+      },
+      "en": {
+        "title": "Match #9, Day 3: GTA vs CAMO - Gold Medal Final",
+        "content_md": "blog/posts/match-9-gta-vs-camo.en.md"
+      }
+    },
+    {
       "id": "post-20240728100000",
       "timestamp": "2025-06-13T15:00:00Z",
       "image": "competitions/uwh-nationals-2025/day1-schedule.png",

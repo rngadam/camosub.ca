@@ -301,8 +301,27 @@
                 }
                 const frContentEl = document.createElement('div');
                 frContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
-                frContentEl.innerHTML = basicMarkdownToHtml(frContentText);
                 frDiv.appendChild(frContentEl);
+
+                if (frPostData.content_md && typeof frPostData.content_md === 'string' && frPostData.content_md.trim() !== '') {
+                    frContentEl.innerHTML = 'Chargement du contenu...';
+                    fetch(frPostData.content_md)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status} for ${frPostData.content_md}`);
+                            }
+                            return response.text();
+                        })
+                        .then(markdownText => {
+                            frContentEl.innerHTML = basicMarkdownToHtml(markdownText);
+                        })
+                        .catch(error => {
+                            console.error("Error fetching French Markdown:", error);
+                            frContentEl.innerHTML = basicMarkdownToHtml(frPostData.content || 'Contenu non disponible (erreur de chargement).');
+                        });
+                } else {
+                    frContentEl.innerHTML = basicMarkdownToHtml(frPostData.content || 'Contenu non disponible');
+                }
                 article.appendChild(frDiv);
 
                 // English Content Div
@@ -310,7 +329,7 @@
                 enDiv.className = 'lang-en-content';
                 const enPostData = post.en || {};
                 const enTitleText = enPostData.title || 'Title not available';
-                const enContentText = enPostData.content || 'Content not available';
+                // const enContentText = enPostData.content || 'Content not available'; // Replaced by logic below
 
                 const enTitleEl = document.createElement('h2');
                 enTitleEl.className = 'text-3xl font-bold mb-3 text-gray-900 text-center';
@@ -343,8 +362,27 @@
                 }
                 const enContentEl = document.createElement('div');
                 enContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
-                enContentEl.innerHTML = basicMarkdownToHtml(enContentText);
                 enDiv.appendChild(enContentEl);
+
+                if (enPostData.content_md && typeof enPostData.content_md === 'string' && enPostData.content_md.trim() !== '') {
+                    enContentEl.innerHTML = 'Loading content...';
+                    fetch(enPostData.content_md)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status} for ${enPostData.content_md}`);
+                            }
+                            return response.text();
+                        })
+                        .then(markdownText => {
+                            enContentEl.innerHTML = basicMarkdownToHtml(markdownText);
+                        })
+                        .catch(error => {
+                            console.error("Error fetching English Markdown:", error);
+                            enContentEl.innerHTML = basicMarkdownToHtml(enPostData.content || 'Content not available (loading error).');
+                        });
+                } else {
+                    enContentEl.innerHTML = basicMarkdownToHtml(enPostData.content || 'Content not available');
+                }
                 article.appendChild(enDiv);
 
                 // Tags (translatable and visibility toggled by setLanguage)
