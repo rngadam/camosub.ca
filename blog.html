@@ -313,7 +313,8 @@
                             return response.text();
                         })
                         .then(markdownText => {
-                            frContentEl.innerHTML = basicMarkdownToHtml(markdownText);
+                            const normalizedText = markdownText.replace(/\\n/g, '\n'); // Normalize \\n to \n
+                            frContentEl.innerHTML = basicMarkdownToHtml(normalizedText);
                         })
                         .catch(error => {
                             console.error("Error fetching French Markdown:", error);
@@ -374,7 +375,8 @@
                             return response.text();
                         })
                         .then(markdownText => {
-                            enContentEl.innerHTML = basicMarkdownToHtml(markdownText);
+                            const normalizedText = markdownText.replace(/\\n/g, '\n'); // Normalize \\n to \n
+                            enContentEl.innerHTML = basicMarkdownToHtml(normalizedText);
                         })
                         .catch(error => {
                             console.error("Error fetching English Markdown:", error);
