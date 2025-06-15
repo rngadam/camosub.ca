@@ -28,10 +28,10 @@ jobs:
         run: npm install -g htmlhint
 
       - name: Lint HTML (index.html)
-        run: htmlhint index.html
+        run: htmlhint *.html
 
       - name: Set up GitHub Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Create version.json
         run: echo "{\"commit\":\"${{ github.sha }}\", \"branch\":\"${{ github.head_ref }}\"}" > version.json
@@ -96,7 +96,7 @@ jobs:
         run: rsync -av --progress . ./temp_deploy/previews/${{ steps.pr_number.outputs.PR_NUM }}/ --exclude temp_deploy --exclude .git --exclude .github
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './temp_deploy'
           name: github-pages
@@ -106,6 +106,18 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages
+
+      - name: Check CNAME file
+        run: |
+          if [ ! -f ./CNAME ]; then
+            echo "CNAME file is missing. This file is required to determine the preview domain."
+            exit 1
+          fi
+          if [ ! -s ./CNAME ]; then
+            echo "CNAME file is empty. This file is required to determine the preview domain."
+            exit 1
+          fi
+          echo "CNAME file exists and is not empty."
 
       - name: Read CNAME domain
         id: cname_reader # Not strictly needed for GITHUB_ENV but good practice

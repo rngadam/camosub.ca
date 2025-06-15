@@ -41,13 +41,13 @@ jobs:
         run: npm install -g htmlhint
 
       - name: Lint HTML (index.html)
-        run: htmlhint index.html
+        run: htmlhint *.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Create version.json
         run: echo "{\"commit\":\"${{ github.sha }}\", \"branch\":\"${{ github.head_ref }}\"}" > version.json
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           # Upload entire repository
           path: '.'
