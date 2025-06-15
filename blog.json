@@ -79,7 +79,7 @@
     },
     {
       "id": "post-20250614083000",
-      "timestamp": "2025-06-14T09:30:00Z",
+      "timestamp": "2025-06-14T13:30:00Z",
       "image": null,
       "images": [],
       "sport_logo": "images/logos/uwh-logo.jpg",
@@ -94,20 +94,8 @@
       }
     },
     {
-      "id": "test-post-rss-workflow",
-      "timestamp": "2024-07-31T12:52:11.347938Z",
-      "fr": {
-        "title": "Test: Déclenchement Workflow RSS",
-        "content": "Ceci est un message de test pour vérifier le workflow RSS."
-      },
-      "en": {
-        "title": "Test: Trigger RSS Workflow",
-        "content": "This is a test post to verify the RSS workflow."
-      }
-    },
-    {
       "id": "post-20240731130519-jour2-match2-nova",
-      "timestamp": "2025-06-14T12:30:00Z",
+      "timestamp": "2025-06-14T16:30:00Z",
       "sport_logo": "images/logos/uwh-logo.jpg",
       "tags": ["uwh_nationals_2025"],
       "fr": {
@@ -121,7 +109,7 @@
     },
     {
       "id": "post-20240731180519-jour2-match6-quebec",
-      "timestamp": "2025-06-14T18:15:00Z",
+      "timestamp": "2025-06-14T22:15:00Z",
       "sport_logo": "images/logos/uwh-logo.jpg",
       "tags": ["uwh_nationals_2025"],
       "fr": {
