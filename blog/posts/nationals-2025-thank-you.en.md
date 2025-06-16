@@ -7,5 +7,3 @@ Pierre Larose of the [GO-HSA](http://go-hsa.ca) club aimed to provide an experie
 Without the exceptional organization by [GO-HSA](http://go-hsa.ca), it would not have been possible to witness the outstanding final match between Toronto and Montreal! This event truly showcased the spirit and skill of Canadian underwater hockey.
 
 We are incredibly grateful for the hard work, passion, and commitment that made this tournament a memorable one for all participants and spectators.
-
-![UWH Nationals 2025 Logo](competitions/uwh-nationals-2025/UWH-Nationals-2025-Black.png)
