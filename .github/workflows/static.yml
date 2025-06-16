@@ -40,8 +40,28 @@ jobs:
       - name: Install HTMLHint
         run: npm install -g htmlhint
 
-      - name: Lint HTML (index.html)
-        run: htmlhint index.html
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Lint all HTML files
+        run: |
+          find . -name "*.html" -print0 | xargs -0 -t -n1 htmlhint
+        continue-on-error: false
+
+      - name: Validate all JSON files
+        run: |
+          find . -name "*.json" -print0 | while IFS= read -r -d $'\0' file; do
+            echo "Validating $file"
+            python -m json.tool "$file" > /dev/null || exit 1
+          done
+
+      - name: Validate all XML files
+        run: |
+          find . -name "*.xml" -print0 | while IFS= read -r -d $'\0' file; do
+            echo "Validating $file"
+            xmllint --noout "$file" || exit 1
+          done
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Create version.json
