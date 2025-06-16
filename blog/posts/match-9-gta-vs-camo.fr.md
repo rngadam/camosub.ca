@@ -1,8 +1,9 @@
-Match #9, Jour 3 : GTA contre CAMO - Finale pour la Médaille d'Or
+## Match #9, Jour 3 : GTA contre CAMO - Finale pour la Médaille d'Or
 
 Ce match était la finale décisive pour la médaille d'or, ce qui en faisait un affrontement à enjeux élevés et d'une intensité palpable.
 
-Faits Saillants de la Première Période :
+## Faits Saillants de la Première Période
+
  * CAMO Marque en Premier : CAMO a pris l'avantage rapidement avec un but à la 8ème minute.
  * Jeu Intense : Les deux équipes ont fait preuve d'une attaque solide et d'une défense tenace, avec des échanges constants en zones dangereuses.
  * Pénalités et Buts de GTA :
@@ -13,15 +14,20 @@ Faits Saillants de la Première Période :
  * Changements Rapides : Les deux équipes ont effectué des remplacements rapides, signe d'ajustements stratégiques.
  * Fautes de GTA : GTA a commencé à accumuler les fautes vers la fin de la première période.
  * Fin de la Première Période : La période s'est conclue sur un score de 1-1, démontrant l'équilibre des forces entre les deux équipes. Les joueurs étaient décrits comme "hyperfocus".
-Faits Saillants de la Deuxième Période :
+
+## Faits Saillants de la Deuxième Période
+
  * Pénalité pour GTA (VC) : GTA a reçu une autre pénalité (VC) avec 12 minutes restantes dans la période.
  * Poussée Offensive de CAMO : CAMO a immédiatement lancé une forte attaque vers le but de GTA, passant 2 à 3 minutes dans la zone dangereuse de GTA.
  * Pression de CAMO : Les minutes suivantes ont vu le jeu se dérouler dans la zone dangereuse de CAMO. Malgré plusieurs avantages offerts à CAMO, ils n'ont pas réussi à concrétiser.
  * But de GTA : GTA a marqué un but avec 4 minutes restantes.
  * CAMO Égalise : CAMO a répondu immédiatement, égalisant le score avec 3 minutes et 30 secondes restantes.
  * Fin de la Deuxième Période : La deuxième période s'est terminée sur un score de 2-2.
-Prolongation (Mort Subite) :
- * Le Premier But Gagne : Le match est entré en prolongation avec la règle de la mort subite, signifiant que le prochain but déciderait du vainqueur.
+
+## Prolongation (Mort Subite)
+
+Le Premier But Gagne : Le match est entré en prolongation avec la règle de la mort subite, signifiant que le prochain but déciderait du vainqueur.
+
  * Pénalité pour Mike (GTA) : Mike (GTA) a reçu une pénalité après 2 minutes de prolongation.
  * CAMO Avance à 5 Joueurs : Avec GTA en infériorité numérique, CAMO a avancé avec 5 joueurs.
  * GTA Perd un Autre Joueur : À 4 minutes 44 secondes de la prolongation, GTA a perdu un autre joueur, se retrouvant dans une situation de désavantage numérique significative.
