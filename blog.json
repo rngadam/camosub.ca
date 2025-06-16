@@ -10,8 +10,8 @@
   "posts": [
     {
       "id": "post-202506152200-nationals-2025-thank-you",
-      "timestamp": "2025-06-15T22:00:00Z",
-      "sport_logo": "images/logos/uwh-logo.jpg",
+      "timestamp": "2025-06-15T22:01:00Z",
+      "sport_logo": "competitions/uwh-nationals-2025/UWH-Nationals-2025-Black.png",
       "tags": [
         "uwh_nationals_2025"
       ],
@@ -107,7 +107,7 @@
       },
       "en": {
         "title": "Match #3 (Day 1): CAMO's Resounding Victory Over GTA Raccoons!",
-        "content": "Third update from the National Championship - Day 1!\\n\\n*   **Match Result:** CAMO secures a decisive 10-0 victory against the GTA Raccoons!\\n    *   Excellent defense on our part, blocking numerous goal attempts from the opposition.\\n    *   The GTA Raccoons are a young and promising team from the Greater Toronto Area. A fine new generation that will be very competitive in a few years.\\n*   **Match Notes:**\\n    *   A warning was issued to our captain, Philippe.\\n    *   We were a bit slow and less reactive at the start of the match, but the team improved as it progressed!\\n\\nGo CAMO!"
+        "content": "Third update from the National Championship - Day 1!\\n\\n*   **Match Result:** CAMO secures a decisive 10-0 victory against the GTA Raccoons!\\n    *   Excellent defense on our part, blocking numerous goal attempts from the opposition.\\n    *   The GTA Raccoons are a young and promising team from the Greater Toronto Area. A fine new generation that will be very competitive in a few years.\\n*   **Match Notes:**\\n    *   A warning wasissued to our captain, Philippe.\\n    *   We were a bit slow and less reactive at the start of the match, but the team improved as it progressed!\\n\\nGo CAMO!"
       }
     },
     {
