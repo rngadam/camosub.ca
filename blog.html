@@ -209,6 +209,7 @@
             postsToRender.forEach(post => {
                 const article = document.createElement('article');
                 article.className = 'blog-post bg-white text-gray-800 p-6 rounded-lg shadow-xl mb-8';
+                article.id = post.id;
 
                 if (post.sport_logo) {
                     const logoImg = document.createElement('img');
