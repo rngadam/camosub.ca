@@ -111,6 +111,7 @@
 
         <section class="bg-yellow-400 text-gray-900 py-6 text-center" data-aos="fade-in">
             <div class="container mx-auto">
+                <img src="competitions/uwh-nationals-2025/UWH-Nationals-2025-Black.png" alt="Logo Championnats Canadiens HSA 2025" class="mx-auto mb-4 h-24">
                 <p class="text-xl md:text-2xl font-semibold">
                     Félicitations à notre équipe de hockey subaquatique CAMO qui a remporté la médaille d'argent aux Championnats Canadiens 2025!
                     <a href="blog.html#post-202506152200-nationals-2025-thank-you" class="underline hover:text-blue-700">
@@ -298,6 +299,7 @@
 
         <section class="bg-yellow-400 text-gray-900 py-6 text-center" data-aos="fade-in">
             <div class="container mx-auto">
+                <img src="competitions/uwh-nationals-2025/UWH-Nationals-2025-Black.png" alt="UWH Nationals 2025 Logo" class="mx-auto mb-4 h-24">
                 <p class="text-xl md:text-2xl font-semibold">
                     Congratulations to our CAMO underwater hockey team for winning the silver medal at the 2025 Canadian Championships!
                     <a href="blog.html#post-202506152200-nationals-2025-thank-you" class="underline hover:text-blue-700">
@@ -588,6 +590,9 @@ if (browserLang === 'en') {
             }
 
             function renderEvent(event, lang) {
+                if (event.archived === true) {
+                    return ''; // Do not render archived events
+                }
                 const eventLangData = event[lang];
                 if (!eventLangData) return ''; // Skip if no language-specific data
 
