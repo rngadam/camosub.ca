@@ -19,7 +19,7 @@ L’intérêt pour la pratique du hockey doit beaucoup au caractère physique pe
 En 1960, six ans plus tard, sous l’influence de Bill Neil, la discipline se réinvente aux États-Unis dans la région de Chicago. Le style de Neil est fort différent du style anglais. Il se démarque par l’utilisation d’un mini bâton de hockey sur glace tenu à deux mains et, parfois, on porte même la bouteille de plongée. Mais le style anglais s’imposera aux États-Unis surtout dans les années 70 sous l’influence du Canada.
 
 ## Standardisation et Championnats du Monde (1980-1984)
-On assiste alors à une période d’hésitation entre les deux styles. C’est la tenue successive de Championnats du monde (1980 \- Vancouver, 1982 \- Brisbane) qui progressivement convint les adeptes de passer au bâton court. 1984 consacre définitivement cet usage avec la publication du règlement officiel de la C.M.A.S dans la foulée du Championnats du monde de Chicago.
+On assiste alors à une période d’hésitation entre les deux styles. C’est la tenue successive de Championnats du monde (1980 \- Vancouver, 1982 \- Brisbane) qui progressivement convainc les adeptes de passer au bâton court. 1984 consacre définitivement cet usage avec la publication du règlement officiel de la C.M.A.S dans la foulée du Championnats du monde de Chicago.
 
 ## Arrivée au Canada (1962)
 Au Canada, l’histoire du hockey subaquatique débute en 1962 à Vancouver avec l’instructeur de plongée australien Norm Liebeck. C’est d’ailleurs à partir de cette souche que le hockey migre progressivement vers l’est du pays.
