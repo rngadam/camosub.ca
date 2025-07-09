@@ -90,12 +90,12 @@
         <div class="lang-fr-header-footer">
             <img src="images/camo-subaquatique.png" alt="Logo du Club CAMO Subaquatique à Montréal" class="mx-auto h-32 md:h-40">
             <h1 class="text-3xl md:text-4xl font-bold mt-4">Blog du Club CAMO</h1>
-            <p class="mt-1 text-md md:text-lg italic">Nouvelles et mises à jour de votre club de Sports Subaquatiques</p>
+            <p class="mt-1 text-md md:text-lg italic">Nouvelles et mises à jour de votre club de sports subaquatiques</p>
         </div>
         <div class="lang-en-header-footer" style="display:none;">
             <img src="images/camo-subaquatique.png" alt="CAMO Subaquatique Logo in Montreal" class="mx-auto h-32 md:h-40">
             <h1 class="text-3xl md:text-4xl font-bold mt-4">Club CAMO Blog</h1>
-            <p class="mt-1 text-md md:text-lg italic">News and updates from your Underwater Sports club</p>
+            <p class="mt-1 text-md md:text-lg italic">News and Updates from your Underwater Sports Club</p>
         </div>
     </header>
 
@@ -114,15 +114,15 @@
             </div>
             <div class="container mx-auto px-4 mt-4">
                 <div class="mt-6 border-t border-gray-700 pt-6 mb-4">
-                    <p class="text-center text-lg font-semibold mb-2">Nos Flux RSS</p>
+                    <p class="text-center text-lg font-semibold mb-2">Nos flux RSS</p>
                     <p class="text-center">
-                        <a href="/blog_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS du Blog</a>
+                        <a href="/blog_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS du blog</a>
                         <span class="text-gray-500">|</span>
-                        <a href="/events_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS des Événements</a>
+                        <a href="/events_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS des événements</a>
                     </p>
                 </div>
                 <p>&copy; <span id="footer-year-fr"></span> Club CAMO. Tous droits réservés.</p>
-                <p class="mt-2"><a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de Confidentialité</a> | <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'Utilisation</a></p>
+                <p class="mt-2"><a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> | <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a></p>
             </div>
         </div>
         <div class="lang-en-header-footer" style="display:none;">
@@ -429,9 +429,20 @@
 
         // --- Initial Setup ---
         document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langFromUrl = urlParams.get('lang');
+            const preferredLangStorage = localStorage.getItem('preferredBlogLang'); // Use a different storage key if needed
             const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
-            currentLang = (browserLang === 'en' ? 'en' : 'fr'); // Update global currentLang
 
+            if (langFromUrl === 'en' || langFromUrl === 'fr') {
+                currentLang = langFromUrl;
+            } else if (preferredLangStorage === 'en' || preferredLangStorage === 'fr') {
+                currentLang = preferredLangStorage;
+            } else {
+                currentLang = (browserLang === 'en' ? 'en' : 'fr');
+            }
+
+            localStorage.setItem('preferredBlogLang', currentLang); // Save the determined language
             setLanguage(currentLang); // Set language for static parts and prepare currentLang
             fetchAndRenderPosts(); // Fetch data and render posts
         });

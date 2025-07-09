@@ -9,14 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const langButtons = document.querySelectorAll('.lang-button');
     const langFrSections = document.querySelectorAll('.lang-fr');
     const langEnSections = document.querySelectorAll('.lang-en');
+    const blogLinkFr = document.getElementById('blog-link-fr');
+    const blogLinkEn = document.getElementById('blog-link-en');
 
     const setLanguage = (lang) => {
         if (lang === 'fr') {
             langFrSections.forEach(section => section.style.display = 'block');
             langEnSections.forEach(section => section.style.display = 'none');
-        } else {
+            if (blogLinkFr) blogLinkFr.href = 'blog.html'; // Or 'blog.html?lang=fr'
+            if (blogLinkEn) blogLinkEn.href = 'blog.html'; // Reset English link to default when FR is active
+        } else { // lang === 'en'
             langFrSections.forEach(section => section.style.display = 'none');
             langEnSections.forEach(section => section.style.display = 'block');
+            if (blogLinkEn) blogLinkEn.href = 'blog.html?lang=en';
+            if (blogLinkFr) blogLinkFr.href = 'blog.html?lang=en'; // French link in hidden section also points to EN version
         }
 
         langButtons.forEach(button => {
