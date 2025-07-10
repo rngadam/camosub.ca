@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lang === 'fr') {
             langFrSections.forEach(section => section.style.display = 'block');
             langEnSections.forEach(section => section.style.display = 'none');
-            if (blogLinkFr) blogLinkFr.href = 'blog.html'; // Or 'blog.html?lang=fr'
-            if (blogLinkEn) blogLinkEn.href = 'blog.html'; // Reset English link to default when FR is active
+            if (blogLinkFr) blogLinkFr.href = 'blog.html?lang=fr';
+            if (blogLinkEn) blogLinkEn.href = 'blog.html?lang=en'; // Hidden EN link should point to EN blog
         } else { // lang === 'en'
             langFrSections.forEach(section => section.style.display = 'none');
             langEnSections.forEach(section => section.style.display = 'block');
             if (blogLinkEn) blogLinkEn.href = 'blog.html?lang=en';
-            if (blogLinkFr) blogLinkFr.href = 'blog.html?lang=en'; // French link in hidden section also points to EN version
+            if (blogLinkFr) blogLinkFr.href = 'blog.html?lang=fr'; // Hidden FR link should point to FR blog
         }
 
         langButtons.forEach(button => {
