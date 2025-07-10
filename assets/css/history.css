@@ -24,12 +24,13 @@ body.bg-gray-100 {
 }
 
 /* Headings - Differentiation and Color Progression */
-#content-container h1 {
-    color: #1a202c; /* Tailwind gray-900, for the main title if rendered from markdown */
-    font-size: 2.5em; /* Tailwind text-4xl */
-    margin-bottom: 0.75em;
-    padding-bottom: 0.25em;
-    border-bottom: 2px solid #4299e1; /* Tailwind blue-500 */
+#content-container h1,
+#content-container > h1:first-child { /* Ensure first H1 (main title from markdown) is styled */
+    color: #1A202C; /* Tailwind text-gray-900 */
+    font-size: 2.25rem; /* Tailwind text-4xl */
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #4299E1; /* Tailwind blue-500 */
 }
 
 #content-container h2 {
@@ -38,21 +39,15 @@ body.bg-gray-100 {
     margin-bottom: 0.75em;
     padding-bottom: 0.2em;
     border-bottom: 1px solid #a0aec0; /* Tailwind gray-500 */
-    /* Color Progression - Example using pseudo-classes or direct assignment if structure is fixed */
-    /* For a dynamic approach, JS might be needed or more complex CSS if section count is variable */
-    /* Using a simpler approach with a base color, can be expanded */
-    color: #2c5282; /* Tailwind blue-800 */
+    color: #2c5282; /* Default color if not overridden by nth-of-type */
 }
 
-/* Color progression for H2 based on their order - this is a basic example.
-   More robust solution might involve JS if content is highly dynamic.
-   These are placeholders; actual colors should be chosen carefully. */
-#content-container section:nth-of-type(5n+1) h2 { color: #5A8F7B; } /* Tealish Green */
-#content-container section:nth-of-type(5n+2) h2 { color: #7E909A; } /* Slate Blue/Gray */
-#content-container section:nth-of-type(5n+3) h2 { color: #A0BCC2; } /* Light Steel Blue */
-#content-container section:nth-of-type(5n+4) h2 { color: #D4E0E5; } /* Very Light Blue/Gray */
-#content-container section:nth-of-type(5n+5) h2 { color: #F0F4F8; } /* Almost White Blue */
-
+/* Color progression for H2 headings directly under #content-container */
+#content-container > h2:nth-of-type(5n+1) { color: #4A90E2; } /* Bright Blue */
+#content-container > h2:nth-of-type(5n+2) { color: #50E3C2; } /* Teal */
+#content-container > h2:nth-of-type(5n+3) { color: #B8E986; } /* Light Green */
+#content-container > h2:nth-of-type(5n+4) { color: #F8E71C; } /* Yellow */
+#content-container > h2:nth-of-type(5n+5) { color: #F5A623; } /* Orange */
 
 #content-container h3 {
     font-size: 1.5em; /* Tailwind text-2xl */
@@ -93,17 +88,25 @@ body.bg-gray-100 {
     color: #2b6cb0; /* Tailwind blue-700 */
 }
 
-/* Images in content */
-#content-container img {
-    max-width: 100%;
-    height: auto;
+/* Images in content - Consolidated */
+#content-container img,
+#content-container figure > img {
     display: block; /* To allow margin auto to center */
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border-radius: 0.375rem; /* Tailwind rounded-md */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Tailwind shadow-md */
+    max-width: 80%; /* Default max-width for smaller screens */
+    height: auto;
+    border-radius: 0.375rem; /* Tailwind rounded-md / rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* Tailwind shadow-md or shadow-lg */
+    margin-top: 1.5rem; /* Consistent margin */
+    margin-bottom: 1.5rem; /* Consistent margin */
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+    #content-container img,
+    #content-container figure > img {
+        max-width: 600px; /* More constrained max-width on larger screens */
+    }
 }
 
 /* Table of Contents specific styling */
@@ -154,7 +157,7 @@ body.bg-gray-100 {
         margin-bottom: 1.5rem;
     }
 
-    .flex-col.md\:flex-row {
+    .flex-col.md\:flex-row { /* This class is on history.html's main flex container */
         flex-direction: column;
     }
 }
@@ -163,60 +166,17 @@ body.bg-gray-100 {
 .sticky-top-offset {
     top: 20px; /* Default, adjust if a fixed/sticky header is present */
 }
-/* Example if you had a fixed header of 60px:
-body.has-fixed-header .sticky-top-offset {
-    top: 80px; // 60px header + 20px margin
-}
-*/
 
 /* Ensure prose styles from Tailwind don't overly restrict image width */
-#content-container .prose img {
+#content-container .prose img { /* This is if Tailwind's @tailwindcss/typography plugin is used and puts img inside .prose */
     max-width: 100%; /* Override if prose sets a more restrictive max-width */
 }
 
-#content-container .prose h1,
-#content-container .prose h2,
-#content-container .prose h3,
-#content-container .prose h4,
-#content-container .prose p,
-#content-container .prose ul,
-#content-container .prose ol,
-#content-container .prose li,
-#content-container .prose a {
-    /* Resetting some prose defaults if they conflict with our custom history.css styles */
-    /* For example, if prose sets specific margins or colors we want to override globally for this page */
-    /* This is a safeguard; often, specificity or direct styling is enough. */
-}
-
-/* Custom color progression for H2 headings using a different approach */
-/* This assumes sections are direct children of content-container or a similar structure */
-/* Using a placeholder color, actual progression TBD */
-#content-container h2 {
-    /* Base color if no specific rule applies or for fallback */
-    color: #333; /* Dark Gray */
-}
-
-/* Example: Cycle through 5 colors. Adjust as needed. */
-#content-container h2:nth-of-type(5n+1) { color: #4A90E2; } /* Bright Blue */
-#content-container h2:nth-of-type(5n+2) { color: #50E3C2; } /* Teal */
-#content-container h2:nth-of-type(5n+3) { color: #B8E986; } /* Light Green */
-#content-container h2:nth-of-type(5n+4) { color: #F8E71C; } /* Yellow */
-#content-container h2:nth-of-type(5n+5) { color: #F5A623; } /* Orange */
-
-/* Ensure the main title (if part of markdown) is distinct */
-#content-container > h1:first-child {
-    color: #1A202C; /* Tailwind text-gray-900 */
-    font-size: 2.25rem; /* Tailwind text-4xl */
-    border-bottom: 2px solid #4299E1; /* Tailwind blue-500 */
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-}
-
-/* Styling for the dynamically loaded header and footer text */
+/* Styling for the dynamically loaded header and footer text placeholders in history.html */
 #page-header a, #page-footer a {
-    /* text-decoration: none; */ /* Tailwind handles this with hover:underline */
+    /* text-decoration: none; */ /* Tailwind handles this with hover:underline by default */
 }
-#page-header .text-lg, #page-footer .text-lg {
+#page-header .text-lg, #page-footer .text-lg { /* Matches classes used in JS for header/footer links */
     font-size: 1.125rem; /* Tailwind text-lg */
 }
 
@@ -228,36 +188,13 @@ body.has-fixed-header .sticky-top-offset {
     font-weight: 600; /* Tailwind font-semibold */
 }
 
-/* Ensure images in markdown are responsive and styled */
-#content-container figure > img { /* if images are wrapped in figure by markdown parser */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80%; /* Example, adjust as needed */
-    height: auto;
-    border-radius: 0.375rem; /* rounded-md */
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-lg */
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-#content-container img { /* General images not in figures */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80%; /* Example, adjust as needed */
-    height: auto;
-    border-radius: 0.375rem; /* rounded-md */
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-lg */
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Adjust max-width for images for better presentation */
-/* This ensures they don't go too wide on larger screens but are still responsive */
-@media (min-width: 768px) { /* md breakpoint */
-    #content-container figure > img,
-    #content-container img {
-        max-width: 600px; /* Or a percentage like 75% */
-    }
+/* Ensure the main title from markdown (if it's the first h1) is distinct if not handled by JS setting page title */
+/* This is slightly redundant with the #content-container h1 rule at the top but more specific for the first child. */
+/* It's generally good to have the markdown's own H1 styled well. */
+#content-container > h1:first-child {
+    color: #1A202C;
+    font-size: 2.25rem;
+    border-bottom: 2px solid #4299E1;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
