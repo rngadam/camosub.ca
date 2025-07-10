@@ -18,9 +18,6 @@ The interest in playing hockey owes much to its physical nature, allowing diving
 ## American Influence and Neil's Style (1960s)
 In 1960, six years later, under the influence of Bill Neil, the sport was reinvented in the United States in the Chicago area. Neil's style was very different from the English style. It was characterized by the use of a mini ice hockey stick held with two hands, and sometimes even a diving tank was worn. But the English style would eventually prevail in the United States, especially in the 1970s, under Canadian influence.
 
-## Standardization and World Championships (1980-1984)
-This period saw hesitation between the two styles. The successive World Championships (1980 - Vancouver, 1982 - Brisbane) gradually convinced players to switch to the short stick. 1984 definitively enshrined this practice with the publication of the official C.M.A.S. rules following the Chicago World Championships.
-
 ## Arrival in Canada (1962)
 In Canada, the history of underwater hockey began in 1962 in Vancouver with Australian diving instructor Norm Liebeck. It was from this origin that hockey gradually migrated eastward across the country.
 
@@ -35,6 +32,9 @@ The precursors to CAMO were the JoncNoir from Maisonneuve College, the Evil Shar
 
 ## Official Birth of CAMO (1978)
 Under the direction of Jean Couture, the Rosemont club officially adopted the name CAMO in 1978, following the Montreal Olympics. The acronym CAMO stands for Club Aquatique Montréal Olympique, which originated in 1964 with swimming and later with water polo.
+
+## Standardization and World Championships (1980-1984)
+This period saw hesitation between the two styles. The successive World Championships (1980 - Vancouver, 1982 - Brisbane) gradually convinced players to switch to the short stick. 1984 definitively enshrined this practice with the publication of the official C.M.A.S. rules following the Chicago World Championships.
 
 ## National Success and Early International Competitions (1982-1984)
 Largely represented by CAMO club members, the 1982 Canadian Championship in Winnipeg marked the beginning of Quebec's success in the country, which until then had been dominated by Western Canada. Around the same time, the club turned its attention to the challenge of international competitions. In October 1983, a group of CAMO players undertook a trip to England. This overseas stay gave them the opportunity to compete against the best European teams. Their performance encouraged them to participate in the 1984 World Championship in Chicago, where they placed 5th, and the women's team placed 4th.
@@ -69,22 +69,27 @@ silver medals.
 
 ## Revival and Sustainable Development (2010-2011)
 The CAMO underwater hockey club experienced a revival in the 2010s. Recent years have seen the arrival of a new group of administrators pushing for sustainable development. In 2011, the club welcomed underwater rugby into its fold.
-## 2009 Poster
-![2009 Poster](../images/affiches/2009-affiche.jpg)
 
 ## Organization of the Montreal Tournament (Since 2012)
 In 2012, succeeding the late JFK Aquatic Club, CAMO took over the organization of the Montreal tournament at the Claude-Robillard Sports Complex, annually attracting, since the late 90s, about fifteen teams from Quebec, Ontario, Western Canada, and the United States.
+
+## 2009 Poster
+![2009 Poster](../images/affiches/2009-affiche.jpg)
+
 ## 2014 Poster
 ![2014 Poster](../images/affiches/2014-affiche.jpg)
+
 ## 2015 "Try It" Poster
 ![2015 Try It Poster](../images/affiches/2015-essaye-le.jpg)
 
-## The CAMO Club Today (Present)
-At the club, one can find players from the older generation as well as elite Canadian players who have marked the history of hockey in Quebec, Canada, and around the world. The club proudly welcomes players of all levels, from here and elsewhere.
 ## 2018 "Surface" Poster
 ![2018 Surface Poster](../images/affiches/2018-surface.jpg)
+
 ## 2023 Poster
 ![2023 Poster](../images/affiches/2023-affiche.jpg)
+
+## The CAMO Club Today (Present)
+At the club, one can find players from the older generation as well as elite Canadian players who have marked the history of hockey in Quebec, Canada, and around the world. The club proudly welcomes players of all levels, from here and elsewhere.
 
 ## Training and Level of Play (Present)
 As in the past, rookies and veterans train together to improve their game and gain experience. The level of play is intense, fast, and competitive.
