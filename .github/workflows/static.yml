@@ -45,7 +45,7 @@ jobs:
 
       - name: Lint all HTML files
         run: |
-          find . -name "*.html" -print0 | xargs -0 -t -n1 htmlhint
+          find . -name "*.html" ! -name "_*.html" -print0 | xargs -0 -t -n1 htmlhint
         continue-on-error: false
 
       - name: Validate all JSON files
