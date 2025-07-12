@@ -3,6 +3,8 @@ name: Deploy Static Preview Pages and Comment (using deploy-pages)
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'blog.json'
   workflow_dispatch:
 
 permissions:
