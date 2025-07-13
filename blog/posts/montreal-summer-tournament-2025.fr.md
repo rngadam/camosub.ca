@@ -1,6 +1,6 @@
 ---
 title: "Demi-finale et finale du tournoi d'été de Montréal"
-date: 2024-08-24T19:00:00-04:00
+date: 2025-07-12T19:00:00-04:00
 image: "https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1920w.webp"
 ---
 
