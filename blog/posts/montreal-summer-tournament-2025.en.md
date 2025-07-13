@@ -1,8 +1,4 @@
 ---
-title: "Montreal Summer Tournament Semi-Final and Final"
-date: 2025-07-12T19:00:00-04:00
-image: "https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1920w.webp"
----
 CAMO 5-4 against Sherbrooke in the semi-final with the last goal a few seconds before the end of the match. Last game against Cornwall for gold (or silver).
 
 In the final, washed out a second time by Cornwall 0-9 but at least it wasn't 0-10! Congratulations Cornwall. Thanks to Phil for the organization and Stéphanie for being the deck ref all day.
