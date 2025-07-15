@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - 'blog.json'
+      - '*.html'
   workflow_dispatch:
 
 permissions:
