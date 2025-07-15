@@ -4,12 +4,16 @@
             <img src="images/camo-subaquatique.png" alt="Club CAMO Subaquatique Logo" class="h-16 md:h-20">
             <span class="text-xl md:text-2xl font-bold ml-3">CAMO Subaquatique</span>
         </a>
-        <nav class="hidden md:flex space-x-6">
+        <nav class="hidden md:flex space-x-6 items-center">
             <a href="index.html" class="text-lg hover:underline">Accueil</a>
             <a href="hockey.html" class="text-lg hover:underline">Hockey</a>
             <a href="rugby.html" class="text-lg hover:underline">Rugby</a>
             <a href="blog.html" class="text-lg hover:underline">Blog</a>
             <a href="history.html" class="text-lg hover:underline">Notre histoire</a>
+            <div class="flex items-center space-x-2">
+                <button class="lang-button px-3 py-1 rounded bg-blue-500 text-white" data-lang="fr">FR</button>
+                <button class="lang-button px-3 py-1 rounded bg-gray-400 text-gray-800" data-lang="en">EN</button>
+            </div>
         </nav>
         <div class="md:hidden">
             <button id="menu-btn" class="text-white focus:outline-none" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
@@ -23,5 +27,9 @@
         <a href="rugby.html" class="block py-2 px-4 text-sm hover:bg-blue-700">Rugby</a>
         <a href="blog.html" class="block py-2 px-4 text-sm hover:bg-blue-700">Blog</a>
         <a href="history.html" class="block py-2 px-4 text-sm hover:bg-blue-700">Notre histoire</a>
+        <div class="flex justify-center py-2">
+            <button class="lang-button px-3 py-1 rounded bg-blue-500 text-white" data-lang="fr">FR</button>
+            <button class="lang-button px-3 py-1 rounded bg-gray-400 text-gray-800" data-lang="en">EN</button>
+        </div>
     </div>
 </header>
