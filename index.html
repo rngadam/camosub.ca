@@ -214,7 +214,7 @@
     </div>
 
     <div class="lang-en">
-        <div id="header-placeholder-en"></div>
+        <div id="header-placeholder"></div>
 
 
         <section class="bg-sky-500 text-gray-900 py-6 text-center" data-aos="fade-in">
@@ -326,7 +326,7 @@
         </section>
 
 
-        <div id="footer-placeholder-en"></div>
+        <div id="footer-placeholder"></div>
     </div>
 
     <script>
@@ -336,10 +336,8 @@
 
         Promise.all([headerPromise, footerPromise])
             .then(([headerData, footerData]) => {
-                document.getElementById('header-placeholder').innerHTML = headerData;
-                document.getElementById('header-placeholder-en').innerHTML = headerData;
-                document.getElementById('footer-placeholder').innerHTML = footerData;
-                document.getElementById('footer-placeholder-en').innerHTML = footerData;
+                document.querySelectorAll('#header-placeholder').forEach(el => el.innerHTML = headerData);
+                document.querySelectorAll('#footer-placeholder').forEach(el => el.innerHTML = footerData);
 
                 // Now that the DOM is updated, load the main script
                 const script = document.createElement('script');
