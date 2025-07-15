@@ -345,6 +345,22 @@
                 const script = document.createElement('script');
                 script.src = 'assets/js/main.js';
                 document.body.appendChild(script);
+
+                document.querySelectorAll('.lang-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const lang = button.dataset.lang;
+                        document.querySelectorAll('.lang-fr, .lang-en').forEach(section => {
+                            section.style.display = section.classList.contains(`lang-${lang}`) ? 'block' : 'none';
+                        });
+                        document.querySelectorAll('.lang-button').forEach(btn => {
+                            btn.classList.toggle('bg-blue-500', btn.dataset.lang === lang);
+                            btn.classList.toggle('text-white', btn.dataset.lang === lang);
+                            btn.classList.toggle('bg-gray-400', btn.dataset.lang !== lang);
+                            btn.classList.toggle('text-gray-800', btn.dataset.lang !== lang);
+                        });
+                        document.documentElement.lang = lang;
+                    });
+                });
             });
     </script>
 </body>
