@@ -12,12 +12,12 @@
             <a href="history.html" class="text-lg hover:underline">Notre histoire</a>
         </nav>
         <div class="md:hidden">
-            <button id="menu-btn" class="text-white focus:outline-none">
+            <button id="menu-btn" class="text-white focus:outline-none" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden">
+    <div id="mobile-menu" class="hidden md:hidden" role="region" aria-labelledby="menu-btn">
         <a href="index.html" class="block py-2 px-4 text-sm hover:bg-blue-700">Accueil</a>
         <a href="hockey.html" class="block py-2 px-4 text-sm hover:bg-blue-700">Hockey</a>
         <a href="rugby.html" class="block py-2 px-4 text-sm hover:bg-blue-700">Rugby</a>

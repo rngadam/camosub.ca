@@ -149,6 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (menuBtn && mobileMenu) {
         menuBtn.addEventListener('click', () => {
+            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            menuBtn.setAttribute('aria-expanded', !isExpanded);
             mobileMenu.classList.toggle('hidden');
         });
     }

@@ -103,18 +103,20 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="assets/js/main.js"></script>
     <script>
         // Load header and footer
-        fetch('_header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-        fetch('_footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
+        const headerPromise = fetch('_header.html').then(response => response.text());
+        const footerPromise = fetch('_footer.html').then(response => response.text());
+
+        Promise.all([headerPromise, footerPromise])
+            .then(([headerData, footerData]) => {
+                document.getElementById('header-placeholder').innerHTML = headerData;
+                document.getElementById('footer-placeholder').innerHTML = footerData;
+
+                // Now that the DOM is updated, load the main script
+                const script = document.createElement('script');
+                script.src = 'assets/js/main.js';
+                document.body.appendChild(script);
             });
     </script>
 </body>
