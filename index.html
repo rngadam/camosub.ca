@@ -44,7 +44,7 @@
 
     <div class="lang-fr">
         <!-- Content is initially displayed or hidden by main.js based on language preference -->
-    <div id="header-placeholder"></div>
+    <div class="header-placeholder"></div>
 
 
         <section class="bg-sky-500 text-gray-900 py-6 text-center" data-aos="fade-in">
@@ -158,63 +158,11 @@
         </section>
 
 
-        <footer class="bg-gray-900 text-gray-400 py-8 text-center">
-            <div class="container mx-auto px-4">
-                <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
-                    <span>
-                        <i class="fa fa-flag-quebec text-blue-200 mr-1"></i>
-                        <a href="https://quebecsubaquatique.ca/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">
-                            Hockey subaquatique Québec
-                        </a>
-                    </span>
-                    <span class="mx-2">|</span>
-                    <span>
-                        <i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i>
-                        <a href="https://cuga.org/fr/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">
-                            Association canadienne des jeux sous-marins
-                        </a>
-                    </span>
-                    <span class="mx-2">|</span>
-                    <span>
-                        <i class="fa fa-globe text-green-200 mr-1"></i>
-                        <a href="https://www.cmas.org/hockey/latest.html" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">
-                            CMAS hockey subaquatique
-                        </a>
-                    </span>
-                    <span class="mx-2">|</span>
-                    <span>
-                        <i class="fa fa-globe text-green-200 mr-1"></i>
-                        <a href="https://www.cmas.org/rugby/latest.html" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">
-                            CMAS rugby subaquatique
-                        </a>
-                    </span>
-                </p>
-            </div>
-            <div class="container mx-auto px-4">
-                <p>&copy; 2025 Club CAMO. Tous droits réservés.</p>
-                <p class="mt-4">
-                    <a href="mission.html" class="text-blue-400 hover:underline">Mission du club</a> |
-                    <a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> |
-                    <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a> |
-                    <a href="docs/Contrat%20d'e%CC%81thique%20-%20CAMO%202023-2024.pdf" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Contrat d'éthique 2023-2024</a> |
-                    <a href="docs/Politiques%20de%20fonctionnement%20du%20club%20-%20Document%20d'information%20et%20re%CC%80glements%20spe%CC%81cifiques%20-%20CAMO%202024-2025.pdf" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Politiques de fonctionnement 2024-2025</a> |
-                    <a href="docs/Re%CC%80glement%20de%20se%CC%81curite%CC%81%20du%20Club%20Aquatique%20Camo%20Montre%CC%81al%20H.S.M..doc.pdf" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Règlement de sécurité</a> |
-                    <a href="docs/Re%CC%80glements%20ge%CC%81ne%CC%81raux%20-%20CAMO%202023-2024.pdf" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Règlements généraux 2023-2024</a>
-                </p>
-                <div class="mt-6 border-t border-gray-700 pt-6">
-                    <p class="text-center text-lg font-semibold mb-2">Nos flux RSS</p>
-                    <p class="text-center">
-                        <a href="/blog_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS du blog</a>
-                        <span class="text-gray-500">|</span>
-                        <a href="/events_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS des événements</a>
-                    </p>
-                </div>
-            </div>
-        </footer>
+        <div class="footer-placeholder"></div>
     </div>
 
     <div class="lang-en">
-        <div id="header-placeholder"></div>
+        <div class="header-placeholder"></div>
 
 
         <section class="bg-sky-500 text-gray-900 py-6 text-center" data-aos="fade-in">
@@ -326,7 +274,7 @@
         </section>
 
 
-        <div id="footer-placeholder"></div>
+        <div class="footer-placeholder"></div>
     </div>
 
     <script>
@@ -336,8 +284,8 @@
 
         Promise.all([headerPromise, footerPromise])
             .then(([headerData, footerData]) => {
-                document.querySelectorAll('#header-placeholder').forEach(el => el.innerHTML = headerData);
-                document.querySelectorAll('#footer-placeholder').forEach(el => el.innerHTML = footerData);
+                document.querySelectorAll('.header-placeholder').forEach(el => el.innerHTML = headerData);
+                document.querySelectorAll('.footer-placeholder').forEach(el => el.innerHTML = footerData);
 
                 // Now that the DOM is updated, load the main script
                 const script = document.createElement('script');
