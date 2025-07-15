@@ -144,6 +144,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const frenchEventsContainer = document.getElementById('french-events-container');
     const englishEventsContainer = document.getElementById('english-events-container');
 
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            menuBtn.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
     if (frenchEventsContainer && englishEventsContainer) { // Only run if containers exist
         const eventBackgroundClasses = {
             "canadians-2025": "bg-green-100",

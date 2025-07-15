@@ -22,19 +22,7 @@
 </head>
 <body class="bg-gray-100"> <!-- Changed background for content page -->
 
-    <div class="text-center py-4 bg-gray-200 shadow-md">
-        <button id="lang-fr-btn" class="lang-button px-4 py-2 mr-2 rounded bg-blue-500 text-white" data-lang="fr">
-            <i class="fa fa-fleur-de-lis"></i> Français
-        </button>
-        <button id="lang-en-btn" class="lang-button px-4 py-2 rounded bg-gray-400 text-gray-800" data-lang="en">
-            <i class="fa fa-canadian-maple-leaf"></i> English
-        </button>
-    </div>
-
-    <!-- Header (similar to index.html and blog.html) -->
-    <header id="page-header" class="bg-[#386DC0] text-white py-6 text-center shadow-lg">
-        <!-- Header content will be loaded by JS -->
-    </header>
+    <div id="header-placeholder"></div>
 
     <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row">
         <!-- Table of Contents (Left Column) -->
@@ -49,217 +37,27 @@
         </main>
     </div>
 
-    <!-- Footer (similar to index.html and blog.html) -->
-    <footer id="page-footer" class="bg-gray-900 text-gray-400 py-8 text-center">
-        <!-- Footer content will be loaded by JS -->
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script>
-        // const frHeaderContent = `...`; // Removed
-        // const enHeaderContent = `...`; // Removed
-        // const frFooterContent = `...`; // Removed
-        // const enFooterContent = `...`; // Removed
+        // Load header and footer
+        const headerPromise = fetch('_header.html').then(response => response.text());
+        const footerPromise = fetch('_footer.html').then(response => response.text());
 
-        const pageHeader = document.getElementById('page-header');
-        const pageFooter = document.getElementById('page-footer');
-        const contentContainer = document.getElementById('content-container');
-        const tocContainer = document.getElementById('toc');
-        const tocTitle = document.getElementById('toc-title');
-        const langFrBtn = document.getElementById('lang-fr-btn');
-        const langEnBtn = document.getElementById('lang-en-btn');
-        let currentLang = 'fr';
+        Promise.all([headerPromise, footerPromise])
+            .then(([headerData, footerData]) => {
+                document.getElementById('header-placeholder').innerHTML = headerData;
+                document.getElementById('footer-placeholder').innerHTML = footerData;
 
-        function slugify(text) {
-            return text.toString().toLowerCase()
-                .normalize('NFKD') // Normalize accented characters
-                .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
-                .trim()
-                .replace(/\s+/g, '-') // Replace spaces with -
-                .replace(/[^\w-]+/g, '') // Remove all non-word chars
-                .replace(/--+/g, '-'); // Replace multiple - with single -
-        }
+                // Now that the DOM is updated, load the main and history scripts
+                const mainScript = document.createElement('script');
+                mainScript.src = 'assets/js/main.js';
+                document.body.appendChild(mainScript);
 
-        async function loadContent(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            const markdownPath = lang === 'fr' ? 'docs/histoire_camo_hockey_subaquatique.fr.md' : 'docs/histoire_camo_hockey_subaquatique.en.md';
-
-            try {
-                const response = await fetch(markdownPath);
-                if (!response.ok) {
-                    throw new Error(`Failed to load ${markdownPath}: ${response.statusText}`);
-                }
-                const markdown = await response.text();
-
-                // Fetch and populate header
-                const headerResponse = await fetch('_header.html');
-                if (!headerResponse.ok) throw new Error('Failed to load _header.html');
-                const headerHtml = await headerResponse.text();
-                pageHeader.innerHTML = headerHtml;
-                const headerPageTitle = pageHeader.querySelector('#header-page-title');
-                const headerNavLinks = pageHeader.querySelector('#header-nav-links');
-                const headerLogoImg = pageHeader.querySelector('#header-logo-img');
-                 if(headerLogoImg) { //Set alt text for logo
-                    headerLogoImg.alt = lang === 'fr' ? "Logo du Club CAMO Subaquatique à Montréal" : "CAMO Subaquatique Logo in Montreal";
-                }
-
-
-                // Fetch and populate footer
-                const footerResponse = await fetch('_footer.html');
-                if (!footerResponse.ok) throw new Error('Failed to load _footer.html');
-                const footerHtml = await footerResponse.text();
-                pageFooter.innerHTML = footerHtml;
-                const footerLinksContainer = pageFooter.querySelector('#footer-links-container');
-                const footerCopyrightContainer = pageFooter.querySelector('#footer-copyright-container');
-                const footerYear = pageFooter.querySelector('#footer-year');
-                const footerRights = pageFooter.querySelector('#footer-rights');
-                const footerLegalLinks = pageFooter.querySelector('#footer-legal-links');
-                // const footerRssContainer = pageFooter.querySelector('#footer-rss-feed-container'); // Optional
-
-                if (lang === 'fr') {
-                    if (headerPageTitle) headerPageTitle.textContent = "Notre histoire";
-                    if (headerNavLinks) headerNavLinks.innerHTML = `
-                        <a href="index.html" class="text-lg hover:underline font-medium">Accueil</a>
-                        <a href="blog.html?lang=fr" class="text-lg hover:underline font-medium ml-4">Notre blog</a>`;
-
-                    if (footerLinksContainer) footerLinksContainer.innerHTML = `
-                        <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
-                            <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Hockey subaquatique Québec</a></span>
-                            <span class="mx-2">|</span>
-                            <span><i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i> <a href="https://cuga.org/fr/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Association canadienne des jeux sous-marins</a></span>
-                        </p>`;
-                    if (footerYear) footerYear.textContent = new Date().getFullYear();
-                    if (footerRights) footerRights.textContent = "Tous droits réservés.";
-                    if (footerLegalLinks) footerLegalLinks.innerHTML = `
-                        <a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> |
-                        <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a>`;
-                    // if (footerRssContainer) footerRssContainer.innerHTML = `... French RSS links ...`;
-
-                    tocTitle.textContent = "Table des matières";
-                    document.title = "Notre histoire - Club CAMO";
-                } else { // lang === 'en'
-                    if (headerPageTitle) headerPageTitle.textContent = "Our History";
-                    if (headerNavLinks) headerNavLinks.innerHTML = `
-                        <a href="index.html" class="text-lg hover:underline font-medium">Home</a>
-                        <a href="blog.html?lang=en" class="text-lg hover:underline font-medium ml-4">Our Blog</a>`;
-
-                    if (footerLinksContainer) footerLinksContainer.innerHTML = `
-                        <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
-                            <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/en/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Underwater hockey Quebec</a></span>
-                            <span class="mx-2">|</span>
-                            <span><i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i> <a href="https://cuga.org/en/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">CUGA (Canadian Underwater Games Association)</a></span>
-                        </p>`;
-                    if (footerYear) footerYear.textContent = new Date().getFullYear();
-                    if (footerRights) footerRights.textContent = "All rights reserved.";
-                    if (footerLegalLinks) footerLegalLinks.innerHTML = `
-                        <a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> |
-                        <a href="terms-of-use.html" class="text-blue-400 hover:underline">Terms of Use</a>`;
-                     // if (footerRssContainer) footerRssContainer.innerHTML = `... English RSS links ...`;
-
-                    tocTitle.textContent = "Table of Contents";
-                    document.title = "Our History - Club CAMO";
-                }
-
-                // Render markdown content
-                contentContainer.innerHTML = marked.parse(markdown);
-
-                // Generate TOC
-                tocContainer.innerHTML = '';
-                const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-                const tocList = document.createElement('ul');
-                tocList.className = 'space-y-2';
-
-                headings.forEach(heading => {
-                    // Don't include the main page title (first H1) in TOC if it's the overall page title
-                    if (heading.tagName === 'H1' && heading === contentContainer.querySelector('h1')) {
-                         // Optional: Update the header h1 with this content if desired, or ensure it's styled distinctly
-                        // For now, we assume the main title is in the header or handled by the markdown structure.
-                    } else {
-                        const listItem = document.createElement('li');
-                        const link = document.createElement('a');
-                        const id = slugify(heading.textContent);
-                        heading.id = id;
-                        link.href = `#${id}`;
-                        link.textContent = heading.textContent;
-                        link.className = 'hover:text-blue-600 hover:underline';
-                        if (heading.tagName === 'H2') {
-                            link.classList.add('font-semibold');
-                        } else if (heading.tagName === 'H3') {
-                            link.classList.add('ml-2');
-                        } else if (heading.tagName === 'H4') {
-                            link.classList.add('ml-4', 'text-sm');
-                        } // Add more for H5, H6 if needed
-                        listItem.appendChild(link);
-                        tocList.appendChild(listItem);
-                    }
-                });
-                tocContainer.appendChild(tocList);
-
-                // Style images
-                contentContainer.querySelectorAll('img').forEach(img => {
-                    img.classList.add('mx-auto', 'my-4', 'rounded-lg', 'shadow-md', 'max-w-full', 'h-auto');
-                    // Remove fixed height/width if any, ensure responsiveness
-                    img.style.height = 'auto';
-                });
-
-            } catch (error) {
-                contentContainer.innerHTML = `<p class="text-red-500">Error loading content: ${error.message}</p>`;
-                tocContainer.innerHTML = '';
-            }
-            updateLangButtons();
-        }
-
-        function updateLangButtons() {
-            if (currentLang === 'fr') {
-                langFrBtn.classList.add('bg-blue-500', 'text-white');
-                langFrBtn.classList.remove('bg-gray-400', 'text-gray-800');
-                langEnBtn.classList.add('bg-gray-400', 'text-gray-800');
-                langEnBtn.classList.remove('bg-blue-500', 'text-white');
-            } else {
-                langEnBtn.classList.add('bg-blue-500', 'text-white');
-                langEnBtn.classList.remove('bg-gray-400', 'text-gray-800');
-                langFrBtn.classList.add('bg-gray-400', 'text-gray-800');
-                langFrBtn.classList.remove('bg-blue-500', 'text-white');
-            }
-        }
-
-        langFrBtn.addEventListener('click', () => loadContent('fr'));
-        langEnBtn.addEventListener('click', () => loadContent('en'));
-
-        // Initial load - Standardized Language Detection
-        function getInitialLanguage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const langFromUrl = urlParams.get('lang');
-            if (langFromUrl === 'fr' || langFromUrl === 'en') {
-                return langFromUrl;
-            }
-
-            const preferredLangStorage = localStorage.getItem('preferredHistoryLang');
-            if (preferredLangStorage === 'fr' || preferredLangStorage === 'en') {
-                return preferredLangStorage;
-            }
-
-            const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
-            return (browserLang === 'en' ? 'en' : 'fr');
-        }
-
-        const initialLang = getInitialLanguage();
-        localStorage.setItem('preferredHistoryLang', initialLang); // Save the determined language for next visit
-        loadContent(initialLang);
-
-
-        // Smooth scroll for TOC links
-        document.addEventListener('click', function (event) {
-            if (event.target.matches('#toc a[href^="#"]')) {
-                event.preventDefault();
-                const targetId = event.target.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
-
+                const historyScript = document.createElement('script');
+                historyScript.src = 'assets/js/history.js';
+                document.body.appendChild(historyScript);
+            });
     </script>
 </body>
 </html>
