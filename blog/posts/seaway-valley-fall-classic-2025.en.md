@@ -1,6 +1,6 @@
 Congratulations to the CAMO club for winning the gold medal at the 14th annual Seaway Valley Fall Classic underwater hockey tournament, which took place at the Cornwall Aquatic Centre on September 20, 2025.
-The team triumphed by accumulating the most points, which allowed them to win the gold medals and have their name engraved on the Ronald MacDonald Cup.
-Thank you to the Cornwall club for organizing this event and for dividing its players into two teams to provide exciting competition.
+The team triumphed by accumulating the most points, which allowed them to win the gold medals and have their name engraved on the Ron MacDonald Cup.
+Thank you to the Cornwall club for organizing this event and for dividing its players into two teams to provide exciting competition. The Cornwall club was founded in 1969 by Ron MacDonald, and it plays competitively all over the world.
 The CAMO team is composed of:
  * Antoine Andrade
  * David Gagné

@@ -1,6 +1,6 @@
 Félicitations au club CAMO qui a remporté la médaille d'or au 14e tournoi annuel de hockey subaquatique Seaway Valley Fall Classic, qui s'est déroulé au Centre aquatique de Cornwall le 20 septembre 2025.
-L'équipe a triomphé en accumulant le plus de points, ce qui lui a permis de remporter les médailles d'or et de faire graver son nom sur la coupe Ronald MacDonald.
-Merci au club de Cornwall d'avoir organisé cet événement et d'avoir divisé ses joueurs en deux équipes pour offrir une compétition passionnante.
+L'équipe a triomphé en accumulant le plus de points, ce qui lui a permis de remporter les médailles d'or et de faire graver son nom sur la coupe Ron MacDonald.
+Merci au club de Cornwall d'avoir organisé cet événement et d'avoir divisé ses joueurs en deux équipes pour offrir une compétition passionnante. Le club de Cornwall a été fondé en 1969 par Ron MacDonald, et il joue de façon compétitive partout dans le monde.
 L'équipe CAMO est composée de:
  * Antoine Andrade
  * David Gagné
