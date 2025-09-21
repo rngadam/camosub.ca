@@ -17,3 +17,11 @@ Résultats des matchs de l'équipe CAMO
  * 13h30 : Trash Kits 2 - 7 CAMO (Victoire)
  * 15h30 : CAMO 2 - 0 Raccoon Jerkey (Victoire)
  * 16h30 : CAMO 4 - 3 Deep Divers (Victoire)
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1920w.webp 1920w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1280w.webp 1280w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-640w.webp 640w">
+    <source type="image/jpeg" srcset="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1920w.jpg 1920w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1280w.jpg 1280w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-640w.jpg 640w">
+    <img src="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-640w.jpg" alt="Un groupe de six adultes souriants posent avec des trophées au bord d'une piscine." style="max-width:100%; height:auto;">
+  </picture>
+</figure>
