@@ -9,6 +9,19 @@
   },
   "posts": [
     {
+      "id": "seaway-valley-fall-classic-2025",
+      "timestamp": "2025-09-20T21:00:00-04:00",
+      "image": null,
+      "fr": {
+        "title": "Le CAMO remporte l'or au Seaway Valley Fall Classic 2025",
+        "content_md": "blog/posts/seaway-valley-fall-classic-2025.fr.md"
+      },
+      "en": {
+        "title": "CAMO wins gold at the 2025 Seaway Valley Fall Classic",
+        "content_md": "blog/posts/seaway-valley-fall-classic-2025.en.md"
+      }
+    },
+    {
       "id": "montreal-summer-tournament-2025",
       "timestamp": "2025-07-12T19:00:00-04:00",
       "image": "https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1920w.webp",
