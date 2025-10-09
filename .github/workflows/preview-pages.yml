@@ -69,9 +69,10 @@ jobs:
             console.log(`Found run_id: ${run_id}`);
             return run_id;
 
-      - name: Download latest main site artifact
+      - name: Download latest main site artifact (Attempt 1)
         uses: actions/download-artifact@v4
-        id: download_main_artifact
+        id: download_artifact_attempt_1
+        continue-on-error: true # Allow workflow to continue if artifact expired
         with:
           name: github-pages
           path: temp_deploy # Download directly into the temp directory
@@ -79,10 +80,158 @@ jobs:
           run-id: ${{steps.get_run_id.outputs.run_id}}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check download status
+        id: check_download_status
+        run: |
+          if [[ "${{ steps.download_artifact_attempt_1.outcome }}" == "success" ]]; then
+            echo "Main site artifact downloaded successfully on first attempt."
+            echo "DOWNLOAD_SUCCEEDED=true" >> $GITHUB_OUTPUT
+          else
+            echo "Failed to download main site artifact on first attempt. Outcome: ${{ steps.download_artifact_attempt_1.outcome }}"
+            echo "This could be due to an expired artifact. Will attempt to regenerate and re-download."
+            echo "DOWNLOAD_SUCCEEDED=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger static.yml and wait for completion
+        if: steps.check_download_status.outputs.DOWNLOAD_SUCCEEDED == 'false'
+        id: trigger_static_workflow
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            console.log('Attempting to trigger static.yml workflow on main branch...');
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'static.yml',
+              ref: 'main'
+            });
+            console.log('Successfully requested static.yml dispatch.');
+
+            let attempts = 0;
+            const maxAttempts = 30; // Poll for 5 minutes (30 attempts * 10 seconds)
+            const pollInterval = 10000; // 10 seconds
+            let newRunId = null;
+
+            await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for new run to appear
+
+            while (attempts < maxAttempts) {
+              attempts++;
+              console.log(`Attempt ${attempts}/${maxAttempts}: Checking for latest static.yml run on main...`);
+              const workflowRuns = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'static.yml',
+                branch: 'main',
+                event: 'workflow_dispatch',
+                status: 'queued', // Start with queued, then check in_progress from getWorkflowRun
+                per_page: 5
+              });
+
+              let latestDispatchRun = null;
+              if (workflowRuns.data.workflow_runs.length > 0) {
+                workflowRuns.data.workflow_runs.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const potentialRun = workflowRuns.data.workflow_runs[0];
+                const runCreationTime = new Date(potentialRun.created_at);
+                const now = new Date();
+                const ageInSeconds = (now - runCreationTime) / 1000;
+
+                if (ageInSeconds < 120) { // Increased window to 120s for safety
+                    latestDispatchRun = potentialRun;
+                    newRunId = latestDispatchRun.id;
+                    console.log(`Found potential dispatched run ID: ${newRunId}, created at ${latestDispatchRun.created_at}, age ${ageInSeconds}s.`);
+                } else {
+                    console.log(`Most recent dispatch run (ID ${potentialRun.id}) is older than 120s (${ageInSeconds}s). Waiting for a newer one.`);
+                }
+              }
+
+              if (!latestDispatchRun) {
+                  console.log('No sufficiently recent queued dispatch runs found for static.yml. Waiting...');
+                  await new Promise(resolve => setTimeout(resolve, pollInterval));
+                  continue;
+              }
+
+              console.log(`Polling status for run ID: ${newRunId}`);
+              const runStatus = await github.rest.actions.getWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: newRunId
+              });
+
+              console.log(`Run ID ${newRunId} status: ${runStatus.data.status}, conclusion: ${runStatus.data.conclusion}`);
+
+              if (runStatus.data.status === 'completed') {
+                if (runStatus.data.conclusion === 'success') {
+                  console.log(`static.yml workflow (run ID: ${newRunId}) completed successfully.`);
+                  core.setOutput('new_run_id', newRunId);
+                  return newRunId;
+                } else {
+                  core.setFailed(`static.yml workflow (run ID: ${newRunId}) completed with status: ${runStatus.data.conclusion}`);
+                  return;
+                }
+              } else if (runStatus.data.status === 'in_progress' || runStatus.data.status === 'queued') {
+                console.log(`Run ${newRunId} is ${runStatus.data.status}. Waiting...`);
+              } else {
+                // e.g. failure, cancelled, stale, etc.
+                core.setFailed(`static.yml workflow (run ID: ${newRunId}) entered unexpected state: status ${runStatus.data.status}, conclusion ${runStatus.data.conclusion}`);
+                return;
+              }
+              await new Promise(resolve => setTimeout(resolve, pollInterval));
+            }
+            core.setFailed(`static.yml workflow did not complete within the timeout period.`);
+
+      - name: Download main site artifact (Attempt 2 after regeneration)
+        if: steps.check_download_status.outputs.DOWNLOAD_SUCCEEDED == 'false'
+        uses: actions/download-artifact@v4
+        id: download_artifact_attempt_2
+        with:
+          name: github-pages # This is the artifact name specified by upload-pages-artifact
+          path: temp_deploy
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.trigger_static_workflow.outputs.new_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # No continue-on-error here; if this fails, the process fails.
+
       - name: Extract main site artifact
-        run: find ${{ steps.download_main_artifact.outputs.download-path }} -maxdepth 1 -name '*.tar' -exec tar -xf {} -C temp_deploy \; -exec rm {} \;
+        # This step runs if either download attempt was successful.
+        if: steps.check_download_status.outputs.DOWNLOAD_SUCCEEDED == 'true' || steps.download_artifact_attempt_2.outcome == 'success'
+        run: |
+          # upload-pages-artifact by default creates an artifact named 'github-pages' containing a tarball.
+          # download-artifact then downloads this, and if 'name' is specified in download-artifact,
+          # the resulting file in 'path' is typically named after that 'name'.
+          # However, for Pages artifacts, it's often 'artifact.tar.gz' or 'github-pages.tar.gz'.
+          # Let's prioritize 'github-pages.tar.gz' as we specified that name for download.
+
+          ARTIFACT_ARCHIVE_PATH_PRIMARY="temp_deploy/github-pages.tar.gz"
+          ARTIFACT_ARCHIVE_PATH_FALLBACK="temp_deploy/artifact.tar.gz" # Common default for pages artifacts
+
+          ACTUAL_ARCHIVE_PATH=""
+          if [ -f "$ARTIFACT_ARCHIVE_PATH_PRIMARY" ]; then
+            ACTUAL_ARCHIVE_PATH="$ARTIFACT_ARCHIVE_PATH_PRIMARY"
+          elif [ -f "$ARTIFACT_ARCHIVE_PATH_FALLBACK" ]; then
+            ACTUAL_ARCHIVE_PATH="$ARTIFACT_ARCHIVE_PATH_FALLBACK"
+          fi
+
+          if [ -n "$ACTUAL_ARCHIVE_PATH" ]; then
+            echo "Extracting $ACTUAL_ARCHIVE_PATH into temp_deploy/ ..."
+            # Ensure extraction happens into temp_deploy and not into a subdirectory named after the archive.
+            # The content (e.g. index.html) should be at the root of temp_deploy.
+            tar -xzf "$ACTUAL_ARCHIVE_PATH" -C temp_deploy
+            # Remove the archive after extraction to save space and avoid confusion
+            rm "$ACTUAL_ARCHIVE_PATH"
+            echo "Artifact extracted and archive removed."
+            echo "Contents of temp_deploy after extraction:"
+            ls -la temp_deploy
+          else
+            echo "ERROR: Expected artifact archive ('github-pages.tar.gz' or 'artifact.tar.gz') not found in temp_deploy."
+            echo "Contents of temp_deploy:"
+            ls -la temp_deploy
+            exit 1
+          fi
 
       - name: Verify index.html exists at root
+        # This check should run only if an artifact was successfully downloaded and extracted
+        if: steps.check_download_status.outputs.DOWNLOAD_SUCCEEDED == 'true' || steps.download_artifact_attempt_2.outcome == 'success'
         run: |
           if [ ! -f temp_deploy/index.html ]; then
             echo "ERROR: temp_deploy/index.html not found after unzip!"
