@@ -6,28 +6,19 @@
     <description>Upcoming events</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Sun, 21 Sep 2025 19:54:05 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jun 2026 00:45:50 +0000</lastBuildDate>
     <item>
-      <title>Tournoi estival de Montréal 2025</title>
-      <link>https://camosub.ca/events/summer-tournament-2025</link>
-      <description>Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 12 juillet. Les équipes intéressées doivent noter que le nombre de places est limité, il est donc recommandé de réserver rapidement.</description>
-      <guid isPermaLink="false">summer-tournament-2025</guid>
-      <pubDate>Sat, 12 Jul 2025 00:00:00 +0000</pubDate>
+      <title>Tournoi Montréal d'été 2026</title>
+      <link>https://camosub.ca/events/summer-tournament-2026</link>
+      <description>Le club CAMO est fier de vous annoncer l'édition 2026 de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 8 août 2026. Les équipes intéressées doivent noter que le nombre de places est limité, il est donc recommandé de réserver rapidement.</description>
+      <guid isPermaLink="false">summer-tournament-2026</guid>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Entraînement pour Débutants : Joignez-vous à Nous !</title>
       <link>https://camosub.ca/events/newbie-training</link>
       <description>Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique !</description>
       <guid isPermaLink="false">newbie-training</guid>
-    </item>
-    <item>
-      <title>Championnats Canadiens de Hockey Subaquatique 2025</title>
-      <link>https://camosub.ca/events/canadians-2025</link>
-      <description>Première journée du championnat Canadien de hockey subaquatique à Gatineau.... Avec mon équipe Camo Hockey Sous Marin (camosub.ca). Une journée forte en émotions qui s'annonce. Lien vers l'horaire : https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule 6-1 contre Vert Huard (club de Sherbrooke). 2-1 en première période et ensuite notre deuxième joueur étoile Joseph est arrivé en deuxième période (en retard à cause de problèmes d'automobile! Le Club CAMO est ravi de supporter nos athlètes qui participeront aux Championnats Canadiens de Hockey Subaquatique 2025 à Gatineau! Venez encourager les meilleures équipes du pays.
-
-Pour les mises à jour en direct du tournoi, consultez notre &lt;a href='blog.html' class='text-yellow-400 hover:underline'&gt;blog ici&lt;/a&gt; !</description>
-      <guid isPermaLink="false">canadians-2025</guid>
-      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
