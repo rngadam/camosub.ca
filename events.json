@@ -1,33 +1,5 @@
 [
   {
-    "id": "canadians-2025",
-    "startDate": "2025-06-13",
-    "endDate": "2025-06-15",
-    "time": null,
-    "location": {
-      "name": "Centre Sportif de Gatineau",
-      "address": "850 Bd de la Gappe",
-      "city": "Gatineau",
-      "province": "QC",
-      "postalCode": "J8T 7T7",
-      "country": "Canada"
-    },
-    "fr": {
-      "title": "Championnats Canadiens de Hockey Subaquatique 2025",
-      "description": "Première journée du championnat Canadien de hockey subaquatique à Gatineau.... Avec mon équipe Camo Hockey Sous Marin (camosub.ca). Une journée forte en émotions qui s'annonce. Lien vers l'horaire : https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule 6-1 contre Vert Huard (club de Sherbrooke). 2-1 en première période et ensuite notre deuxième joueur étoile Joseph est arrivé en deuxième période (en retard à cause de problèmes d'automobile! Le Club CAMO est ravi de supporter nos athlètes qui participeront aux Championnats Canadiens de Hockey Subaquatique 2025 à Gatineau! Venez encourager les meilleures équipes du pays.\n\nPour les mises à jour en direct du tournoi, consultez notre <a href='blog.html' class='text-yellow-400 hover:underline'>blog ici</a> !",
-      "details": null,
-      "url": "https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals"
-    },
-    "en": {
-      "title": "2025 Canadian Underwater Hockey Nationals",
-      "description": "Club CAMO is thrilled to support our athletes participating in the 2025 Canadian Underwater Hockey Nationals in Gatineau! Come and cheer for the best teams in the country.\n\nFor live updates from the tournament, check out our <a href='blog.html' class='text-yellow-400 hover:underline'>blog here</a> !",
-      "details": null,
-      "url": "https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals"
-    },
-    "image": "competitions/uwh-nationals-2025/2025-Canadian-Underwater-Hockey-Nationals.jpeg",
-    "archived": true
-  },
-  {
     "id": "newbie-training",
     "startDate": null,
     "endDate": null,
@@ -82,12 +54,12 @@
     "image": null
   },
   {
-    "id": "summer-tournament-2025",
-    "startDate": "2025-07-12",
-    "endDate": "2025-07-12",
+    "id": "summer-tournament-2026",
+    "startDate": "2026-08-08",
+    "endDate": "2026-08-08",
     "time": "13h00 - 19h00",
     "location": {
-      "name": "Parc Jean-Drapeau",
+      "name": "Piscine Du Parc Jean Drapeau",
       "address": "Île Sainte-Hélène",
       "city": "Montréal",
       "province": "QC",
@@ -95,16 +67,16 @@
       "country": "Canada"
     },
     "fr": {
-      "title": "Tournoi estival de Montréal 2025",
-      "description": "Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 12 juillet. Les équipes intéressées doivent noter que le nombre de places est limité, il est donc recommandé de réserver rapidement.",
+      "title": "Tournoi Montréal d'été 2026",
+      "description": "Le club CAMO est fier de vous annoncer l'édition 2026 de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 8 août 2026. Les équipes intéressées doivent noter que le nombre de places est limité, il est donc recommandé de réserver rapidement.",
       "details": null,
-      "url": "https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/"
+      "url": "https://www.facebook.com/share/1DDeStLFCa/"
     },
     "en": {
-      "title": "Montreal Summer Tournament 2025",
-      "description": "The CAMO club is proud to announce the fourth edition of its summer tournament. It will take place at Parc Jean-Drapeau on July 12th. Interested teams should note that the number of spots is limited, so it's recommended to reserve soon.",
+      "title": "Montreal Summer Tournament 2026",
+      "description": "The CAMO club is proud to announce the 2026 edition of its summer tournament. It will take place at Parc Jean-Drapeau on August 8th 2026. Interested teams should note that the number of spots is limited, so it's recommended to reserve soon.",
       "details": null,
-      "url": "https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/"
+      "url": "https://www.facebook.com/share/1DDeStLFCa/"
     },
     "image": null
   }
