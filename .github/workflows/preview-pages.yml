@@ -35,7 +35,7 @@ jobs:
         run: htmlhint index.html
 
       - name: Set up GitHub Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Create version.json
         run: echo "{\"commit\":\"${{ github.sha }}\", \"branch\":\"${{ github.head_ref }}\"}" > version.json
@@ -70,6 +70,7 @@ jobs:
             return run_id;
 
       - name: Download latest main site artifact
+        continue-on-error: true
         uses: actions/download-artifact@v4
         id: download_main_artifact
         with:
@@ -80,7 +81,17 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract main site artifact
-        run: find ${{ steps.download_main_artifact.outputs.download-path }} -maxdepth 1 -name '*.tar' -exec tar -xf {} -C temp_deploy \; -exec rm {} \;
+        if: steps.download_main_artifact.outcome == 'success'
+        run: find temp_deploy -maxdepth 1 -name '*.tar' -exec tar -xf {} -C temp_deploy \; -exec rm {} \;
+
+      - name: Fallback to main branch if artifact expired
+        if: steps.download_main_artifact.outcome != 'success'
+        run: |
+          echo "Artifact expired or failed to download. Falling back to checking out main branch."
+          git clone --depth 1 --branch main https://github.com/${{ github.repository }} temp_deploy_main
+          cp -a temp_deploy_main/* temp_deploy/ || true
+          cp temp_deploy_main/.nojekyll temp_deploy/ || true
+          rm -rf temp_deploy_main
 
       - name: Verify index.html exists at root
         run: |
