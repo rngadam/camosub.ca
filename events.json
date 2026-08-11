@@ -14,7 +14,7 @@
     },
     "fr": {
       "title": "Championnats Canadiens de Hockey Subaquatique 2025",
-      "description": "Première journée du championnat Canadien de hockey subaquatique à Gatineau.... Avec mon équipe Camo Hockey Sous Marin (camosub.ca). Une journée forte en émotions qui s'annonce. Lien vers l'horaire : https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule 6-1 contre Vert Huard (club de Sherbrooke). 2-1 en première période et ensuite notre deuxième joueur étoile Joseph est arrivé en deuxième période (en retard à cause de problèmes d'automobile! Le Club CAMO est ravi de supporter nos athlètes qui participeront aux Championnats Canadiens de Hockey Subaquatique 2025 à Gatineau! Venez encourager les meilleures équipes du pays.\n\nPour les mises à jour en direct du tournoi, consultez notre <a href='blog.html' class='text-yellow-400 hover:underline'>blog ici</a> !",
+      "description": "Premi\u00e8re journ\u00e9e du championnat Canadien de hockey subaquatique \u00e0 Gatineau.... Avec mon \u00e9quipe Camo Hockey Sous Marin (camosub.ca). Une journ\u00e9e forte en \u00e9motions qui s'annonce. Lien vers l'horaire : https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals?table-view=schedule 6-1 contre Vert Huard (club de Sherbrooke). 2-1 en premi\u00e8re p\u00e9riode et ensuite notre deuxi\u00e8me joueur \u00e9toile Joseph est arriv\u00e9 en deuxi\u00e8me p\u00e9riode (en retard \u00e0 cause de probl\u00e8mes d'automobile! Le Club CAMO est ravi de supporter nos athl\u00e8tes qui participeront aux Championnats Canadiens de Hockey Subaquatique 2025 \u00e0 Gatineau! Venez encourager les meilleures \u00e9quipes du pays.\n\nPour les mises \u00e0 jour en direct du tournoi, consultez notre <a href='blog.html' class='text-yellow-400 hover:underline'>blog ici</a> !",
       "details": null,
       "url": "https://uwhportal.com/events/ca-2025-canadian-underwater-hockey-nationals"
     },
@@ -33,34 +33,34 @@
     "endDate": null,
     "time": "19h30 - 20h30",
     "recurrence": {
-        "fr": "Tous les Mardis",
-        "en": "Every Tuesday"
+      "fr": "Tous les Mardis",
+      "en": "Every Tuesday"
     },
     "rrule": "FREQ=WEEKLY;BYDAY=TU",
     "firstEventStartDate": "2024-09-03",
     "location": {
       "name": "Piscine Joseph-Charbonneau",
       "address": "8200 rue Rousselot",
-      "city": "Montréal",
+      "city": "Montr\u00e9al",
       "province": "QC",
       "postalCode": "H2E 1Z6",
       "country": "Canada",
       "mapsLink": "https://www.google.com/maps/place/CAMO+Subaquatique+(Hockey+et+Rugby+subaquatique)/@45.5510127,-73.6255532,17z/data=!3m1!4b1!4m6!3m5!1s0x4cc91925c683704b:0x2eaef70b5889d969!8m2!3d45.5510127!4d-73.6230037!16s%2Fg%2F11gfcs33yx?entry=ttu"
     },
     "fr": {
-      "title": "Entraînement pour Débutants : Joignez-vous à Nous !",
-      "description": "Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique !",
+      "title": "Entra\u00eenement pour D\u00e9butants : Joignez-vous \u00e0 Nous !",
+      "description": "Participez \u00e0 nos entra\u00eenements pour d\u00e9butants chaque mardi soir et d\u00e9couvrez le hockey subaquatique !",
       "details": null,
-      "cost": "10 $ (gratuit pour la première session)",
+      "cost": "10 $ (gratuit pour la premi\u00e8re session)",
       "equipmentNeeded": "Maillot de bain",
       "programTitle": "Au programme :",
       "programDetails": [
         "Initiation au hockey subaquatique",
         "Techniques de nage avec palmes",
         "Maniement de la rondelle",
-        "Stratégies de jeu et parties amicales"
+        "Strat\u00e9gies de jeu et parties amicales"
       ],
-      "notes": "Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet) peut être prêté sur demande.",
+      "notes": "Ouvert \u00e0 tous les niveaux. Savoir nager confortablement est un pr\u00e9requis. \u00c9quipement de base (palmes, masque, tuba, crosse, palet) peut \u00eatre pr\u00eat\u00e9 sur demande.",
       "url": "mailto:camo_underwater@hotmail.com"
     },
     "en": {
@@ -88,15 +88,15 @@
     "time": "13h00 - 19h00",
     "location": {
       "name": "Parc Jean-Drapeau",
-      "address": "Île Sainte-Hélène",
-      "city": "Montréal",
+      "address": "\u00cele Sainte-H\u00e9l\u00e8ne",
+      "city": "Montr\u00e9al",
       "province": "QC",
       "postalCode": "H3C 1A9",
       "country": "Canada"
     },
     "fr": {
-      "title": "Tournoi estival de Montréal 2025",
-      "description": "Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 12 juillet. Les équipes intéressées doivent noter que le nombre de places est limité, il est donc recommandé de réserver rapidement.",
+      "title": "Tournoi estival de Montr\u00e9al 2025",
+      "description": "Le club CAMO est fier de vous annoncer la quatri\u00e8me \u00e9dition de son tournoi estival. Celui-ci aura lieu au parc Jean-Drapeau le 12 juillet. Les \u00e9quipes int\u00e9ress\u00e9es doivent noter que le nombre de places est limit\u00e9, il est donc recommand\u00e9 de r\u00e9server rapidement.",
       "details": null,
       "url": "https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/"
     },
@@ -106,6 +106,7 @@
       "details": null,
       "url": "https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/"
     },
-    "image": null
+    "image": null,
+    "archived": true
   }
 ]
