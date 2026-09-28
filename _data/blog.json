@@ -56,10 +56,33 @@
       "infrastructures": {
         "en": "Infrastructure",
         "fr": "Infrastructures"
+      },
+      "video": {
+        "en": "Video",
+        "fr": "Vidéo"
       }
     }
   },
   "posts": [
+    {
+      "id": "rugby-subaquatique-montreal-video",
+      "timestamp": "2026-09-28T16:00:00-04:00",
+      "image": null,
+      "tags": [
+        "rugby-subaquatique",
+        "camo",
+        "montreal",
+        "video"
+      ],
+      "fr": {
+        "title": "Rugby subaquatique 🤿 | À quoi ressemble le rugby sous l'eau à Montréal",
+        "content_md": "blog/posts/rugby-subaquatique-montreal-video.fr.md"
+      },
+      "en": {
+        "title": "UNDERWATER RUGBY 🤿 | This Is What Rugby Looks Like Underwater - Montreal",
+        "content_md": "blog/posts/rugby-subaquatique-montreal-video.en.md"
+      }
+    },
     {
       "id": "seaway-valley-fall-classic-2026",
       "timestamp": "2026-09-26T20:00:00-04:00",

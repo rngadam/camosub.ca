@@ -1,1 +1,5 @@
-.venv
+_site/
+.jekyll-cache/
+.sass-cache/
+.venv/
+.DS_Store

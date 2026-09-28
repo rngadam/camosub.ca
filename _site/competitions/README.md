@@ -1,2 +1,0 @@
-# Compétitions club CAMO subaquatique
-
