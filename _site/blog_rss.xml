@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog - Club CAMO Subaquatique</title>
-    <link>http://localhost:4000/blog.html</link>
+    <link>https://camosub.ca/blog.html</link>
     <description>Dernières nouvelles du Club CAMO Subaquatique</description>
-    <atom:link href="http://localhost:4000/blog_rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://camosub.ca/blog_rss.xml" rel="self" type="application/rss+xml"/>
     
     <item>
       <title>Médaille d&apos;or pour CAMO au Seaway Valley Fall Classic 2026</title>
-      <link>http://localhost:4000/blog.html#seaway-valley-fall-classic-2026</link>
+      <link>https://camosub.ca/blog.html#seaway-valley-fall-classic-2026</link>
       <guid isPermaLink="false">seaway-valley-fall-classic-2026</guid>
       <pubDate>Sat, 26 Sep 2026 20:00:00 -0400</pubDate>
       <description>Médaille d&apos;or pour CAMO au Seaway Valley Fall Classic 2026</description>
@@ -16,7 +16,7 @@
     
     <item>
       <title>Intervention de CAMO au conseil d&apos;arrondissement de VSP : l&apos;avenir de nos installations aquatiques</title>
-      <link>http://localhost:4000/blog.html#conseil-arrondissement-vsp-septembre-2026</link>
+      <link>https://camosub.ca/blog.html#conseil-arrondissement-vsp-septembre-2026</link>
       <guid isPermaLink="false">conseil-arrondissement-vsp-septembre-2026</guid>
       <pubDate>Tue, 01 Sep 2026 19:00:00 -0400</pubDate>
       <description>Intervention de CAMO au conseil d&apos;arrondissement de VSP : l&apos;avenir de nos installations aquatiques</description>
@@ -24,7 +24,7 @@
     
     <item>
       <title>Retour sur le tournoi estival de Montréal 2026</title>
-      <link>http://localhost:4000/blog.html#tournoi-estival-montreal-2026</link>
+      <link>https://camosub.ca/blog.html#tournoi-estival-montreal-2026</link>
       <guid isPermaLink="false">tournoi-estival-montreal-2026</guid>
       <pubDate>Sat, 08 Aug 2026 20:00:00 -0400</pubDate>
       <description>Retour sur le tournoi estival de Montréal 2026</description>
@@ -32,7 +32,7 @@
     
     <item>
       <title>Médaille d&apos;argent pour CAMO au 44ᵉ tournoi annuel de Guelph</title>
-      <link>http://localhost:4000/blog.html#tournoi-guelph-2026</link>
+      <link>https://camosub.ca/blog.html#tournoi-guelph-2026</link>
       <guid isPermaLink="false">tournoi-guelph-2026</guid>
       <pubDate>Sun, 22 Mar 2026 20:00:00 -0400</pubDate>
       <description>Médaille d&apos;argent pour CAMO au 44ᵉ tournoi annuel de Guelph</description>
@@ -40,7 +40,7 @@
     
     <item>
       <title>Le CAMO remporte l&apos;or au Seaway Valley Fall Classic 2025</title>
-      <link>http://localhost:4000/blog.html#seaway-valley-fall-classic-2025</link>
+      <link>https://camosub.ca/blog.html#seaway-valley-fall-classic-2025</link>
       <guid isPermaLink="false">seaway-valley-fall-classic-2025</guid>
       <pubDate>Sat, 20 Sep 2025 21:00:00 -0400</pubDate>
       <description>Le CAMO remporte l&apos;or au Seaway Valley Fall Classic 2025</description>
@@ -48,7 +48,7 @@
     
     <item>
       <title>Demi-finale et finale du tournoi d&apos;été de Montréal</title>
-      <link>http://localhost:4000/blog.html#montreal-summer-tournament-2025</link>
+      <link>https://camosub.ca/blog.html#montreal-summer-tournament-2025</link>
       <guid isPermaLink="false">montreal-summer-tournament-2025</guid>
       <pubDate>Sat, 12 Jul 2025 19:00:00 -0400</pubDate>
       <description>Demi-finale et finale du tournoi d&apos;été de Montréal</description>
@@ -56,7 +56,7 @@
     
     <item>
       <title>Tournoi Estival de Montréal - C&apos;est aujourd&apos;hui!</title>
-      <link>http://localhost:4000/blog.html#tournoi-estival-2025</link>
+      <link>https://camosub.ca/blog.html#tournoi-estival-2025</link>
       <guid isPermaLink="false">tournoi-estival-2025</guid>
       <pubDate>Sat, 12 Jul 2025 17:00:00 -0400</pubDate>
       <description>Amateurs de sports insolites et de sensations fortes, à vos maillots! Le très attendu Tournoi Estival de Hockey Subaquatique de Montréal se déroule **aujourd&apos;hui même**. La compétition est féroce et le spectacle, inoubliable.
@@ -94,7 +94,7 @@ L&apos;action se déroulera à huis clos, mais vous pouvez suivre les résultats
     
     <item>
       <title>Championnat Canadien de Hockey Subaquatique 2025 : Récit complet et médaille d&apos;argent pour CAMO</title>
-      <link>http://localhost:4000/blog.html#nationaux-hsa-2025</link>
+      <link>https://camosub.ca/blog.html#nationaux-hsa-2025</link>
       <guid isPermaLink="false">nationaux-hsa-2025</guid>
       <pubDate>Sun, 15 Jun 2025 22:00:00 -0400</pubDate>
       <description>Championnat Canadien de Hockey Subaquatique 2025 : Récit complet et médaille d&apos;argent pour CAMO</description>
