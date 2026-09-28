@@ -149,8 +149,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bubble Animation Logic
     const bubblesContainer = document.querySelector('.bubbles');
-    if (bubblesContainer) {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (bubblesContainer && !prefersReducedMotion) {
+        const MAX_BUBBLES = 20;
+        let bubbleInterval = null;
+
         function createBubble(isInitial = false) {
+            if (document.hidden) return;
+
+            // Strict ceiling to prevent any DOM element accumulation
+            while (bubblesContainer.childElementCount >= MAX_BUBBLES) {
+                bubblesContainer.firstElementChild.remove();
+            }
+
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
 
@@ -166,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 bubble.style.animationDelay = `-${Math.random() * animationDuration}s`;
             }
 
-            // Use 'animationend' event to remove the bubble, which is more reliable
+            // Clean up bubble once animation finishes
             bubble.addEventListener('animationend', () => {
                 bubble.remove();
             });
@@ -174,13 +186,37 @@ document.addEventListener('DOMContentLoaded', () => {
             bubblesContainer.appendChild(bubble);
         }
 
-        // Pre-populate bubbles across the viewport immediately on page load
-        for (let i = 0; i < 20; i++) {
-            createBubble(true);
+        function startBubbles() {
+            if (bubbleInterval) return;
+            // Pre-populate if empty or low count
+            if (bubblesContainer.childElementCount < 10) {
+                for (let i = bubblesContainer.childElementCount; i < 15; i++) {
+                    createBubble(true);
+                }
+            }
+            bubbleInterval = setInterval(() => createBubble(false), 800);
         }
 
-        // Only create bubbles if the container exists
-        setInterval(() => createBubble(false), 500);
+        function stopBubbles() {
+            if (bubbleInterval) {
+                clearInterval(bubbleInterval);
+                bubbleInterval = null;
+            }
+        }
+
+        // Suspend bubble creation completely when tab is hidden to save CPU and battery
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopBubbles();
+            } else {
+                startBubbles();
+            }
+        });
+
+        // Start animation if tab is currently visible
+        if (!document.hidden) {
+            startBubbles();
+        }
     }
 
     // Version Info Fetcher (if it's intended to be on all pages)
