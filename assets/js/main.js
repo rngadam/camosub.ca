@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bubblesContainer) {
         function createBubble() {
             const bubble = document.createElement('div');
-            bubble.classList.add('bubble'); // Ensure this class matches your CSS
+            bubble.classList.add('bubble');
 
             const size = Math.random() * 40 + 10; // 10px to 50px
             bubble.style.width = `${size}px`;
@@ -66,17 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
             bubble.style.left = `${Math.random() * 100}%`;
             const animationDuration = Math.random() * 10 + 5; // 5s to 15s
             bubble.style.animationDuration = `${animationDuration}s`;
-            // bubble.style.animationTimingFunction is set in CSS as 'ease-in' via 'rise' animation
+
+            // Use 'animationend' event to remove the bubble, which is more reliable
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+            });
 
             bubblesContainer.appendChild(bubble);
-
-            setTimeout(() => {
-                bubble.remove();
-            }, animationDuration * 1000); // Remove bubble after animation
         }
 
         // Only create bubbles if the container exists
-        setInterval(createBubble, 500); // Create a new bubble every 500ms
+        setInterval(createBubble, 500);
     }
 
     // Version Info Fetcher (if it's intended to be on all pages)
@@ -418,7 +418,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        if (typeof fetch !== 'undefined') { // Ensure fetch is available
+        if (typeof fetch !== 'undefined') {
+            const loadingHtml = '<div class="text-center py-8"><i class="fa fa-spinner fa-spin fa-3x"></i><p class="mt-4 text-lg">Chargement des événements...</p></div>';
+            const loadingHtmlEn = '<div class="text-center py-8"><i class="fa fa-spinner fa-spin fa-3x"></i><p class="mt-4 text-lg">Loading events...</p></div>';
+            if (frenchEventsContainer) frenchEventsContainer.innerHTML = loadingHtml;
+            if (englishEventsContainer) englishEventsContainer.innerHTML = loadingHtmlEn;
+
             fetch('events.json')
                 .then(response => {
                     if (!response.ok) {
