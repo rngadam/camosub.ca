@@ -7,51 +7,145 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Language Switcher Logic
     const langButtons = document.querySelectorAll('.lang-button');
-    const langFrSections = document.querySelectorAll('.lang-fr');
-    const langEnSections = document.querySelectorAll('.lang-en');
     const blogLinkFr = document.getElementById('blog-link-fr');
     const blogLinkEn = document.getElementById('blog-link-en');
 
     const setLanguage = (lang) => {
-        if (lang === 'fr') {
-            langFrSections.forEach(section => section.style.display = 'block');
-            langEnSections.forEach(section => section.style.display = 'none');
-            if (blogLinkFr) blogLinkFr.href = 'blog.html?lang=fr';
-            if (blogLinkEn) blogLinkEn.href = 'blog.html?lang=en'; // Hidden EN link should point to EN blog
-        } else { // lang === 'en'
-            langFrSections.forEach(section => section.style.display = 'none');
-            langEnSections.forEach(section => section.style.display = 'block');
-            if (blogLinkEn) blogLinkEn.href = 'blog.html?lang=en';
-            if (blogLinkFr) blogLinkFr.href = 'blog.html?lang=fr'; // Hidden FR link should point to FR blog
-        }
+        const isFr = lang === 'fr';
 
-        langButtons.forEach(button => {
-            const isCurrentLang = button.dataset.lang === lang;
-            button.classList.toggle('bg-blue-500', isCurrentLang);
-            button.classList.toggle('text-white', isCurrentLang);
-            button.classList.toggle('bg-gray-400', !isCurrentLang);
-            button.classList.toggle('text-gray-800', !isCurrentLang);
+        // Toggle French sections
+        document.querySelectorAll('.lang-fr, .lang-fr-header-footer, .lang-fr-content, .lang-fr-tag').forEach(el => {
+            if (isFr) {
+                if (el.classList.contains('flex')) {
+                    el.style.display = 'flex';
+                } else if (el.tagName === 'SPAN' || el.classList.contains('inline-block')) {
+                    el.style.display = 'inline-block';
+                } else {
+                    el.style.display = 'block';
+                }
+            } else {
+                el.style.display = 'none';
+            }
         });
+
+        // Toggle English sections
+        document.querySelectorAll('.lang-en, .lang-en-header-footer, .lang-en-content, .lang-en-tag').forEach(el => {
+            if (!isFr) {
+                if (el.classList.contains('flex')) {
+                    el.style.display = 'flex';
+                } else if (el.tagName === 'SPAN' || el.classList.contains('inline-block')) {
+                    el.style.display = 'inline-block';
+                } else {
+                    el.style.display = 'block';
+                }
+            } else {
+                el.style.display = 'none';
+            }
+        });
+
+        if (blogLinkFr) blogLinkFr.href = isFr ? 'blog.html?lang=fr' : 'blog.html?lang=en';
+        if (blogLinkEn) blogLinkEn.href = !isFr ? 'blog.html?lang=en' : 'blog.html?lang=fr';
+
+        // Style language buttons (both modern pill style and legacy buttons)
+        document.querySelectorAll('.lang-button').forEach(button => {
+            const isCurrentLang = button.dataset.lang === lang;
+            button.setAttribute('aria-pressed', isCurrentLang ? 'true' : 'false');
+
+            // Modern pill button styling (in navbar)
+            if (button.closest('[role="group"]')) {
+                if (isCurrentLang) {
+                    button.classList.add('bg-white', 'text-blue-900', 'shadow-sm', 'font-bold');
+                    button.classList.remove('text-blue-100', 'text-white/80', 'hover:bg-white/10');
+                } else {
+                    button.classList.remove('bg-white', 'text-blue-900', 'shadow-sm', 'font-bold');
+                    button.classList.add('text-blue-100', 'hover:bg-white/10');
+                }
+            } else {
+                // Fallback / legacy button styling
+                button.classList.toggle('bg-blue-500', isCurrentLang);
+                button.classList.toggle('text-white', isCurrentLang);
+                button.classList.toggle('bg-gray-400', !isCurrentLang);
+                button.classList.toggle('text-gray-800', !isCurrentLang);
+            }
+        });
+
         document.documentElement.lang = lang;
-        localStorage.setItem('preferredLang', lang); // Save user preference
+        localStorage.setItem('preferredLang', lang);
+        localStorage.setItem('preferredBlogLang', lang);
+
+        // Notify page-specific listeners
+        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+
+        // Refresh AOS animations so elements newly displayed in the active language are properly animated
+        if (typeof AOS !== 'undefined' && AOS.refresh) {
+            setTimeout(() => {
+                AOS.refresh();
+            }, 50);
+        }
     };
 
-    // Auto-detect browser language or load saved preference
-    const preferredLang = localStorage.getItem('preferredLang');
+    // Auto-detect: 1. URL parameter, 2. saved preference, 3. browser language, 4. default 'fr'
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const preferredLang = localStorage.getItem('preferredLang') || localStorage.getItem('preferredBlogLang');
     const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
 
-    if (preferredLang) {
-        setLanguage(preferredLang);
+    let initialLang = 'fr';
+    if (langParam === 'en' || langParam === 'fr') {
+        initialLang = langParam;
+    } else if (preferredLang === 'en' || preferredLang === 'fr') {
+        initialLang = preferredLang;
     } else if (browserLang === 'en') {
-        setLanguage('en');
-    } else {
-        // Default to French for 'fr' or any other detected language not explicitly handled
-        setLanguage('fr');
+        initialLang = 'en';
     }
+    setLanguage(initialLang);
 
-    langButtons.forEach(button => {
-        button.addEventListener('click', () => setLanguage(button.dataset.lang));
+    // Event delegation for all lang-button clicks (including dynamically added ones)
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.lang-button');
+        if (btn && btn.dataset.lang) {
+            e.preventDefault();
+            setLanguage(btn.dataset.lang);
+        }
     });
+
+    // Mobile Menu Toggle Logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isClosed = mobileMenu.classList.contains('hidden');
+            if (isClosed) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.classList.remove('fa-bars');
+                    mobileMenuIcon.classList.add('fa-times');
+                }
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.classList.remove('fa-times');
+                    mobileMenuIcon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.classList.remove('fa-times');
+                    mobileMenuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+    }
 
     // Bubble Animation Logic
     const bubblesContainer = document.querySelector('.bubbles');

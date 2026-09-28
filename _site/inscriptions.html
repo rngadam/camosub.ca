@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscriptions 2026-2027 | Club CAMO Subaquatique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="preload" as="image" href="images/camo-subaquatique.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9V8Q4XJXLD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9V8Q4XJXLD');
+    </script>
+    <meta name="description" content="Inscriptions pour la saison 2026-2027 au Club CAMO Subaquatique à Montréal. Tarifs réguliers, débutants, cartes à la carte et 3 pratiques d'essai gratuites !">
+    <meta property="og:title" content="Inscriptions 2026-2027 - Club CAMO Subaquatique">
+    <meta property="og:description" content="Inscrivez-vous pour la nouvelle saison de hockey et rugby subaquatique à Montréal. 3 pratiques d'essai gratuites pour les débutants !">
+    <meta property="og:image" content="images/camo-subaquatique.png">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-blue-700 text-white min-h-screen flex flex-col">
+    <div class="bubbles"></div>
+
+    <!-- Navigation Header -->
+    <nav class="bg-[#244c8c] text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Brand / Logo (Links to Home) -->
+                <a href="index.html" class="flex items-center gap-3 py-2 group" aria-label="CAMO Subaquatique - Accueil">
+                    <img src="images/camo-subaquatique.png" alt="Logo Club CAMO Subaquatique" class="h-10 md:h-14 w-auto object-contain transition-transform group-hover:scale-105">
+                    <span class="font-bold text-lg md:text-xl tracking-tight hidden sm:inline-block text-white group-hover:text-blue-100 transition-colors">CAMO Subaquatique</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <!-- French Links -->
+                    <div class="lang-fr flex items-center space-x-1 lg:space-x-2">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Accueil</a>
+                        <a href="inscriptions.html" class="px-3 py-2 rounded-full text-sm lg:text-base font-semibold bg-green-500 hover:bg-green-600 text-white shadow-sm ring-2 ring-white/30 transition-all">Inscriptions</a>
+                        <a href="index.html#sports" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Disciplines</a>
+                        <a href="blog.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Blogue</a>
+                        <a href="history.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Histoire</a>
+                        <a href="mission.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Mission</a>
+                        <a href="index.html#contact" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Contact</a>
+                    </div>
+                    <!-- English Links -->
+                    <div class="lang-en flex items-center space-x-1 lg:space-x-2" style="display:none;">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Home</a>
+                        <a href="inscriptions.html" class="px-3 py-2 rounded-full text-sm lg:text-base font-semibold bg-green-500 hover:bg-green-600 text-white shadow-sm ring-2 ring-white/30 transition-all">Registration</a>
+                        <a href="index.html#sports" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Sports</a>
+                        <a href="blog.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Blog</a>
+                        <a href="history.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">History</a>
+                        <a href="mission.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Mission</a>
+                        <a href="index.html#contact" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Contact</a>
+                    </div>
+
+                    <!-- Discreet Language Switcher -->
+                    <div class="ml-3 pl-3 border-l border-white/20">
+                        <div class="inline-flex rounded-lg bg-blue-950/60 p-0.5 border border-white/20 text-xs font-semibold" role="group" aria-label="Langue / Language">
+                            <button type="button" class="lang-button px-2.5 py-1 rounded-md transition-all font-semibold" data-lang="fr" aria-label="Passer en français">FR</button>
+                            <button type="button" class="lang-button px-2.5 py-1 rounded-md transition-all font-semibold" data-lang="en" aria-label="Switch to English">EN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Controls (Language + Hamburger) -->
+                <div class="flex items-center space-x-2 md:hidden">
+                    <div class="inline-flex rounded-lg bg-blue-950/60 p-0.5 border border-white/20 text-xs font-semibold" role="group" aria-label="Langue">
+                        <button type="button" class="lang-button px-2 py-1 rounded-md transition-all font-semibold" data-lang="fr">FR</button>
+                        <button type="button" class="lang-button px-2 py-1 rounded-md transition-all font-semibold" data-lang="en">EN</button>
+                    </div>
+                    <button type="button" id="mobile-menu-btn" class="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Menu" aria-expanded="false">
+                        <i class="fa fa-bars text-xl" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-white/10">
+                <div class="lang-fr flex flex-col space-y-2">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Accueil</a>
+                    <a href="inscriptions.html" class="px-3 py-2 rounded-md font-semibold bg-green-500 text-white hover:bg-green-600 transition-colors">Inscriptions 2026-2027</a>
+                    <a href="index.html#sports" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Disciplines</a>
+                    <a href="blog.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Blogue</a>
+                    <a href="history.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Histoire</a>
+                    <a href="mission.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Mission</a>
+                    <a href="index.html#contact" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Contact</a>
+                </div>
+                <div class="lang-en flex flex-col space-y-2" style="display:none;">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Home</a>
+                    <a href="inscriptions.html" class="px-3 py-2 rounded-md font-semibold bg-green-500 text-white hover:bg-green-600 transition-colors">2026-2027 Registration</a>
+                    <a href="index.html#sports" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Sports</a>
+                    <a href="blog.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Blog</a>
+                    <a href="history.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">History</a>
+                    <a href="mission.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Mission</a>
+                    <a href="index.html#contact" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FRENCH CONTENT -->
+    <div class="lang-fr flex-1">
+        <!-- Hero Section -->
+        <header class="bg-[#386DC0] text-white py-12 text-center shadow-lg">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <span class="inline-block bg-yellow-400 text-blue-900 text-xs md:text-sm font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-sm">
+                    Saison 2026-2027
+                </span>
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Inscriptions CAMO – Saison 2026-2027</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-6">
+                    La saison se tiendra du <strong>1er septembre 2026 au 31 août 2027</strong>. Rejoignez la communauté subaquatique montréalaise !
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.zeffy.com/fr-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 inline-flex items-center gap-2 text-lg">
+                        <i class="fa fa-ticket"></i> S'inscrire sur Zeffy (Sans frais)
+                    </a>
+                    <a href="#tarifs" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-full backdrop-blur-sm transition-all duration-300 inline-flex items-center gap-2">
+                        <i class="fa fa-info-circle"></i> Voir les options et tarifs
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-12 max-w-5xl">
+            <!-- Beginner Special Trial Banner -->
+            <div class="bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900 rounded-2xl p-6 md:p-8 shadow-xl mb-12 flex flex-col md:flex-row items-center gap-6" data-aos="fade-up">
+                <div class="text-4xl md:text-5xl text-yellow-900 bg-white/40 p-4 rounded-full flex-shrink-0">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="text-center md:text-left flex-1">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2">Vous débutez dans les sports subaquatiques ?</h2>
+                    <p class="text-lg md:text-xl font-semibold text-yellow-950">
+                        ✨ Les 3 premières pratiques sont 100 % gratuites !
+                    </p>
+                    <p class="mt-1 text-yellow-900">
+                        Venez essayer le hockey ou le rugby subaquatique sans aucun engagement. Tout le matériel de prêt (masque, tuba, palmes, crosse) est fourni lors de vos essais.
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="index.html#contact" class="bg-blue-900 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full shadow-md transition-colors inline-block whitespace-nowrap">
+                        Nous contacter pour un essai
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pricing Section -->
+            <section id="tarifs" class="mb-14">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white flex items-center justify-center gap-3">
+                    <i class="fa fa-tags text-yellow-300"></i> Grille tarifaire 2026-2027
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Regular Membership Card -->
+                    <div class="bg-white text-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col" data-aos="fade-up">
+                        <div class="bg-blue-800 text-white p-6 text-center">
+                            <span class="text-xs uppercase tracking-wider font-semibold text-blue-200">Adulte expérimenté</span>
+                            <h3 class="text-2xl font-bold mt-1">Tarif Régulier</h3>
+                            <div class="mt-4">
+                                <span class="text-4xl md:text-5xl font-extrabold">395 $</span>
+                                <span class="text-blue-200 text-sm">/ an (saison complète)</span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-calendar-check-o text-blue-600"></i> Inscription mi-saison
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>1re moitié (septembre à février) :</span>
+                                            <span class="font-bold text-gray-900">225 $</span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>2e moitié (mars à août) :</span>
+                                            <span class="font-bold text-gray-900">170 $</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-credit-card text-blue-600"></i> À la carte (cartes de pratiques)
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>Carte de 10 pratiques :</span>
+                                            <span class="font-bold text-gray-900">100 $ <span class="text-xs text-gray-500 font-normal">(10$/pratique)</span></span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>Pratique à l'unité :</span>
+                                            <span class="font-bold text-gray-900">15 $</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-gray-100">
+                                <a href="https://www.zeffy.com/fr-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 block">
+                                    S'inscrire (Tarif Régulier)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Beginner Membership Card -->
+                    <div class="bg-white text-gray-800 rounded-2xl shadow-xl overflow-hidden border-2 border-yellow-400 flex flex-col relative" data-aos="fade-up" data-aos-delay="100">
+                        <div class="absolute top-0 right-0 bg-yellow-400 text-blue-950 text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+                            Recommandé débutants
+                        </div>
+                        <div class="bg-[#1e40af] text-white p-6 text-center">
+                            <span class="text-xs uppercase tracking-wider font-semibold text-yellow-300">Nouveaux adeptes</span>
+                            <h3 class="text-2xl font-bold mt-1">Tarif Débutant</h3>
+                            <div class="mt-4">
+                                <span class="text-4xl md:text-5xl font-extrabold text-yellow-300">200 $</span>
+                                <span class="text-blue-200 text-sm">/ an (saison complète)</span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                            <div class="space-y-6">
+                                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-center">
+                                    <p class="text-yellow-800 font-bold text-sm">
+                                        🌟 3 premières pratiques gratuites incluses !
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-calendar-check-o text-blue-600"></i> Inscription mi-saison
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>1re moitié (septembre à février) :</span>
+                                            <span class="font-bold text-gray-900">100 $</span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>2e moitié (mars à août) :</span>
+                                            <span class="font-bold text-gray-900">100 $</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-credit-card text-blue-600"></i> À la carte débutant
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>Carte de 10 pratiques :</span>
+                                            <span class="font-bold text-gray-900">50 $ <span class="text-xs text-gray-500 font-normal">(5$/pratique)</span></span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>Carte de 3 pratiques :</span>
+                                            <span class="font-bold text-gray-900">25 $</span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>Pratique à l'unité :</span>
+                                            <span class="font-bold text-gray-900">10 $</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-gray-100">
+                                <a href="https://www.zeffy.com/fr-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 block">
+                                    S'inscrire (Tarif Débutant)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Methods Section -->
+            <section class="bg-white text-gray-800 rounded-2xl p-8 md:p-10 shadow-xl mb-12" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900 flex items-center gap-3">
+                    <i class="fa fa-money text-green-600"></i> Options et modalités de paiement
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Option 1: Zeffy -->
+                    <div class="border-2 border-green-500 rounded-xl p-6 bg-green-50/50 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-green-500 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full">Option privilégiée</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-3 mb-2">Zeffy (Plateforme 100% sans frais)</h3>
+                            <p class="text-gray-600 text-sm mb-4">
+                                Simple, instantané et sécurisé par carte de crédit. 100% de votre montant va directement au club CAMO.
+                            </p>
+                        </div>
+                        <a href="https://www.zeffy.com/fr-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-4 rounded-lg text-center text-sm shadow transition">
+                            Payer via Zeffy &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Option 2: Interac -->
+                    <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-blue-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full">Virement bancaire</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-3 mb-2">Virement INTERAC</h3>
+                            <p class="text-gray-600 text-sm mb-2">
+                                Courriel de destination :<br>
+                                <strong class="text-blue-700 select-all">camo_finances@hotmail.com</strong>
+                            </p>
+                            <p class="text-xs text-amber-700 bg-amber-50 p-2 rounded border border-amber-200">
+                                <strong>Obligatoire :</strong> remplir également le formulaire Google.
+                            </p>
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd3KH8DIN0Dk85vNlhdtxfaoSl0b-3_rH_zcWK3YJ6DvXI2sw/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="mt-4 bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg text-center text-sm transition">
+                            Formulaire Google &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Option 3: PayPal -->
+                    <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-indigo-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full">Portefeuille en ligne</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-3 mb-2">PayPal</h3>
+                            <p class="text-gray-600 text-sm mb-2">
+                                Destinataire du paiement :<br>
+                                <strong class="text-blue-700 select-all">camo_finances@hotmail.com</strong>
+                            </p>
+                            <p class="text-xs text-amber-700 bg-amber-50 p-2 rounded border border-amber-200">
+                                <strong>Obligatoire :</strong> remplir également le formulaire Google.
+                            </p>
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd3KH8DIN0Dk85vNlhdtxfaoSl0b-3_rH_zcWK3YJ6DvXI2sw/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="mt-4 bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg text-center text-sm transition">
+                            Formulaire Google &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Important Dates & Club Regulations -->
+            <section class="bg-blue-900/90 text-white rounded-2xl p-8 md:p-10 shadow-xl border border-blue-400/30 mb-12" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fa fa-info-circle text-yellow-300"></i> Règlements et dates importantes
+                </h2>
+                <div class="space-y-4 text-base md:text-lg text-blue-100">
+                    <p class="flex items-start gap-3">
+                        <i class="fa fa-clock-o text-yellow-300 mt-1.5 flex-shrink-0"></i>
+                        <span>
+                            <strong>Date limite de paiement :</strong> Vos inscriptions et votre formulaire dûment rempli doivent être effectués avant le <strong>30 septembre 2026 sans faute</strong>. Vous devez être membre en règle du club pour voter lors de l'Assemblée Générale Annuelle (AGA).
+                        </span>
+                    </p>
+                    <p class="flex items-start gap-3">
+                        <i class="fa fa-exclamation-triangle text-amber-300 mt-1.5 flex-shrink-0"></i>
+                        <span>
+                            Après le 30 septembre 2026, toute pratique non payée à laquelle vous participerez sera facturée à la carte. Le club se réserve également le droit de refuser l'accès au bassin si votre solde demeure impayé, tel que stipulé dans les règlements du CAMO.
+                        </span>
+                    </p>
+                    <p class="flex items-start gap-3">
+                        <i class="fa fa-sun-o text-yellow-300 mt-1.5 flex-shrink-0"></i>
+                        <span>
+                            <strong>Horaire estival :</strong> Pour les mois de juillet et août, les entraînements du vendredi et du samedi sont annulés. Les dates précises seront communiquées avant la saison estivale.
+                        </span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Contact Board Members Section -->
+            <section class="bg-white text-gray-800 rounded-2xl p-8 shadow-xl text-center" data-aos="fade-up">
+                <h2 class="text-2xl font-bold text-blue-900 mb-3">Une question concernant votre inscription ?</h2>
+                <p class="text-gray-600 mb-6 max-w-xl mx-auto">
+                    N'hésitez pas à communiquer avec les membres du Conseil d'Administration de CAMO :
+                </p>
+                <div class="flex flex-wrap justify-center gap-3 text-sm md:text-base font-medium text-gray-700 mb-6">
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Philippe Vinet</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Stéphanie Lagacé</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Camilo Narvaez</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Ricky Ng-Adam</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Martin Chevrier</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="mailto:info@camosub.ca" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-2.5 rounded-full transition">
+                        <i class="fa fa-envelope"></i> info@camosub.ca
+                    </a>
+                    <a href="mailto:camo_finances@hotmail.com" class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white font-semibold px-6 py-2.5 rounded-full transition">
+                        <i class="fa fa-credit-card"></i> camo_finances@hotmail.com
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ENGLISH CONTENT -->
+    <div class="lang-en flex-1" style="display:none;">
+        <!-- Hero Section -->
+        <header class="bg-[#386DC0] text-white py-12 text-center shadow-lg">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <span class="inline-block bg-yellow-400 text-blue-900 text-xs md:text-sm font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-sm">
+                    2026-2027 Season
+                </span>
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4">CAMO Registration – 2026-2027 Season</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-6">
+                    The season will run from <strong>September 1st 2026 to August 31 2027</strong>. Dive into action with underwater hockey and underwater rugby!
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.zeffy.com/en-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 inline-flex items-center gap-2 text-lg">
+                        <i class="fa fa-ticket"></i> Register on Zeffy (Fee-Free)
+                    </a>
+                    <a href="#tarifs-en" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-full backdrop-blur-sm transition-all duration-300 inline-flex items-center gap-2">
+                        <i class="fa fa-info-circle"></i> View options & fees
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-12 max-w-5xl">
+            <!-- Beginner Special Trial Banner -->
+            <div class="bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900 rounded-2xl p-6 md:p-8 shadow-xl mb-12 flex flex-col md:flex-row items-center gap-6" data-aos="fade-up">
+                <div class="text-4xl md:text-5xl text-yellow-900 bg-white/40 p-4 rounded-full flex-shrink-0">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="text-center md:text-left flex-1">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2">New to Underwater Sports?</h2>
+                    <p class="text-lg md:text-xl font-semibold text-yellow-950">
+                        ✨ First 3 practices are 100% free!
+                    </p>
+                    <p class="mt-1 text-yellow-900">
+                        Come and try underwater hockey or underwater rugby with zero commitment. All loaner gear (mask, snorkel, fins, stick) is provided for your free trial sessions.
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="index.html#contact" class="bg-blue-900 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full shadow-md transition-colors inline-block whitespace-nowrap">
+                        Contact us for a trial
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pricing Section -->
+            <section id="tarifs-en" class="mb-14">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white flex items-center justify-center gap-3">
+                    <i class="fa fa-tags text-yellow-300"></i> 2026-2027 Registration Fees
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Regular Membership Card -->
+                    <div class="bg-white text-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col" data-aos="fade-up">
+                        <div class="bg-blue-800 text-white p-6 text-center">
+                            <span class="text-xs uppercase tracking-wider font-semibold text-blue-200">Experienced Player</span>
+                            <h3 class="text-2xl font-bold mt-1">Regular Fee</h3>
+                            <div class="mt-4">
+                                <span class="text-4xl md:text-5xl font-extrabold">$395</span>
+                                <span class="text-blue-200 text-sm">/ year (full season)</span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-calendar-check-o text-blue-600"></i> Half-season registration
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>First half (Sept to Feb):</span>
+                                            <span class="font-bold text-gray-900">$225</span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>Second half (March to Aug):</span>
+                                            <span class="font-bold text-gray-900">$170</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-credit-card text-blue-600"></i> Punch cards (À la carte)
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>10-practice card:</span>
+                                            <span class="font-bold text-gray-900">$100 <span class="text-xs text-gray-500 font-normal">($10/practice)</span></span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>Single practice:</span>
+                                            <span class="font-bold text-gray-900">$15</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-gray-100">
+                                <a href="https://www.zeffy.com/en-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 block">
+                                    Register (Regular Fee)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Beginner Membership Card -->
+                    <div class="bg-white text-gray-800 rounded-2xl shadow-xl overflow-hidden border-2 border-yellow-400 flex flex-col relative" data-aos="fade-up" data-aos-delay="100">
+                        <div class="absolute top-0 right-0 bg-yellow-400 text-blue-950 text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+                            Recommended for Beginners
+                        </div>
+                        <div class="bg-[#1e40af] text-white p-6 text-center">
+                            <span class="text-xs uppercase tracking-wider font-semibold text-yellow-300">New Players</span>
+                            <h3 class="text-2xl font-bold mt-1">Beginner Fee</h3>
+                            <div class="mt-4">
+                                <span class="text-4xl md:text-5xl font-extrabold text-yellow-300">$200</span>
+                                <span class="text-blue-200 text-sm">/ year (full season)</span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                            <div class="space-y-6">
+                                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-center">
+                                    <p class="text-yellow-800 font-bold text-sm">
+                                        🌟 First 3 practices are free!
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-calendar-check-o text-blue-600"></i> Half-season registration
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>First half (Sept to Feb):</span>
+                                            <span class="font-bold text-gray-900">$100</span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>Second half (March to Aug):</span>
+                                            <span class="font-bold text-gray-900">$100</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-3 flex items-center gap-2">
+                                        <i class="fa fa-credit-card text-blue-600"></i> Beginner Punch Cards
+                                    </h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex justify-between items-center">
+                                            <span>10-practice card:</span>
+                                            <span class="font-bold text-gray-900">$50 <span class="text-xs text-gray-500 font-normal">($5/practice)</span></span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>3-practice card:</span>
+                                            <span class="font-bold text-gray-900">$25</span>
+                                        </li>
+                                        <li class="flex justify-between items-center">
+                                            <span>Single practice:</span>
+                                            <span class="font-bold text-gray-900">$10</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-gray-100">
+                                <a href="https://www.zeffy.com/en-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 block">
+                                    Register (Beginner Fee)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Methods Section -->
+            <section class="bg-white text-gray-800 rounded-2xl p-8 md:p-10 shadow-xl mb-12" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900 flex items-center gap-3">
+                    <i class="fa fa-money text-green-600"></i> Payment Options
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Option 1: Zeffy -->
+                    <div class="border-2 border-green-500 rounded-xl p-6 bg-green-50/50 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-green-500 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full">Preferred Option</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-3 mb-2">Zeffy (100% Fee-Free)</h3>
+                            <p class="text-gray-600 text-sm mb-4">
+                                Fast, secure online credit card payments. 100% of your payment directly supports CAMO.
+                            </p>
+                        </div>
+                        <a href="https://www.zeffy.com/en-CA/ticketing/inscription-camo-saison-2026--2027" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-4 rounded-lg text-center text-sm shadow transition">
+                            Pay with Zeffy &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Option 2: Interac -->
+                    <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-blue-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full">Bank Transfer</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-3 mb-2">INTERAC E-Transfer</h3>
+                            <p class="text-gray-600 text-sm mb-2">
+                                Send transfer to:<br>
+                                <strong class="text-blue-700 select-all">camo_finances@hotmail.com</strong>
+                            </p>
+                            <p class="text-xs text-amber-700 bg-amber-50 p-2 rounded border border-amber-200">
+                                <strong>Required:</strong> you must also complete the Google Form.
+                            </p>
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd3KH8DIN0Dk85vNlhdtxfaoSl0b-3_rH_zcWK3YJ6DvXI2sw/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="mt-4 bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg text-center text-sm transition">
+                            Google Form &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Option 3: PayPal -->
+                    <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-indigo-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full">Online Wallet</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-3 mb-2">PayPal</h3>
+                            <p class="text-gray-600 text-sm mb-2">
+                                Payment recipient:<br>
+                                <strong class="text-blue-700 select-all">camo_finances@hotmail.com</strong>
+                            </p>
+                            <p class="text-xs text-amber-700 bg-amber-50 p-2 rounded border border-amber-200">
+                                <strong>Required:</strong> you must also complete the Google Form.
+                            </p>
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd3KH8DIN0Dk85vNlhdtxfaoSl0b-3_rH_zcWK3YJ6DvXI2sw/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="mt-4 bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg text-center text-sm transition">
+                            Google Form &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Important Dates & Club Regulations -->
+            <section class="bg-blue-900/90 text-white rounded-2xl p-8 md:p-10 shadow-xl border border-blue-400/30 mb-12" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fa fa-info-circle text-yellow-300"></i> Important Dates & Club Rules
+                </h2>
+                <div class="space-y-4 text-base md:text-lg text-blue-100">
+                    <p class="flex items-start gap-3">
+                        <i class="fa fa-clock-o text-yellow-300 mt-1.5 flex-shrink-0"></i>
+                        <span>
+                            <strong>Payment deadline:</strong> Registrations and forms must be completed before <strong>September 30, 2026 without fail</strong>. You must be a member in good standing to participate in the Annual General Meeting (AGM).
+                        </span>
+                    </p>
+                    <p class="flex items-start gap-3">
+                        <i class="fa fa-exclamation-triangle text-amber-300 mt-1.5 flex-shrink-0"></i>
+                        <span>
+                            After September 30, any unpaid practice attended will be billed at the punch card rate. CAMO reserves the right to deny pool access if an unpaid balance persists, according to club regulations.
+                        </span>
+                    </p>
+                    <p class="flex items-start gap-3">
+                        <i class="fa fa-sun-o text-yellow-300 mt-1.5 flex-shrink-0"></i>
+                        <span>
+                            <strong>Summer Schedule:</strong> For July and August, Friday and Saturday practices are canceled. Specific dates will be communicated closer to summer.
+                        </span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Contact Board Members Section -->
+            <section class="bg-white text-gray-800 rounded-2xl p-8 shadow-xl text-center" data-aos="fade-up">
+                <h2 class="text-2xl font-bold text-blue-900 mb-3">Questions about registration?</h2>
+                <p class="text-gray-600 mb-6 max-w-xl mx-auto">
+                    Feel free to reach out to members of the CAMO Board of Directors:
+                </p>
+                <div class="flex flex-wrap justify-center gap-3 text-sm md:text-base font-medium text-gray-700 mb-6">
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Philippe Vinet</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Stéphanie Lagacé</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Camilo Narvaez</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Ricky Ng-Adam</span>
+                    <span class="bg-gray-100 px-3.5 py-1.5 rounded-full">Martin Chevrier</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="mailto:info@camosub.ca" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-2.5 rounded-full transition">
+                        <i class="fa fa-envelope"></i> info@camosub.ca
+                    </a>
+                    <a href="mailto:camo_finances@hotmail.com" class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white font-semibold px-6 py-2.5 rounded-full transition">
+                        <i class="fa fa-credit-card"></i> camo_finances@hotmail.com
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center mt-auto">
+        <div class="container mx-auto px-4">
+            <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
+                <span>
+                    <i class="fa fa-flag-quebec text-blue-200 mr-1"></i>
+                    <a href="https://quebecsubaquatique.ca/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">
+                        Hockey subaquatique Québec
+                    </a>
+                </span>
+                <span class="mx-2">|</span>
+                <span>
+                    <i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i>
+                    <a href="https://cuga.org/fr/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">
+                        Association canadienne des jeux sous-marins
+                    </a>
+                </span>
+                <span class="mx-2">|</span>
+                <span>
+                    <i class="fa fa-globe text-green-200 mr-1"></i>
+                    <a href="https://www.cmas.org/hockey/latest.html" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">
+                        CMAS hockey subaquatique
+                    </a>
+                </span>
+            </p>
+        </div>
+        <div class="container mx-auto px-4 mt-4">
+            <p>&copy; 2026 Club CAMO Subaquatique. Tous droits réservés / All rights reserved.</p>
+            <p class="mt-4">
+                <a href="index.html" class="text-blue-400 hover:underline">Accueil</a> |
+                <a href="mission.html" class="text-blue-400 hover:underline">Mission</a> |
+                <a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> |
+                <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a>
+            </p>
+            <div class="mt-6 border-t border-gray-700 pt-6">
+                <p class="text-center text-lg font-semibold mb-2">Nos flux RSS / Our RSS Feeds</p>
+                <p class="text-center">
+                    <a href="/blog_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS du blog</a>
+                    <span class="text-gray-500">|</span>
+                    <a href="/events_rss.xml" target="_blank" class="text-orange-400 hover:text-orange-300 mx-2"><i class="fa fa-rss-square mr-1"></i>Flux RSS des événements</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

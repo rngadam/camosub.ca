@@ -133,35 +133,107 @@
 <body class="bg-blue-700 text-white">
     <div class="bubbles"></div>
 
-    <div class="text-center py-4 bg-gray-200">
-        <button id="lang-fr-btn" class="lang-button px-4 py-2 mr-2 rounded bg-blue-500 text-white" data-lang="fr">
-            <i class="fa fa-fleur-de-lis"></i> Français
-        </button>
-        <button id="lang-en-btn" class="lang-button px-4 py-2 rounded bg-gray-400 text-gray-800" data-lang="en">
-            <i class="fa fa-canadian-maple-leaf"></i> English
-        </button>
-    </div>
+    <!-- Navigation Header -->
+    <nav class="bg-[#244c8c] text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Brand / Logo (Links to Home) -->
+                <a href="index.html" class="flex items-center gap-3 py-2 group" aria-label="CAMO Subaquatique - Accueil">
+                    <img src="images/camo-subaquatique.png" alt="Logo Club CAMO Subaquatique" class="h-10 md:h-14 w-auto object-contain transition-transform group-hover:scale-105">
+                    <span class="font-bold text-lg md:text-xl tracking-tight hidden sm:inline-block text-white group-hover:text-blue-100 transition-colors">CAMO Subaquatique</span>
+                </a>
 
-    <header class="bg-[#386DC0] text-white py-8 text-center shadow-lg">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <!-- French Links -->
+                    <div class="lang-fr flex items-center space-x-1 lg:space-x-2">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Accueil</a>
+                        <a href="inscriptions.html" class="px-3 py-2 rounded-full text-sm lg:text-base font-semibold bg-green-500 hover:bg-green-600 text-white shadow-sm transition-all">Inscriptions</a>
+                        <a href="index.html#sports" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Disciplines</a>
+                        <a href="blog.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-semibold bg-white/10 text-white transition-colors">Blogue</a>
+                        <a href="history.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Histoire</a>
+                        <a href="mission.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Mission</a>
+                        <a href="index.html#contact" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Contact</a>
+                    </div>
+                    <!-- English Links -->
+                    <div class="lang-en flex items-center space-x-1 lg:space-x-2" style="display:none;">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Home</a>
+                        <a href="inscriptions.html" class="px-3 py-2 rounded-full text-sm lg:text-base font-semibold bg-green-500 hover:bg-green-600 text-white shadow-sm transition-all">Registration</a>
+                        <a href="index.html#sports-en" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Sports</a>
+                        <a href="blog.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-semibold bg-white/10 text-white transition-colors">Blog</a>
+                        <a href="history.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">History</a>
+                        <a href="mission.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Mission</a>
+                        <a href="index.html#contact-en" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Contact</a>
+                    </div>
+
+                    <!-- Discreet Language Switcher -->
+                    <div class="ml-3 pl-3 border-l border-white/20">
+                        <div class="inline-flex rounded-lg bg-blue-950/60 p-0.5 border border-white/20 text-xs font-semibold" role="group" aria-label="Langue / Language">
+                            <button type="button" class="lang-button px-2.5 py-1 rounded-md transition-all font-semibold" data-lang="fr" aria-label="Passer en français">FR</button>
+                            <button type="button" class="lang-button px-2.5 py-1 rounded-md transition-all font-semibold" data-lang="en" aria-label="Switch to English">EN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Controls (Language + Hamburger) -->
+                <div class="flex items-center space-x-2 md:hidden">
+                    <div class="inline-flex rounded-lg bg-blue-950/60 p-0.5 border border-white/20 text-xs font-semibold" role="group" aria-label="Langue">
+                        <button type="button" class="lang-button px-2 py-1 rounded-md transition-all font-semibold" data-lang="fr">FR</button>
+                        <button type="button" class="lang-button px-2 py-1 rounded-md transition-all font-semibold" data-lang="en">EN</button>
+                    </div>
+                    <button type="button" id="mobile-menu-btn" class="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Menu" aria-expanded="false">
+                        <i class="fa fa-bars text-xl" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-white/10">
+                <div class="lang-fr flex flex-col space-y-2">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Accueil</a>
+                    <a href="inscriptions.html" class="px-3 py-2 rounded-md font-semibold bg-green-500 text-white hover:bg-green-600 transition-colors">Inscriptions 2026-2027</a>
+                    <a href="index.html#sports" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Disciplines</a>
+                    <a href="blog.html" class="px-3 py-2 rounded-md font-semibold bg-white/10 text-white">Blogue</a>
+                    <a href="history.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Histoire</a>
+                    <a href="mission.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Mission</a>
+                    <a href="index.html#contact" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Contact</a>
+                </div>
+                <div class="lang-en flex flex-col space-y-2" style="display:none;">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Home</a>
+                    <a href="inscriptions.html" class="px-3 py-2 rounded-md font-semibold bg-green-500 text-white hover:bg-green-600 transition-colors">2026-2027 Registration</a>
+                    <a href="index.html#sports-en" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Sports</a>
+                    <a href="blog.html" class="px-3 py-2 rounded-md font-semibold bg-white/10 text-white">Blog</a>
+                    <a href="history.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">History</a>
+                    <a href="mission.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Mission</a>
+                    <a href="index.html#contact-en" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-[#386DC0] text-white py-10 text-center shadow-lg">
+        <a href="index.html" class="inline-block group">
+            <img src="images/camo-subaquatique.png" alt="Logo du Club CAMO Subaquatique à Montréal" class="mx-auto h-24 md:h-32 transition-transform group-hover:scale-105">
+        </a>
         <div class="lang-fr-header-footer">
-            <img src="images/camo-subaquatique.png" alt="Logo du Club CAMO Subaquatique à Montréal" class="mx-auto h-32 md:h-40">
-            <h1 class="text-3xl md:text-4xl font-bold mt-4">Blog du Club CAMO</h1>
-            <p class="mt-1 text-md md:text-lg italic">Nouvelles et mises à jour de votre club de sports subaquatiques</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-3">Blogue du Club CAMO</h1>
+            <p class="mt-1 text-md md:text-lg italic text-blue-100">Nouvelles, résultats et mises à jour de votre club de sports subaquatiques</p>
         </div>
         <div class="lang-en-header-footer" style="display:none;">
-            <img src="images/camo-subaquatique.png" alt="CAMO Subaquatique Logo in Montreal" class="mx-auto h-32 md:h-40">
-            <h1 class="text-3xl md:text-4xl font-bold mt-4">Club CAMO Blog</h1>
-            <p class="mt-1 text-md md:text-lg italic">News and Updates from your Underwater Sports Club</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-3">Club CAMO Blog</h1>
+            <p class="mt-1 text-md md:text-lg italic text-blue-100">News, tournament results, and updates from your underwater sports club</p>
         </div>
     </header>
 
-    <main id="blog-posts-container" class="container mx-auto px-4 py-8"></main>
+    <main id="blog-posts-container" class="container mx-auto px-4 py-8 max-w-4xl"></main>
 
     <footer class="bg-gray-900 text-gray-400 py-8 text-center">
         <div class="lang-fr-header-footer">
             <div class="container mx-auto px-4">
                  <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
                     <span><i class="fa fa-home"></i> <a href="index.html" class="text-blue-400 hover:underline">Accueil</a></span>
+                    <span class="mx-2">|</span>
+                    <span><i class="fa fa-ticket"></i> <a href="inscriptions.html" class="text-blue-400 hover:underline">Inscriptions</a></span>
                     <span class="mx-2">|</span>
                     <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Hockey Québec</a></span>
                     <span class="mx-2">|</span>
@@ -178,13 +250,20 @@
                     </p>
                 </div>
                 <p>&copy; <span id="footer-year-fr"></span> Club CAMO. Tous droits réservés.</p>
-                <p class="mt-2"><a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> | <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a></p>
+                <p class="mt-2">
+                    <a href="inscriptions.html" class="text-blue-400 hover:underline">Inscriptions</a> |
+                    <a href="mission.html" class="text-blue-400 hover:underline">Mission</a> |
+                    <a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> |
+                    <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a>
+                </p>
             </div>
         </div>
         <div class="lang-en-header-footer" style="display:none;">
             <div class="container mx-auto px-4">
                 <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
                     <span><i class="fa fa-home"></i> <a href="index.html" class="text-blue-400 hover:underline">Home</a></span>
+                    <span class="mx-2">|</span>
+                    <span><i class="fa fa-ticket"></i> <a href="inscriptions.html" class="text-blue-400 hover:underline">Registration</a></span>
                     <span class="mx-2">|</span>
                     <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/en/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Hockey Quebec</a></span>
                     <span class="mx-2">|</span>
@@ -201,61 +280,91 @@
                     </p>
                 </div>
                 <p>&copy; <span id="footer-year-en"></span> Club CAMO. All rights reserved.</p>
-                <p class="mt-2"><a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="terms-of-use.html" class="text-blue-400 hover:underline">Terms of Use</a></p>
+                <p class="mt-2">
+                    <a href="inscriptions.html" class="text-blue-400 hover:underline">Registration</a> |
+                    <a href="mission.html" class="text-blue-400 hover:underline">Mission</a> |
+                    <a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> |
+                    <a href="terms-of-use.html" class="text-blue-400 hover:underline">Terms of Use</a>
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- Toast Notification Container -->
+    <div id="toast-msg" class="toast-msg"></div>
+
+    <script src="assets/js/main.js"></script>
     <script>
         document.getElementById('footer-year-fr').textContent = new Date().getFullYear();
         document.getElementById('footer-year-en').textContent = new Date().getFullYear();
 
-        // --- Language Switching ---
-        const langButtons = document.querySelectorAll('.lang-button');
-        const frHeaderFooter = document.querySelectorAll('.lang-fr-header-footer');
-        const enHeaderFooter = document.querySelectorAll('.lang-en-header-footer');
-        // Post content specific elements will be handled by renderPosts
-        let currentLang = 'fr'; // Default language
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-
-            frHeaderFooter.forEach(el => el.style.display = (lang === 'fr' ? 'block' : 'none'));
-            enHeaderFooter.forEach(el => el.style.display = (lang === 'en' ? 'block' : 'none'));
-
-            langButtons.forEach(button => {
-                button.classList.toggle('bg-blue-500', button.dataset.lang === lang);
-                button.classList.toggle('text-white', button.dataset.lang === lang);
-                button.classList.toggle('bg-gray-400', button.dataset.lang !== lang);
-                button.classList.toggle('text-gray-800', button.dataset.lang !== lang);
-            });
-
-            // Toggle visibility of language-specific content within posts
-            document.querySelectorAll('.lang-fr-content, .lang-fr-tag').forEach(el => el.style.display = (lang === 'fr' ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none'));
-            document.querySelectorAll('.lang-en-content, .lang-en-tag').forEach(el => el.style.display = (lang === 'en' ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none'));
+        // --- Toast Alert Helper ---
+        let toastTimeout = null;
+        function showToast(message) {
+            let toast = document.getElementById('toast-msg');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast-msg';
+                toast.className = 'toast-msg';
+                document.body.appendChild(toast);
+            }
+            toast.innerHTML = `<i class="fa fa-check-circle text-green-400 text-lg"></i> <span>${message}</span>`;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
-        langButtons.forEach(button => {
-            button.addEventListener('click', () => setLanguage(button.dataset.lang));
-            // No need to call fetchAndRenderPosts() here anymore after initial load.
-        });
+        // --- Highlight and Smooth Scroll to Post ---
+        function highlightAndScrollPost(postId) {
+            const target = document.getElementById(postId);
+            if (!target) return;
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.classList.remove('post-highlight');
+            void target.offsetWidth; // trigger reflow
+            target.classList.add('post-highlight');
+        }
 
-        // --- Fetch and Render Blog Posts ---
+        // --- Copy Link & Highlight Handler ---
+        function copyPostLinkAndHighlight(postId) {
+            const currentLang = document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
+            const url = new URL(window.location.href);
+            url.hash = postId;
+            url.searchParams.set('lang', currentLang);
+            window.history.pushState(null, null, url.toString());
+
+            const successMsg = currentLang === 'fr' 
+                ? 'Lien direct copié dans le presse-papier !' 
+                : 'Direct link copied to clipboard!';
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url.href).then(() => {
+                    showToast(successMsg);
+                }).catch(() => {
+                    showToast(currentLang === 'fr' ? 'Lien sélectionné !' : 'Link selected!');
+                });
+            } else {
+                showToast(currentLang === 'fr' ? 'Lien sélectionné !' : 'Link selected!');
+            }
+
+            highlightAndScrollPost(postId);
+        }
+
+        // --- Blog Data & Rendering ---
         const postsContainer = document.getElementById('blog-posts-container');
-        let blogData = null; // Will store the full {config, posts} object
+        let blogData = null;
 
         function renderPosts(data) {
-            postsContainer.innerHTML = ''; // Clear existing posts
-
+            postsContainer.innerHTML = '';
             const postsToRender = data.posts;
             const tagLabels = data.config && data.config.tag_labels ? data.config.tag_labels : {};
+            const currentLang = document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
 
             if (!postsToRender || postsToRender.length === 0) {
                 const noPostsMessage = document.createElement('p');
-                noPostsMessage.className = 'text-center text-gray-300';
-                // Use currentLang for this message as it's outside the post-specific content.
-                noPostsMessage.textContent = currentLang === 'fr' ? 'Aucun article de blog pour le moment.' : 'No blog posts yet.';
+                noPostsMessage.className = 'text-center text-gray-300 py-12 text-lg';
+                noPostsMessage.textContent = currentLang === 'fr' ? 'Aucun article de blogue pour le moment.' : 'No blog posts yet.';
                 postsContainer.appendChild(noPostsMessage);
                 return;
             }
@@ -264,7 +373,7 @@
 
             postsToRender.forEach(post => {
                 const article = document.createElement('article');
-                article.className = 'blog-post bg-white text-gray-800 p-6 rounded-lg shadow-xl mb-8';
+                article.className = 'blog-post bg-white text-gray-800 p-6 md:p-8 rounded-2xl shadow-xl mb-10 transition-all duration-300 border border-gray-100';
                 article.id = post.id;
 
                 if (post.sport_logo) {
@@ -274,170 +383,283 @@
                     if (post.fr && post.fr.title) logoAltText = post.fr.title + " Logo";
                     else if (post.en && post.en.title) logoAltText = post.en.title + " Logo";
                     logoImg.alt = logoAltText;
-                    logoImg.className = 'w-80 mb-3 mx-auto rounded-md shadow-sm';
+                    logoImg.className = 'w-64 md:w-80 mb-4 mx-auto rounded-md shadow-sm';
                     article.appendChild(logoImg);
                 }
 
-                // French Content Div
+                // ==================== FRENCH CONTENT ====================
                 const frDiv = document.createElement('div');
                 frDiv.className = 'lang-fr-content';
                 const frPostData = post.fr || {};
                 const frTitleText = frPostData.title || 'Titre non disponible';
-                const frContentText = frPostData.content || 'Contenu non disponible';
 
+                // Clickable Title with link
                 const frTitleEl = document.createElement('h2');
-                frTitleEl.className = 'text-3xl font-bold mb-3 text-gray-900 text-center';
-                frTitleEl.textContent = frTitleText;
+                frTitleEl.className = 'text-2xl md:text-3xl font-bold mb-3 text-gray-900 text-center';
+
+                const frTitleLink = document.createElement('a');
+                frTitleLink.href = `#${post.id}`;
+                frTitleLink.className = 'post-anchor-link group inline-flex items-center justify-center gap-2 hover:text-blue-700 transition-colors cursor-pointer text-inherit';
+                frTitleLink.title = 'Lien direct vers cet article (cliquez pour copier)';
+                frTitleLink.dataset.postId = post.id;
+
+                const frTitleSpan = document.createElement('span');
+                frTitleSpan.textContent = frTitleText;
+                frTitleLink.appendChild(frTitleSpan);
+
+                const frLinkIcon = document.createElement('i');
+                frLinkIcon.className = 'fa fa-link text-gray-400 group-hover:text-blue-600 text-lg opacity-60 group-hover:opacity-100 transition-all';
+                frTitleLink.appendChild(frLinkIcon);
+                frTitleLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    copyPostLinkAndHighlight(post.id);
+                });
+
+                frTitleEl.appendChild(frTitleLink);
                 frDiv.appendChild(frTitleEl);
 
-                const timestampElFr = document.createElement('p');
-                timestampElFr.className = 'text-sm text-gray-500 mb-4 text-center';
+                // Meta row: Date + Direct Share button
+                const frMetaRow = document.createElement('div');
+                frMetaRow.className = 'flex flex-wrap items-center justify-center gap-3 text-sm text-gray-500 mb-6';
+
+                let formattedDateFr = post.timestamp;
                 try {
-                    timestampElFr.textContent = new Date(post.timestamp).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
-                } catch (e) { timestampElFr.textContent = post.timestamp; }
-                frDiv.appendChild(timestampElFr);
+                    formattedDateFr = new Date(post.timestamp).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                } catch (e) {}
+
+                const dateSpanFr = document.createElement('span');
+                dateSpanFr.innerHTML = `<i class="fa fa-calendar-o mr-1"></i> ${formattedDateFr}`;
+                frMetaRow.appendChild(dateSpanFr);
+
+                const shareBtnFr = document.createElement('button');
+                shareBtnFr.type = 'button';
+                shareBtnFr.className = 'share-btn inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full transition-colors cursor-pointer';
+                shareBtnFr.innerHTML = '<i class="fa fa-share-alt"></i> Partager le lien';
+                shareBtnFr.title = 'Copier le lien direct vers cet article';
+                shareBtnFr.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    copyPostLinkAndHighlight(post.id);
+                });
+                frMetaRow.appendChild(shareBtnFr);
+                frDiv.appendChild(frMetaRow);
 
                 if (post.images && Array.isArray(post.images) && post.images.length > 0) {
                     const slideshowContainerFr = document.createElement('div');
-                    slideshowContainerFr.className = 'slideshow-container';
+                    slideshowContainerFr.className = 'slideshow-container mb-6';
                     post.images.forEach(imgPath => {
                         const img = document.createElement('img');
                         img.src = imgPath;
-                        img.alt = frPostData.title ? `Slideshow image for ${frPostData.title}` : 'Slideshow image';
+                        img.alt = frPostData.title ? `Image pour ${frPostData.title}` : 'Image';
                         slideshowContainerFr.appendChild(img);
                     });
                     frDiv.appendChild(slideshowContainerFr);
                 } else if (post.image) {
                     const imgElFr = document.createElement('img');
                     imgElFr.src = post.image;
-                    imgElFr.alt = frPostData.title || 'Post image';
-                    imgElFr.className = 'mb-4 max-w-full h-auto rounded-md shadow'; // Existing classes for single image
+                    imgElFr.alt = frPostData.title || 'Image';
+                    imgElFr.className = 'mb-6 max-w-full h-auto rounded-xl shadow mx-auto';
                     frDiv.appendChild(imgElFr);
                 }
+
                 const frContentEl = document.createElement('div');
                 frContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
                 frDiv.appendChild(frContentEl);
 
                 if (frPostData.content_md && typeof frPostData.content_md === 'string' && frPostData.content_md.trim() !== '') {
-                    frContentEl.innerHTML = 'Chargement du contenu...';
+                    frContentEl.innerHTML = '<p class="text-gray-400 italic">Chargement du contenu...</p>';
                     fetch(frPostData.content_md)
                         .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status} for ${frPostData.content_md}`);
-                            }
+                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
                             return response.text();
                         })
                         .then(markdownText => {
-                            const normalizedText = markdownText.replace(/\\n/g, '\n'); // Normalize \\n to \n
-                            frContentEl.innerHTML = marked.parse(normalizedText); // Use marked.parse
+                            frContentEl.innerHTML = marked.parse(markdownText.replace(/\\n/g, '\n'));
                         })
                         .catch(error => {
-                            console.error("Error fetching French Markdown:", error);
-                            const fallbackContent = frPostData.content || 'Contenu non disponible (erreur de chargement).';
-                            const normalizedFallback = fallbackContent.replace(/\\n/g, '\n');
-                            frContentEl.innerHTML = marked.parse(normalizedFallback); // Use marked.parse
+                            console.error("Erreur Markdown FR:", error);
+                            const fallback = frPostData.content || 'Contenu non disponible.';
+                            frContentEl.innerHTML = marked.parse(fallback.replace(/\\n/g, '\n'));
                         });
                 } else {
                     const directContent = frPostData.content || 'Contenu non disponible';
-                    const normalizedDirectContent = directContent.replace(/\\n/g, '\n');
-                    frContentEl.innerHTML = marked.parse(normalizedDirectContent); // Use marked.parse
+                    frContentEl.innerHTML = marked.parse(directContent.replace(/\\n/g, '\n'));
                 }
                 article.appendChild(frDiv);
 
-                // English Content Div
+                // ==================== ENGLISH CONTENT ====================
                 const enDiv = document.createElement('div');
                 enDiv.className = 'lang-en-content';
                 const enPostData = post.en || {};
                 const enTitleText = enPostData.title || 'Title not available';
-                // const enContentText = enPostData.content || 'Content not available'; // Replaced by logic below
 
+                // Clickable Title with link
                 const enTitleEl = document.createElement('h2');
-                enTitleEl.className = 'text-3xl font-bold mb-3 text-gray-900 text-center';
-                enTitleEl.textContent = enTitleText;
+                enTitleEl.className = 'text-2xl md:text-3xl font-bold mb-3 text-gray-900 text-center';
+
+                const enTitleLink = document.createElement('a');
+                enTitleLink.href = `#${post.id}`;
+                enTitleLink.className = 'post-anchor-link group inline-flex items-center justify-center gap-2 hover:text-blue-700 transition-colors cursor-pointer text-inherit';
+                enTitleLink.title = 'Direct link to this article (click to copy)';
+                enTitleLink.dataset.postId = post.id;
+
+                const enTitleSpan = document.createElement('span');
+                enTitleSpan.textContent = enTitleText;
+                enTitleLink.appendChild(enTitleSpan);
+
+                const enLinkIcon = document.createElement('i');
+                enLinkIcon.className = 'fa fa-link text-gray-400 group-hover:text-blue-600 text-lg opacity-60 group-hover:opacity-100 transition-all';
+                enTitleLink.appendChild(enLinkIcon);
+                enTitleLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    copyPostLinkAndHighlight(post.id);
+                });
+
+                enTitleEl.appendChild(enTitleLink);
                 enDiv.appendChild(enTitleEl);
 
-                const timestampElEn = document.createElement('p');
-                timestampElEn.className = 'text-sm text-gray-500 mb-4 text-center';
+                // Meta row: Date + Direct Share button
+                const enMetaRow = document.createElement('div');
+                enMetaRow.className = 'flex flex-wrap items-center justify-center gap-3 text-sm text-gray-500 mb-6';
+
+                let formattedDateEn = post.timestamp;
                 try {
-                    timestampElEn.textContent = new Date(post.timestamp).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
-                } catch (e) { timestampElEn.textContent = post.timestamp; }
-                enDiv.appendChild(timestampElEn);
+                    formattedDateEn = new Date(post.timestamp).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                } catch (e) {}
+
+                const dateSpanEn = document.createElement('span');
+                dateSpanEn.innerHTML = `<i class="fa fa-calendar-o mr-1"></i> ${formattedDateEn}`;
+                enMetaRow.appendChild(dateSpanEn);
+
+                const shareBtnEn = document.createElement('button');
+                shareBtnEn.type = 'button';
+                shareBtnEn.className = 'share-btn inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full transition-colors cursor-pointer';
+                shareBtnEn.innerHTML = '<i class="fa fa-share-alt"></i> Share Link';
+                shareBtnEn.title = 'Copy direct link to this post';
+                shareBtnEn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    copyPostLinkAndHighlight(post.id);
+                });
+                enMetaRow.appendChild(shareBtnEn);
+                enDiv.appendChild(enMetaRow);
 
                 if (post.images && Array.isArray(post.images) && post.images.length > 0) {
                     const slideshowContainerEn = document.createElement('div');
-                    slideshowContainerEn.className = 'slideshow-container';
+                    slideshowContainerEn.className = 'slideshow-container mb-6';
                     post.images.forEach(imgPath => {
                         const img = document.createElement('img');
                         img.src = imgPath;
-                        img.alt = enPostData.title ? `Slideshow image for ${enPostData.title}` : 'Slideshow image';
+                        img.alt = enPostData.title ? `Image for ${enPostData.title}` : 'Image';
                         slideshowContainerEn.appendChild(img);
                     });
                     enDiv.appendChild(slideshowContainerEn);
                 } else if (post.image) {
                     const imgElEn = document.createElement('img');
                     imgElEn.src = post.image;
-                    imgElEn.alt = enPostData.title || 'Post image';
-                    imgElEn.className = 'mb-4 max-w-full h-auto rounded-md shadow'; // Existing classes for single image
+                    imgElEn.alt = enPostData.title || 'Image';
+                    imgElEn.className = 'mb-6 max-w-full h-auto rounded-xl shadow mx-auto';
                     enDiv.appendChild(imgElEn);
                 }
+
                 const enContentEl = document.createElement('div');
                 enContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
                 enDiv.appendChild(enContentEl);
 
                 if (enPostData.content_md && typeof enPostData.content_md === 'string' && enPostData.content_md.trim() !== '') {
-                    enContentEl.innerHTML = 'Loading content...';
+                    enContentEl.innerHTML = '<p class="text-gray-400 italic">Loading content...</p>';
                     fetch(enPostData.content_md)
                         .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status} for ${enPostData.content_md}`);
-                            }
+                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
                             return response.text();
                         })
                         .then(markdownText => {
-                            const normalizedText = markdownText.replace(/\\n/g, '\n'); // Normalize \\n to \n
-                            enContentEl.innerHTML = marked.parse(normalizedText); // Use marked.parse
+                            enContentEl.innerHTML = marked.parse(markdownText.replace(/\\n/g, '\n'));
                         })
                         .catch(error => {
-                            console.error("Error fetching English Markdown:", error);
-                            const fallbackContent = enPostData.content || 'Content not available (loading error).';
-                            const normalizedFallback = fallbackContent.replace(/\\n/g, '\n');
-                            enContentEl.innerHTML = marked.parse(normalizedFallback); // Use marked.parse
+                            console.error("Error Markdown EN:", error);
+                            const fallback = enPostData.content || 'Content not available.';
+                            enContentEl.innerHTML = marked.parse(fallback.replace(/\\n/g, '\n'));
                         });
                 } else {
                     const directContent = enPostData.content || 'Content not available';
-                    const normalizedDirectContent = directContent.replace(/\\n/g, '\n');
-                    enContentEl.innerHTML = marked.parse(normalizedDirectContent); // Use marked.parse
+                    enContentEl.innerHTML = marked.parse(directContent.replace(/\\n/g, '\n'));
                 }
                 article.appendChild(enDiv);
 
-                // Tags (translatable and visibility toggled by setLanguage)
+                // ==================== TAGS ====================
                 if (post.tags && Array.isArray(post.tags) && post.tags.length > 0) {
                     const tagsContainer = document.createElement('div');
-                    tagsContainer.className = 'mt-4 pt-3 border-t border-gray-300 text-center';
+                    tagsContainer.className = 'mt-6 pt-4 border-t border-gray-100 text-center';
                     post.tags.forEach(tagId => {
                         if (tagLabels[tagId]) {
                             const tagSpanFr = document.createElement('span');
                             tagSpanFr.textContent = tagLabels[tagId]['fr'] || tagLabels[tagId]['en'] || tagId;
-                            tagSpanFr.className = 'lang-fr-tag inline-block bg-blue-100 text-blue-800 text-sm font-medium mr-2 my-1 px-3 py-1 rounded-full shadow-xs';
+                            tagSpanFr.className = 'lang-fr-tag inline-block bg-blue-50 text-blue-800 text-xs font-semibold mr-2 my-1 px-3 py-1 rounded-full border border-blue-100';
                             tagsContainer.appendChild(tagSpanFr);
 
                             const tagSpanEn = document.createElement('span');
                             tagSpanEn.textContent = tagLabels[tagId]['en'] || tagLabels[tagId]['fr'] || tagId;
-                            tagSpanEn.className = 'lang-en-tag inline-block bg-blue-100 text-blue-800 text-sm font-medium mr-2 my-1 px-3 py-1 rounded-full shadow-xs';
+                            tagSpanEn.className = 'lang-en-tag inline-block bg-blue-50 text-blue-800 text-xs font-semibold mr-2 my-1 px-3 py-1 rounded-full border border-blue-100';
                             tagsContainer.appendChild(tagSpanEn);
                         } else {
                             const fallbackTagSpan = document.createElement('span');
                             fallbackTagSpan.textContent = tagId;
-                            fallbackTagSpan.className = 'inline-block bg-gray-200 text-gray-800 text-sm font-medium mr-2 my-1 px-3 py-1 rounded-full shadow-xs';
+                            fallbackTagSpan.className = 'inline-block bg-gray-100 text-gray-700 text-xs font-medium mr-2 my-1 px-3 py-1 rounded-full';
                             tagsContainer.appendChild(fallbackTagSpan);
                         }
                     });
                     article.appendChild(tagsContainer);
                 }
+
                 postsContainer.appendChild(article);
             });
-            // Ensure correct language content is shown after rendering all posts
-            setLanguage(currentLang);
+
+            // Wire click events on post title links
+            document.querySelectorAll('.post-anchor-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const postId = link.dataset.postId;
+                    if (postId) {
+                        copyPostLinkAndHighlight(postId);
+                    }
+                });
+            });
+
+            // Sync language display with current setting
+            const activeLang = document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
+            syncLanguageVisibility(activeLang);
+
+            // Check URL hash or post parameter and auto-scroll
+            scrollToTargetPostFromUrl();
+        }
+
+        function syncLanguageVisibility(lang) {
+            const isFr = lang === 'fr';
+            document.querySelectorAll('.lang-fr-content, .lang-fr-tag, .lang-fr-header-footer').forEach(el => {
+                el.style.display = isFr ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none';
+            });
+            document.querySelectorAll('.lang-en-content, .lang-en-tag, .lang-en-header-footer').forEach(el => {
+                el.style.display = !isFr ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none';
+            });
+        }
+
+        // Listen for languageChanged event from main.js
+        window.addEventListener('languageChanged', (e) => {
+            if (e.detail && e.detail.lang) {
+                syncLanguageVisibility(e.detail.lang);
+            }
+        });
+
+        function scrollToTargetPostFromUrl() {
+            const hash = window.location.hash ? window.location.hash.substring(1) : null;
+            const urlParams = new URLSearchParams(window.location.search);
+            const postParam = urlParams.get('post');
+            const targetId = hash || postParam;
+
+            if (targetId) {
+                setTimeout(() => {
+                    highlightAndScrollPost(targetId);
+                }, 200);
+            }
         }
 
         function initializeSlideshows() {
@@ -446,84 +668,41 @@
                 const images = container.querySelectorAll('img');
                 if (images.length === 0) return;
                 let currentIndex = 0;
-                images[currentIndex].style.opacity = '1'; // Show first image
+                images[currentIndex].style.opacity = '1';
 
                 setInterval(() => {
-                    if (document.hidden) return; // Don't cycle if tab is not visible
-                    images[currentIndex].style.opacity = '0'; // Hide current
-                    currentIndex = (currentIndex + 1) % images.length; // Move to next
-                    images[currentIndex].style.opacity = '1'; // Show next
-                }, 3500); // Change image every 3.5 seconds
+                    if (document.hidden) return;
+                    images[currentIndex].style.opacity = '0';
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].style.opacity = '1';
+                }, 3500);
             });
         }
 
         function fetchAndRenderPosts() {
-            if (blogData) { // Use cached data if available
+            if (blogData) {
                 renderPosts(blogData);
-                // setLanguage(currentLang); // This is called by renderPosts at its end
-                initializeSlideshows(); // Call here for cached data
+                initializeSlideshows();
             } else {
                 fetch('blog.json')
                     .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
                         return response.json();
                     })
                     .then(data => {
-                        blogData = data; // Cache the entire object {config, posts}
+                        blogData = data;
                         renderPosts(data);
-                        // setLanguage(currentLang) is called at the end of renderPosts
-                        initializeSlideshows(); // Call here after new data is rendered
+                        initializeSlideshows();
                     })
                     .catch(error => {
-                        console.error("Could not load or render blog posts:", error);
-                        postsContainer.innerHTML = `<p class="text-red-400 text-center py-8">Error loading blog posts: ${error.message}</p>`;
+                        console.error("Could not load blog posts:", error);
+                        postsContainer.innerHTML = `<p class="text-red-400 text-center py-12">Erreur lors du chargement des articles : ${error.message}</p>`;
                     });
             }
         }
 
-        // --- Initial Setup ---
         document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const langFromUrl = urlParams.get('lang');
-            const preferredLangStorage = localStorage.getItem('preferredBlogLang'); // Use a different storage key if needed
-            const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
-
-            if (langFromUrl === 'en' || langFromUrl === 'fr') {
-                currentLang = langFromUrl;
-            } else if (preferredLangStorage === 'en' || preferredLangStorage === 'fr') {
-                currentLang = preferredLangStorage;
-            } else {
-                currentLang = (browserLang === 'en' ? 'en' : 'fr');
-            }
-
-            localStorage.setItem('preferredBlogLang', currentLang); // Save the determined language
-            setLanguage(currentLang); // Set language for static parts and prepare currentLang
-            fetchAndRenderPosts(); // Fetch data and render posts
-        });
-    </script>
-    <script>
-        // Bubble script from index.html
-        document.addEventListener('DOMContentLoaded', () => {
-            const bubblesContainer = document.querySelector('.bubbles');
-            if (!bubblesContainer) return;
-
-            function createBubble() {
-                const bubble = document.createElement('div');
-                bubble.classList.add('bubble');
-                const size = Math.random() * 40 + 10; // 10px to 50px
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${Math.random() * 100}%`;
-                const animationDuration = Math.random() * 10 + 5; // 5s to 15s
-                bubble.style.animationDuration = `${animationDuration}s`;
-                bubblesContainer.appendChild(bubble);
-                setTimeout(() => {
-                    bubble.remove();
-                }, animationDuration * 1000);
-            }
-            setInterval(createBubble, 500);
+            fetchAndRenderPosts();
         });
     </script>
 </body>

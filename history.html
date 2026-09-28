@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/history.css"> <!-- New CSS for history page -->
+    <link rel="stylesheet" href="assets/css/history.css">
     <link rel="preload" as="image" href="images/camo-subaquatique.png">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9V8Q4XJXLD"></script>
@@ -20,23 +20,95 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <meta name="description" content="L'histoire du Club CAMO Subaquatique, de ses débuts à aujourd'hui. Découvrez l'évolution du hockey et du rugby subaquatique à Montréal.">
 </head>
-<body class="bg-gray-100"> <!-- Changed background for content page -->
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Navigation Header -->
+    <nav class="bg-[#244c8c] text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Brand / Logo (Links to Home) -->
+                <a href="index.html" class="flex items-center gap-3 py-2 group" aria-label="CAMO Subaquatique - Accueil">
+                    <img src="images/camo-subaquatique.png" alt="Logo Club CAMO Subaquatique" class="h-10 md:h-14 w-auto object-contain transition-transform group-hover:scale-105">
+                    <span class="font-bold text-lg md:text-xl tracking-tight hidden sm:inline-block text-white group-hover:text-blue-100 transition-colors">CAMO Subaquatique</span>
+                </a>
 
-    <div class="text-center py-4 bg-gray-200 shadow-md">
-        <button id="lang-fr-btn" class="lang-button px-4 py-2 mr-2 rounded bg-blue-500 text-white" data-lang="fr">
-            <i class="fa fa-fleur-de-lis"></i> Français
-        </button>
-        <button id="lang-en-btn" class="lang-button px-4 py-2 rounded bg-gray-400 text-gray-800" data-lang="en">
-            <i class="fa fa-canadian-maple-leaf"></i> English
-        </button>
-    </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <!-- French Links -->
+                    <div class="lang-fr flex items-center space-x-1 lg:space-x-2">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Accueil</a>
+                        <a href="inscriptions.html" class="px-3 py-2 rounded-full text-sm lg:text-base font-semibold bg-green-500 hover:bg-green-600 text-white shadow-sm transition-all">Inscriptions</a>
+                        <a href="index.html#sports" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Disciplines</a>
+                        <a href="blog.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Blogue</a>
+                        <a href="history.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-semibold bg-white/10 text-white transition-colors">Histoire</a>
+                        <a href="mission.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Mission</a>
+                        <a href="index.html#contact" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Contact</a>
+                    </div>
+                    <!-- English Links -->
+                    <div class="lang-en flex items-center space-x-1 lg:space-x-2" style="display:none;">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Home</a>
+                        <a href="inscriptions.html" class="px-3 py-2 rounded-full text-sm lg:text-base font-semibold bg-green-500 hover:bg-green-600 text-white shadow-sm transition-all">Registration</a>
+                        <a href="index.html#sports-en" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Sports</a>
+                        <a href="blog.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Blog</a>
+                        <a href="history.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-semibold bg-white/10 text-white transition-colors">History</a>
+                        <a href="mission.html" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Mission</a>
+                        <a href="index.html#contact-en" class="px-3 py-2 rounded-md text-sm lg:text-base font-medium hover:bg-white/10 transition-colors">Contact</a>
+                    </div>
 
-    <!-- Header (similar to index.html and blog.html) -->
-    <header id="page-header" class="bg-[#386DC0] text-white py-6 text-center shadow-lg">
-        <!-- Header content will be loaded by JS -->
+                    <!-- Discreet Language Switcher -->
+                    <div class="ml-3 pl-3 border-l border-white/20">
+                        <div class="inline-flex rounded-lg bg-blue-950/60 p-0.5 border border-white/20 text-xs font-semibold" role="group" aria-label="Langue / Language">
+                            <button type="button" class="lang-button px-2.5 py-1 rounded-md transition-all font-semibold" data-lang="fr" aria-label="Passer en français">FR</button>
+                            <button type="button" class="lang-button px-2.5 py-1 rounded-md transition-all font-semibold" data-lang="en" aria-label="Switch to English">EN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Controls (Language + Hamburger) -->
+                <div class="flex items-center space-x-2 md:hidden">
+                    <div class="inline-flex rounded-lg bg-blue-950/60 p-0.5 border border-white/20 text-xs font-semibold" role="group" aria-label="Langue">
+                        <button type="button" class="lang-button px-2 py-1 rounded-md transition-all font-semibold" data-lang="fr">FR</button>
+                        <button type="button" class="lang-button px-2 py-1 rounded-md transition-all font-semibold" data-lang="en">EN</button>
+                    </div>
+                    <button type="button" id="mobile-menu-btn" class="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Menu" aria-expanded="false">
+                        <i class="fa fa-bars text-xl" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-white/10">
+                <div class="lang-fr flex flex-col space-y-2">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Accueil</a>
+                    <a href="inscriptions.html" class="px-3 py-2 rounded-md font-semibold bg-green-500 text-white hover:bg-green-600 transition-colors">Inscriptions 2026-2027</a>
+                    <a href="index.html#sports" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Disciplines</a>
+                    <a href="blog.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Blogue</a>
+                    <a href="history.html" class="px-3 py-2 rounded-md font-semibold bg-white/10 text-white">Histoire</a>
+                    <a href="mission.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Mission</a>
+                    <a href="index.html#contact" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Contact</a>
+                </div>
+                <div class="lang-en flex flex-col space-y-2" style="display:none;">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Home</a>
+                    <a href="inscriptions.html" class="px-3 py-2 rounded-md font-semibold bg-green-500 text-white hover:bg-green-600 transition-colors">2026-2027 Registration</a>
+                    <a href="index.html#sports-en" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Sports</a>
+                    <a href="blog.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Blog</a>
+                    <a href="history.html" class="px-3 py-2 rounded-md font-semibold bg-white/10 text-white">History</a>
+                    <a href="mission.html" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Mission</a>
+                    <a href="index.html#contact-en" class="px-3 py-2 rounded-md font-medium hover:bg-white/10 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <header class="bg-[#386DC0] text-white py-10 text-center shadow-lg">
+        <a href="index.html" class="inline-block group">
+            <img src="images/camo-subaquatique.png" alt="Logo Club CAMO Subaquatique" class="mx-auto h-24 md:h-32 transition-transform group-hover:scale-105">
+        </a>
+        <h1 id="history-page-title" class="text-3xl md:text-4xl font-extrabold mt-3">Notre histoire</h1>
+        <p class="mt-1 text-md md:text-lg italic text-blue-100">Club CAMO Subaquatique de Montréal</p>
     </header>
 
-    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row flex-1">
         <!-- Table of Contents (Left Column) -->
         <aside id="toc-container" class="w-full md:w-1/4 p-4 sticky-top-offset">
             <h2 id="toc-title" class="text-xl font-semibold mb-3 text-gray-700">Table des matières</h2>
@@ -45,120 +117,68 @@
 
         <!-- Content (Right Column) -->
         <main id="content-container" class="w-full md:w-3/4 p-4 prose max-w-none">
-            <!-- Markdown content will be loaded here -->
+            <div class="text-center py-12"><i class="fa fa-spinner fa-spin text-3xl text-blue-600"></i></div>
         </main>
     </div>
 
-    <!-- Footer (similar to index.html and blog.html) -->
-    <footer id="page-footer" class="bg-gray-900 text-gray-400 py-8 text-center">
-        <!-- Footer content will be loaded by JS -->
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center mt-12">
+        <div class="container mx-auto px-4">
+             <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
+                <span><i class="fa fa-home"></i> <a href="index.html" class="text-blue-400 hover:underline">Accueil</a></span>
+                <span class="mx-2">|</span>
+                <span><i class="fa fa-ticket"></i> <a href="inscriptions.html" class="text-blue-400 hover:underline">Inscriptions</a></span>
+                <span class="mx-2">|</span>
+                <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Hockey subaquatique Québec</a></span>
+                <span class="mx-2">|</span>
+                <span><i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i> <a href="https://cuga.org/fr/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">CUGA</a></span>
+            </p>
+        </div>
+        <div class="container mx-auto px-4 mt-4">
+            <p>&copy; 2026 Club CAMO Subaquatique. Tous droits réservés / All rights reserved.</p>
+            <p class="mt-2">
+                <a href="inscriptions.html" class="text-blue-400 hover:underline">Inscriptions</a> |
+                <a href="mission.html" class="text-blue-400 hover:underline">Mission</a> |
+                <a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> |
+                <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a>
+            </p>
+        </div>
     </footer>
 
+    <script src="assets/js/main.js"></script>
     <script>
-        // const frHeaderContent = `...`; // Removed
-        // const enHeaderContent = `...`; // Removed
-        // const frFooterContent = `...`; // Removed
-        // const enFooterContent = `...`; // Removed
-
-        const pageHeader = document.getElementById('page-header');
-        const pageFooter = document.getElementById('page-footer');
         const contentContainer = document.getElementById('content-container');
         const tocContainer = document.getElementById('toc');
         const tocTitle = document.getElementById('toc-title');
-        const langFrBtn = document.getElementById('lang-fr-btn');
-        const langEnBtn = document.getElementById('lang-en-btn');
-        let currentLang = 'fr';
+        const historyTitle = document.getElementById('history-page-title');
 
         function slugify(text) {
             return text.toString().toLowerCase()
-                .normalize('NFKD') // Normalize accented characters
-                .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+                .normalize('NFKD')
+                .replace(/[\u0300-\u036f]/g, '')
                 .trim()
-                .replace(/\s+/g, '-') // Replace spaces with -
-                .replace(/[^\w-]+/g, '') // Remove all non-word chars
-                .replace(/--+/g, '-'); // Replace multiple - with single -
+                .replace(/\s+/g, '-')
+                .replace(/[^\w-]+/g, '')
+                .replace(/--+/g, '-');
         }
 
         async function loadContent(lang) {
-            currentLang = lang;
+            const isFr = lang === 'fr';
             document.documentElement.lang = lang;
-            const markdownPath = lang === 'fr' ? 'docs/histoire_camo_hockey_subaquatique.fr.md' : 'docs/histoire_camo_hockey_subaquatique.en.md';
+            const markdownPath = isFr ? 'docs/histoire_camo_hockey_subaquatique.fr.md' : 'docs/histoire_camo_hockey_subaquatique.en.md';
+
+            if (historyTitle) {
+                historyTitle.textContent = isFr ? "Notre histoire" : "Our History";
+            }
+            if (tocTitle) {
+                tocTitle.textContent = isFr ? "Table des matières" : "Table of Contents";
+            }
+            document.title = (isFr ? "Notre histoire" : "Our History") + " - Club CAMO";
 
             try {
                 const response = await fetch(markdownPath);
-                if (!response.ok) {
-                    throw new Error(`Failed to load ${markdownPath}: ${response.statusText}`);
-                }
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const markdown = await response.text();
-
-                // Fetch and populate header
-                const headerResponse = await fetch('_header.html');
-                if (!headerResponse.ok) throw new Error('Failed to load _header.html');
-                const headerHtml = await headerResponse.text();
-                pageHeader.innerHTML = headerHtml;
-                const headerPageTitle = pageHeader.querySelector('#header-page-title');
-                const headerNavLinks = pageHeader.querySelector('#header-nav-links');
-                const headerLogoImg = pageHeader.querySelector('#header-logo-img');
-                 if(headerLogoImg) { //Set alt text for logo
-                    headerLogoImg.alt = lang === 'fr' ? "Logo du Club CAMO Subaquatique à Montréal" : "CAMO Subaquatique Logo in Montreal";
-                }
-
-
-                // Fetch and populate footer
-                const footerResponse = await fetch('_footer.html');
-                if (!footerResponse.ok) throw new Error('Failed to load _footer.html');
-                const footerHtml = await footerResponse.text();
-                pageFooter.innerHTML = footerHtml;
-                const footerLinksContainer = pageFooter.querySelector('#footer-links-container');
-                const footerCopyrightContainer = pageFooter.querySelector('#footer-copyright-container');
-                const footerYear = pageFooter.querySelector('#footer-year');
-                const footerRights = pageFooter.querySelector('#footer-rights');
-                const footerLegalLinks = pageFooter.querySelector('#footer-legal-links');
-                // const footerRssContainer = pageFooter.querySelector('#footer-rss-feed-container'); // Optional
-
-                if (lang === 'fr') {
-                    if (headerPageTitle) headerPageTitle.textContent = "Notre histoire";
-                    if (headerNavLinks) headerNavLinks.innerHTML = `
-                        <a href="index.html" class="text-lg hover:underline font-medium">Accueil</a>
-                        <a href="blog.html?lang=fr" class="text-lg hover:underline font-medium ml-4">Notre blog</a>`;
-
-                    if (footerLinksContainer) footerLinksContainer.innerHTML = `
-                        <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
-                            <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Hockey subaquatique Québec</a></span>
-                            <span class="mx-2">|</span>
-                            <span><i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i> <a href="https://cuga.org/fr/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Association canadienne des jeux sous-marins</a></span>
-                        </p>`;
-                    if (footerYear) footerYear.textContent = new Date().getFullYear();
-                    if (footerRights) footerRights.textContent = "Tous droits réservés.";
-                    if (footerLegalLinks) footerLegalLinks.innerHTML = `
-                        <a href="privacy-policy.html" class="text-blue-400 hover:underline">Politique de confidentialité</a> |
-                        <a href="terms-of-use.html" class="text-blue-400 hover:underline">Conditions d'utilisation</a>`;
-                    // if (footerRssContainer) footerRssContainer.innerHTML = `... French RSS links ...`;
-
-                    tocTitle.textContent = "Table des matières";
-                    document.title = "Notre histoire - Club CAMO";
-                } else { // lang === 'en'
-                    if (headerPageTitle) headerPageTitle.textContent = "Our History";
-                    if (headerNavLinks) headerNavLinks.innerHTML = `
-                        <a href="index.html" class="text-lg hover:underline font-medium">Home</a>
-                        <a href="blog.html?lang=en" class="text-lg hover:underline font-medium ml-4">Our Blog</a>`;
-
-                    if (footerLinksContainer) footerLinksContainer.innerHTML = `
-                        <p class="mt-2 flex flex-wrap justify-center gap-2 items-center">
-                            <span><i class="fa fa-flag-quebec text-blue-200 mr-1"></i> <a href="https://quebecsubaquatique.ca/en/hockey-subaquatique/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">Underwater hockey Quebec</a></span>
-                            <span class="mx-2">|</span>
-                            <span><i class="fa fa-canadian-maple-leaf text-red-500 mr-1"></i> <a href="https://cuga.org/en/" target="_blank" rel="noopener noreferrer" class="underline text-blue-200 hover:text-white font-semibold">CUGA (Canadian Underwater Games Association)</a></span>
-                        </p>`;
-                    if (footerYear) footerYear.textContent = new Date().getFullYear();
-                    if (footerRights) footerRights.textContent = "All rights reserved.";
-                    if (footerLegalLinks) footerLegalLinks.innerHTML = `
-                        <a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> |
-                        <a href="terms-of-use.html" class="text-blue-400 hover:underline">Terms of Use</a>`;
-                     // if (footerRssContainer) footerRssContainer.innerHTML = `... English RSS links ...`;
-
-                    tocTitle.textContent = "Table of Contents";
-                    document.title = "Our History - Club CAMO";
-                }
 
                 // Render markdown content
                 contentContainer.innerHTML = marked.parse(markdown);
@@ -170,10 +190,8 @@
                 tocList.className = 'space-y-2';
 
                 headings.forEach(heading => {
-                    // Don't include the main page title (first H1) in TOC if it's the overall page title
                     if (heading.tagName === 'H1' && heading === contentContainer.querySelector('h1')) {
-                         // Optional: Update the header h1 with this content if desired, or ensure it's styled distinctly
-                        // For now, we assume the main title is in the header or handled by the markdown structure.
+                        // Skip main H1 inside doc as it duplicates the header
                     } else {
                         const listItem = document.createElement('li');
                         const link = document.createElement('a');
@@ -181,72 +199,32 @@
                         heading.id = id;
                         link.href = `#${id}`;
                         link.textContent = heading.textContent;
-                        link.className = 'hover:text-blue-600 hover:underline';
-                        if (heading.tagName === 'H2') {
-                            link.classList.add('font-semibold');
-                        } else if (heading.tagName === 'H3') {
-                            link.classList.add('ml-2');
-                        } else if (heading.tagName === 'H4') {
-                            link.classList.add('ml-4', 'text-sm');
-                        } // Add more for H5, H6 if needed
+                        link.className = 'hover:underline block py-0.5 text-sm ' + (heading.tagName === 'H3' ? 'pl-4 text-gray-500' : 'font-medium text-gray-700');
                         listItem.appendChild(link);
                         tocList.appendChild(listItem);
                     }
                 });
+
                 tocContainer.appendChild(tocList);
-
-                // Style images
-                contentContainer.querySelectorAll('img').forEach(img => {
-                    img.classList.add('mx-auto', 'my-4', 'rounded-lg', 'shadow-md', 'max-w-full', 'h-auto');
-                    // Remove fixed height/width if any, ensure responsiveness
-                    img.style.height = 'auto';
-                });
-
             } catch (error) {
-                contentContainer.innerHTML = `<p class="text-red-500">Error loading content: ${error.message}</p>`;
-                tocContainer.innerHTML = '';
-            }
-            updateLangButtons();
-        }
-
-        function updateLangButtons() {
-            if (currentLang === 'fr') {
-                langFrBtn.classList.add('bg-blue-500', 'text-white');
-                langFrBtn.classList.remove('bg-gray-400', 'text-gray-800');
-                langEnBtn.classList.add('bg-gray-400', 'text-gray-800');
-                langEnBtn.classList.remove('bg-blue-500', 'text-white');
-            } else {
-                langEnBtn.classList.add('bg-blue-500', 'text-white');
-                langEnBtn.classList.remove('bg-gray-400', 'text-gray-800');
-                langFrBtn.classList.add('bg-gray-400', 'text-gray-800');
-                langFrBtn.classList.remove('bg-blue-500', 'text-white');
+                console.error("Error loading history:", error);
+                contentContainer.innerHTML = `<p class="text-red-500">Erreur lors du chargement : ${error.message}</p>`;
             }
         }
 
-        langFrBtn.addEventListener('click', () => loadContent('fr'));
-        langEnBtn.addEventListener('click', () => loadContent('en'));
+        // Listen for language switch from main.js
+        window.addEventListener('languageChanged', (e) => {
+            if (e.detail && e.detail.lang) {
+                loadContent(e.detail.lang);
+            }
+        });
 
-        // Initial load - Standardized Language Detection
-        function getInitialLanguage() {
+        // Initial language
+        document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const langFromUrl = urlParams.get('lang');
-            if (langFromUrl === 'fr' || langFromUrl === 'en') {
-                return langFromUrl;
-            }
-
-            const preferredLangStorage = localStorage.getItem('preferredHistoryLang');
-            if (preferredLangStorage === 'fr' || preferredLangStorage === 'en') {
-                return preferredLangStorage;
-            }
-
-            const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
-            return (browserLang === 'en' ? 'en' : 'fr');
-        }
-
-        const initialLang = getInitialLanguage();
-        localStorage.setItem('preferredHistoryLang', initialLang); // Save the determined language for next visit
-        loadContent(initialLang);
-
+            const currentLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'fr';
+            loadContent(currentLang);
+        });
 
         // Smooth scroll for TOC links
         document.addEventListener('click', function (event) {
@@ -259,7 +237,6 @@
                 }
             }
         });
-
     </script>
 </body>
 </html>
