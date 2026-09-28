@@ -7,6 +7,14 @@
     <atom:link href="http://localhost:4000/blog_rss.xml" rel="self" type="application/rss+xml"/>
     
     <item>
+      <title>Médaille d&apos;or pour CAMO au Seaway Valley Fall Classic 2026</title>
+      <link>http://localhost:4000/blog.html#seaway-valley-fall-classic-2026</link>
+      <guid isPermaLink="false">seaway-valley-fall-classic-2026</guid>
+      <pubDate>Sat, 26 Sep 2026 20:00:00 -0400</pubDate>
+      <description>Médaille d&apos;or pour CAMO au Seaway Valley Fall Classic 2026</description>
+    </item>
+    
+    <item>
       <title>Le CAMO remporte l&apos;or au Seaway Valley Fall Classic 2025</title>
       <link>http://localhost:4000/blog.html#seaway-valley-fall-classic-2025</link>
       <guid isPermaLink="false">seaway-valley-fall-classic-2025</guid>

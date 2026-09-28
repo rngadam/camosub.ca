@@ -10,7 +10,7 @@ layout: default
             <h1 class="text-3xl md:text-4xl font-bold mb-2 text-blue-900">{{ page.title }}</h1>
             <p class="text-gray-500 text-sm"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time></p>
             {% if page.image %}
-            <img src="{{ page.image }}" alt="{{ page.title }}" class="mt-4 rounded-lg shadow w-full max-h-96 object-cover">
+            <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="mt-4 rounded-lg shadow w-full max-h-96 object-cover">
             {% endif %}
         </header>
         <div class="prose max-w-none text-lg leading-relaxed">

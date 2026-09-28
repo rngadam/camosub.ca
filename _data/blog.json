@@ -4,10 +4,55 @@
       "uwh_nationals_2025": {
         "en": "UWH Nationals 2025",
         "fr": "Nationaux HSA 2025"
+      },
+      "camo": {
+        "en": "CAMO",
+        "fr": "CAMO"
+      },
+      "tournoi": {
+        "en": "Tournament",
+        "fr": "Tournoi"
+      },
+      "cornwall": {
+        "en": "Cornwall",
+        "fr": "Cornwall"
+      },
+      "or": {
+        "en": "Gold",
+        "fr": "Or"
+      },
+      "competition": {
+        "en": "Competition",
+        "fr": "Compétition"
+      },
+      "hockey-sous-marin": {
+        "en": "Underwater Hockey",
+        "fr": "Hockey subaquatique"
       }
     }
   },
   "posts": [
+    {
+      "id": "seaway-valley-fall-classic-2026",
+      "timestamp": "2026-09-26T20:00:00-04:00",
+      "image": null,
+      "tags": [
+        "competition",
+        "hockey-sous-marin",
+        "camo",
+        "tournoi",
+        "cornwall",
+        "or"
+      ],
+      "fr": {
+        "title": "Médaille d'or pour CAMO au Seaway Valley Fall Classic 2026",
+        "content_md": "blog/posts/seaway-valley-fall-classic-2026.fr.md"
+      },
+      "en": {
+        "title": "Gold Medal for CAMO at the 2026 Seaway Valley Fall Classic",
+        "content_md": "blog/posts/seaway-valley-fall-classic-2026.en.md"
+      }
+    },
     {
       "id": "seaway-valley-fall-classic-2025",
       "timestamp": "2025-09-20T21:00:00-04:00",
