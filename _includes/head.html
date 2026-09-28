@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.title %}{{ page.title }}{% if page.title contains 'CAMO' %}{% else %} | {{ site.title }}{% endif %}{% else %}{{ site.title }}{% endif %}</title>
+
+<!-- Tailwind CSS with Typography plugin -->
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+<!-- FontAwesome & Custom CSS -->
+<link rel="stylesheet" href="{{ '/assets/fontawesome/css/font-awesome.min.css' | relative_url }}">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{% if page.custom_css %}
+<link rel="stylesheet" href="{{ page.custom_css | relative_url }}">
+{% endif %}
+
+<!-- Preload critical assets -->
+<link rel="preload" as="image" href="{{ '/images/camo-subaquatique.png' | relative_url }}">
+{% if page.preload_images %}
+  {% for img in page.preload_images %}
+<link rel="preload" as="image" href="{{ img | relative_url }}">
+  {% endfor %}
+{% endif %}
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9V8Q4XJXLD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9V8Q4XJXLD');
+</script>
+
+<!-- Centralized SEO & Social Metadata (Open Graph, Twitter) -->
+{% include head_meta.html %}
+
+<!-- RSS Feeds -->
+<link rel="alternate" type="application/rss+xml" title="Club CAMO - Flux RSS du blog" href="{{ '/blog_rss.xml' | relative_url }}">
+<link rel="alternate" type="application/rss+xml" title="Club CAMO - Flux RSS des événements" href="{{ '/events_rss.xml' | relative_url }}">
+
+<!-- AOS Animation Script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Optional Markdown Parser -->
+{% if page.use_marked %}
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+{% endif %}
