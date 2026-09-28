@@ -40,6 +40,8 @@ def main():
     parser.add_argument("--content-fr-file", default=None, help="Fichier contenant le Markdown en français")
     parser.add_argument("--content-en", default=None, help="Contenu texte Markdown en anglais")
     parser.add_argument("--content-en-file", default=None, help="Fichier contenant le Markdown en anglais")
+    parser.add_argument("--excerpt-fr", default=None, help="Résumé court de l'article en français")
+    parser.add_argument("--excerpt-en", default=None, help="Résumé court de l'article en anglais")
     parser.add_argument("--dry-run", action="store_true", help="Afficher les actions sans écrire les fichiers")
 
     args = parser.parse_args()
@@ -99,6 +101,21 @@ def main():
     else:
         content_en = content_fr
 
+    # Helper for clean excerpt
+    def make_excerpt(md_text: str, default_text: str) -> str:
+        clean = re.sub(r'<[^>]+>', ' ', md_text)
+        clean = re.sub(r'!\[.*?\]\(.*?\)', '', clean)
+        clean = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', clean)
+        clean = re.sub(r'#+\s+.*', '', clean)
+        clean = re.sub(r'[*_`]', '', clean)
+        clean = ' '.join(clean.split())
+        if len(clean) > 220:
+            return clean[:217] + '...'
+        return clean or default_text
+
+    excerpt_fr = args.excerpt_fr.strip() if args.excerpt_fr else make_excerpt(content_fr, title_fr)
+    excerpt_en = args.excerpt_en.strip() if args.excerpt_en else make_excerpt(content_en, title_en)
+
     # 6. Target file paths
     post_filename = f"{date_str}-{slug}.md"
     jekyll_post_path = repo_root / "_posts" / post_filename
@@ -107,36 +124,51 @@ def main():
     data_blog_json_path = repo_root / "_data" / "blog.json"
     root_blog_json_path = repo_root / "blog.json"
 
-    # Jekyll frontmatter
+    # Jekyll frontmatter with bilingual support
     jekyll_lines = [
         "---",
         "layout: post",
         f'title: "{title_fr}"',
+        f'title_fr: "{title_fr}"',
+        f'title_en: "{title_en}"',
         f"date: {jekyll_date}",
-        "lang: fr",
-        f"categories: [{', '.join(categories)}]",
-        f"tags: [{', '.join(tags)}]"
+        "lang: fr"
     ]
+    if tags:
+        jekyll_lines.append(f"tags: [{', '.join(tags)}]")
     if args.image:
         jekyll_lines.append(f"image: {args.image}")
     jekyll_lines.append("---")
     jekyll_lines.append("")
+    jekyll_lines.append('<div class="lang-fr" markdown="1">')
+    jekyll_lines.append("")
     jekyll_lines.append(content_fr)
+    jekyll_lines.append("")
+    jekyll_lines.append("</div>")
+    jekyll_lines.append("")
+    jekyll_lines.append('<div class="lang-en" markdown="1" style="display:none;">')
+    jekyll_lines.append("")
+    jekyll_lines.append(content_en)
+    jekyll_lines.append("")
+    jekyll_lines.append("</div>")
     jekyll_lines.append("")
     jekyll_content = "\n".join(jekyll_lines)
 
     # Blog post entry for blog.json
     new_post_entry = {
         "id": slug,
+        "url": f"/blog/{slug}.html",
         "timestamp": iso_timestamp,
         "image": args.image,
         "tags": tags,
         "fr": {
             "title": title_fr,
+            "excerpt": excerpt_fr,
             "content_md": f"blog/posts/{slug}.fr.md"
         },
         "en": {
             "title": title_en,
+            "excerpt": excerpt_en,
             "content_md": f"blog/posts/{slug}.en.md"
         }
     }

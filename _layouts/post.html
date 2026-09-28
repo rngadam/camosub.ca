@@ -1,25 +1,113 @@
 ---
 layout: default
 ---
-{% include lang_switch.html %}
 {% include header.html %}
 
-<article class="container mx-auto px-4 py-12 max-w-4xl">
-    <div class="bg-white text-gray-800 rounded-xl shadow-xl p-8 md:p-12">
+<article class="container mx-auto px-4 py-8 md:py-12 max-w-4xl" data-aos="fade-up">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-xl p-6 md:p-12 border border-gray-100">
+        <!-- Post Header -->
         <header class="mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2 text-blue-900">{{ page.title }}</h1>
-            <p class="text-gray-500 text-sm"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time></p>
+            <!-- Breadcrumb / Back button -->
+            <div class="mb-6 flex items-center justify-between">
+                <a href="{{ '/blog.html' | relative_url }}" class="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                    <span class="lang-fr">&larr; Tous les articles</span>
+                    <span class="lang-en" style="display:none;">&larr; All blog posts</span>
+                </a>
+                
+                <!-- Share button -->
+                <button type="button" id="share-standalone-btn" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-full transition-colors cursor-pointer border border-blue-100" title="Copier le lien direct / Copy direct link">
+                    <i class="fa fa-share-alt"></i>
+                    <span class="lang-fr">Partager</span>
+                    <span class="lang-en" style="display:none;">Share</span>
+                </button>
+            </div>
+
+            <!-- Title FR & EN -->
+            <div class="lang-fr">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-blue-950 mb-3 tracking-tight">{{ page.title_fr | default: page.title }}</h1>
+            </div>
+            <div class="lang-en" style="display:none;">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-blue-950 mb-3 tracking-tight">{{ page.title_en | default: page.title }}</h1>
+            </div>
+
+            <!-- Meta: Date & Categories/Tags -->
+            <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 mt-3 pt-3 border-t border-gray-100">
+                <span class="inline-flex items-center">
+                    <i class="fa fa-calendar-o mr-1.5 text-blue-500"></i>
+                    <time datetime="{{ page.date | date_to_xmlschema }}">
+                        {{ page.date | date: "%Y-%m-%d" }}
+                    </time>
+                </span>
+                {% if page.tags %}
+                <span class="text-gray-300">•</span>
+                <div class="flex flex-wrap gap-1.5">
+                    {% for tag in page.tags %}
+                    <span class="inline-block bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-0.5 rounded-full border border-blue-100">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
             {% if page.image %}
-            <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="mt-4 rounded-lg shadow w-full max-h-96 object-cover">
+            <div class="mt-6 rounded-xl overflow-hidden shadow-md">
+                <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="w-full max-h-[480px] object-cover">
+            </div>
             {% endif %}
         </header>
-        <div class="prose max-w-none text-lg leading-relaxed">
+
+        <!-- Post Content -->
+        <div class="prose max-w-none text-lg text-gray-700 leading-relaxed">
             {{ content }}
         </div>
-        <footer class="mt-8 pt-4 border-t border-gray-200">
-            <a href="{{ '/blog.html' | relative_url }}" class="text-blue-600 hover:underline font-semibold">&larr; Retour au blog / Back to blog</a>
+
+        <!-- Post Footer -->
+        <footer class="mt-12 pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+            <a href="{{ '/blog.html' | relative_url }}" class="inline-flex items-center text-base font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                <span class="lang-fr">&larr; Retour au blogue</span>
+                <span class="lang-en" style="display:none;">&larr; Back to blog</span>
+            </a>
+            <a href="{{ '/index.html' | relative_url }}" class="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                <span class="lang-fr">Accueil du Club CAMO</span>
+                <span class="lang-en" style="display:none;">CAMO Club Home</span>
+            </a>
         </footer>
     </div>
 </article>
 
 {% include footer.html %}
+
+<!-- Share Toast & Copy Script -->
+<div id="toast-msg" class="toast-msg"></div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const shareBtn = document.getElementById('share-standalone-btn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+            const currentLang = document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
+            const url = window.location.href;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast(currentLang === 'fr' ? 'Lien de l\'article copié !' : 'Article link copied!');
+                }).catch(() => {
+                    showToast(url);
+                });
+            } else {
+                showToast(url);
+            }
+        });
+    }
+
+    function showToast(message) {
+        let toast = document.getElementById('toast-msg');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'toast-msg';
+            toast.className = 'toast-msg';
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = `<i class="fa fa-check-circle text-green-400 text-lg"></i> <span>${message}</span>`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+});
+</script>

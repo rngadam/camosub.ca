@@ -67,7 +67,7 @@
     {
       "id": "rugby-subaquatique-montreal-video",
       "timestamp": "2026-09-28T16:00:00-04:00",
-      "image": null,
+      "image": "https://img.youtube.com/vi/WFOVyY9QiHI/hqdefault.jpg",
       "tags": [
         "rugby-subaquatique",
         "camo",
@@ -76,17 +76,20 @@
       ],
       "fr": {
         "title": "Rugby subaquatique 🤿 | À quoi ressemble le rugby sous l'eau à Montréal",
-        "content_md": "blog/posts/rugby-subaquatique-montreal-video.fr.md"
+        "content_md": "blog/posts/rugby-subaquatique-montreal-video.fr.md",
+        "excerpt": "Vous vous êtes déjà demandé à quoi ressemble réellement le rugby sous l'eau ? Découvrez un aperçu en vidéo des mouvements, techniques et de l'esprit d'équipe de CAMO à Montréal."
       },
       "en": {
         "title": "UNDERWATER RUGBY 🤿 | This Is What Rugby Looks Like Underwater - Montreal",
-        "content_md": "blog/posts/rugby-subaquatique-montreal-video.en.md"
-      }
+        "content_md": "blog/posts/rugby-subaquatique-montreal-video.en.md",
+        "excerpt": "Ever wondered what underwater rugby actually looks like? Watch a video preview of the moves, techniques, and teamwork of CAMO in Montreal."
+      },
+      "url": "/blog/rugby-subaquatique-montreal-video.html"
     },
     {
       "id": "seaway-valley-fall-classic-2026",
       "timestamp": "2026-09-26T20:00:00-04:00",
-      "image": null,
+      "image": "/competitions/seaway-classic-2026/received_1064477036404264-COLLAGE.jpg",
       "tags": [
         "competition",
         "hockey-sous-marin",
@@ -97,17 +100,20 @@
       ],
       "fr": {
         "title": "Médaille d'or pour CAMO au Seaway Valley Fall Classic 2026",
-        "content_md": "blog/posts/seaway-valley-fall-classic-2026.fr.md"
+        "content_md": "blog/posts/seaway-valley-fall-classic-2026.fr.md",
+        "excerpt": "L'équipe CAMO participait à la 15e édition annuelle du Seaway Valley Fall Classic à Cornwall. Après une demi-finale relevée et une prolongation intense en finale, CAMO décroche l'or !"
       },
       "en": {
         "title": "Gold Medal for CAMO at the 2026 Seaway Valley Fall Classic",
-        "content_md": "blog/posts/seaway-valley-fall-classic-2026.en.md"
-      }
+        "content_md": "blog/posts/seaway-valley-fall-classic-2026.en.md",
+        "excerpt": "The CAMO team competed at the 15th annual Seaway Valley Fall Classic in Cornwall. Following a tough semi-final and thrilling overtime final, CAMO clinched the gold medal!"
+      },
+      "url": "/blog/seaway-valley-fall-classic-2026.html"
     },
     {
       "id": "conseil-arrondissement-vsp-septembre-2026",
       "timestamp": "2026-09-01T19:00:00-04:00",
-      "image": null,
+      "image": "https://img.youtube.com/vi/aYvfaArcdis/hqdefault.jpg",
       "tags": [
         "camo",
         "hockey-sous-marin",
@@ -119,12 +125,15 @@
       ],
       "fr": {
         "title": "Intervention de CAMO au conseil d'arrondissement de VSP : l'avenir de nos installations aquatiques",
-        "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.fr.md"
+        "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.fr.md",
+        "excerpt": "Intervention du Club CAMO lors de la période de questions citoyennes du conseil d'arrondissement de Villeray–Saint-Michel–Parc-Extension concernant l'avenir et l'entretien des installations aquatiques."
       },
       "en": {
         "title": "CAMO's Address to the VSP Borough Council: The Future of Our Aquatic Facilities",
-        "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.en.md"
-      }
+        "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.en.md",
+        "excerpt": "CAMO Club's address during the public question period of the VSP Borough Council regarding the future and maintenance of local aquatic facilities."
+      },
+      "url": "/blog/conseil-arrondissement-vsp-septembre-2026.html"
     },
     {
       "id": "tournoi-estival-montreal-2026",
@@ -140,17 +149,20 @@
       ],
       "fr": {
         "title": "Retour sur le tournoi estival de Montréal 2026",
-        "content_md": "blog/posts/tournoi-estival-montreal-2026.fr.md"
+        "content_md": "blog/posts/tournoi-estival-montreal-2026.fr.md",
+        "excerpt": "Retour sur l'édition 2026 du tournoi estival de hockey subaquatique de Montréal au bassin du Parc Jean-Drapeau : une journée exceptionnelle de compétition et de camaraderie."
       },
       "en": {
         "title": "Recap: Montreal Summer Tournament 2026",
-        "content_md": "blog/posts/tournoi-estival-montreal-2026.en.md"
-      }
+        "content_md": "blog/posts/tournoi-estival-montreal-2026.en.md",
+        "excerpt": "Recap of the 2026 Montreal Underwater Hockey Summer Tournament at the Jean-Drapeau Park pool: an exciting day of competition and sportsmanship."
+      },
+      "url": "/blog/tournoi-estival-montreal-2026.html"
     },
     {
       "id": "tournoi-guelph-2026",
       "timestamp": "2026-03-22T20:00:00-04:00",
-      "image": null,
+      "image": "/competitions/guelph-2026/camotarie.png",
       "tags": [
         "competition",
         "hockey-sous-marin",
@@ -161,12 +173,15 @@
       ],
       "fr": {
         "title": "Médaille d'argent pour CAMO au 44ᵉ tournoi annuel de Guelph",
-        "content_md": "blog/posts/tournoi-guelph-2026.fr.md"
+        "content_md": "blog/posts/tournoi-guelph-2026.fr.md",
+        "excerpt": "Très beau parcours de CAMO au 44e tournoi annuel de Guelph : l'équipe remporte la médaille d'argent au terme de matchs enlevants face à de redoutables adversaires."
       },
       "en": {
         "title": "Silver Medal for CAMO at the 44th Annual Guelph Tournament",
-        "content_md": "blog/posts/tournoi-guelph-2026.en.md"
-      }
+        "content_md": "blog/posts/tournoi-guelph-2026.en.md",
+        "excerpt": "Great run for CAMO at the 44th Annual Guelph Tournament: the team brought home the silver medal after exciting matches against top competition."
+      },
+      "url": "/blog/tournoi-guelph-2026.html"
     },
     {
       "id": "seaway-valley-fall-classic-2025",
@@ -174,12 +189,15 @@
       "image": "https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1920w.webp",
       "fr": {
         "title": "Le CAMO remporte l'or au Seaway Valley Fall Classic 2025",
-        "content_md": "blog/posts/seaway-valley-fall-classic-2025.fr.md"
+        "content_md": "blog/posts/seaway-valley-fall-classic-2025.fr.md",
+        "excerpt": "Le CAMO s'illustre en remportant la médaille d'or à la 14e édition du tournoi Seaway Valley Fall Classic à Cornwall."
       },
       "en": {
         "title": "CAMO wins gold at the 2025 Seaway Valley Fall Classic",
-        "content_md": "blog/posts/seaway-valley-fall-classic-2025.en.md"
-      }
+        "content_md": "blog/posts/seaway-valley-fall-classic-2025.en.md",
+        "excerpt": "CAMO shines by capturing the gold medal at the 14th edition of the Seaway Valley Fall Classic in Cornwall."
+      },
+      "url": "/blog/seaway-valley-fall-classic-2025.html"
     },
     {
       "id": "montreal-summer-tournament-2025",
@@ -187,12 +205,15 @@
       "image": "https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/swim-team-trophy-winners-poolside-1920w.webp",
       "fr": {
         "title": "Demi-finale et finale du tournoi d'été de Montréal",
-        "content_md": "blog/posts/montreal-summer-tournament-2025.fr.md"
+        "content_md": "blog/posts/montreal-summer-tournament-2025.fr.md",
+        "excerpt": "Demi-finale intense 5-4 contre Sherbrooke et grande finale contre Cornwall au tournoi d'été de hockey subaquatique de Montréal."
       },
       "en": {
         "title": "Montreal Summer Tournament Semi-Final and Final",
-        "content_md": "blog/posts/montreal-summer-tournament-2025.en.md"
-      }
+        "content_md": "blog/posts/montreal-summer-tournament-2025.en.md",
+        "excerpt": "Thrilling 5-4 semi-final against Sherbrooke and grand final against Cornwall at the Montreal Underwater Hockey Summer Tournament."
+      },
+      "url": "/blog/montreal-summer-tournament-2025.html"
     },
     {
       "id": "tournoi-estival-2025",
@@ -200,12 +221,17 @@
       "image": "https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/olympic-size-pool-summer-day-view-1920w.jpg",
       "fr": {
         "title": "Tournoi Estival de Montréal - C'est aujourd'hui!",
-        "content": "Amateurs de sports insolites et de sensations fortes, à vos maillots! Le très attendu Tournoi Estival de Hockey Subaquatique de Montréal se déroule **aujourd'hui même**. La compétition est féroce et le spectacle, inoubliable.\n\n### Une journée de compétition intense\n\nDès **12h30**, les équipes s'affrontent dans les profondeurs de la magnifique **piscine du Parc Jean-Drapeau**. Que vous soyez un joueur aguerri ou simplement curieux de découvrir ce sport fascinant, le tournoi promet des moments de pure adrénaline jusqu'à la grande finale à **18h45**.\n\nLe hockey subaquatique est un sport complet qui allie natation, apnée et stratégie d'équipe. C'est une occasion unique de voir des athlètes repousser leurs limites dans un environnement hors du commun.\n\n### Résultats des matchs de classement\n\nUne compétition difficile pour CAMO. Voici les résultats des matchs de classement :\n\n- **CAMO 4-3 Gatineau/Ottawa**\n- **CAMO 3-4 Sherbrooke**\n- **CAMO 0-10 Cornwall**\n\nLes demi-finales et la finale sont à venir!\n\n### Ne manquez rien de l'action!\n\nPour connaître tous les détails des matchs, les équipes participantes et les classements en direct, consultez l'horaire officiel du tournoi :\n\n[Lien vers l'horaire](https://docs.google.com/spreadsheets/d/1xhwARu0RJzODM13oIlTYRmy52nGoWmCt/edit?usp=drivesdk&ouid=112734382006949623750&rtpof=true&sd=true)\n\nEt pour rester connecté, suivre les dernières nouvelles et partager votre enthousiasme, rejoignez l'événement sur Facebook :\n\n[Lien vers la page Facebook](https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/)\n\n### Suivez la compétition!\n\nL'action se déroulera à huis clos, mais vous pouvez suivre les résultats en direct et encourager vos équipes préférées via nos réseaux sociaux et le lien de l'horaire."
+        "content": "Amateurs de sports insolites et de sensations fortes, à vos maillots! Le très attendu Tournoi Estival de Hockey Subaquatique de Montréal se déroule **aujourd'hui même**. La compétition est féroce et le spectacle, inoubliable.\n\n### Une journée de compétition intense\n\nDès **12h30**, les équipes s'affrontent dans les profondeurs de la magnifique **piscine du Parc Jean-Drapeau**. Que vous soyez un joueur aguerri ou simplement curieux de découvrir ce sport fascinant, le tournoi promet des moments de pure adrénaline jusqu'à la grande finale à **18h45**.\n\nLe hockey subaquatique est un sport complet qui allie natation, apnée et stratégie d'équipe. C'est une occasion unique de voir des athlètes repousser leurs limites dans un environnement hors du commun.\n\n### Résultats des matchs de classement\n\nUne compétition difficile pour CAMO. Voici les résultats des matchs de classement :\n\n- **CAMO 4-3 Gatineau/Ottawa**\n- **CAMO 3-4 Sherbrooke**\n- **CAMO 0-10 Cornwall**\n\nLes demi-finales et la finale sont à venir!\n\n### Ne manquez rien de l'action!\n\nPour connaître tous les détails des matchs, les équipes participantes et les classements en direct, consultez l'horaire officiel du tournoi :\n\n[Lien vers l'horaire](https://docs.google.com/spreadsheets/d/1xhwARu0RJzODM13oIlTYRmy52nGoWmCt/edit?usp=drivesdk&ouid=112734382006949623750&rtpof=true&sd=true)\n\nEt pour rester connecté, suivre les dernières nouvelles et partager votre enthousiasme, rejoignez l'événement sur Facebook :\n\n[Lien vers la page Facebook](https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/)\n\n### Suivez la compétition!\n\nL'action se déroulera à huis clos, mais vous pouvez suivre les résultats en direct et encourager vos équipes préférées via nos réseaux sociaux et le lien de l'horaire.",
+        "excerpt": "Coup d'envoi du tournoi estival de hockey subaquatique à la piscine du Parc Jean-Drapeau. Horaire et résultats des matchs de classement.",
+        "content_md": "blog/posts/tournoi-estival-2025.fr.md"
       },
       "en": {
         "title": "Montreal Summer Tournament - It's today!",
-        "content": "Fans of unusual sports and thrills, get your swimsuits ready! The long-awaited Montreal Underwater Hockey Summer Tournament is happening **today**. The competition is fierce and the show, unforgettable.\n\n### A day of intense competition\n\nStarting at **12:30 PM**, teams are competing in the depths of the magnificent **Parc Jean-Drapeau swimming pool**. Whether you're a seasoned player or simply curious to discover this fascinating sport, the tournament promises moments of pure adrenaline until the grand final at **6:45 PM**.\n\nUnderwater hockey is a complete sport that combines swimming, freediving, and team strategy. It's a unique opportunity to see athletes push their limits in an extraordinary environment.\n\n### Ranking Matches Results\n\nA tough competition for CAMO. Here are the results of the ranking matches:\n\n- **CAMO 4-3 Gatineau/Ottawa**\n- **CAMO 3-4 Sherbrooke**\n- **CAMO 0-10 Cornwall**\n\nThe semi-finals and the final are yet to come!\n\n### Don't miss any of the action!\n\nTo get all the details about the games, participating teams, and live rankings, check out the official tournament schedule:\n\n[Schedule Link](https://docs.google.com/spreadsheets/d/1xhwARu0RJzODM13oIlTYRmy52nGoWmCt/edit?usp=drivesdk&ouid=112734382006949623750&rtpof=true&sd=true)\n\nAnd to stay connected, follow the latest news, and share your excitement, join the event on Facebook:\n\n[Facebook Page Link](https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/)\n\n### Follow the competition!\n\nThe action is happening behind closed doors, but you can follow the live results and support your favorite teams through our social media channels and the schedule link."
-      }
+        "content": "Fans of unusual sports and thrills, get your swimsuits ready! The long-awaited Montreal Underwater Hockey Summer Tournament is happening **today**. The competition is fierce and the show, unforgettable.\n\n### A day of intense competition\n\nStarting at **12:30 PM**, teams are competing in the depths of the magnificent **Parc Jean-Drapeau swimming pool**. Whether you're a seasoned player or simply curious to discover this fascinating sport, the tournament promises moments of pure adrenaline until the grand final at **6:45 PM**.\n\nUnderwater hockey is a complete sport that combines swimming, freediving, and team strategy. It's a unique opportunity to see athletes push their limits in an extraordinary environment.\n\n### Ranking Matches Results\n\nA tough competition for CAMO. Here are the results of the ranking matches:\n\n- **CAMO 4-3 Gatineau/Ottawa**\n- **CAMO 3-4 Sherbrooke**\n- **CAMO 0-10 Cornwall**\n\nThe semi-finals and the final are yet to come!\n\n### Don't miss any of the action!\n\nTo get all the details about the games, participating teams, and live rankings, check out the official tournament schedule:\n\n[Schedule Link](https://docs.google.com/spreadsheets/d/1xhwARu0RJzODM13oIlTYRmy52nGoWmCt/edit?usp=drivesdk&ouid=112734382006949623750&rtpof=true&sd=true)\n\nAnd to stay connected, follow the latest news, and share your excitement, join the event on Facebook:\n\n[Facebook Page Link](https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/)\n\n### Follow the competition!\n\nThe action is happening behind closed doors, but you can follow the live results and support your favorite teams through our social media channels and the schedule link.",
+        "excerpt": "Kickoff of the Montreal Underwater Hockey Summer Tournament at Parc Jean-Drapeau. Schedule and ranking match results.",
+        "content_md": "blog/posts/tournoi-estival-2025.en.md"
+      },
+      "url": "/blog/tournoi-estival-2025.html"
     },
     {
       "id": "nationaux-hsa-2025",
@@ -219,12 +245,15 @@
       ],
       "fr": {
         "title": "Championnat Canadien de Hockey Subaquatique 2025 : Récit complet et médaille d'argent pour CAMO",
-        "content_md": "blog/posts/nationaux-hsa-2025.fr.md"
+        "content_md": "blog/posts/nationaux-hsa-2025.fr.md",
+        "excerpt": "Récit complet du Championnat Canadien de Hockey Subaquatique 2025 et parcours remarquable de CAMO vers la médaille d'argent."
       },
       "en": {
         "title": "2025 Canadian Underwater Hockey Nationals: Full Recap and Silver Medal for CAMO",
-        "content_md": "blog/posts/nationaux-hsa-2025.en.md"
-      }
+        "content_md": "blog/posts/nationaux-hsa-2025.en.md",
+        "excerpt": "Complete recap of the 2025 Canadian Underwater Hockey Championships and CAMO's remarkable run to the silver medal."
+      },
+      "url": "/blog/nationaux-hsa-2025.html"
     }
   ]
 }

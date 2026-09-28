@@ -1,9 +1,8 @@
 ---
-title: "Blog - Club CAMO Subaquatique"
-description: "Blog du Club CAMO Subaquatique - nouvelles, mises à jour et articles sur le hockey et le rugby subaquatique à Montréal."
-keywords: "Blog, Club CAMO Subaquatique, actualités, hockey subaquatique, rugby subaquatique, Montréal"
+title: "Blogue - Club CAMO Subaquatique | Underwater Sports"
+description: "Blogue officiel du Club CAMO Subaquatique - nouvelles, résultats de tournois et actualités sur le hockey et le rugby subaquatiques à Montréal."
+keywords: "Blog, Club CAMO Subaquatique, actualités, hockey subaquatique, rugby subaquatique, Montréal, tournois, résultats"
 canonical: "https://camosub.ca/blog.html"
-use_marked: true
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,90 +12,15 @@ use_marked: true
         body {
             font-family: 'Inter', sans-serif;
         }
-        .lang-en-post, .lang-en-header-footer { /* Initially hide English parts for posts and common sections */
-            display: none;
+        .card-highlight {
+            outline: 3px solid #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.45) !important;
+            animation: pulseCard 1.5s ease-in-out;
         }
-        .prose h1, .prose h2, .prose h3, .prose h4 {
-            color: #1e3a8a;
-            font-weight: 700;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .prose h1 {
-            font-size: 1.875rem;
-            line-height: 2.25rem;
-        }
-        .prose h2 {
-            font-size: 1.5rem;
-            line-height: 2rem;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 0.25rem;
-        }
-        .prose h3 {
-            font-size: 1.25rem;
-            line-height: 1.75rem;
-        }
-        .prose h4 {
-            font-size: 1.125rem;
-            line-height: 1.5rem;
-        }
-        .prose p {
-            margin-top: 0.75rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.75;
-        }
-        .prose ul {
-            list-style-type: disc;
-            margin-top: 0.75rem;
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-        }
-        .prose ol {
-            list-style-type: decimal;
-            margin-top: 0.75rem;
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-        }
-        .prose li {
-            margin-top: 0.25rem;
-            margin-bottom: 0.25rem;
-        }
-        .prose strong {
-            font-weight: 700;
-            color: #111827;
-        }
-        .prose blockquote {
-            border-left: 4px solid #3b82f6;
-            padding-left: 1rem;
-            font-style: italic;
-            color: #4b5563;
-            margin: 1rem 0;
-        }
-        .prose a {
-            color: #2563eb; /* Tailwind blue-600 */
-            text-decoration: underline;
-        }
-        .prose a:hover {
-            color: #1d4ed8; /* Tailwind blue-700 */
-        }
-        .slideshow-container {
-            position: relative;
-            margin-bottom: 1rem;
-            max-width: 100%;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            border-radius: 0.375rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-        }
-        .slideshow-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+        @keyframes pulseCard {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -105,21 +29,28 @@ use_marked: true
 
     {% include navbar.html %}
 
-    <header class="bg-[#386DC0] text-white py-10 text-center shadow-lg">
+    <header class="bg-[#386DC0] text-white py-10 md:py-12 text-center shadow-lg">
         <a href="index.html" class="inline-block group">
             <img src="images/camo-subaquatique.png" alt="Logo du Club CAMO Subaquatique à Montréal" class="mx-auto h-24 md:h-32 transition-transform group-hover:scale-105">
         </a>
-        <div class="lang-fr-header-footer">
-            <h1 class="text-3xl md:text-4xl font-extrabold mt-3">Blogue du Club CAMO</h1>
-            <p class="mt-1 text-md md:text-lg italic text-blue-100">Nouvelles, résultats et mises à jour de votre club de sports subaquatiques</p>
+        <div class="lang-fr">
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-3 tracking-tight">Blogue du Club CAMO</h1>
+            <p class="mt-2 text-md md:text-lg italic text-blue-100 max-w-2xl mx-auto px-4">Nouvelles, résultats de tournois et récits de nos équipes de sports subaquatiques</p>
         </div>
-        <div class="lang-en-header-footer" style="display:none;">
-            <h1 class="text-3xl md:text-4xl font-extrabold mt-3">Club CAMO Blog</h1>
-            <p class="mt-1 text-md md:text-lg italic text-blue-100">News, tournament results, and updates from your underwater sports club</p>
+        <div class="lang-en" style="display:none;">
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-3 tracking-tight">Club CAMO Blog</h1>
+            <p class="mt-2 text-md md:text-lg italic text-blue-100 max-w-2xl mx-auto px-4">News, tournament results, and stories from our underwater sports teams</p>
         </div>
     </header>
 
-    <main id="blog-posts-container" class="container mx-auto px-4 py-8 max-w-4xl"></main>
+    <main class="container mx-auto px-4 py-10 max-w-4xl">
+        <div id="blog-posts-container" class="space-y-8">
+            <div class="text-center py-12">
+                <i class="fa fa-spinner fa-spin text-3xl text-blue-200"></i>
+                <p class="mt-3 text-blue-100 text-sm">Chargement des articles...</p>
+            </div>
+        </div>
+    </main>
 
     {% include footer.html %}
 
@@ -128,11 +59,10 @@ use_marked: true
 
     <script src="assets/js/main.js"></script>
     <script>
-        const yFr = document.getElementById('footer-year-fr'); if (yFr) yFr.textContent = new Date().getFullYear();
-        const yEn = document.getElementById('footer-year-en'); if (yEn) yEn.textContent = new Date().getFullYear();
-
-        // --- Toast Alert Helper ---
+        const postsContainer = document.getElementById('blog-posts-container');
+        let blogData = null;
         let toastTimeout = null;
+
         function showToast(message) {
             let toast = document.getElementById('toast-msg');
             if (!toast) {
@@ -149,393 +79,199 @@ use_marked: true
             }, 3000);
         }
 
-        // --- Highlight and Smooth Scroll to Post ---
-        function highlightAndScrollPost(postId) {
-            const target = document.getElementById(postId);
-            if (!target) return;
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            target.classList.remove('post-highlight');
-            void target.offsetWidth; // trigger reflow
-            target.classList.add('post-highlight');
-        }
-
-        // --- Copy Link & Highlight Handler ---
-        function copyPostLinkAndHighlight(postId) {
+        function copyLink(url) {
             const currentLang = document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
-            const url = new URL(window.location.href);
-            url.hash = postId;
-            url.searchParams.set('lang', currentLang);
-            window.history.pushState(null, null, url.toString());
-
-            const successMsg = currentLang === 'fr' 
-                ? 'Lien direct copié dans le presse-papier !' 
-                : 'Direct link copied to clipboard!';
-
+            const fullUrl = url.startsWith('http') ? url : (window.location.origin + url);
+            const msg = currentLang === 'fr' ? 'Lien de l\'article copié dans le presse-papier !' : 'Article link copied to clipboard!';
+            
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(url.href).then(() => {
-                    showToast(successMsg);
+                navigator.clipboard.writeText(fullUrl).then(() => {
+                    showToast(msg);
                 }).catch(() => {
-                    showToast(currentLang === 'fr' ? 'Lien sélectionné !' : 'Link selected!');
+                    showToast(fullUrl);
                 });
             } else {
-                showToast(currentLang === 'fr' ? 'Lien sélectionné !' : 'Link selected!');
+                showToast(fullUrl);
             }
-
-            highlightAndScrollPost(postId);
         }
-
-        // --- Blog Data & Rendering ---
-        const postsContainer = document.getElementById('blog-posts-container');
-        let blogData = null;
 
         function renderPosts(data) {
             postsContainer.innerHTML = '';
-            const postsToRender = data.posts;
-            const tagLabels = data.config && data.config.tag_labels ? data.config.tag_labels : {};
-            const currentLang = document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
+            const postsToRender = data.posts || [];
+            const tagLabels = (data.config && data.config.tag_labels) ? data.config.tag_labels : {};
 
-            if (!postsToRender || postsToRender.length === 0) {
-                const noPostsMessage = document.createElement('p');
-                noPostsMessage.className = 'text-center text-gray-300 py-12 text-lg';
-                noPostsMessage.textContent = currentLang === 'fr' ? 'Aucun article de blogue pour le moment.' : 'No blog posts yet.';
-                postsContainer.appendChild(noPostsMessage);
+            if (postsToRender.length === 0) {
+                postsContainer.innerHTML = `
+                    <div class="bg-white text-gray-700 p-10 rounded-2xl text-center shadow-lg">
+                        <p class="lang-fr text-lg">Aucun article de blogue pour le moment.</p>
+                        <p class="lang-en text-lg" style="display:none;">No blog posts available at the moment.</p>
+                    </div>
+                `;
                 return;
             }
 
+            // Tri chronologique décroissant
             postsToRender.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
             postsToRender.forEach(post => {
-                const article = document.createElement('article');
-                article.className = 'blog-post bg-white text-gray-800 p-6 md:p-8 rounded-2xl shadow-xl mb-10 transition-all duration-300 border border-gray-100';
-                article.id = post.id;
+                const postUrl = post.url || `/blog/${post.id}.html`;
+                const frData = post.fr || {};
+                const enData = post.en || {};
 
-                if (post.sport_logo) {
-                    const logoImg = document.createElement('img');
-                    logoImg.src = post.sport_logo;
-                    let logoAltText = "Sport Logo";
-                    if (post.fr && post.fr.title) logoAltText = post.fr.title + " Logo";
-                    else if (post.en && post.en.title) logoAltText = post.en.title + " Logo";
-                    logoImg.alt = logoAltText;
-                    logoImg.className = 'w-64 md:w-80 mb-4 mx-auto rounded-md shadow-sm';
-                    article.appendChild(logoImg);
-                }
+                const titleFr = frData.title || 'Titre non disponible';
+                const titleEn = enData.title || titleFr;
 
-                // ==================== FRENCH CONTENT ====================
-                const frDiv = document.createElement('div');
-                frDiv.className = 'lang-fr-content';
-                const frPostData = post.fr || {};
-                const frTitleText = frPostData.title || 'Titre non disponible';
+                const excerptFr = frData.excerpt || frData.content || '';
+                const excerptEn = enData.excerpt || enData.content || excerptFr;
 
-                // Clickable Title with link
-                const frTitleEl = document.createElement('h2');
-                frTitleEl.className = 'text-2xl md:text-3xl font-bold mb-3 text-gray-900 text-center';
-
-                const frTitleLink = document.createElement('a');
-                frTitleLink.href = `#${post.id}`;
-                frTitleLink.className = 'post-anchor-link group inline-flex items-center justify-center gap-2 hover:text-blue-700 transition-colors cursor-pointer text-inherit';
-                frTitleLink.title = 'Lien direct vers cet article (cliquez pour copier)';
-                frTitleLink.dataset.postId = post.id;
-
-                const frTitleSpan = document.createElement('span');
-                frTitleSpan.textContent = frTitleText;
-                frTitleLink.appendChild(frTitleSpan);
-
-                const frLinkIcon = document.createElement('i');
-                frLinkIcon.className = 'fa fa-link text-gray-400 group-hover:text-blue-600 text-lg opacity-60 group-hover:opacity-100 transition-all';
-                frTitleLink.appendChild(frLinkIcon);
-                frTitleLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    copyPostLinkAndHighlight(post.id);
-                });
-
-                frTitleEl.appendChild(frTitleLink);
-                frDiv.appendChild(frTitleEl);
-
-                // Meta row: Date + Direct Share button
-                const frMetaRow = document.createElement('div');
-                frMetaRow.className = 'flex flex-wrap items-center justify-center gap-3 text-sm text-gray-500 mb-6';
-
-                let formattedDateFr = post.timestamp;
+                let dateFormattedFr = post.timestamp;
+                let dateFormattedEn = post.timestamp;
                 try {
-                    formattedDateFr = new Date(post.timestamp).toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                    const d = new Date(post.timestamp);
+                    dateFormattedFr = d.toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+                    dateFormattedEn = d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
                 } catch (e) {}
 
-                const dateSpanFr = document.createElement('span');
-                dateSpanFr.innerHTML = `<i class="fa fa-calendar-o mr-1"></i> ${formattedDateFr}`;
-                frMetaRow.appendChild(dateSpanFr);
+                const card = document.createElement('article');
+                card.id = post.id;
+                card.className = 'blog-card bg-white text-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col md:flex-row group';
 
-                const shareBtnFr = document.createElement('button');
-                shareBtnFr.type = 'button';
-                shareBtnFr.className = 'share-btn inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full transition-colors cursor-pointer';
-                shareBtnFr.innerHTML = '<i class="fa fa-share-alt"></i> Partager le lien';
-                shareBtnFr.title = 'Copier le lien direct vers cet article';
-                shareBtnFr.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    copyPostLinkAndHighlight(post.id);
-                });
-                frMetaRow.appendChild(shareBtnFr);
-                frDiv.appendChild(frMetaRow);
-
-                if (post.images && Array.isArray(post.images) && post.images.length > 0) {
-                    const slideshowContainerFr = document.createElement('div');
-                    slideshowContainerFr.className = 'slideshow-container mb-6';
-                    post.images.forEach(imgPath => {
-                        const img = document.createElement('img');
-                        img.src = imgPath;
-                        img.alt = frPostData.title ? `Image pour ${frPostData.title}` : 'Image';
-                        slideshowContainerFr.appendChild(img);
-                    });
-                    frDiv.appendChild(slideshowContainerFr);
-                } else if (post.image) {
-                    const imgElFr = document.createElement('img');
-                    imgElFr.src = post.image;
-                    imgElFr.alt = frPostData.title || 'Image';
-                    imgElFr.className = 'mb-6 max-w-full h-auto rounded-xl shadow mx-auto';
-                    frDiv.appendChild(imgElFr);
+                // Image Banner
+                let imageHtml = '';
+                if (post.image) {
+                    imageHtml = `
+                        <div class="md:w-5/12 bg-gray-100 overflow-hidden relative min-h-[220px] md:min-h-full">
+                            <a href="${postUrl}" class="block w-full h-full" aria-label="${titleFr}">
+                                <img src="${post.image}" alt="${titleFr}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            </a>
+                        </div>
+                    `;
                 }
 
-                const frContentEl = document.createElement('div');
-                frContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
-                frDiv.appendChild(frContentEl);
-
-                if (frPostData.content_md && typeof frPostData.content_md === 'string' && frPostData.content_md.trim() !== '') {
-                    frContentEl.innerHTML = '<p class="text-gray-400 italic">Chargement du contenu...</p>';
-                    fetch(frPostData.content_md)
-                        .then(response => {
-                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                            return response.text();
-                        })
-                        .then(markdownText => {
-                            frContentEl.innerHTML = marked.parse(markdownText.replace(/\\n/g, '\n'));
-                        })
-                        .catch(error => {
-                            console.error("Erreur Markdown FR:", error);
-                            const fallback = frPostData.content || 'Contenu non disponible.';
-                            frContentEl.innerHTML = marked.parse(fallback.replace(/\\n/g, '\n'));
-                        });
-                } else {
-                    const directContent = frPostData.content || 'Contenu non disponible';
-                    frContentEl.innerHTML = marked.parse(directContent.replace(/\\n/g, '\n'));
-                }
-                article.appendChild(frDiv);
-
-                // ==================== ENGLISH CONTENT ====================
-                const enDiv = document.createElement('div');
-                enDiv.className = 'lang-en-content';
-                const enPostData = post.en || {};
-                const enTitleText = enPostData.title || 'Title not available';
-
-                // Clickable Title with link
-                const enTitleEl = document.createElement('h2');
-                enTitleEl.className = 'text-2xl md:text-3xl font-bold mb-3 text-gray-900 text-center';
-
-                const enTitleLink = document.createElement('a');
-                enTitleLink.href = `#${post.id}`;
-                enTitleLink.className = 'post-anchor-link group inline-flex items-center justify-center gap-2 hover:text-blue-700 transition-colors cursor-pointer text-inherit';
-                enTitleLink.title = 'Direct link to this article (click to copy)';
-                enTitleLink.dataset.postId = post.id;
-
-                const enTitleSpan = document.createElement('span');
-                enTitleSpan.textContent = enTitleText;
-                enTitleLink.appendChild(enTitleSpan);
-
-                const enLinkIcon = document.createElement('i');
-                enLinkIcon.className = 'fa fa-link text-gray-400 group-hover:text-blue-600 text-lg opacity-60 group-hover:opacity-100 transition-all';
-                enTitleLink.appendChild(enLinkIcon);
-                enTitleLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    copyPostLinkAndHighlight(post.id);
-                });
-
-                enTitleEl.appendChild(enTitleLink);
-                enDiv.appendChild(enTitleEl);
-
-                // Meta row: Date + Direct Share button
-                const enMetaRow = document.createElement('div');
-                enMetaRow.className = 'flex flex-wrap items-center justify-center gap-3 text-sm text-gray-500 mb-6';
-
-                let formattedDateEn = post.timestamp;
-                try {
-                    formattedDateEn = new Date(post.timestamp).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-                } catch (e) {}
-
-                const dateSpanEn = document.createElement('span');
-                dateSpanEn.innerHTML = `<i class="fa fa-calendar-o mr-1"></i> ${formattedDateEn}`;
-                enMetaRow.appendChild(dateSpanEn);
-
-                const shareBtnEn = document.createElement('button');
-                shareBtnEn.type = 'button';
-                shareBtnEn.className = 'share-btn inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full transition-colors cursor-pointer';
-                shareBtnEn.innerHTML = '<i class="fa fa-share-alt"></i> Share Link';
-                shareBtnEn.title = 'Copy direct link to this post';
-                shareBtnEn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    copyPostLinkAndHighlight(post.id);
-                });
-                enMetaRow.appendChild(shareBtnEn);
-                enDiv.appendChild(enMetaRow);
-
-                if (post.images && Array.isArray(post.images) && post.images.length > 0) {
-                    const slideshowContainerEn = document.createElement('div');
-                    slideshowContainerEn.className = 'slideshow-container mb-6';
-                    post.images.forEach(imgPath => {
-                        const img = document.createElement('img');
-                        img.src = imgPath;
-                        img.alt = enPostData.title ? `Image for ${enPostData.title}` : 'Image';
-                        slideshowContainerEn.appendChild(img);
-                    });
-                    enDiv.appendChild(slideshowContainerEn);
-                } else if (post.image) {
-                    const imgElEn = document.createElement('img');
-                    imgElEn.src = post.image;
-                    imgElEn.alt = enPostData.title || 'Image';
-                    imgElEn.className = 'mb-6 max-w-full h-auto rounded-xl shadow mx-auto';
-                    enDiv.appendChild(imgElEn);
-                }
-
-                const enContentEl = document.createElement('div');
-                enContentEl.className = 'prose max-w-none text-gray-700 leading-relaxed';
-                enDiv.appendChild(enContentEl);
-
-                if (enPostData.content_md && typeof enPostData.content_md === 'string' && enPostData.content_md.trim() !== '') {
-                    enContentEl.innerHTML = '<p class="text-gray-400 italic">Loading content...</p>';
-                    fetch(enPostData.content_md)
-                        .then(response => {
-                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                            return response.text();
-                        })
-                        .then(markdownText => {
-                            enContentEl.innerHTML = marked.parse(markdownText.replace(/\\n/g, '\n'));
-                        })
-                        .catch(error => {
-                            console.error("Error Markdown EN:", error);
-                            const fallback = enPostData.content || 'Content not available.';
-                            enContentEl.innerHTML = marked.parse(fallback.replace(/\\n/g, '\n'));
-                        });
-                } else {
-                    const directContent = enPostData.content || 'Content not available';
-                    enContentEl.innerHTML = marked.parse(directContent.replace(/\\n/g, '\n'));
-                }
-                article.appendChild(enDiv);
-
-                // ==================== TAGS ====================
+                // Tags HTML
+                let tagsHtmlFr = '';
+                let tagsHtmlEn = '';
                 if (post.tags && Array.isArray(post.tags) && post.tags.length > 0) {
-                    const tagsContainer = document.createElement('div');
-                    tagsContainer.className = 'mt-6 pt-4 border-t border-gray-100 text-center';
-                    post.tags.forEach(tagId => {
-                        if (tagLabels[tagId]) {
-                            const tagSpanFr = document.createElement('span');
-                            tagSpanFr.textContent = tagLabels[tagId]['fr'] || tagLabels[tagId]['en'] || tagId;
-                            tagSpanFr.className = 'lang-fr-tag inline-block bg-blue-50 text-blue-800 text-xs font-semibold mr-2 my-1 px-3 py-1 rounded-full border border-blue-100';
-                            tagsContainer.appendChild(tagSpanFr);
+                    const tagSpansFr = post.tags.map(tagId => {
+                        const label = tagLabels[tagId] ? (tagLabels[tagId]['fr'] || tagLabels[tagId]['en'] || tagId) : tagId;
+                        return `<span class="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-100">${label}</span>`;
+                    }).join(' ');
 
-                            const tagSpanEn = document.createElement('span');
-                            tagSpanEn.textContent = tagLabels[tagId]['en'] || tagLabels[tagId]['fr'] || tagId;
-                            tagSpanEn.className = 'lang-en-tag inline-block bg-blue-50 text-blue-800 text-xs font-semibold mr-2 my-1 px-3 py-1 rounded-full border border-blue-100';
-                            tagsContainer.appendChild(tagSpanEn);
-                        } else {
-                            const fallbackTagSpan = document.createElement('span');
-                            fallbackTagSpan.textContent = tagId;
-                            fallbackTagSpan.className = 'inline-block bg-gray-100 text-gray-700 text-xs font-medium mr-2 my-1 px-3 py-1 rounded-full';
-                            tagsContainer.appendChild(fallbackTagSpan);
-                        }
-                    });
-                    article.appendChild(tagsContainer);
+                    const tagSpansEn = post.tags.map(tagId => {
+                        const label = tagLabels[tagId] ? (tagLabels[tagId]['en'] || tagLabels[tagId]['fr'] || tagId) : tagId;
+                        return `<span class="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-100">${label}</span>`;
+                    }).join(' ');
+
+                    tagsHtmlFr = `<div class="flex flex-wrap gap-1.5 my-2">${tagSpansFr}</div>`;
+                    tagsHtmlEn = `<div class="flex flex-wrap gap-1.5 my-2">${tagSpansEn}</div>`;
                 }
 
-                postsContainer.appendChild(article);
+                card.innerHTML = `
+                    ${imageHtml}
+                    <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <!-- Date & Tags -->
+                            <div class="flex items-center text-xs font-medium text-gray-500 mb-2">
+                                <i class="fa fa-calendar-o mr-1.5 text-blue-500"></i>
+                                <time datetime="${post.timestamp}" class="lang-fr">${dateFormattedFr}</time>
+                                <time datetime="${post.timestamp}" class="lang-en" style="display:none;">${dateFormattedEn}</time>
+                            </div>
+
+                            <div class="lang-fr">${tagsHtmlFr}</div>
+                            <div class="lang-en" style="display:none;">${tagsHtmlEn}</div>
+
+                            <!-- Titles -->
+                            <h2 class="text-xl md:text-2xl font-bold text-gray-900 mt-2 mb-3 leading-snug group-hover:text-blue-700 transition-colors">
+                                <a href="${postUrl}" class="lang-fr block">${titleFr}</a>
+                                <a href="${postUrl}" class="lang-en block" style="display:none;">${titleEn}</a>
+                            </h2>
+
+                            <!-- Excerpts -->
+                            <p class="lang-fr text-gray-600 text-base leading-relaxed mb-6">${excerptFr}</p>
+                            <p class="lang-en text-gray-600 text-base leading-relaxed mb-6" style="display:none;">${excerptEn}</p>
+                        </div>
+
+                        <!-- Card Footer Action Buttons -->
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+                            <a href="${postUrl}" class="inline-flex items-center gap-2 font-bold text-sm text-blue-600 hover:text-blue-800 transition-colors group-hover:translate-x-1 duration-200">
+                                <span class="lang-fr">Lire l'article complet</span>
+                                <span class="lang-en" style="display:none;">Read full article</span>
+                                <i class="fa fa-arrow-right text-xs"></i>
+                            </a>
+
+                            <button type="button" class="share-btn inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-700 bg-gray-50 hover:bg-blue-50 px-3 py-1.5 rounded-full transition-colors cursor-pointer border border-gray-200 hover:border-blue-200" title="Partager / Share" onclick="copyLink('${postUrl}')">
+                                <i class="fa fa-share-alt"></i>
+                                <span class="lang-fr">Partager</span>
+                                <span class="lang-en" style="display:none;">Share</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                postsContainer.appendChild(card);
             });
 
-            // Wire click events on post title links
-            document.querySelectorAll('.post-anchor-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const postId = link.dataset.postId;
-                    if (postId) {
-                        copyPostLinkAndHighlight(postId);
-                    }
-                });
-            });
-
-            // Sync language display with current setting
+            // Resynchroniser l'affichage de la langue active
             const activeLang = document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
             syncLanguageVisibility(activeLang);
 
-            // Check URL hash or post parameter and auto-scroll
-            scrollToTargetPostFromUrl();
+            // Gérer le défilement si ancre dans l'URL
+            scrollToTargetCardFromUrl();
         }
 
         function syncLanguageVisibility(lang) {
             const isFr = lang === 'fr';
-            document.querySelectorAll('.lang-fr-content, .lang-fr-tag, .lang-fr-header-footer').forEach(el => {
-                el.style.display = isFr ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none';
+            document.querySelectorAll('.lang-fr').forEach(el => {
+                el.style.display = isFr ? (el.tagName === 'SPAN' || el.classList.contains('inline-block') ? 'inline-block' : 'block') : 'none';
             });
-            document.querySelectorAll('.lang-en-content, .lang-en-tag, .lang-en-header-footer').forEach(el => {
-                el.style.display = !isFr ? (el.tagName === 'SPAN' ? 'inline-block' : 'block') : 'none';
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.style.display = !isFr ? (el.tagName === 'SPAN' || el.classList.contains('inline-block') ? 'inline-block' : 'block') : 'none';
             });
         }
 
-        // Listen for languageChanged event from main.js
         window.addEventListener('languageChanged', (e) => {
             if (e.detail && e.detail.lang) {
                 syncLanguageVisibility(e.detail.lang);
             }
         });
 
-        function scrollToTargetPostFromUrl() {
+        function scrollToTargetCardFromUrl() {
             const hash = window.location.hash ? window.location.hash.substring(1) : null;
             const urlParams = new URLSearchParams(window.location.search);
-            const postParam = urlParams.get('post');
-            const targetId = hash || postParam;
+            const targetId = hash || urlParams.get('post');
 
             if (targetId) {
                 setTimeout(() => {
-                    highlightAndScrollPost(targetId);
-                }, 200);
-            }
-        }
-
-        function initializeSlideshows() {
-            const slideshowContainers = document.querySelectorAll('.slideshow-container');
-            slideshowContainers.forEach(container => {
-                const images = container.querySelectorAll('img');
-                if (images.length === 0) return;
-                let currentIndex = 0;
-                images[currentIndex].style.opacity = '1';
-
-                setInterval(() => {
-                    if (document.hidden) return;
-                    images[currentIndex].style.opacity = '0';
-                    currentIndex = (currentIndex + 1) % images.length;
-                    images[currentIndex].style.opacity = '1';
-                }, 3500);
-            });
-        }
-
-        function fetchAndRenderPosts() {
-            if (blogData) {
-                renderPosts(blogData);
-                initializeSlideshows();
-            } else {
-                fetch('blog.json')
-                    .then(response => {
-                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                        return response.json();
-                    })
-                    .then(data => {
-                        blogData = data;
-                        renderPosts(data);
-                        initializeSlideshows();
-                    })
-                    .catch(error => {
-                        console.error("Could not load blog posts:", error);
-                        postsContainer.innerHTML = `<p class="text-red-400 text-center py-12">Erreur lors du chargement des articles : ${error.message}</p>`;
-                    });
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        targetEl.classList.remove('card-highlight');
+                        void targetEl.offsetWidth;
+                        targetEl.classList.add('card-highlight');
+                    }
+                }, 150);
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            fetchAndRenderPosts();
+            fetch('blog.json')
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.json();
+                })
+                .then(data => {
+                    blogData = data;
+                    renderPosts(data);
+                })
+                .catch(err => {
+                    console.error("Erreur de chargement du blog:", err);
+                    postsContainer.innerHTML = `
+                        <div class="bg-red-50 text-red-700 p-6 rounded-xl text-center border border-red-200">
+                            <p class="font-bold">Impossible de charger les articles de blogue.</p>
+                            <p class="text-sm mt-1">${err.message}</p>
+                        </div>
+                    `;
+                });
         });
     </script>
 </body>

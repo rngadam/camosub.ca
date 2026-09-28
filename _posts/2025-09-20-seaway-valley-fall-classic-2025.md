@@ -1,16 +1,18 @@
 ---
 layout: post
 title: "Le CAMO remporte l'or au Seaway Valley Fall Classic 2025"
+title_fr: "Le CAMO remporte l'or au Seaway Valley Fall Classic 2025"
+title_en: "CAMO wins gold at the 2025 Seaway Valley Fall Classic"
 date: 2025-09-20 21:00:00 -0400
 lang: fr
 image: https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1920w.webp
 ---
+
+<div class="lang-fr" markdown="1">
+
 Félicitations au club CAMO qui a remporté la médaille d'or au 14e tournoi annuel de hockey subaquatique Seaway Valley Fall Classic, qui s'est déroulé au Centre aquatique de Cornwall le 20 septembre 2025.
-
 L'équipe a triomphé en accumulant le plus de points, ce qui lui a permis de remporter les médailles d'or et de faire graver son nom sur la coupe Ron MacDonald.
-
 Merci au club de Cornwall d'avoir organisé cet événement et d'avoir divisé ses joueurs en deux équipes pour offrir une compétition passionnante. Le club de Cornwall a été fondé en 1969 par Ron MacDonald, et il joue de façon compétitive partout dans le monde.
-
 L'équipe CAMO est composée de:
  * Antoine Andrade
  * David Gagné
@@ -21,8 +23,7 @@ L'équipe CAMO est composée de:
  * Richard Andrade
  * Robin Duquette
  * Yvonnick Le Clainche
-
-Résultats des matchs de l'équipe CAMO:
+Résultats des matchs de l'équipe CAMO
  * 9h00 : Nautilus 3 - 3 CAMO (Match nul)
  * 11h30 : Go Fish 1 - 3 CAMO (Victoire)
  * 13h30 : Trash Kits 2 - 7 CAMO (Victoire)
@@ -30,5 +31,43 @@ Résultats des matchs de l'équipe CAMO:
  * 16h30 : CAMO 4 - 3 Deep Divers (Victoire)
 
 <figure>
-  <img src="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1920w.webp" alt="CAMO victory celebration" class="rounded-lg shadow max-w-full h-auto">
+  <picture>
+    <source type="image/webp" srcset="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1920w.webp 1920w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1280w.webp 1280w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-640w.webp 640w">
+    <source type="image/jpeg" srcset="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1920w.jpg 1920w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1280w.jpg 1280w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-640w.jpg 640w">
+    <img src="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-640w.jpg" alt="Une image en deux parties montrant une équipe de hockey subaquatique victorieuse. La partie supérieure montre l'équipe dans la piscine, portant un équipement de plongée. La partie inférieure les montre célébrant leur victoire avec des médailles et un trophée." style="max-width:100%; height:auto;">
+  </picture>
 </figure>
+
+</div>
+
+<div class="lang-en" markdown="1" style="display:none;">
+
+Congratulations to the CAMO club for winning the gold medal at the 14th annual Seaway Valley Fall Classic underwater hockey tournament, which took place at the Cornwall Aquatic Centre on September 20, 2025.
+The team triumphed by accumulating the most points, which allowed them to win the gold medals and have their name engraved on the Ron MacDonald Cup.
+Thank you to the Cornwall club for organizing this event and for dividing its players into two teams to provide exciting competition. The Cornwall club was founded in 1969 by Ron MacDonald, and it plays competitively all over the world.
+The CAMO team is composed of:
+ * Antoine Andrade
+ * David Gagné
+ * Guillaume Lacerte
+ * Karine Desautels
+ * Martin Chevrier
+ * Michel Langlois
+ * Richard Andrade
+ * Robin Duquette
+ * Yvonnick Le Clainche
+CAMO team's match results
+ * 9:00 AM: Nautilus 3 - 3 CAMO (Draw)
+ * 11:30 AM: Go Fish 1 - 3 CAMO (Win)
+ * 1:30 PM: Trash Kits 2 - 7 CAMO (Win)
+ * 3:30 PM: CAMO 2 - 0 Raccoon Jerkey (Win)
+ * 4:30 PM: CAMO 4 - 3 Deep Divers (Win)
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1920w.webp 1920w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1280w.webp 1280w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-640w.webp 640w">
+    <source type="image/jpeg" srcset="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1920w.jpg 1920w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-1280w.jpg 1280w, https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-640w.jpg 640w">
+    <img src="https://raw.githubusercontent.com/rngadam/assets/refs/heads/main/processed_media/images/underwaterhockeyteamvictorycelebrationjpg-640w.jpg" alt="A split image showcasing a victorious underwater hockey team. The top shows the team in the pool, wearing snorkeling gear. The bottom shows them celebrating their win with medals and a trophy." style="max-width:100%; height:auto;">
+  </picture>
+</figure>
+
+</div>
