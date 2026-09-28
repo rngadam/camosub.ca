@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bubble Animation Logic
     const bubblesContainer = document.querySelector('.bubbles');
     if (bubblesContainer) {
-        function createBubble() {
+        function createBubble(isInitial = false) {
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
 
@@ -161,6 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const animationDuration = Math.random() * 10 + 5; // 5s to 15s
             bubble.style.animationDuration = `${animationDuration}s`;
 
+            if (isInitial) {
+                // Stagger initial bubbles so they appear throughout the viewport immediately
+                bubble.style.animationDelay = `-${Math.random() * animationDuration}s`;
+            }
+
             // Use 'animationend' event to remove the bubble, which is more reliable
             bubble.addEventListener('animationend', () => {
                 bubble.remove();
@@ -169,8 +174,13 @@ document.addEventListener('DOMContentLoaded', () => {
             bubblesContainer.appendChild(bubble);
         }
 
+        // Pre-populate bubbles across the viewport immediately on page load
+        for (let i = 0; i < 20; i++) {
+            createBubble(true);
+        }
+
         // Only create bubbles if the container exists
-        setInterval(createBubble, 500);
+        setInterval(() => createBubble(false), 500);
     }
 
     // Version Info Fetcher (if it's intended to be on all pages)

@@ -18,6 +18,7 @@ body {
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .bubble {
@@ -26,21 +27,37 @@ body {
     border-radius: 50%;
     opacity: 0.7;
     animation: rise 10s infinite ease-in;
+    pointer-events: none;
 }
 
 @keyframes rise {
     0% {
-        bottom: -100px;
+        bottom: -60px;
         transform: translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
     }
     50% {
         transform: translateX(100px);
     }
+    90% {
+        opacity: 0.7;
+    }
     100% {
-        bottom: 1080px; /* Adjusted to match viewport height or typical screen height */
+        bottom: calc(100vh + 80px);
         transform: translateX(-100px);
         opacity: 0;
     }
+}
+
+/* Style sémantique des bannières d'en-tête : verre dépoli laissant paraître les bulles */
+header.bg-\[\#386DC0\] {
+    background-color: rgba(56, 109, 192, 0.4) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Prose typography styling for markdown content */
