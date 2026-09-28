@@ -9,6 +9,17 @@ X-WR-TIMEZONE:America/Montreal
 X-PUBLISHED-TTL:P1D
 
 BEGIN:VEVENT
+UID:newbie-training@camosub.ca
+SUMMARY:Introduction aux sports subaquatiques pour débutants
+DESCRIPTION:Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique ainsi que le rugby subaquatique !\n\nAu programme :\n- Initiation au hockey subaquatique et au rugby subaquatique\n- Techniques de nage avec palmes et apnée\n- Maniement de la rondelle (hockey) et du ballon (rugby)\n- Stratégies de jeu et parties amicales\n\nCoût (FR): 10 $ (les 3 premières sessions sont gratuites)\nÉquipement (FR): Maillot de bain\nNotes (FR): Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet, bonnet) peut être prêté sur demande.\n\nOn the program:\n- Introduction to underwater hockey and underwater rugby\n- Fin swimming and freediving techniques\n- Puck handling (hockey) and ball handling (rugby)\n- Game strategies and friendly matches\n\nCost (EN): $10 (the first 3 sessions are free)\nEquipment (EN): Swimsuit\nNotes (EN): Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.
+LOCATION:Piscine Joseph-Charbonneau, 8200 rue Rousselot, Montréal, QC, H2E 1Z6, Canada
+RRULE:FREQ=WEEKLY;BYDAY=TU
+DTSTART;TZID=America/Montreal:20260901T193000
+DURATION:PT1H
+URL:mailto:info@camosub.ca
+END:VEVENT
+
+BEGIN:VEVENT
 UID:aga-2026@camosub.ca
 SUMMARY:Assemblée Générale Annuelle (AGA) 2026
 DESCRIPTION:La prochaine assemblée générale annuelle du club CAMO se tiendra le 26 octobre 2026 à 19h de façon virtuelle. Un lien pour la rencontre vous sera envoyé quelques jours avant aux membres actifs du club.\n\nInformations importantes :\n- Date : Lundi 26 octobre 2026 à 19h00\n- Mode : Virtuel (visioconférence)\n- Accès : Le lien de connexion sera envoyé quelques jours avant aux membres actifs\n- Inscription : Vous devez être membre en règle du club pour voter\n\nCoût (FR): Gratuit (membres en règle)\nÉquipement (FR): Connexion Internet\nNotes (FR): Assurez-vous d'avoir complété votre inscription pour la saison afin de recevoir le lien de connexion.\n\nImportant Information:\n- Date: Monday, October 26, 2026 at 7:00 PM\n- Format: Virtual meeting (videoconference)\n- Access: Meeting link sent a few days prior to active members\n- Registration: You must be a member in good standing to vote\n\nCost (EN): Free (members in good standing)\nEquipment (EN): Internet connection\nNotes (EN): Please make sure your season registration is completed to receive the meeting link.
@@ -16,17 +27,6 @@ LOCATION:En ligne (Rencontre virtuelle), Lien envoyé aux membres actifs, Montr�
 DTSTART;VALUE=DATE:20261026
 DTEND;VALUE=DATE:20261026
 URL:https://www.camosub.ca/inscriptions.html
-END:VEVENT
-
-BEGIN:VEVENT
-UID:newbie-training@camosub.ca
-SUMMARY:Entraînement pour Débutants : Joignez-vous à Nous !
-DESCRIPTION:Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique ainsi que le rugby subaquatique !\n\nAu programme :\n- Initiation au hockey subaquatique et au rugby subaquatique\n- Techniques de nage avec palmes et apnée\n- Maniement de la rondelle (hockey) et du ballon (rugby)\n- Stratégies de jeu et parties amicales\n\nCoût (FR): 10 $ (les 3 premières sessions sont gratuites)\nÉquipement (FR): Maillot de bain\nNotes (FR): Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet, bonnet) peut être prêté sur demande.\n\nOn the program:\n- Introduction to underwater hockey and underwater rugby\n- Fin swimming and freediving techniques\n- Puck handling (hockey) and ball handling (rugby)\n- Game strategies and friendly matches\n\nCost (EN): $10 (the first 3 sessions are free)\nEquipment (EN): Swimsuit\nNotes (EN): Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.
-LOCATION:Piscine Joseph-Charbonneau, 8200 rue Rousselot, Montréal, QC, H2E 1Z6, Canada
-RRULE:FREQ=WEEKLY;BYDAY=TU
-DTSTART;TZID=America/Montreal:20260901T193000
-DURATION:PT1H
-URL:mailto:info@camosub.ca
 END:VEVENT
 
 BEGIN:VEVENT

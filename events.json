@@ -1,5 +1,59 @@
 [
   {
+    "id": "newbie-training",
+    "startDate": null,
+    "endDate": null,
+    "time": "19h30 - 20h30",
+    "recurrence": {
+      "fr": "Tous les Mardis",
+      "en": "Every Tuesday"
+    },
+    "rrule": "FREQ=WEEKLY;BYDAY=TU",
+    "firstEventStartDate": "2026-09-01",
+    "location": {
+      "name": "Piscine Joseph-Charbonneau",
+      "address": "8200 rue Rousselot",
+      "city": "Montréal",
+      "province": "QC",
+      "postalCode": "H2E 1Z6",
+      "country": "Canada",
+      "mapsLink": "https://maps.app.goo.gl/ZW7MH58EtfV6hxkD9"
+    },
+    "fr": {
+      "title": "Introduction aux sports subaquatiques pour débutants",
+      "description": "Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique ainsi que le rugby subaquatique !",
+      "details": null,
+      "cost": "10 $ (les 3 premières sessions sont gratuites)",
+      "equipmentNeeded": "Maillot de bain",
+      "programTitle": "Au programme :",
+      "programDetails": [
+        "Initiation au hockey subaquatique et au rugby subaquatique",
+        "Techniques de nage avec palmes et apnée",
+        "Maniement de la rondelle (hockey) et du ballon (rugby)",
+        "Stratégies de jeu et parties amicales"
+      ],
+      "notes": "Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet, bonnet) peut être prêté sur demande.",
+      "url": "mailto:info@camosub.ca"
+    },
+    "en": {
+      "title": "Introduction to Underwater Sports for Beginners",
+      "description": "Join our newbie training sessions every Tuesday evening and discover underwater hockey as well as underwater rugby!",
+      "details": null,
+      "cost": "$10 (the first 3 sessions are free)",
+      "equipmentNeeded": "Swimsuit",
+      "programTitle": "On the program:",
+      "programDetails": [
+        "Introduction to underwater hockey and underwater rugby",
+        "Fin swimming and freediving techniques",
+        "Puck handling (hockey) and ball handling (rugby)",
+        "Game strategies and friendly matches"
+      ],
+      "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.",
+      "url": "mailto:info@camosub.ca"
+    },
+    "image": null
+  },
+  {
     "id": "aga-2026",
     "startDate": "2026-10-26",
     "endDate": "2026-10-26",
@@ -46,60 +100,6 @@
       ],
       "notes": "Please make sure your season registration is completed to receive the meeting link.",
       "url": "https://www.camosub.ca/inscriptions.html"
-    },
-    "image": null
-  },
-  {
-    "id": "newbie-training",
-    "startDate": null,
-    "endDate": null,
-    "time": "19h30 - 20h30",
-    "recurrence": {
-      "fr": "Tous les Mardis",
-      "en": "Every Tuesday"
-    },
-    "rrule": "FREQ=WEEKLY;BYDAY=TU",
-    "firstEventStartDate": "2026-09-01",
-    "location": {
-      "name": "Piscine Joseph-Charbonneau",
-      "address": "8200 rue Rousselot",
-      "city": "Montréal",
-      "province": "QC",
-      "postalCode": "H2E 1Z6",
-      "country": "Canada",
-      "mapsLink": "https://maps.app.goo.gl/ZW7MH58EtfV6hxkD9"
-    },
-    "fr": {
-      "title": "Entraînement pour Débutants : Joignez-vous à Nous !",
-      "description": "Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique ainsi que le rugby subaquatique !",
-      "details": null,
-      "cost": "10 $ (les 3 premières sessions sont gratuites)",
-      "equipmentNeeded": "Maillot de bain",
-      "programTitle": "Au programme :",
-      "programDetails": [
-        "Initiation au hockey subaquatique et au rugby subaquatique",
-        "Techniques de nage avec palmes et apnée",
-        "Maniement de la rondelle (hockey) et du ballon (rugby)",
-        "Stratégies de jeu et parties amicales"
-      ],
-      "notes": "Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet, bonnet) peut être prêté sur demande.",
-      "url": "mailto:info@camosub.ca"
-    },
-    "en": {
-      "title": "Newbie Training: Join Us!",
-      "description": "Join our newbie training sessions every Tuesday evening and discover underwater hockey as well as underwater rugby!",
-      "details": null,
-      "cost": "$10 (the first 3 sessions are free)",
-      "equipmentNeeded": "Swimsuit",
-      "programTitle": "On the program:",
-      "programDetails": [
-        "Introduction to underwater hockey and underwater rugby",
-        "Fin swimming and freediving techniques",
-        "Puck handling (hockey) and ball handling (rugby)",
-        "Game strategies and friendly matches"
-      ],
-      "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.",
-      "url": "mailto:info@camosub.ca"
     },
     "image": null
   },

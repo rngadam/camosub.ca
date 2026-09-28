@@ -37,7 +37,21 @@ def load_events(file_path: Path):
         print(f"Erreur lors de la lecture de {file_path}: {e}", file=sys.stderr)
         sys.exit(1)
 
+def sort_events(events):
+    """
+    Trie les événements :
+    1. Événements récurrents (avec recurrence ou sans startDate) toujours en premier.
+    2. Événements ponctuels avec dates particulières en ordre chronologique croissant.
+    """
+    def sort_key(ev):
+        is_recurring = bool(ev.get("recurrence") or not ev.get("startDate"))
+        start_date = ev.get("startDate") or ""
+        return (0 if is_recurring else 1, start_date, ev.get("id", ""))
+
+    return sorted(events, key=sort_key)
+
 def save_events(events, files, dry_run=False):
+    events = sort_events(events)
     content = json.dumps(events, ensure_ascii=False, indent=2) + "\n"
     for file_path in files:
         if dry_run:

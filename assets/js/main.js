@@ -569,7 +569,23 @@ document.addEventListener('DOMContentLoaded', () => {
         function renderAllEvents(eventsData) {
             frenchEventsContainer.innerHTML = '';
             englishEventsContainer.innerHTML = '';
-            eventsData.forEach(event => {
+
+            // Filtrer les événements archivés et trier :
+            // 1. Événements récurrents (avec recurrence ou sans startDate) toujours en premier
+            // 2. Événements avec dates particulières en ordre chronologique croissant
+            const activeEvents = eventsData.filter(event => !event.archived);
+            const sortedEvents = [...activeEvents].sort((a, b) => {
+                const aRecurring = Boolean(a.recurrence || !a.startDate);
+                const bRecurring = Boolean(b.recurrence || !b.startDate);
+                if (aRecurring && !bRecurring) return -1;
+                if (!aRecurring && bRecurring) return 1;
+                if (aRecurring && bRecurring) return 0;
+                const aDate = a.startDate || '';
+                const bDate = b.startDate || '';
+                return aDate.localeCompare(bDate);
+            });
+
+            sortedEvents.forEach(event => {
                 const frenchEventHtml = renderEvent(event, 'fr');
                 if (frenchEventHtml) frenchEventsContainer.appendChild(frenchEventHtml);
                 const englishEventHtml = renderEvent(event, 'en');
