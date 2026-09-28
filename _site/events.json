@@ -1,5 +1,55 @@
 [
   {
+    "id": "aga-2026",
+    "startDate": "2026-10-26",
+    "endDate": "2026-10-26",
+    "time": "19h00",
+    "recurrence": null,
+    "firstEventStartDate": null,
+    "location": {
+      "name": "En ligne (Rencontre virtuelle)",
+      "address": "Lien envoyé aux membres actifs",
+      "city": "Montréal",
+      "province": "QC",
+      "postalCode": "H2E 1Z6",
+      "country": "Canada",
+      "mapsLink": ""
+    },
+    "fr": {
+      "title": "Assemblée Générale Annuelle (AGA) 2026",
+      "description": "La prochaine assemblée générale annuelle du club CAMO se tiendra le 26 octobre 2026 à 19h de façon virtuelle. Un lien pour la rencontre vous sera envoyé quelques jours avant aux membres actifs du club.",
+      "details": null,
+      "cost": "Gratuit (membres en règle)",
+      "equipmentNeeded": "Connexion Internet",
+      "programTitle": "Informations importantes :",
+      "programDetails": [
+        "Date : Lundi 26 octobre 2026 à 19h00",
+        "Mode : Virtuel (visioconférence)",
+        "Accès : Le lien de connexion sera envoyé quelques jours avant aux membres actifs",
+        "Inscription : Vous devez être membre en règle du club pour voter"
+      ],
+      "notes": "Assurez-vous d'avoir complété votre inscription pour la saison afin de recevoir le lien de connexion.",
+      "url": "https://www.camosub.ca/inscriptions.html"
+    },
+    "en": {
+      "title": "Annual General Meeting (AGM) 2026",
+      "description": "The next Annual General Meeting (AGM) of the CAMO club will be held virtually on October 26, 2026 at 7:00 PM. A meeting link will be sent a few days prior to active club members.",
+      "details": null,
+      "cost": "Free (members in good standing)",
+      "equipmentNeeded": "Internet connection",
+      "programTitle": "Important Information:",
+      "programDetails": [
+        "Date: Monday, October 26, 2026 at 7:00 PM",
+        "Format: Virtual meeting (videoconference)",
+        "Access: Meeting link sent a few days prior to active members",
+        "Registration: You must be a member in good standing to vote"
+      ],
+      "notes": "Please make sure your season registration is completed to receive the meeting link.",
+      "url": "https://www.camosub.ca/inscriptions.html"
+    },
+    "image": null
+  },
+  {
     "id": "newbie-training",
     "startDate": null,
     "endDate": null,
