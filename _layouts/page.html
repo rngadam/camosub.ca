@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% include lang_switch.html %}
+{% include header.html %}
+
+<main class="container mx-auto px-4 py-12">
+    <div class="bg-white text-gray-800 rounded-xl shadow-xl p-8 md:p-12">
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 text-center text-blue-900">{{ page.title }}</h1>
+        {{ content }}
+    </div>
+</main>
+
+{% include footer.html %}

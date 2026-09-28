@@ -1,0 +1,25 @@
+# Site settings
+title: CAMO Sports Subaquatiques
+email: info@camosub.ca
+description: "Votre club de sports subaquatiques à Montréal - Hockey et Rugby subaquatiques"
+url: "https://camosub.ca"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Force inclusion of files starting with an underscore that are fetched dynamically
+include:
+  - _header.html
+  - _footer.html
+
+# Exclude from Jekyll processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md

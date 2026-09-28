@@ -1,0 +1,44 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* French content shown by default (as per html[lang=fr]). English content hidden initially. JS manages language switching. */
+/* Moved to main.js to handle dynamic display based on language preference */
+/*
+.lang-en {
+    display: none;
+}
+*/
+
+.bubbles {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: rise 10s infinite ease-in;
+}
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        bottom: 1080px; /* Adjusted to match viewport height or typical screen height */
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+}

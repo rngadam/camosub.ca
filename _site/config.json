@@ -1,0 +1,9 @@
+{
+    "logging": {
+        "enabled": true,
+        "logLevel": "debug"
+    },
+    "otherSettings": {
+        "exampleSetting": "exampleValue"
+    }
+}

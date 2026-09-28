@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de Confidentialité | Privacy Policy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .lang-en {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="text-center py-4 bg-gray-200">
+        <button class="lang-button px-4 py-2 mr-2 rounded bg-blue-500 text-white" data-lang="fr">Français</button>
+        <button class="lang-button px-4 py-2 rounded bg-gray-400 text-gray-800" data-lang="en">English</button>
+    </div>
+
+    <div class="lang-fr px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4">Politique de Confidentialité</h1>
+        <p class="mb-4">Votre confidentialité est importante pour nous. Cette politique explique comment nous collectons, utilisons et protégeons vos informations personnelles.</p>
+        <h2 class="text-2xl font-semibold mb-2">Informations collectées</h2>
+        <p class="mb-4">Nous collectons des informations que vous fournissez volontairement, telles que votre nom, votre adresse e-mail et vos informations de paiement.</p>
+        <h2 class="text-2xl font-semibold mb-2">Utilisation des informations</h2>
+        <p class="mb-4">Vos informations sont utilisées pour traiter vos inscriptions, répondre à vos questions et améliorer nos services.</p>
+        <h2 class="text-2xl font-semibold mb-2">Partage des informations</h2>
+        <p class="mb-4">Nous ne partageons pas vos informations personnelles avec des tiers, sauf si requis par la loi.</p>
+    </div>
+
+    <div class="lang-en px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4">Privacy Policy</h1>
+        <p class="mb-4">Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.</p>
+        <h2 class="text-2xl font-semibold mb-2">Information Collected</h2>
+        <p class="mb-4">We collect information you voluntarily provide, such as your name, email address, and payment details.</p>
+        <h2 class="text-2xl font-semibold mb-2">Use of Information</h2>
+        <p class="mb-4">Your information is used to process your registrations, respond to your inquiries, and improve our services.</p>
+        <h2 class="text-2xl font-semibold mb-2">Sharing of Information</h2>
+        <p class="mb-4">We do not share your personal information with third parties unless required by law.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-button');
+            const langSections = document.querySelectorAll('.lang-fr, .lang-en');
+
+            const setLanguage = (lang) => {
+                langSections.forEach(section => {
+                    section.style.display = section.classList.contains(`lang-${lang}`) ? 'block' : 'none';
+                });
+                langButtons.forEach(button => {
+                    button.classList.toggle('bg-blue-500', button.dataset.lang === lang);
+                    button.classList.toggle('text-white', button.dataset.lang === lang);
+                    button.classList.toggle('bg-gray-400', button.dataset.lang !== lang);
+                    button.classList.toggle('text-gray-800', button.dataset.lang !== lang);
+                });
+                document.documentElement.lang = lang;
+            };
+
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => setLanguage(button.dataset.lang));
+            });
+
+            setLanguage('fr');
+        });
+    </script>
+</body>
+</html>
