@@ -17,7 +17,14 @@
       <title>Entraînement pour Débutants : Joignez-vous à Nous !</title>
       <link>http://localhost:4000/#event-newbie-training-fr</link>
       <guid isPermaLink="false">newbie-training</guid>
-      <description>Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique !</description>
+      <description>Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique ainsi que le rugby subaquatique !</description>
+    </item>
+    
+    <item>
+      <title>Tournoi estival de Montréal 2026</title>
+      <link>http://localhost:4000/#event-summer-tournament-2026-fr</link>
+      <guid isPermaLink="false">summer-tournament-2026</guid>
+      <description>Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci a eu lieu à la piscine extérieure du Complexe aquatique au parc Jean-Drapeau le 8 août 2026.</description>
     </item>
     
   </channel>

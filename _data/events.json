@@ -71,35 +71,62 @@
     },
     "fr": {
       "title": "Entraînement pour Débutants : Joignez-vous à Nous !",
-      "description": "Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique !",
+      "description": "Participez à nos entraînements pour débutants chaque mardi soir et découvrez le hockey subaquatique ainsi que le rugby subaquatique !",
       "details": null,
       "cost": "10 $ (les 3 premières sessions sont gratuites)",
       "equipmentNeeded": "Maillot de bain",
       "programTitle": "Au programme :",
       "programDetails": [
-        "Initiation au hockey subaquatique",
-        "Techniques de nage avec palmes",
-        "Maniement de la rondelle",
+        "Initiation au hockey subaquatique et au rugby subaquatique",
+        "Techniques de nage avec palmes et apnée",
+        "Maniement de la rondelle (hockey) et du ballon (rugby)",
         "Stratégies de jeu et parties amicales"
       ],
-      "notes": "Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet) peut être prêté sur demande.",
-      "url": "mailto:camo_underwater@hotmail.com"
+      "notes": "Ouvert à tous les niveaux. Savoir nager confortablement est un prérequis. Équipement de base (palmes, masque, tuba, crosse, palet, bonnet) peut être prêté sur demande.",
+      "url": "mailto:info@camosub.ca"
     },
     "en": {
       "title": "Newbie Training: Join Us!",
-      "description": "Join our newbie training sessions every Tuesday evening and discover underwater hockey!",
+      "description": "Join our newbie training sessions every Tuesday evening and discover underwater hockey as well as underwater rugby!",
       "details": null,
       "cost": "$10 (the first 3 sessions are free)",
       "equipmentNeeded": "Swimsuit",
       "programTitle": "On the program:",
       "programDetails": [
-        "Introduction to underwater hockey",
-        "Fin swimming techniques",
-        "Puck handling",
+        "Introduction to underwater hockey and underwater rugby",
+        "Fin swimming and freediving techniques",
+        "Puck handling (hockey) and ball handling (rugby)",
         "Game strategies and friendly matches"
       ],
-      "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck) can be lent upon request.",
-      "url": "mailto:camo_underwater@hotmail.com"
+      "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.",
+      "url": "mailto:info@camosub.ca"
+    },
+    "image": null
+  },
+  {
+    "id": "summer-tournament-2026",
+    "startDate": "2026-08-08",
+    "endDate": "2026-08-08",
+    "time": "13h00 - 19h00",
+    "location": {
+      "name": "Complexe Aquatique du parc Jean-Drapeau",
+      "address": "Île Sainte-Hélène",
+      "city": "Montréal",
+      "province": "QC",
+      "postalCode": "H3C 1A9",
+      "country": "Canada"
+    },
+    "fr": {
+      "title": "Tournoi estival de Montréal 2026",
+      "description": "Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci a eu lieu à la piscine extérieure du Complexe aquatique au parc Jean-Drapeau le 8 août 2026.",
+      "details": null,
+      "url": "https://www.facebook.com/events/1995925431292976/?utm_source=gemini"
+    },
+    "en": {
+      "title": "Montreal Summer Tournament 2026",
+      "description": "The CAMO club is proud to announce the fourth edition of its summer tournament. It was held at the Parc Jean-Drapeau Aquatic Complex outdoor pool on August 8th 2026.",
+      "details": null,
+      "url": "https://www.facebook.com/events/1995925431292976/?utm_source=gemini"
     },
     "image": null
   }

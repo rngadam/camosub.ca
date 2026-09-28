@@ -28,6 +28,10 @@
       "hockey-sous-marin": {
         "en": "Underwater Hockey",
         "fr": "Hockey subaquatique"
+      },
+      "montreal": {
+        "en": "Montreal",
+        "fr": "Montréal"
       }
     }
   },
@@ -51,6 +55,27 @@
       "en": {
         "title": "Gold Medal for CAMO at the 2026 Seaway Valley Fall Classic",
         "content_md": "blog/posts/seaway-valley-fall-classic-2026.en.md"
+      }
+    },
+    {
+      "id": "tournoi-estival-montreal-2026",
+      "timestamp": "2026-08-08T20:00:00-04:00",
+      "image": "/competitions/tournoi-montreal-ete-2026/774600093_1694091445752891_4854334508640452425_n.jpg",
+      "tags": [
+        "competition",
+        "hockey-sous-marin",
+        "camo",
+        "tournoi",
+        "montreal",
+        "cornwall"
+      ],
+      "fr": {
+        "title": "Retour sur le tournoi estival de Montréal 2026",
+        "content_md": "blog/posts/tournoi-estival-montreal-2026.fr.md"
+      },
+      "en": {
+        "title": "Recap: Montreal Summer Tournament 2026",
+        "content_md": "blog/posts/tournoi-estival-montreal-2026.en.md"
       }
     },
     {
