@@ -68,6 +68,14 @@ bundle exec jekyll serve
 * Les flux [`events.ics`](events.ics) et [`events_rss.xml`](events_rss.xml) seront automatiquement régénérés lors du build Jekyll.
 
 ### 3. Publier un nouvel article de blog
+
+**Méthode recommandée (automatisée) :**
+Utiliser le script [`scripts/add_post.py`](scripts/add_post.py) qui crée et synchronise automatiquement tous les fichiers (`_posts/`, `blog/posts/` FR/EN, et `blog.json`) :
+```bash
+python3 scripts/add_post.py --title-fr "Mon Titre" --title-en "My Title" --date "AAAA-MM-JJ" --tags "competition,camo" --content-fr "Contenu..."
+```
+
+**Méthode manuelle :**
 * Créer un fichier dans `_posts/` nommé selon la convention :  
   `_posts/AAAA-MM-JJ-mon-titre.md`
   ```markdown
@@ -80,6 +88,7 @@ bundle exec jekyll serve
   ---
   Contenu en Markdown ici...
   ```
+* Créer les versions Markdown dans `blog/posts/<slug>.fr.md` et `blog/posts/<slug>.en.md`.
 * Ajouter également l'entrée correspondante dans [`_data/blog.json`](_data/blog.json) et [`blog.json`](blog.json) pour assurer le filtrage dynamique sur [`blog.html`](blog.html).
 
 ---
