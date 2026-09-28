@@ -6,7 +6,7 @@ title_en: "CAMO's Address to the VSP Borough Council: The Future of Our Aquatic 
 date: 2026-09-01 19:00:00 -0400
 lang: fr
 tags: [camo, hockey-sous-marin, rugby-subaquatique, vsp, piscine-joseph-charbonneau, infrastructures, montreal]
-image: https://img.youtube.com/vi/aYvfaArcdis/hqdefault.jpg
+image: https://img.youtube.com/vi/aYvfaArcdis/maxresdefault.jpg
 ---
 
 <div class="lang-fr" markdown="1">

@@ -6,7 +6,7 @@ title_en: "UNDERWATER RUGBY 🤿 | This Is What Rugby Looks Like Underwater - Mo
 date: 2026-09-28 16:00:00 -0400
 lang: fr
 tags: [rugby-subaquatique, camo, montreal, video]
-image: https://img.youtube.com/vi/WFOVyY9QiHI/hqdefault.jpg
+image: https://img.youtube.com/vi/WFOVyY9QiHI/maxresdefault.jpg
 ---
 
 <div class="lang-fr" markdown="1">
