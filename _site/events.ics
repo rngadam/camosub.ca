@@ -30,12 +30,12 @@ URL:mailto:info@camosub.ca
 END:VEVENT
 
 BEGIN:VEVENT
-UID:summer-tournament-2026@camosub.ca
-SUMMARY:Tournoi estival de Montréal 2026
-DESCRIPTION:Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci a eu lieu à la piscine extérieure du Complexe aquatique au parc Jean-Drapeau le 8 août 2026.
-LOCATION:Complexe Aquatique du parc Jean-Drapeau, Île Sainte-Hélène, Montréal, QC, H3C 1A9, Canada
-DTSTART;VALUE=DATE:20260808
-DTEND;VALUE=DATE:20260808
-URL:https://www.facebook.com/events/1995925431292976/?utm_source=gemini
+UID:montreal-tournament-2026@camosub.ca
+SUMMARY:Tournoi de Montréal 2026
+DESCRIPTION:Après deux ans d'absence en raison des travaux à la piscine, le club CAMO est fier de présenter le grand retour du Tournoi de Montréal ! Attendez-vous à retrouver tout ce qui fait de ce rendez-vous un classique de haut calibre.\n\nOrganisateurs (FR): Club CAMO Hockey Sous-Marin & Stéphanie Lagacé\nOrganizers (EN): CAMO Underwater Hockey & Stéphanie Lagacé\n\nCe qui est inclus pour les équipes et athlètes :\n- Arbitres de table fournis\n- Arbitres dans l'eau au moins partiellement fournis\n- Table de massage pour les participants\n- Nourriture offerte sur place pour les participants\n\n\nParticipant perks:\n- Deck refs fully provided\n- Water refs at least partially provided\n- Massage tables for participants\n- Food provided for participants\n
+LOCATION:Complexe sportif Claude-Robillard, 1000, avenue Émile-Journault, Montréal, QC, H2M 2E7, Canada
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+URL:https://www.facebook.com/events/1120906390614793
 END:VEVENT
 END:VCALENDAR

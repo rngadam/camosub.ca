@@ -73,9 +73,21 @@ pip install -r requirements.txt
 * Mettre à jour les tarifs, dates limites, liens de paiement (ex. Zeffy) et la liste des membres du Conseil d'Administration.
 * Mettre à jour la liste des administrateurs dans [`mission.html`](mission.html).
 
-### 2. Ajouter ou modifier un événement
-* Éditer le fichier [`_data/events.json`](_data/events.json) (et [`events.json`](events.json)).
-* Les flux [`events.ics`](events.ics) et [`events_rss.xml`](events_rss.xml) seront automatiquement régénérés lors du build Jekyll.
+### 2. Ajouter, modifier ou retirer un événement
+
+**Méthode recommandée (automatisée) :**
+Utiliser le script [`scripts/add_event.py`](scripts/add_event.py) qui synchronise automatiquement les deux fichiers (`_data/events.json` et `events.json`) :
+```bash
+# Ajouter ou mettre à jour un événement
+python3 scripts/add_event.py --id "mon-evenement" --title-fr "Titre FR" --title-en "Titre EN" --start-date "AAAA-MM-JJ" --end-date "AAAA-MM-JJ" --description-fr "..." --url "https://..."
+
+# Retirer un événement passé
+python3 scripts/add_event.py --remove "mon-evenement"
+
+# Lister les événements
+python3 scripts/add_event.py --list
+```
+Les flux [`events.ics`](events.ics) et [`events_rss.xml`](events_rss.xml) seront automatiquement régénérés lors du build Jekyll.
 
 ### 3. Publier un nouvel article de blog
 

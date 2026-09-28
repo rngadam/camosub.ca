@@ -49,7 +49,41 @@ python3 scripts/add_post.py --help
 
 ---
 
-## 3. Gestion des Médias et Images de Compétition
+## 3. Gestion des Événements et Tournois
+
+Les données d'événements sont stockées dans deux fichiers qui **doivent toujours rester strictement identiques** :
+1. **`_data/events.json`** : Utilisé par Jekyll pour compiler les flux statiques [`events.ics`](events.ics) et [`events_rss.xml`](events_rss.xml).
+2. **`events.json`** : Chargé dynamiquement par JavaScript dans la page d'accueil ([`index.html`](index.html)).
+
+### ⚡ Automatisation : Script `scripts/add_event.py`
+
+**IMPORTANT :** Utilisez toujours le script automatisé pour ajouter, modifier, archiver ou retirer un événement :
+
+```bash
+# Ajouter ou mettre à jour un événement
+python3 scripts/add_event.py \
+  --id "mon-evenement" \
+  --title-fr "Titre FR" \
+  --title-en "Titre EN" \
+  --start-date "AAAA-MM-JJ" \
+  --end-date "AAAA-MM-JJ" \
+  --location-name "Lieu" \
+  --description-fr "Description FR" \
+  --description-en "Description EN" \
+  --url "https://..."
+
+# Retirer un événement passé
+python3 scripts/add_event.py --remove "mon-evenement"
+
+# Lister les événements
+python3 scripts/add_event.py --list
+```
+
+Consultez `.agents/skills/manage-events/SKILL.md` pour toutes les options.
+
+---
+
+## 4. Gestion des Médias et Images de Compétition
 
 * Les photos et visuels de tournois sont stockés dans `competitions/<nom-tournoi-annee>/`.
 * Pour un affichage soigné et responsive dans Tailwind / Prose, utilisez les balises HTML suivantes :
@@ -88,14 +122,15 @@ python3 scripts/add_post.py --help
 
 ---
 
-## 4. Règles et Contraintes de Travail
+## 5. Règles et Contraintes de Travail
 
 1. **Règles Git :**
    * **NE PAS** committer (`git commit`), **NE PAS** pousser vers le dépôt distant (`git push`), et **NE PAS** indexer (`git add`) sans instruction expresse de l'utilisateur. Laisser l'utilisateur gérer l'indexation et les opérations distantes.
 2. **Serveur de développement :**
    * Un serveur Jekyll tourne généralement en tâche de fond (`nix run nixpkgs#jekyll -- serve` sur le port 4000). Les modifications de fichiers déclenchent automatiquement la recompilation dans `_site/`.
-3. **Compétence dédiée :**
-   * Consultez `.agents/skills/publish-blog-post/SKILL.md` pour le pas-à-pas détaillé de publication.
+3. **Compétences dédiées :**
+   * Consultez `.agents/skills/publish-blog-post/SKILL.md` pour le pas-à-pas de publication de blogue.
+   * Consultez `.agents/skills/manage-events/SKILL.md` pour la gestion des événements et tournois.
 4. **Environnement d'exécution Python & Outils d'image :**
    * Un environnement virtuel local `.venv/` est configuré à la racine avec `pillow` (`requirements.txt`).
    * Pour exécuter des scripts Python nécessitant des dépendances, utilisez toujours `.venv/bin/python3`.

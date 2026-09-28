@@ -104,29 +104,55 @@
     "image": null
   },
   {
-    "id": "summer-tournament-2026",
-    "startDate": "2026-08-08",
-    "endDate": "2026-08-08",
-    "time": "13h00 - 19h00",
+    "id": "montreal-tournament-2026",
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-22",
+    "time": {
+      "fr": "Du samedi 21 novembre à 8 h 00 au dimanche 22 novembre à 17 h 00",
+      "en": "Saturday, Nov 21 at 8:00 AM to Sunday, Nov 22 at 5:00 PM"
+    },
+    "recurrence": null,
+    "firstEventStartDate": null,
     "location": {
-      "name": "Complexe Aquatique du parc Jean-Drapeau",
-      "address": "Île Sainte-Hélène",
+      "name": "Complexe sportif Claude-Robillard",
+      "address": "1000, avenue Émile-Journault",
       "city": "Montréal",
       "province": "QC",
-      "postalCode": "H3C 1A9",
-      "country": "Canada"
+      "postalCode": "H2M 2E7",
+      "country": "Canada",
+      "mapsLink": "https://www.google.com/maps/search/?api=1&query=Complexe+sportif+Claude-Robillard%2C+1000+avenue+%C3%89mile-Journault%2C+Montr%C3%A9al%2C+QC+H2M+2E7"
     },
     "fr": {
-      "title": "Tournoi estival de Montréal 2026",
-      "description": "Le club CAMO est fier de vous annoncer la quatrième édition de son tournoi estival. Celui-ci a eu lieu à la piscine extérieure du Complexe aquatique au parc Jean-Drapeau le 8 août 2026.",
+      "title": "Tournoi de Montréal 2026",
+      "dateDisplay": "21 et 22 novembre 2026",
+      "time": "Du samedi 21 novembre à 8 h 00 au dimanche 22 novembre à 17 h 00",
+      "organizers": "Club CAMO Hockey Sous-Marin & Stéphanie Lagacé",
+      "description": "Après deux ans d'absence en raison des travaux à la piscine, le club CAMO est fier de présenter le grand retour du Tournoi de Montréal ! Attendez-vous à retrouver tout ce qui fait de ce rendez-vous un classique de haut calibre.",
+      "programTitle": "Ce qui est inclus pour les équipes et athlètes :",
+      "programDetails": [
+        "Arbitres de table fournis",
+        "Arbitres dans l'eau au moins partiellement fournis",
+        "Table de massage pour les participants",
+        "Nourriture offerte sur place pour les participants"
+      ],
       "details": null,
-      "url": "https://www.facebook.com/events/1995925431292976/?utm_source=gemini"
+      "url": "https://www.facebook.com/events/1120906390614793"
     },
     "en": {
-      "title": "Montreal Summer Tournament 2026",
-      "description": "The CAMO club is proud to announce the fourth edition of its summer tournament. It was held at the Parc Jean-Drapeau Aquatic Complex outdoor pool on August 8th 2026.",
+      "title": "Montréal Tournament 2026",
+      "dateDisplay": "November 21–22, 2026",
+      "time": "Saturday, Nov 21 at 8:00 AM to Sunday, Nov 22 at 5:00 PM",
+      "organizers": "CAMO Underwater Hockey & Stéphanie Lagacé",
+      "description": "We're back after a two-year hiatus due to pool renovations! The CAMO club is proud to present the 2026 Montreal Tournament on November 21st and 22nd. Expect to rediscover what makes this event a top-tier classic:",
+      "programTitle": "Participant perks:",
+      "programDetails": [
+        "Deck refs fully provided",
+        "Water refs at least partially provided",
+        "Massage tables for participants",
+        "Food provided for participants"
+      ],
       "details": null,
-      "url": "https://www.facebook.com/events/1995925431292976/?utm_source=gemini"
+      "url": "https://www.facebook.com/events/1120906390614793"
     },
     "image": null
   }

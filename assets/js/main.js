@@ -288,7 +288,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const eventBackgroundClasses = {
             "canadians-2025": "bg-green-100",
             "newbie-training": "bg-yellow-500",
-            "summer-tournament-2025": "bg-blue-100"
+            "summer-tournament-2025": "bg-blue-100",
+            "summer-tournament-2026": "bg-blue-100",
+            "montreal-tournament-2026": "bg-blue-100"
         };
 
         function parseISODateStringToDate(dateString) {
@@ -355,6 +357,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (event.recurrence && event.recurrence[lang]) {
                 dateLabelSpan.textContent = lang === 'fr' ? 'Quand : ' : 'When: ';
                 dateValueSpan.textContent = event.recurrence[lang];
+            } else if (eventLangData.dateDisplay) {
+                dateLabelSpan.textContent = lang === 'fr' ? 'Dates : ' : 'Dates: ';
+                dateValueSpan.textContent = eventLangData.dateDisplay;
             } else if (event.startDate) {
                 dateLabelSpan.textContent = lang === 'fr' ? 'Date : ' : 'Date: ';
                 const locale = lang === 'fr' ? 'fr-CA' : 'en-CA';
@@ -377,13 +382,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 contentWrapperDiv.appendChild(dateP);
             }
 
-            if (event.time) {
+            const eventTime = (eventLangData && eventLangData.time) || (typeof event.time === 'object' && event.time !== null ? (event.time[lang] || event.time.fr) : event.time);
+            if (eventTime) {
                 const timeP = document.createElement('p');
                 timeP.className = 'text-xl mb-4';
-                const timeLabel = lang === 'fr' ? 'Heure : ' : 'Time: ';
+                const timeLabel = lang === 'fr' ? 'Horaire : ' : 'Time: ';
                 const timeValueSpan = document.createElement('span');
                 timeValueSpan.className = 'font-semibold';
-                timeValueSpan.textContent = event.time;
+                timeValueSpan.textContent = eventTime;
                 timeP.textContent = timeLabel;
                 timeP.appendChild(timeValueSpan);
                 contentWrapperDiv.appendChild(timeP);
@@ -437,6 +443,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 locDetailsP.innerHTML = locationText; // Using innerHTML because of <br>
                 locationContainer.appendChild(locDetailsP);
                 contentWrapperDiv.appendChild(locationContainer);
+            }
+
+            const organizers = (eventLangData && eventLangData.organizers) || (typeof event.organizers === 'object' && event.organizers !== null ? (event.organizers[lang] || event.organizers.fr) : event.organizers);
+            if (organizers) {
+                const orgP = document.createElement('p');
+                orgP.className = 'text-xl mb-4';
+                const orgLabel = lang === 'fr' ? 'Organisateurs : ' : 'Organizers: ';
+                const orgValueSpan = document.createElement('span');
+                orgValueSpan.className = 'font-semibold';
+                orgValueSpan.textContent = organizers;
+                orgP.textContent = orgLabel;
+                orgP.appendChild(orgValueSpan);
+                contentWrapperDiv.appendChild(orgP);
             }
 
             if (event.id !== 'newbie-training' && eventLangData.description) {
