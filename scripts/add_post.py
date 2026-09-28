@@ -34,6 +34,7 @@ def main():
     parser.add_argument("--date", default=None, help="Date de l'article (AAAA-MM-JJ ou AAAA-MM-JJ HH:MM:SS), défaut: aujourd'hui")
     parser.add_argument("--slug", default=None, help="Identifiant slug de l'article (auto-généré si omis)")
     parser.add_argument("--tags", default="competition,hockey-sous-marin,camo,tournoi", help="Liste de tags séparés par des virgules")
+    parser.add_argument("--categories", default="competition,hockey-sous-marin", help="Liste de catégories séparées par des virgules")
     parser.add_argument("--image", default=None, help="Chemin de l'image principale (ex: /competitions/guelph-2026/camotarie.png) ou omis")
     parser.add_argument("--content-fr", default=None, help="Contenu texte Markdown en français")
     parser.add_argument("--content-fr-file", default=None, help="Fichier contenant le Markdown en français")
@@ -77,8 +78,9 @@ def main():
     title_fr = args.title_fr.strip()
     title_en = args.title_en.strip() if args.title_en else title_fr
 
-    # 4. Tags
+    # 4. Tags & Categories
     tags = [t.strip() for t in args.tags.split(",") if t.strip()]
+    categories = [c.strip() for c in args.categories.split(",") if c.strip()]
 
     # 5. Content
     content_fr = ""
@@ -112,7 +114,7 @@ def main():
         f'title: "{title_fr}"',
         f"date: {jekyll_date}",
         "lang: fr",
-        "categories: [competition, hockey-sous-marin]",
+        f"categories: [{', '.join(categories)}]",
         f"tags: [{', '.join(tags)}]"
     ]
     if args.image:

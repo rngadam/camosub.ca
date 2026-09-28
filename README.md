@@ -53,6 +53,16 @@ bundle install
 bundle exec jekyll serve
 ```
 
+### Environnement Python (scripts & traitement d'images)
+
+Un environnement virtuel local permet d'exécuter les scripts d'automatisation (`scripts/add_post.py`) et les manipulations d'images (`Pillow`) dans la sandbox :
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ---
 
 ## 📝 Guide de maintenance

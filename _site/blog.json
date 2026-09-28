@@ -40,6 +40,22 @@
       "argent": {
         "en": "Silver",
         "fr": "Argent"
+      },
+      "rugby-subaquatique": {
+        "en": "Underwater Rugby",
+        "fr": "Rugby subaquatique"
+      },
+      "vsp": {
+        "en": "VSP",
+        "fr": "VSP"
+      },
+      "piscine-joseph-charbonneau": {
+        "en": "Joseph-Charbonneau Pool",
+        "fr": "Piscine Joseph-Charbonneau"
+      },
+      "infrastructures": {
+        "en": "Infrastructure",
+        "fr": "Infrastructures"
       }
     }
   },
@@ -63,6 +79,28 @@
       "en": {
         "title": "Gold Medal for CAMO at the 2026 Seaway Valley Fall Classic",
         "content_md": "blog/posts/seaway-valley-fall-classic-2026.en.md"
+      }
+    },
+    {
+      "id": "conseil-arrondissement-vsp-septembre-2026",
+      "timestamp": "2026-09-01T19:00:00-04:00",
+      "image": null,
+      "tags": [
+        "camo",
+        "hockey-sous-marin",
+        "rugby-subaquatique",
+        "vsp",
+        "piscine-joseph-charbonneau",
+        "infrastructures",
+        "montreal"
+      ],
+      "fr": {
+        "title": "Intervention de CAMO au conseil d'arrondissement de VSP : l'avenir de nos installations aquatiques",
+        "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.fr.md"
+      },
+      "en": {
+        "title": "CAMO's Address to the VSP Borough Council: The Future of Our Aquatic Facilities",
+        "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.en.md"
       }
     },
     {

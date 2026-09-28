@@ -96,3 +96,8 @@ python3 scripts/add_post.py --help
    * Un serveur Jekyll tourne généralement en tâche de fond (`nix run nixpkgs#jekyll -- serve` sur le port 4000). Les modifications de fichiers déclenchent automatiquement la recompilation dans `_site/`.
 3. **Compétence dédiée :**
    * Consultez `.agents/skills/publish-blog-post/SKILL.md` pour le pas-à-pas détaillé de publication.
+4. **Environnement d'exécution Python & Outils d'image :**
+   * Un environnement virtuel local `.venv/` est configuré à la racine avec `pillow` (`requirements.txt`).
+   * Pour exécuter des scripts Python nécessitant des dépendances, utilisez toujours `.venv/bin/python3`.
+   * Pour le traitement d'images sans dépendre du démon Nix, ImageMagick est disponible localement via `/opt/homebrew/bin/magick`.
+   * Si une commande Nix doit être exécutée (`nix run`), elle nécessite `BypassSandbox: true` pour accéder au socket du démon Nix `/nix/var/nix/daemon-socket/socket`.
