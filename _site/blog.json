@@ -32,6 +32,14 @@
       "montreal": {
         "en": "Montreal",
         "fr": "Montréal"
+      },
+      "guelph": {
+        "en": "Guelph",
+        "fr": "Guelph"
+      },
+      "argent": {
+        "en": "Silver",
+        "fr": "Argent"
       }
     }
   },
@@ -76,6 +84,27 @@
       "en": {
         "title": "Recap: Montreal Summer Tournament 2026",
         "content_md": "blog/posts/tournoi-estival-montreal-2026.en.md"
+      }
+    },
+    {
+      "id": "tournoi-guelph-2026",
+      "timestamp": "2026-03-22T20:00:00-04:00",
+      "image": null,
+      "tags": [
+        "competition",
+        "hockey-sous-marin",
+        "camo",
+        "tournoi",
+        "guelph",
+        "argent"
+      ],
+      "fr": {
+        "title": "Médaille d'argent pour CAMO au 44ᵉ tournoi annuel de Guelph",
+        "content_md": "blog/posts/tournoi-guelph-2026.fr.md"
+      },
+      "en": {
+        "title": "Silver Medal for CAMO at the 44th Annual Guelph Tournament",
+        "content_md": "blog/posts/tournoi-guelph-2026.en.md"
       }
     },
     {
