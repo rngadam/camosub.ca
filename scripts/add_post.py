@@ -31,6 +31,7 @@ def main():
     )
     parser.add_argument("--title-fr", required=True, help="Titre de l'article en français")
     parser.add_argument("--title-en", default=None, help="Titre de l'article en anglais (optionnel)")
+    parser.add_argument("--title-es", default=None, help="Titre de l'article en espagnol (optionnel)")
     parser.add_argument("--date", default=None, help="Date de l'article (AAAA-MM-JJ ou AAAA-MM-JJ HH:MM:SS), défaut: aujourd'hui")
     parser.add_argument("--slug", default=None, help="Identifiant slug de l'article (auto-généré si omis)")
     parser.add_argument("--tags", default="competition,hockey-sous-marin,camo,tournoi", help="Liste de tags séparés par des virgules")
@@ -40,8 +41,11 @@ def main():
     parser.add_argument("--content-fr-file", default=None, help="Fichier contenant le Markdown en français")
     parser.add_argument("--content-en", default=None, help="Contenu texte Markdown en anglais")
     parser.add_argument("--content-en-file", default=None, help="Fichier contenant le Markdown en anglais")
+    parser.add_argument("--content-es", default=None, help="Contenu texte Markdown en espagnol")
+    parser.add_argument("--content-es-file", default=None, help="Fichier contenant le Markdown en espagnol")
     parser.add_argument("--excerpt-fr", default=None, help="Résumé court de l'article en français")
     parser.add_argument("--excerpt-en", default=None, help="Résumé court de l'article en anglais")
+    parser.add_argument("--excerpt-es", default=None, help="Résumé court de l'article en espagnol")
     parser.add_argument("--dry-run", action="store_true", help="Afficher les actions sans écrire les fichiers")
 
     args = parser.parse_args()
@@ -79,6 +83,7 @@ def main():
     # 3. Titles
     title_fr = args.title_fr.strip()
     title_en = args.title_en.strip() if args.title_en else title_fr
+    title_es = args.title_es.strip() if args.title_es else title_en
 
     # 4. Tags & Categories
     tags = [t.strip() for t in args.tags.split(",") if t.strip()]
@@ -100,6 +105,13 @@ def main():
         content_en = args.content_en.strip()
     else:
         content_en = content_fr
+    content_es = ""
+    if args.content_es_file:
+        content_es = Path(args.content_es_file).read_text(encoding="utf-8").strip()
+    elif args.content_es:
+        content_es = args.content_es.strip()
+    else:
+        content_es = content_en
 
     # Helper for clean excerpt
     def make_excerpt(md_text: str, default_text: str) -> str:
@@ -115,12 +127,14 @@ def main():
 
     excerpt_fr = args.excerpt_fr.strip() if args.excerpt_fr else make_excerpt(content_fr, title_fr)
     excerpt_en = args.excerpt_en.strip() if args.excerpt_en else make_excerpt(content_en, title_en)
+    excerpt_es = args.excerpt_es.strip() if args.excerpt_es else make_excerpt(content_es, title_es)
 
     # 6. Target file paths
     post_filename = f"{date_str}-{slug}.md"
     jekyll_post_path = repo_root / "_posts" / post_filename
     blog_fr_path = repo_root / "blog" / "posts" / f"{slug}.fr.md"
     blog_en_path = repo_root / "blog" / "posts" / f"{slug}.en.md"
+    blog_es_path = repo_root / "blog" / "posts" / f"{slug}.es.md"
     data_blog_json_path = repo_root / "_data" / "blog.json"
     root_blog_json_path = repo_root / "blog.json"
 
@@ -131,6 +145,7 @@ def main():
         f'title: "{title_fr}"',
         f'title_fr: "{title_fr}"',
         f'title_en: "{title_en}"',
+        f'title_es: "{title_es}"',
         f"date: {jekyll_date}",
         "lang: fr"
     ]
@@ -152,7 +167,14 @@ def main():
     jekyll_lines.append("")
     jekyll_lines.append("</div>")
     jekyll_lines.append("")
-    jekyll_content = "\n".join(jekyll_lines)
+    jekyll_lines.append('<div class="lang-es" markdown="1" style="display:none;">')
+    jekyll_lines.append("")
+    jekyll_lines.append(content_es)
+    jekyll_lines.append("")
+    jekyll_lines.append("</div>")
+    jekyll_lines.append("")
+    jekyll_content = "
+".join(jekyll_lines)
 
     # Blog post entry for blog.json
     new_post_entry = {
@@ -170,6 +192,11 @@ def main():
             "title": title_en,
             "excerpt": excerpt_en,
             "content_md": f"blog/posts/{slug}.en.md"
+        },
+        "es": {
+            "title": title_es,
+            "excerpt": excerpt_es,
+            "content_md": f"blog/posts/{slug}.es.md"
         }
     }
 
@@ -181,6 +208,7 @@ def main():
     print(f"  * Fichier Jekyll: {jekyll_post_path.relative_to(repo_root)}")
     print(f"  * Fichier FR: {blog_fr_path.relative_to(repo_root)}")
     print(f"  * Fichier EN: {blog_en_path.relative_to(repo_root)}")
+    print(f"  * Fichier ES: {blog_es_path.relative_to(repo_root)}")
 
     if args.dry_run:
         print("[DRY-RUN] Aucun fichier n'a été modifié.")
@@ -193,7 +221,10 @@ def main():
     # Write Markdown files
     jekyll_post_path.write_text(jekyll_content, encoding="utf-8")
     blog_fr_path.write_text(content_fr + "\n", encoding="utf-8")
-    blog_en_path.write_text(content_en + "\n", encoding="utf-8")
+    blog_en_path.write_text(content_en + "
+", encoding="utf-8")
+    blog_es_path.write_text(content_es + "
+", encoding="utf-8")
 
     # Update blog.json & _data/blog.json
     for json_path in [data_blog_json_path, root_blog_json_path]:
@@ -228,7 +259,8 @@ def main():
                 formatted_label = t.replace("-", " ").title()
                 tag_labels[t] = {
                     "en": formatted_label,
-                    "fr": formatted_label
+                    "fr": formatted_label,
+                    "es": formatted_label
                 }
                 print(f"  * Ajout de l'étiquette de tag '{t}' dans {json_path.name}")
 

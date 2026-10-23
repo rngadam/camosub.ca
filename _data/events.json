@@ -6,7 +6,8 @@
     "time": "19h30 - 20h30",
     "recurrence": {
       "fr": "Tous les Mardis",
-      "en": "Every Tuesday"
+      "en": "Every Tuesday",
+      "es": "Cada Tuesday"
     },
     "rrule": "FREQ=WEEKLY;BYDAY=TU",
     "firstEventStartDate": "2026-09-01",
@@ -51,7 +52,23 @@
       "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.",
       "url": "mailto:info@camosub.ca"
     },
-    "image": null
+    "image": null,
+    "es": {
+      "title": "Introduction to Underwater Sports for Beginners",
+      "description": "Join our newbie training sessions every Tuesday evening and discover underwater hockey as well as underwater rugby!",
+      "details": null,
+      "cost": "$10 (the first 3 sessions are free)",
+      "equipmentNeeded": "Swimsuit",
+      "programTitle": "On the program:",
+      "programDetails": [
+        "Introduction to underwater hockey and underwater rugby",
+        "Fin swimming and freediving techniques",
+        "Puck handling (hockey) and ball handling (rugby)",
+        "Game strategies and friendly matches"
+      ],
+      "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.",
+      "url": "mailto:info@camosub.ca"
+    }
   },
   {
     "id": "aga-2026",
@@ -101,7 +118,23 @@
       "notes": "Please make sure your season registration is completed to receive the meeting link.",
       "url": "https://www.camosub.ca/inscriptions.html"
     },
-    "image": null
+    "image": null,
+    "es": {
+      "title": "Annual General Meeting (AGM) 2026",
+      "description": "The next Annual General Meeting (AGM) of the CAMO club will be held virtually on October 26, 2026 at 7:00 PM. A meeting link will be sent a few days prior to active club members.",
+      "details": null,
+      "cost": "Gratis (members in good standing)",
+      "equipmentNeeded": "Internet connection",
+      "programTitle": "Important Information:",
+      "programDetails": [
+        "Date: Monday, October 26, 2026 at 7:00 PM",
+        "Format: Virtual meeting (videoconference)",
+        "Access: Meeting link sent a few days prior to active members",
+        "Registration: You must be a member in good standing to vote"
+      ],
+      "notes": "Please make sure your season registration is completed to receive the meeting link.",
+      "url": "https://www.camosub.ca/inscriptions.html"
+    }
   },
   {
     "id": "montreal-tournament-2026",
@@ -154,6 +187,22 @@
       "details": null,
       "url": "https://www.facebook.com/events/1120906390614793"
     },
-    "image": null
+    "image": null,
+    "es": {
+      "title": "Montréal Torneo 2026",
+      "dateDisplay": "November 21–22, 2026",
+      "time": "Saturday, Nov 21 at 8:00 AM to Sunday, Nov 22 at 5:00 PM",
+      "organizers": "CAMO Underwater Hockey & Stéphanie Lagacé",
+      "description": "We're back after a two-year hiatus due to pool renovations! The CAMO club is proud to present the 2026 Montreal Torneo on November 21st and 22nd. Expect to rediscover what makes this event a top-tier classic:",
+      "programTitle": "Participant perks:",
+      "programDetails": [
+        "Deck refs fully provided",
+        "Water refs at least partially provided",
+        "Massage tables for participants",
+        "Food provided for participants"
+      ],
+      "details": null,
+      "url": "https://www.facebook.com/events/1120906390614793"
+    }
   }
 ]
