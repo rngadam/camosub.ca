@@ -3,63 +3,78 @@
     "tag_labels": {
       "uwh_nationals_2025": {
         "en": "UWH Nationals 2025",
-        "fr": "Nationaux HSA 2025"
+        "fr": "Nationaux HSA 2025",
+        "es": "UWH Nationals 2025"
       },
       "camo": {
         "en": "CAMO",
-        "fr": "CAMO"
+        "fr": "CAMO",
+        "es": "CAMO"
       },
       "tournoi": {
         "en": "Tournament",
-        "fr": "Tournoi"
+        "fr": "Tournoi",
+        "es": "Torneo"
       },
       "cornwall": {
         "en": "Cornwall",
-        "fr": "Cornwall"
+        "fr": "Cornwall",
+        "es": "Cornwall"
       },
       "or": {
         "en": "Gold",
-        "fr": "Or"
+        "fr": "Or",
+        "es": "Gold"
       },
       "competition": {
         "en": "Competition",
-        "fr": "Compétition"
+        "fr": "Compétition",
+        "es": "Competition"
       },
       "hockey-sous-marin": {
         "en": "Underwater Hockey",
-        "fr": "Hockey subaquatique"
+        "fr": "Hockey subaquatique",
+        "es": "Underwater Hockey"
       },
       "montreal": {
         "en": "Montreal",
-        "fr": "Montréal"
+        "fr": "Montréal",
+        "es": "Montreal"
       },
       "guelph": {
         "en": "Guelph",
-        "fr": "Guelph"
+        "fr": "Guelph",
+        "es": "Guelph"
       },
       "argent": {
         "en": "Silver",
-        "fr": "Argent"
+        "fr": "Argent",
+        "es": "Silver"
       },
       "rugby-subaquatique": {
         "en": "Underwater Rugby",
-        "fr": "Rugby subaquatique"
+        "fr": "Rugby subaquatique",
+        "es": "Underwater Rugby"
       },
       "vsp": {
         "en": "VSP",
-        "fr": "VSP"
+        "fr": "VSP",
+        "es": "VSP"
       },
       "piscine-joseph-charbonneau": {
         "en": "Joseph-Charbonneau Pool",
-        "fr": "Piscine Joseph-Charbonneau"
+        "fr": "Piscine Joseph-Charbonneau",
+        "es": "Joseph-Charbonneau Pool"
       },
       "infrastructures": {
         "en": "Infrastructure",
-        "fr": "Infrastructures"
+        "fr": "Infrastructures",
+        "es": "Infrastructure"
       },
       "video": {
         "en": "Video",
-        "fr": "Vidéo"
+        "fr": "Vidéo",
+        "es": "Video"
       }
     }
   },
@@ -84,7 +99,12 @@
         "content_md": "blog/posts/rugby-subaquatique-montreal-video.en.md",
         "excerpt": "Ever wondered what underwater rugby actually looks like? Watch a video preview of the moves, techniques, and teamwork of CAMO in Montreal."
       },
-      "url": "/blog/rugby-subaquatique-montreal-video.html"
+      "url": "/blog/rugby-subaquatique-montreal-video.html",
+      "es": {
+        "title": "UNDERWATER RUGBY 🤿 | This Is What Rugby Looks Like Underwater - Montreal",
+        "content_md": "blog/posts/rugby-subaquatique-montreal-video.es.md",
+        "excerpt": "Ever wondered what underwater rugby actually looks like? Watch a video preview of the moves, techniques, and teamwork of CAMO in Montreal."
+      }
     },
     {
       "id": "seaway-valley-fall-classic-2026",
@@ -108,7 +128,12 @@
         "content_md": "blog/posts/seaway-valley-fall-classic-2026.en.md",
         "excerpt": "The CAMO team competed at the 15th annual Seaway Valley Fall Classic in Cornwall. Following a tough semi-final and thrilling overtime final, CAMO clinched the gold medal!"
       },
-      "url": "/blog/seaway-valley-fall-classic-2026.html"
+      "url": "/blog/seaway-valley-fall-classic-2026.html",
+      "es": {
+        "title": "Gold Medal for CAMO at the 2026 Seaway Valley Fall Classic",
+        "content_md": "blog/posts/seaway-valley-fall-classic-2026.es.md",
+        "excerpt": "The CAMO team competed at the 15th annual Seaway Valley Fall Classic in Cornwall. Following a tough semi-final and thrilling overtime final, CAMO clinched the gold medal!"
+      }
     },
     {
       "id": "conseil-arrondissement-vsp-septembre-2026",
@@ -133,7 +158,12 @@
         "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.en.md",
         "excerpt": "CAMO Club's address during the public question period of the VSP Borough Council regarding the future and maintenance of local aquatic facilities."
       },
-      "url": "/blog/conseil-arrondissement-vsp-septembre-2026.html"
+      "url": "/blog/conseil-arrondissement-vsp-septembre-2026.html",
+      "es": {
+        "title": "CAMO's Address to the VSP Borough Council: The Future of Our Aquatic Facilities",
+        "content_md": "blog/posts/conseil-arrondissement-vsp-septembre-2026.es.md",
+        "excerpt": "CAMO Club's address during the public question period of the VSP Borough Council regarding the future and maintenance of local aquatic facilities."
+      }
     },
     {
       "id": "tournoi-estival-montreal-2026",
@@ -157,7 +187,12 @@
         "content_md": "blog/posts/tournoi-estival-montreal-2026.en.md",
         "excerpt": "Recap of the 2026 Montreal Underwater Hockey Summer Tournament at the Jean-Drapeau Park pool: an exciting day of competition and sportsmanship."
       },
-      "url": "/blog/tournoi-estival-montreal-2026.html"
+      "url": "/blog/tournoi-estival-montreal-2026.html",
+      "es": {
+        "title": "Recap: Montreal Summer Torneo 2026",
+        "content_md": "blog/posts/tournoi-estival-montreal-2026.es.md",
+        "excerpt": "Recap of the 2026 Montreal Underwater Hockey Summer Torneo at the Jean-Drapeau Park pool: an exciting day of competition and sportsmanship."
+      }
     },
     {
       "id": "tournoi-guelph-2026",
@@ -181,7 +216,12 @@
         "content_md": "blog/posts/tournoi-guelph-2026.en.md",
         "excerpt": "Great run for CAMO at the 44th Annual Guelph Tournament: the team brought home the silver medal after exciting matches against top competition."
       },
-      "url": "/blog/tournoi-guelph-2026.html"
+      "url": "/blog/tournoi-guelph-2026.html",
+      "es": {
+        "title": "Silver Medal for CAMO at the 44th Annual Guelph Torneo",
+        "content_md": "blog/posts/tournoi-guelph-2026.es.md",
+        "excerpt": "Great run for CAMO at the 44th Annual Guelph Torneo: the team brought home the silver medal after exciting matches against top competition."
+      }
     },
     {
       "id": "seaway-valley-fall-classic-2025",
@@ -197,7 +237,12 @@
         "content_md": "blog/posts/seaway-valley-fall-classic-2025.en.md",
         "excerpt": "CAMO shines by capturing the gold medal at the 14th edition of the Seaway Valley Fall Classic in Cornwall."
       },
-      "url": "/blog/seaway-valley-fall-classic-2025.html"
+      "url": "/blog/seaway-valley-fall-classic-2025.html",
+      "es": {
+        "title": "CAMO wins gold at the 2025 Seaway Valley Fall Classic",
+        "content_md": "blog/posts/seaway-valley-fall-classic-2025.es.md",
+        "excerpt": "CAMO shines by capturing the gold medal at the 14th edition of the Seaway Valley Fall Classic in Cornwall."
+      }
     },
     {
       "id": "montreal-summer-tournament-2025",
@@ -213,7 +258,12 @@
         "content_md": "blog/posts/montreal-summer-tournament-2025.en.md",
         "excerpt": "Thrilling 5-4 semi-final against Sherbrooke and grand final against Cornwall at the Montreal Underwater Hockey Summer Tournament."
       },
-      "url": "/blog/montreal-summer-tournament-2025.html"
+      "url": "/blog/montreal-summer-tournament-2025.html",
+      "es": {
+        "title": "Montreal Summer Torneo Semi-Final and Final",
+        "content_md": "blog/posts/montreal-summer-tournament-2025.es.md",
+        "excerpt": "Thrilling 5-4 semi-final against Sherbrooke and grand final against Cornwall at the Montreal Underwater Hockey Summer Torneo."
+      }
     },
     {
       "id": "tournoi-estival-2025",
@@ -231,7 +281,13 @@
         "excerpt": "Kickoff of the Montreal Underwater Hockey Summer Tournament at Parc Jean-Drapeau. Schedule and ranking match results.",
         "content_md": "blog/posts/tournoi-estival-2025.en.md"
       },
-      "url": "/blog/tournoi-estival-2025.html"
+      "url": "/blog/tournoi-estival-2025.html",
+      "es": {
+        "title": "Montreal Summer Torneo - It's today!",
+        "content": "Fans of unusual sports and thrills, get your swimsuits ready! The long-awaited Montreal Underwater Hockey Summer Tournament is happening **today**. The competition is fierce and the show, unforgettable.\n\n### A day of intense competition\n\nStarting at **12:30 PM**, teams are competing in the depths of the magnificent **Parc Jean-Drapeau swimming pool**. Whether you're a seasoned player or simply curious to discover this fascinating sport, the tournament promises moments of pure adrenaline until the grand final at **6:45 PM**.\n\nUnderwater hockey is a complete sport that combines swimming, freediving, and team strategy. It's a unique opportunity to see athletes push their limits in an extraordinary environment.\n\n### Ranking Matches Results\n\nA tough competition for CAMO. Here are the results of the ranking matches:\n\n- **CAMO 4-3 Gatineau/Ottawa**\n- **CAMO 3-4 Sherbrooke**\n- **CAMO 0-10 Cornwall**\n\nThe semi-finals and the final are yet to come!\n\n### Don't miss any of the action!\n\nTo get all the details about the games, participating teams, and live rankings, check out the official tournament schedule:\n\n[Schedule Link](https://docs.google.com/spreadsheets/d/1xhwARu0RJzODM13oIlTYRmy52nGoWmCt/edit?usp=drivesdk&ouid=112734382006949623750&rtpof=true&sd=true)\n\nAnd to stay connected, follow the latest news, and share your excitement, join the event on Facebook:\n\n[Facebook Page Link](https://facebook.com/events/s/tournoi-estival-de-montreal-20/1056767486301457/)\n\n### Follow the competition!\n\nThe action is happening behind closed doors, but you can follow the live results and support your favorite teams through our social media channels and the schedule link.",
+        "excerpt": "Kickoff of the Montreal Underwater Hockey Summer Torneo at Parc Jean-Drapeau. Schedule and ranking match results.",
+        "content_md": "blog/posts/tournoi-estival-2025.es.md"
+      }
     },
     {
       "id": "nationaux-hsa-2025",
@@ -253,7 +309,12 @@
         "content_md": "blog/posts/nationaux-hsa-2025.en.md",
         "excerpt": "Complete recap of the 2025 Canadian Underwater Hockey Championships and CAMO's remarkable run to the silver medal."
       },
-      "url": "/blog/nationaux-hsa-2025.html"
+      "url": "/blog/nationaux-hsa-2025.html",
+      "es": {
+        "title": "2025 Canadian Underwater Hockey Nationals: Full Recap and Silver Medal for CAMO",
+        "content_md": "blog/posts/nationaux-hsa-2025.es.md",
+        "excerpt": "Complete recap of the 2025 Canadian Underwater Hockey Championships and CAMO's remarkable run to the silver medal."
+      }
     }
   ]
 }

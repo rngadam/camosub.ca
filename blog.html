@@ -41,6 +41,10 @@ canonical: "https://camosub.ca/blog.html"
             <h1 class="text-3xl md:text-4xl font-extrabold mt-3 tracking-tight">Club CAMO Blog</h1>
             <p class="mt-2 text-md md:text-lg italic text-blue-100 max-w-2xl mx-auto px-4">News, tournament results, and stories from our underwater sports teams</p>
         </div>
+<div class="lang-es" style="display:none;">
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-3 tracking-tight">Club CAMO Blog</h1>
+            <p class="mt-2 text-md md:text-lg italic text-blue-100 max-w-2xl mx-auto px-4">News, tournament results, and stories from our underwater sports teams</p>
+        </div>
     </header>
 
     <main class="container mx-auto px-4 py-10 max-w-4xl">
@@ -105,6 +109,7 @@ canonical: "https://camosub.ca/blog.html"
                     <div class="bg-white text-gray-700 p-10 rounded-2xl text-center shadow-lg">
                         <p class="lang-fr text-lg">Aucun article de blogue pour le moment.</p>
                         <p class="lang-en text-lg" style="display:none;">No blog posts available at the moment.</p>
+<p class="lang-es text-lg" style="display:none;">No blog posts available at the moment.</p>
                     </div>
                 `;
                 return;
@@ -175,20 +180,24 @@ canonical: "https://camosub.ca/blog.html"
                                 <i class="fa fa-calendar-o mr-1.5 text-blue-500"></i>
                                 <time datetime="${post.timestamp}" class="lang-fr">${dateFormattedFr}</time>
                                 <time datetime="${post.timestamp}" class="lang-en" style="display:none;">${dateFormattedEn}</time>
+<time datetime="${post.timestamp}" class="lang-es" style="display:none;">${dateFormattedEn}</time>
                             </div>
 
                             <div class="lang-fr">${tagsHtmlFr}</div>
                             <div class="lang-en" style="display:none;">${tagsHtmlEn}</div>
+<div class="lang-es" style="display:none;">${tagsHtmlEn}</div>
 
                             <!-- Titles -->
                             <h2 class="text-xl md:text-2xl font-bold text-gray-900 mt-2 mb-3 leading-snug group-hover:text-blue-700 transition-colors">
                                 <a href="${postUrl}" class="lang-fr block">${titleFr}</a>
                                 <a href="${postUrl}" class="lang-en block" style="display:none;">${titleEn}</a>
+<a href="${postUrl}" class="lang-es block" style="display:none;">${titleEn}</a>
                             </h2>
 
                             <!-- Excerpts -->
                             <p class="lang-fr text-gray-600 text-base leading-relaxed mb-6">${excerptFr}</p>
                             <p class="lang-en text-gray-600 text-base leading-relaxed mb-6" style="display:none;">${excerptEn}</p>
+<p class="lang-es text-gray-600 text-base leading-relaxed mb-6" style="display:none;">${excerptEn}</p>
                         </div>
 
                         <!-- Card Footer Action Buttons -->
@@ -196,6 +205,7 @@ canonical: "https://camosub.ca/blog.html"
                             <a href="${postUrl}" class="inline-flex items-center gap-2 font-bold text-sm text-blue-600 hover:text-blue-800 transition-colors group-hover:translate-x-1 duration-200">
                                 <span class="lang-fr">Lire l'article complet</span>
                                 <span class="lang-en" style="display:none;">Read full article</span>
+<span class="lang-es" style="display:none;">Read full article</span>
                                 <i class="fa fa-arrow-right text-xs"></i>
                             </a>
 
@@ -203,6 +213,7 @@ canonical: "https://camosub.ca/blog.html"
                                 <i class="fa fa-share-alt"></i>
                                 <span class="lang-fr">Partager</span>
                                 <span class="lang-en" style="display:none;">Share</span>
+<span class="lang-es" style="display:none;">Share</span>
                             </button>
                         </div>
                     </div>

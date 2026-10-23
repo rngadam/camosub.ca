@@ -10,41 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogLinkFr = document.getElementById('blog-link-fr');
     const blogLinkEn = document.getElementById('blog-link-en');
 
+const blogLinkEs = document.getElementById('blog-link-es');
+
     const setLanguage = (lang) => {
-        const isFr = lang === 'fr';
+        const supportedLangs = ['fr', 'en', 'es'];
+        if (!supportedLangs.includes(lang)) lang = 'fr';
 
-        // Toggle French sections
-        document.querySelectorAll('.lang-fr, .lang-fr-header-footer, .lang-fr-content, .lang-fr-tag').forEach(el => {
-            if (isFr) {
-                if (el.classList.contains('flex')) {
-                    el.style.display = 'flex';
-                } else if (el.tagName === 'SPAN' || el.classList.contains('inline-block')) {
-                    el.style.display = 'inline-block';
+        supportedLangs.forEach(l => {
+            const isCurrent = l === lang;
+            document.querySelectorAll(`.lang-${l}, .lang-${l}-header-footer, .lang-${l}-content, .lang-${l}-tag`).forEach(el => {
+                if (isCurrent) {
+                    if (el.classList.contains('flex')) {
+                        el.style.display = 'flex';
+                    } else if (el.tagName === 'SPAN' || el.classList.contains('inline-block')) {
+                        el.style.display = 'inline-block';
+                    } else {
+                        el.style.display = 'block';
+                    }
                 } else {
-                    el.style.display = 'block';
+                    el.style.display = 'none';
                 }
-            } else {
-                el.style.display = 'none';
-            }
+            });
         });
 
-        // Toggle English sections
-        document.querySelectorAll('.lang-en, .lang-en-header-footer, .lang-en-content, .lang-en-tag').forEach(el => {
-            if (!isFr) {
-                if (el.classList.contains('flex')) {
-                    el.style.display = 'flex';
-                } else if (el.tagName === 'SPAN' || el.classList.contains('inline-block')) {
-                    el.style.display = 'inline-block';
-                } else {
-                    el.style.display = 'block';
-                }
-            } else {
-                el.style.display = 'none';
-            }
-        });
-
-        if (blogLinkFr) blogLinkFr.href = isFr ? 'blog.html?lang=fr' : 'blog.html?lang=en';
-        if (blogLinkEn) blogLinkEn.href = !isFr ? 'blog.html?lang=en' : 'blog.html?lang=fr';
+        if (blogLinkFr) blogLinkFr.href = `blog.html?lang=${lang}`;
+        if (blogLinkEn) blogLinkEn.href = `blog.html?lang=${lang}`;
+        if (blogLinkEs) blogLinkEs.href = `blog.html?lang=${lang}`;
 
         // Style language buttons (both modern pill style and legacy buttons)
         document.querySelectorAll('.lang-button').forEach(button => {
@@ -91,12 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
 
     let initialLang = 'fr';
-    if (langParam === 'en' || langParam === 'fr') {
+    if (langParam === 'en' || langParam === 'fr' || langParam === 'es') {
         initialLang = langParam;
-    } else if (preferredLang === 'en' || preferredLang === 'fr') {
+    } else if (preferredLang === 'en' || preferredLang === 'fr' || preferredLang === 'es') {
         initialLang = preferredLang;
     } else if (browserLang === 'en') {
         initialLang = 'en';
+    } else if (browserLang === 'es') {
+        initialLang = 'es';
     }
     setLanguage(initialLang);
 
@@ -224,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // If it's meant for all pages, keeping it here is fine. Otherwise, it might need conditional loading or page-specific JS.
     function appendVersionInfoToFooters(element) {
       // Adjusted selectors to be more generic if multiple footers exist per language section
-      const selectors = ['.lang-fr footer .container:last-of-type', '.lang-en footer .container:last-of-type'];
+      const selectors = ['.lang-fr footer .container:last-of-type', '.lang-en footer .container:last-of-type', '.lang-es footer .container:last-of-type'];
       selectors.forEach(selector => {
         const footerContainer = document.querySelector(selector);
         if (footerContainer) {
@@ -283,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // or conditionally run here. For now, assuming it might be needed elsewhere or can be safely included.
     const frenchEventsContainer = document.getElementById('french-events-container');
     const englishEventsContainer = document.getElementById('english-events-container');
+    const spanishEventsContainer = document.getElementById('spanish-events-container');
 
     if (frenchEventsContainer && englishEventsContainer) { // Only run if containers exist
         const eventBackgroundClasses = {
@@ -355,14 +349,14 @@ document.addEventListener('DOMContentLoaded', () => {
             dateValueSpan.className = 'text-red-600';
 
             if (event.recurrence && event.recurrence[lang]) {
-                dateLabelSpan.textContent = lang === 'fr' ? 'Quand : ' : 'When: ';
+                dateLabelSpan.textContent = lang === 'fr' ? 'Quand : ' : lang === 'es' ? 'Cuándo: ' : 'When: ';
                 dateValueSpan.textContent = event.recurrence[lang];
             } else if (eventLangData.dateDisplay) {
-                dateLabelSpan.textContent = lang === 'fr' ? 'Dates : ' : 'Dates: ';
+                dateLabelSpan.textContent = lang === 'fr' ? 'Dates : ' : lang === 'es' ? 'Fechas: ' : 'Dates: ';
                 dateValueSpan.textContent = eventLangData.dateDisplay;
             } else if (event.startDate) {
-                dateLabelSpan.textContent = lang === 'fr' ? 'Date : ' : 'Date: ';
-                const locale = lang === 'fr' ? 'fr-CA' : 'en-CA';
+                dateLabelSpan.textContent = lang === 'fr' ? 'Date : ' : lang === 'es' ? 'Fecha: ' : 'Date: ';
+                const locale = lang === 'fr' ? 'fr-CA' : lang === 'es' ? 'es-ES' : 'en-CA';
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
                 const startDateObj = parseISODateStringToDate(event.startDate);
                 let formattedStartDate = startDateObj ? startDateObj.toLocaleDateString(locale, options) : event.startDate;
@@ -386,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (eventTime) {
                 const timeP = document.createElement('p');
                 timeP.className = 'text-xl mb-4';
-                const timeLabel = lang === 'fr' ? 'Horaire : ' : 'Time: ';
+                const timeLabel = lang === 'fr' ? 'Horaire : ' : lang === 'es' ? 'Horario: ' : 'Time: ';
                 const timeValueSpan = document.createElement('span');
                 timeValueSpan.className = 'font-semibold';
                 timeValueSpan.textContent = eventTime;
@@ -398,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (event.location) {
                 const locTitleP = document.createElement('p');
                 locTitleP.className = 'text-xl mb-4';
-                locTitleP.textContent = lang === 'fr' ? 'Lieu :' : 'Location:';
+                locTitleP.textContent = lang === 'fr' ? 'Lieu :' : lang === 'es' ? 'Lugar:' : 'Location:';
                 contentWrapperDiv.appendChild(locTitleP);
 
                 const locationContainer = document.createElement('div');
@@ -430,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 mapIcon.style.marginRight = '10px';
                 mapIcon.setAttribute('aria-hidden', 'true');
 
-                const ariaLabelText = lang === 'fr' ? 'Voir sur Google Maps' : 'View on Google Maps';
+                const ariaLabelText = lang === 'fr' ? 'Voir sur Google Maps' : lang === 'es' ? 'Ver en Google Maps' : 'View on Google Maps';
                 mapLink.setAttribute('aria-label', ariaLabelText);
                 mapLink.title = ariaLabelText;
 
@@ -449,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (organizers) {
                 const orgP = document.createElement('p');
                 orgP.className = 'text-xl mb-4';
-                const orgLabel = lang === 'fr' ? 'Organisateurs : ' : 'Organizers: ';
+                const orgLabel = lang === 'fr' ? 'Organisateurs : ' : lang === 'es' ? 'Organizadores: ' : 'Organizers: ';
                 const orgValueSpan = document.createElement('span');
                 orgValueSpan.className = 'font-semibold';
                 orgValueSpan.textContent = organizers;
@@ -465,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 contentWrapperDiv.appendChild(descP);
             }
 
-            const costLabel = lang === 'fr' ? 'Coût : ' : 'Cost: ';
+            const costLabel = lang === 'fr' ? 'Coût : ' : lang === 'es' ? 'Costo: ' : 'Cost: ';
             if (eventLangData.cost) {
                 const costP = document.createElement('p');
                 costP.className = 'text-xl font-semibold mb-4';
@@ -477,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 contentWrapperDiv.appendChild(costP);
             }
 
-            const equipmentLabel = lang === 'fr' ? 'Équipement nécessaire : ' : 'Required equipment: ';
+            const equipmentLabel = lang === 'fr' ? 'Équipement nécessaire : ' : lang === 'es' ? 'Equipamiento necesario: ' : 'Required equipment: ';
             if (eventLangData.equipmentNeeded) {
                 const equipP = document.createElement('p');
                 equipP.className = 'text-xl font-semibold mb-6';
@@ -522,18 +516,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let buttonClasses = 'mt-6 inline-block text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-opacity-80 transition duration-300 shadow-md';
                 let iconClass = 'fa fa-external-link-alt mr-2';
-                let buttonTextContent = lang === 'fr' ? "Voir l'événement" : "View Event";
+                let buttonTextContent = lang === 'fr' ? "Voir l'événement" : lang === 'es' ? "Ver evento" : "View Event";
 
                 if (eventLangData.url.includes('uwhportal')) {
                     buttonClasses += ' bg-green-600 hover:bg-green-700';
                 } else if (eventLangData.url.includes('facebook')) {
                     buttonClasses += ' bg-blue-600 hover:bg-blue-700';
                     iconClass = 'fa fa-facebook mr-2';
-                    buttonTextContent = lang === 'fr' ? "Voir l'événement Facebook" : "View Facebook Event";
+                    buttonTextContent = lang === 'fr' ? "Voir l'événement Facebook" : lang === 'es' ? "Ver evento en Facebook" : "View Facebook Event";
                 } else if (eventLangData.url.startsWith('mailto:')) {
                     buttonClasses += ' bg-gray-800 hover:bg-gray-900';
                     iconClass = 'fa fa-envelope mr-2';
-                    buttonTextContent = lang === 'fr' ? "Envoyez-nous un courriel" : "Email us";
+                    buttonTextContent = lang === 'fr' ? "Envoyez-nous un courriel" : lang === 'es' ? "Envíanos un correo" : "Email us";
                     if (event.id === 'newbie-training') {
                          linkA.className = 'mt-4 inline-block bg-gray-800 text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-gray-900 transition duration-300 shadow-lg';
                     } else {
@@ -554,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (event.id === 'newbie-training' && eventLangData.url.startsWith('mailto:')) {
                     const contactP = document.createElement('p');
                     contactP.className = 'text-xl md:text-2xl mt-8 mb-6 font-semibold';
-                    contactP.textContent = lang === 'fr' ? "Pour participer ou pour plus d'informations :" : "To participate or for more information:";
+                    contactP.textContent = lang === 'fr' ? "Pour participer ou pour plus d'informations :" : lang === 'es' ? "Para participar o para más información:" : "To participate or for more information:";
                     containerDiv.appendChild(contactP);
                     containerDiv.appendChild(linkA);
                 } else {
@@ -567,8 +561,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         function renderAllEvents(eventsData) {
-            frenchEventsContainer.innerHTML = '';
-            englishEventsContainer.innerHTML = '';
+            if (frenchEventsContainer) frenchEventsContainer.innerHTML = '';
+            if (englishEventsContainer) englishEventsContainer.innerHTML = '';
+            if (spanishEventsContainer) spanishEventsContainer.innerHTML = '';
 
             // Filtrer les événements archivés et trier :
             // 1. Événements récurrents (avec recurrence ou sans startDate) toujours en premier
@@ -590,14 +585,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (frenchEventHtml) frenchEventsContainer.appendChild(frenchEventHtml);
                 const englishEventHtml = renderEvent(event, 'en');
                 if (englishEventHtml) englishEventsContainer.appendChild(englishEventHtml);
+                const spanishEventHtml = renderEvent(event, 'es');
+                if (spanishEventHtml && spanishEventsContainer) spanishEventsContainer.appendChild(spanishEventHtml);
             });
         }
 
         if (typeof fetch !== 'undefined') {
             const loadingHtml = '<div class="text-center py-8"><i class="fa fa-spinner fa-spin fa-3x"></i><p class="mt-4 text-lg">Chargement des événements...</p></div>';
             const loadingHtmlEn = '<div class="text-center py-8"><i class="fa fa-spinner fa-spin fa-3x"></i><p class="mt-4 text-lg">Loading events...</p></div>';
+            const loadingHtmlEs = '<div class="text-center py-8"><i class="fa fa-spinner fa-spin fa-3x"></i><p class="mt-4 text-lg">Cargando eventos...</p></div>';
             if (frenchEventsContainer) frenchEventsContainer.innerHTML = loadingHtml;
             if (englishEventsContainer) englishEventsContainer.innerHTML = loadingHtmlEn;
+            if (spanishEventsContainer) spanishEventsContainer.innerHTML = loadingHtmlEs;
 
             fetch('events.json')
                 .then(response => {
@@ -613,6 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error("Could not load or render events:", error);
                     if (frenchEventsContainer) frenchEventsContainer.innerHTML = '<p class="text-red-500 text-center py-8">Error loading French events.</p>';
                     if (englishEventsContainer) englishEventsContainer.innerHTML = '<p class="text-red-500 text-center py-8">Error loading English events.</p>';
+                    if (spanishEventsContainer) spanishEventsContainer.innerHTML = '<p class="text-red-500 text-center py-8">Error al cargar eventos en español.</p>';
                 });
         }
     }
