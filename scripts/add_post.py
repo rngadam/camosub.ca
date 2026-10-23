@@ -173,8 +173,7 @@ def main():
     jekyll_lines.append("")
     jekyll_lines.append("</div>")
     jekyll_lines.append("")
-    jekyll_content = "
-".join(jekyll_lines)
+    jekyll_content = "\n".join(jekyll_lines)
 
     # Blog post entry for blog.json
     new_post_entry = {
@@ -221,10 +220,8 @@ def main():
     # Write Markdown files
     jekyll_post_path.write_text(jekyll_content, encoding="utf-8")
     blog_fr_path.write_text(content_fr + "\n", encoding="utf-8")
-    blog_en_path.write_text(content_en + "
-", encoding="utf-8")
-    blog_es_path.write_text(content_es + "
-", encoding="utf-8")
+    blog_en_path.write_text(content_en + "\n", encoding="utf-8")
+    blog_es_path.write_text(content_es + "\n", encoding="utf-8")
 
     # Update blog.json & _data/blog.json
     for json_path in [data_blog_json_path, root_blog_json_path]:
@@ -264,7 +261,6 @@ def main():
                 }
                 print(f"  * Ajout de l'étiquette de tag '{t}' dans {json_path.name}")
 
-        with open(json_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
             f.write("\n")
 

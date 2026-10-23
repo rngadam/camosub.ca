@@ -7,7 +7,7 @@
     "recurrence": {
       "fr": "Tous les Mardis",
       "en": "Every Tuesday",
-      "es": "Cada Tuesday"
+      "es": "Cada martes"
     },
     "rrule": "FREQ=WEEKLY;BYDAY=TU",
     "firstEventStartDate": "2026-09-01",
@@ -54,19 +54,19 @@
     },
     "image": null,
     "es": {
-      "title": "Introduction to Underwater Sports for Beginners",
-      "description": "Join our newbie training sessions every Tuesday evening and discover underwater hockey as well as underwater rugby!",
+      "title": "Introducción a los deportes subacuáticos para principiantes",
+      "description": "¡Únete a nuestros entrenamientos para principiantes todos los martes por la noche y descubre el hockey subacuático y el rugby subacuático!",
       "details": null,
-      "cost": "$10 (the first 3 sessions are free)",
-      "equipmentNeeded": "Swimsuit",
-      "programTitle": "On the program:",
+      "cost": "10 $ (las primeras 3 sesiones son gratis)",
+      "equipmentNeeded": "Traje de baño",
+      "programTitle": "En el programa:",
       "programDetails": [
-        "Introduction to underwater hockey and underwater rugby",
-        "Fin swimming and freediving techniques",
-        "Puck handling (hockey) and ball handling (rugby)",
-        "Game strategies and friendly matches"
+        "Introducción al hockey subacuático y al rugby subacuático",
+        "Técnicas de natación con aletas y apnea",
+        "Manejo del disco (hockey) y manejo del balón (rugby)",
+        "Estrategias de juego y partidos amistosos"
       ],
-      "notes": "Open to all levels. Ability to swim comfortably is a prerequisite. Basic equipment (fins, mask, snorkel, stick, puck, cap) can be lent upon request.",
+      "notes": "Abierto a todos los niveles. Saber nadar cómodamente es un requisito previo. Se puede prestar equipamiento básico (aletas, máscara, tubo, palo, disco, gorro) bajo petición.",
       "url": "mailto:info@camosub.ca"
     }
   },
@@ -120,19 +120,19 @@
     },
     "image": null,
     "es": {
-      "title": "Annual General Meeting (AGM) 2026",
-      "description": "The next Annual General Meeting (AGM) of the CAMO club will be held virtually on October 26, 2026 at 7:00 PM. A meeting link will be sent a few days prior to active club members.",
+      "title": "Asamblea General Anual (AGA) 2026",
+      "description": "La próxima Asamblea General Anual (AGA) del club CAMO se llevará a cabo de manera virtual el 26 de octubre de 2026 a las 19:00 horas. Se enviará un enlace para la reunión unos días antes a los miembros activos del club.",
       "details": null,
-      "cost": "Gratis (members in good standing)",
-      "equipmentNeeded": "Internet connection",
-      "programTitle": "Important Information:",
+      "cost": "Gratis (miembros al corriente de pago)",
+      "equipmentNeeded": "Conexión a internet",
+      "programTitle": "Información Importante:",
       "programDetails": [
-        "Date: Monday, October 26, 2026 at 7:00 PM",
-        "Format: Virtual meeting (videoconference)",
-        "Access: Meeting link sent a few days prior to active members",
-        "Registration: You must be a member in good standing to vote"
+        "Fecha: lunes, 26 de octubre de 2026 a las 19:00 horas",
+        "Formato: Reunión virtual (videoconferencia)",
+        "Acceso: Enlace de la reunión enviado unos días antes a los miembros activos",
+        "Inscripción: Debes ser miembro al corriente de pago para votar"
       ],
-      "notes": "Please make sure your season registration is completed to receive the meeting link.",
+      "notes": "Asegúrate de que tu inscripción para la temporada esté completa para recibir el enlace de la reunión.",
       "url": "https://www.camosub.ca/inscriptions.html"
     }
   },
@@ -189,17 +189,17 @@
     },
     "image": null,
     "es": {
-      "title": "Montréal Torneo 2026",
-      "dateDisplay": "November 21–22, 2026",
-      "time": "Saturday, Nov 21 at 8:00 AM to Sunday, Nov 22 at 5:00 PM",
-      "organizers": "CAMO Underwater Hockey & Stéphanie Lagacé",
-      "description": "We're back after a two-year hiatus due to pool renovations! The CAMO club is proud to present the 2026 Montreal Torneo on November 21st and 22nd. Expect to rediscover what makes this event a top-tier classic:",
-      "programTitle": "Participant perks:",
+      "title": "Torneo de Montreal 2026",
+      "dateDisplay": "21 y 22 de noviembre de 2026",
+      "time": "Sábado, 21 nov a las 8:00 AM hasta el domingo, 22 nov a las 5:00 PM",
+      "organizers": "CAMO Hockey Subacuático & Stéphanie Lagacé",
+      "description": "¡Regresamos después de una pausa de dos años debido a renovaciones de la piscina! El club CAMO se enorgullece en presentar el Torneo de Montreal 2026 el 21 y 22 de noviembre. Esperamos redescubrir lo que hace de este evento un clásico de primer nivel:",
+      "programTitle": "Ventajas para los participantes:",
       "programDetails": [
-        "Deck refs fully provided",
-        "Water refs at least partially provided",
-        "Massage tables for participants",
-        "Food provided for participants"
+        "Árbitros de piscina proporcionados en su totalidad",
+        "Árbitros acuáticos proporcionados al menos parcialmente",
+        "Mesas de masaje para los participantes",
+        "Comida proporcionada para los participantes"
       ],
       "details": null,
       "url": "https://www.facebook.com/events/1120906390614793"
