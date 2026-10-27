@@ -24,6 +24,14 @@ In Canada, the history of underwater hockey began in 1962 in Vancouver with Aust
 ## Introduction in Quebec (1965 - Early 1970s)
 In Quebec, hockey was introduced in 1965 under the influence of Rodrigue Sarrazin and Georges Bélanger. In the early 1970s, underwater hockey was documented at Maisonneuve College in Montreal as an extracurricular activity with Jean-Claude Rouisse.
 
+The [Montréal-Matin of Friday, April 28, 1972 (page 65)](https://numerique.banq.qc.ca/patrimoine/details/52327/4513100) also reported on the first underwater hockey tournament held the previous Sunday at the Gadbois Recreation Centre, presented by the Montreal Sports and Recreation Department:
+
+> « **Hockey sous-marin**
+> Le premier tournoi de hockey sous-marin avait lieu dimanche dernier au Centre récréatif Gadbois et était présenté par le Service des sports et loisirs de Montréal. Le Centre de plongée sous-marine du Québec a enlevé les honneurs grâce à l'expérience des vétérans. Il a facilement battu le Club Aquatique de Montréal, par 10-4, avant de blanchir le Cowansville par 11-0. Les clubs de hockey sous-marin auraient intérêt à se faire connaître en écrivant à M. Léo Filiatrault, 2050 Amherst, Montréal 132. »
+
+![Montréal-Matin article, April 28, 1972](../images/histoire/655752314_10161988234071058_7369043128448179678_n.jpg)
+![Zoom on Montréal-Matin article, April 28, 1972](../images/histoire/montreal-matin-1972-zoom.jpg)
+
 ## Growth of the Sport in Quebec (1970s-1980s)
 From there, a period of growth for the sport began in Quebec and elsewhere: the birth of clubs, the formalization of provincial (1976, St-Hyacinthe), national (1975, Winnipeg), and international (1980, Vancouver) competitions.
 
@@ -59,6 +67,10 @@ After 1990, part of this generation gradually drifted away from the club, leavin
 
 ## Consolidation at Joseph-Charbonneau (1992)
 Its somewhat weakened organization consolidated in 1992 when the club moved to the Joseph-Charbonneau pool. The club progressed through a confluence of players from different clubs, which did not prevent it from maintaining its reputation and continuing to perform well in competitions.
+
+The Joseph-Charbonneau specialized school, where club members train, was notably featured in an article in [La Presse](https://www.lapresse.ca/actualites/education/2026-10-20/incendie/l-ecole-specialisee-joseph-charbonneau-fermee-pendant-trois-semaines.php) following a fire at the school.
+
+![La Presse article on Joseph-Charbonneau school fire](../images/histoire/862932179_10162830242136058_2272910658392221293_n.jpg)
 
 ## Next Generation from John F. Kennedy Aquatic Club (1998-2000)
 It took nearly 10 years to see the arrival of a new generation of
