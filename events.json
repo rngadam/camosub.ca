@@ -1,5 +1,70 @@
 [
   {
+    "id": "cornwall-training",
+    "startDate": null,
+    "endDate": null,
+    "time": "20h30 - 21h55",
+    "recurrence": {
+      "fr": "Tous les lundis et jeudis",
+      "en": "Every Monday and Thursday",
+      "es": "Cada lunes y jueves"
+    },
+    "rrule": "FREQ=WEEKLY;BYDAY=MO,TH",
+    "firstEventStartDate": "2026-10-22",
+    "location": {
+      "name": "Cornwall Aquatic Center",
+      "address": "100 Water St E",
+      "city": "Cornwall",
+      "province": "ON",
+      "postalCode": "K6H 6G4",
+      "country": "Canada",
+      "mapsLink": "https://maps.google.com/?q=100+Water+St+E,+Cornwall,+ON"
+    },
+    "fr": {
+      "title": "Pratiques alternatives à Cornwall",
+      "description": "En attendant la réouverture ou relocalisation de nos plages horaires à Montréal suite à l incendie à Joseph-Charbonneau, rejoignez-nous à Cornwall !",
+      "details": null,
+      "cost": "Gratuit / Inclus",
+      "equipmentNeeded": "Maillot de bain, palmes, masque, tuba",
+      "programTitle": "Au programme :",
+      "programDetails": [
+        "Entraînements et parties amicales de hockey subaquatique et rugby subaquatique",
+        "Pratiques les lundis et jeudis soirs de 20h30 à 21h55"
+      ],
+      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
+      "url": "mailto:info@camosub.ca"
+    },
+    "en": {
+      "title": "Alternative Practices in Cornwall",
+      "description": "While we seek alternative pool options in Montreal following the Joseph-Charbonneau fire, join us for practices in Cornwall!",
+      "details": null,
+      "cost": "Free / Included",
+      "equipmentNeeded": "Swimsuit, fins, mask, snorkel",
+      "programTitle": "On the program:",
+      "programDetails": [
+        "Underwater hockey and underwater rugby practices and friendly games",
+        "Practices on Monday and Thursday evenings from 8:30 PM to 9:55 PM"
+      ],
+      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
+      "url": "mailto:info@camosub.ca"
+    },
+    "es": {
+      "title": "Entrenamientos alternativos en Cornwall",
+      "description": "Mientras buscamos una alternativa en Montreal tras el incendio en Joseph-Charbonneau, ¡únete a los entrenamientos en Cornwall!",
+      "details": null,
+      "cost": "Gratis / Incluido",
+      "equipmentNeeded": "Traje de baño, aletas, máscara, tubo",
+      "programTitle": "En el programa:",
+      "programDetails": [
+        "Entrenamientos y partidos amistosos de hockey y rugby subaquático",
+        "Prácticas los lunes y jueves de 20:30 a 21:55"
+      ],
+      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
+      "url": "mailto:info@camosub.ca"
+    },
+    "image": null
+  },
+  {
     "id": "newbie-training",
     "startDate": null,
     "endDate": null,
@@ -68,137 +133,6 @@
       ],
       "notes": "AVISO: Piscina Joseph-Charbonneau cerrada hasta nuevo aviso debido a un incendio el 20 de octubre de 2026. Prácticas suspendidas en espera de relocalización. Alternativa en Cornwall los lunes y jueves de 20:30 a 21:55.",
       "url": "mailto:info@camosub.ca"
-    }
-  },
-  {
-    "id": "cornwall-training",
-    "startDate": null,
-    "endDate": null,
-    "time": "20h30 - 21h55",
-    "recurrence": {
-      "fr": "Tous les lundis et jeudis",
-      "en": "Every Monday and Thursday",
-      "es": "Cada lunes y jueves"
-    },
-    "rrule": "FREQ=WEEKLY;BYDAY=MO,TH",
-    "firstEventStartDate": "2026-10-22",
-    "location": {
-      "name": "Cornwall Aquatic Center",
-      "address": "100 Water St E",
-      "city": "Cornwall",
-      "province": "ON",
-      "postalCode": "K6H 6G4",
-      "country": "Canada",
-      "mapsLink": "https://maps.google.com/?q=100+Water+St+E,+Cornwall,+ON"
-    },
-    "fr": {
-      "title": "Pratiques alternatives à Cornwall",
-      "description": "En attendant la réouverture ou relocalisation de nos plages horaires à Montréal suite à l incendie à Joseph-Charbonneau, rejoignez-nous à Cornwall !",
-      "details": null,
-      "cost": "Gratuit / Inclus",
-      "equipmentNeeded": "Maillot de bain, palmes, masque, tuba",
-      "programTitle": "Au programme :",
-      "programDetails": [
-        "Entraînements et parties amicales de hockey subaquatique et rugby subaquatique",
-        "Pratiques les lundis et jeudis soirs de 20h30 à 21h55"
-      ],
-      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
-      "url": "mailto:info@camosub.ca"
-    },
-    "en": {
-      "title": "Alternative Practices in Cornwall",
-      "description": "While we seek alternative pool options in Montreal following the Joseph-Charbonneau fire, join us for practices in Cornwall!",
-      "details": null,
-      "cost": "Free / Included",
-      "equipmentNeeded": "Swimsuit, fins, mask, snorkel",
-      "programTitle": "On the program:",
-      "programDetails": [
-        "Underwater hockey and underwater rugby practices and friendly games",
-        "Practices on Monday and Thursday evenings from 8:30 PM to 9:55 PM"
-      ],
-      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
-      "url": "mailto:info@camosub.ca"
-    },
-    "es": {
-      "title": "Entrenamientos alternativos en Cornwall",
-      "description": "Mientras buscamos una alternativa en Montreal tras el incendio en Joseph-Charbonneau, ¡únete a los entrenamientos en Cornwall!",
-      "details": null,
-      "cost": "Gratis / Incluido",
-      "equipmentNeeded": "Traje de baño, aletas, máscara, tubo",
-      "programTitle": "En el programa:",
-      "programDetails": [
-        "Entrenamientos y partidos amistosos de hockey y rugby subaquático",
-        "Prácticas los lunes y jueves de 20:30 a 21:55"
-      ],
-      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
-      "url": "mailto:info@camosub.ca"
-    },
-    "image": null
-  },
-  {
-    "id": "aga-2026",
-    "startDate": "2026-10-26",
-    "endDate": "2026-10-26",
-    "time": "19h00",
-    "recurrence": null,
-    "firstEventStartDate": null,
-    "location": {
-      "name": "En ligne (Rencontre virtuelle)",
-      "address": "Lien envoyé aux membres actifs",
-      "city": "Montréal",
-      "province": "QC",
-      "postalCode": "H2E 1Z6",
-      "country": "Canada",
-      "mapsLink": ""
-    },
-    "fr": {
-      "title": "Assemblée Générale Annuelle (AGA) 2026",
-      "description": "La prochaine assemblée générale annuelle du club CAMO se tiendra le 26 octobre 2026 à 19h de façon virtuelle. Un lien pour la rencontre vous sera envoyé quelques jours avant aux membres actifs du club.",
-      "details": null,
-      "cost": "Gratuit (membres en règle)",
-      "equipmentNeeded": "Connexion Internet",
-      "programTitle": "Informations importantes :",
-      "programDetails": [
-        "Date : Lundi 26 octobre 2026 à 19h00",
-        "Mode : Virtuel (visioconférence)",
-        "Accès : Le lien de connexion sera envoyé quelques jours avant aux membres actifs",
-        "Inscription : Vous devez être membre en règle du club pour voter"
-      ],
-      "notes": "Assurez-vous d'avoir complété votre inscription pour la saison afin de recevoir le lien de connexion.",
-      "url": "https://www.camosub.ca/inscriptions.html"
-    },
-    "en": {
-      "title": "Annual General Meeting (AGM) 2026",
-      "description": "The next Annual General Meeting (AGM) of the CAMO club will be held virtually on October 26, 2026 at 7:00 PM. A meeting link will be sent a few days prior to active club members.",
-      "details": null,
-      "cost": "Free (members in good standing)",
-      "equipmentNeeded": "Internet connection",
-      "programTitle": "Important Information:",
-      "programDetails": [
-        "Date: Monday, October 26, 2026 at 7:00 PM",
-        "Format: Virtual meeting (videoconference)",
-        "Access: Meeting link sent a few days prior to active members",
-        "Registration: You must be a member in good standing to vote"
-      ],
-      "notes": "Please make sure your season registration is completed to receive the meeting link.",
-      "url": "https://www.camosub.ca/inscriptions.html"
-    },
-    "image": null,
-    "es": {
-      "title": "Asamblea General Anual (AGA) 2026",
-      "description": "La próxima Asamblea General Anual (AGA) del club CAMO se llevará a cabo de manera virtual el 26 de octubre de 2026 a las 19:00 horas. Se enviará un enlace para la reunión unos días antes a los miembros activos del club.",
-      "details": null,
-      "cost": "Gratis (miembros al corriente de pago)",
-      "equipmentNeeded": "Conexión a internet",
-      "programTitle": "Información Importante:",
-      "programDetails": [
-        "Fecha: lunes, 26 de octubre de 2026 a las 19:00 horas",
-        "Formato: Reunión virtual (videoconferencia)",
-        "Acceso: Enlace de la reunión enviado unos días antes a los miembros activos",
-        "Inscripción: Debes ser miembro al corriente de pago para votar"
-      ],
-      "notes": "Asegúrate de que tu inscripción para la temporada esté completa para recibir el enlace de la reunión.",
-      "url": "https://www.camosub.ca/inscriptions.html"
     }
   },
   {
