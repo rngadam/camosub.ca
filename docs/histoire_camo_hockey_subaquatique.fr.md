@@ -24,6 +24,14 @@ Au Canada, l’histoire du hockey subaquatique débute en 1962 à Vancouver avec
 ## Implantation au Québec (1965 - Début Années 70)
 Au Québec, le hockey s’implante en 1965 sous l’influence de Rodrigue Sarrazin et de Georges Bélanger. Au début des années 70, on recense du hockey subaquatique au collège de Maisonneuve de Montréal sous la forme d’une activité parascolaire avec Jean-Claude Rouisse.
 
+Le [Montréal-Matin du vendredi 28 avril 1972 (page 65)](https://numerique.banq.qc.ca/patrimoine/details/52327/4513100) relatait également la tenue du premier tournoi de hockey sous-marin au Centre récréatif Gadbois, présenté par le Service des sports et loisirs de Montréal :
+
+> « **Hockey sous-marin**
+> Le premier tournoi de hockey sous-marin avait lieu dimanche dernier au Centre récréatif Gadbois et était présenté par le Service des sports et loisirs de Montréal. Le Centre de plongée sous-marine du Québec a enlevé les honneurs grâce à l'expérience des vétérans. Il a facilement battu le Club Aquatique de Montréal, par 10-4, avant de blanchir le Cowansville par 11-0. Les clubs de hockey sous-marin auraient intérêt à se faire connaître en écrivant à M. Léo Filiatrault, 2050 Amherst, Montréal 132. »
+
+![Article du Montréal-Matin, 28 avril 1972](../images/histoire/655752314_10161988234071058_7369043128448179678_n.jpg)
+![Zoom sur l'article du Montréal-Matin, 28 avril 1972](../images/histoire/montreal-matin-1972-zoom.jpg)
+
 ## Croissance de la discipline au Québec (Années 70-80)
 De là s’amorce une période de croissance de la discipline au Québec et ailleurs: naissance de clubs, officialisation de compétitions provinciales (1976, St-Hyacinthe), nationales (1975, Winnipeg) et internationales (1980, Vancouver).
 
@@ -59,6 +67,10 @@ Après 1990, une partie de cette génération s’éloigne peu à peu du club, l
 
 ## Consolidation à Joseph-Charbonneau (1992)
 Son organisation quelque peu affaiblie se consolide en 1992 lorsque le club s’installe à la piscine Joseph-Charbonneau. Le club progresse par un confluent de joueurs issus de différents clubs, ce qui ne l’empêche pas de maintenir sa renommée et de continuer à faire bonne figure en compétition.
+
+L'école spécialisée Joseph-Charbonneau, où s'entraînent les membres du club, a notamment fait l'objet d'un article dans [La Presse](https://www.lapresse.ca/actualites/education/2026-10-20/incendie/l-ecole-specialisee-joseph-charbonneau-fermee-pendant-trois-semaines.php) lors d'un incendie survenu à l'école.
+
+![Article de La Presse sur l'incendie de l'école Joseph-Charbonneau](../images/histoire/862932179_10162830242136058_2272910658392221293_n.jpg)
 
 ## Relève du Club Aquatique John F. Kennedy (1998-2000)
 Il faut attendre près de 10 ans avant de voir arriver une nouvelle génération d’athlètes issus principalement du Club Aquatique John F. Kennedy. 1998 marque le retour des joueurs de CAMO au sein de l’équipe nationale du Canada, et 2000 permet à certains d’entre eux de goûter aux joies de podium en remportant la médaille de bronze et la médaille d’argent.
