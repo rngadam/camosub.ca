@@ -11,16 +11,17 @@ tags: [annonce, informations, piscine, camo]
 
 <div class="lang-fr" markdown="1">
 
-Le 20 octobre 2026, un incendie s'est déclaré à l'école Joseph-Charbonneau. Suite à cet incident, la piscine est fermée pour une durée indéterminée.
+Le 20 octobre 2026, un incendie s'est déclaré à l'école Joseph-Charbonneau. Suite à cet incident (rapporté notamment dans l'actualité par La Presse), la [piscine Joseph-Charbonneau](https://montreal.ca/lieux/piscine-joseph-charbonneau) est fermée pour une durée indéterminée.
 
 Jusqu'à nouvel ordre, les pratiques de hockey subaquatique et de rugby subaquatique à la piscine Joseph-Charbonneau sont suspendues. L'équipe du club travaille activement à trouver une alternative et à relocaliser nos pratiques le temps de cette fermeture. Nous vous tiendrons informés dès que possible de la suite des événements.
 
 ### Alternative temporaire : Pratiques à Cornwall
 
-En attendant la réouverture de notre bassin ou la relocalisation de nos plages horaires, les membres et participants sont invités à rejoindre les pratiques organisées à Cornwall.
+En attendant la réouverture de notre bassin ou la relocalisation de nos plages horaires, les membres et participants sont invités à rejoindre les pratiques organisées à Cornwall par le club local.
 
 * **Lieu :** Cornwall Aquatic Center ([100 Water St E, Cornwall, ON K6H 6G4](https://maps.google.com/?q=100+Water+St+E,+Cornwall,+ON))
 * **Horaires :** Les lundis et jeudis de **20h30 à 21h55**
+* **Groupe Facebook :** [Cornwall Underwater Hockey Club sur Facebook](https://www.facebook.com/groups/1638204000148806)
 
 Merci pour votre compréhension et votre soutien durant cette période d'ajustement. N'hésitez pas à nous contacter à [info@camosub.ca](mailto:info@camosub.ca) pour toute question.
 
@@ -28,7 +29,7 @@ Merci pour votre compréhension et votre soutien durant cette période d'ajustem
 
 <div class="lang-en" markdown="1" style="display:none;">
 
-On October 20, 2026, a fire occurred at Joseph-Charbonneau school. Following the incident, the pool is closed for an indefinite period.
+On October 20, 2026, a fire occurred at Joseph-Charbonneau school. Following the incident (reported in news outlets like La Presse), the [Joseph-Charbonneau Pool](https://montreal.ca/en/places/piscine-joseph-charbonneau) is closed for an indefinite period.
 
 Until further notice, underwater hockey and underwater rugby practices at the Joseph-Charbonneau pool are suspended. We are actively working to find alternative pool options and relocate our sessions during this closure. We will keep you updated as soon as new information becomes available.
 
@@ -38,6 +39,7 @@ In the meantime, members and participants are invited to join practices held at 
 
 * **Location:** Cornwall Aquatic Center ([100 Water St E, Cornwall, ON K6H 6G4](https://maps.google.com/?q=100+Water+St+E,+Cornwall,+ON))
 * **Schedule:** Mondays and Thursdays from **8:30 PM to 9:55 PM** (20:30–21:55)
+* **Facebook Group:** [Cornwall Underwater Hockey Club on Facebook](https://www.facebook.com/groups/1638204000148806)
 
 Thank you for your understanding and support during this transition period. Feel free to reach out at [info@camosub.ca](mailto:info@camosub.ca) if you have any questions.
 
@@ -45,7 +47,7 @@ Thank you for your understanding and support during this transition period. Feel
 
 <div class="lang-es" markdown="1" style="display:none;">
 
-El 20 de octubre de 2026, se produjo un incendio en la escuela Joseph-Charbonneau. A raíz de este incidente, la piscina está cerrada por tiempo indefinido.
+El 20 de octubre de 2026, se produjo un incendio en la escuela Joseph-Charbonneau. A raíz de este incidente, la [piscina Joseph-Charbonneau](https://montreal.ca/en/places/piscine-joseph-charbonneau) está cerrada por tiempo indefinido.
 
 Hasta nuevo aviso, las prácticas de hockey subaquático y rugby subaquático en la piscina Joseph-Charbonneau quedan suspendidas. Estamos trabajando activamente para encontrar una alternativa y relocalizar nuestros entrenamientos durante este cierre. Les mantendremos informados tan pronto como sea posible.
 
@@ -55,6 +57,7 @@ Mientras tanto, los miembros y participantes están invitados a unirse a los ent
 
 * **Ubicación:** Cornwall Aquatic Center ([100 Water St E, Cornwall, ON K6H 6G4](https://maps.google.com/?q=100+Water+St+E,+Cornwall,+ON))
 * **Horario:** Lunes y jueves de **20:30 a 21:55**
+* **Grupo de Facebook:** [Cornwall Underwater Hockey Club en Facebook](https://www.facebook.com/groups/1638204000148806)
 
 Agradecemos su comprensión y apoyo durante este período de transición. No duden en contactarnos en [info@camosub.ca](mailto:info@camosub.ca) ante cualquier duda.
 
