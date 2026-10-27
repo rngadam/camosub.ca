@@ -75,10 +75,52 @@
         "en": "Video",
         "fr": "Vidéo",
         "es": "Video"
+      },
+      "annonce": {
+        "en": "Annonce",
+        "fr": "Annonce",
+        "es": "Annonce"
+      },
+      "informations": {
+        "en": "Informations",
+        "fr": "Informations",
+        "es": "Informations"
+      },
+      "piscine": {
+        "en": "Piscine",
+        "fr": "Piscine",
+        "es": "Piscine"
       }
     }
   },
   "posts": [
+    {
+      "id": "incendie-piscine-joseph-charbonneau-2026",
+      "url": "/blog/incendie-piscine-joseph-charbonneau-2026.html",
+      "timestamp": "2026-10-21T09:00:00-04:00",
+      "image": null,
+      "tags": [
+        "annonce",
+        "informations",
+        "piscine",
+        "camo"
+      ],
+      "fr": {
+        "title": "Incendie à l'école Joseph-Charbonneau : Fermeture de la piscine et réorganisation des entraînements",
+        "excerpt": "Le 20 octobre 2026, un incendie s'est déclaré à l'école Joseph-Charbonneau. Suite à cet incident, la piscine est fermée pour une durée indéterminée. Jusqu'à nouvel ordre, les pratiques de hockey subaquatique et de rug...",
+        "content_md": "blog/posts/incendie-piscine-joseph-charbonneau-2026.fr.md"
+      },
+      "en": {
+        "title": "Fire at Joseph-Charbonneau School: Pool Closure and Temporary Practice Updates",
+        "excerpt": "On October 20, 2026, a fire occurred at Joseph-Charbonneau school. Following the incident, the pool is closed for an indefinite period. Until further notice, underwater hockey and underwater rugby practices at the Jos...",
+        "content_md": "blog/posts/incendie-piscine-joseph-charbonneau-2026.en.md"
+      },
+      "es": {
+        "title": "Incendio en la escuela Joseph-Charbonneau: Cierre de la piscina y actualización de entrenamientos",
+        "excerpt": "El 20 de octubre de 2026, se produjo un incendio en la escuela Joseph-Charbonneau. A raíz de este incidente, la piscina está cerrada por tiempo indefinido. Hasta nuevo aviso, las prácticas de hockey subaquático y rugb...",
+        "content_md": "blog/posts/incendie-piscine-joseph-charbonneau-2026.es.md"
+      }
+    },
     {
       "id": "rugby-subaquatique-montreal-video",
       "timestamp": "2026-09-28T16:00:00-04:00",
