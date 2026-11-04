@@ -95,6 +95,33 @@
   },
   "posts": [
     {
+      "id": "reouverture-piscine-joseph-charbonneau-2026",
+      "url": "/blog/reouverture-piscine-joseph-charbonneau-2026.html",
+      "timestamp": "2026-11-03T20:00:00-04:00",
+      "image": null,
+      "tags": [
+        "nouvelles",
+        "entrainement",
+        "camo",
+        "piscine"
+      ],
+      "fr": {
+        "title": "Réouverture de la piscine Joseph-Charbonneau et reprise des entraînements réguliers",
+        "excerpt": "Nous sommes ravis d'annoncer que les réparations à la piscine Joseph-Charbonneau sont terminées et que les installations sont à nouveau pleinement opérationnelles. Les entraînements réguliers de hockey subaquatique et...",
+        "content_md": "blog/posts/reouverture-piscine-joseph-charbonneau-2026.fr.md"
+      },
+      "en": {
+        "title": "Reopening of Joseph-Charbonneau Pool and Resumption of Regular Practices",
+        "excerpt": "We are thrilled to announce that repairs at the Joseph-Charbonneau swimming pool are complete and the facilities are fully operational once again. Regular practices for both underwater hockey and underwater rugby resu...",
+        "content_md": "blog/posts/reouverture-piscine-joseph-charbonneau-2026.en.md"
+      },
+      "es": {
+        "title": "Reapertura de la piscina Joseph-Charbonneau y reanudación de los entrenamientos regulares",
+        "excerpt": "¡Estamos encantados de anunciar que las reparaciones en la piscina Joseph-Charbonneau han finalizado y las instalaciones vuelven a estar totalmente operativas! Los entrenamientos regulares de hockey subacuático y rugb...",
+        "content_md": "blog/posts/reouverture-piscine-joseph-charbonneau-2026.es.md"
+      }
+    },
+    {
       "id": "incendie-piscine-joseph-charbonneau-2026",
       "url": "/blog/incendie-piscine-joseph-charbonneau-2026.html",
       "timestamp": "2026-10-21T09:00:00-04:00",

@@ -1,0 +1,1 @@
+¡Estamos encantados de anunciar que las reparaciones en la piscina Joseph-Charbonneau han finalizado y las instalaciones vuelven a estar totalmente operativas! Los entrenamientos regulares de hockey subacuático y rugby subacuático se reanudan de inmediato según nuestro horario habitual. ¡Gracias a todos por su paciencia y apoyo durante este cierre temporal!
