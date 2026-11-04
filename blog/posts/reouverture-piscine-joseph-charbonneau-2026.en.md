@@ -1,0 +1,1 @@
+We are thrilled to announce that repairs at the Joseph-Charbonneau swimming pool are complete and the facilities are fully operational once again. Regular practices for both underwater hockey and underwater rugby resume immediately according to our normal schedule. Thank you all for your patience and support during this temporary closure!

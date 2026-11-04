@@ -1,70 +1,5 @@
 [
   {
-    "id": "cornwall-training",
-    "startDate": null,
-    "endDate": null,
-    "time": "20h30 - 21h55",
-    "recurrence": {
-      "fr": "Tous les lundis et jeudis",
-      "en": "Every Monday and Thursday",
-      "es": "Cada lunes y jueves"
-    },
-    "rrule": "FREQ=WEEKLY;BYDAY=MO,TH",
-    "firstEventStartDate": "2026-10-22",
-    "location": {
-      "name": "Cornwall Aquatic Center",
-      "address": "100 Water St E",
-      "city": "Cornwall",
-      "province": "ON",
-      "postalCode": "K6H 6G4",
-      "country": "Canada",
-      "mapsLink": "https://maps.google.com/?q=100+Water+St+E,+Cornwall,+ON"
-    },
-    "fr": {
-      "title": "Pratiques alternatives à Cornwall",
-      "description": "En attendant la réouverture ou relocalisation de nos plages horaires à Montréal suite à l incendie à Joseph-Charbonneau, rejoignez-nous à Cornwall !",
-      "details": null,
-      "cost": "Gratuit / Inclus",
-      "equipmentNeeded": "Maillot de bain, palmes, masque, tuba",
-      "programTitle": "Au programme :",
-      "programDetails": [
-        "Entraînements et parties amicales de hockey subaquatique et rugby subaquatique",
-        "Pratiques les lundis et jeudis soirs de 20h30 à 21h55"
-      ],
-      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
-      "url": "https://www.facebook.com/groups/1638204000148806"
-    },
-    "en": {
-      "title": "Alternative Practices in Cornwall",
-      "description": "While we seek alternative pool options in Montreal following the Joseph-Charbonneau fire, join us for practices in Cornwall!",
-      "details": null,
-      "cost": "Free / Included",
-      "equipmentNeeded": "Swimsuit, fins, mask, snorkel",
-      "programTitle": "On the program:",
-      "programDetails": [
-        "Underwater hockey and underwater rugby practices and friendly games",
-        "Practices on Monday and Thursday evenings from 8:30 PM to 9:55 PM"
-      ],
-      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
-      "url": "https://www.facebook.com/groups/1638204000148806"
-    },
-    "es": {
-      "title": "Entrenamientos alternativos en Cornwall",
-      "description": "Mientras buscamos una alternativa en Montreal tras el incendio en Joseph-Charbonneau, ¡únete a los entrenamientos en Cornwall!",
-      "details": null,
-      "cost": "Gratis / Incluido",
-      "equipmentNeeded": "Traje de baño, aletas, máscara, tubo",
-      "programTitle": "En el programa:",
-      "programDetails": [
-        "Entrenamientos y partidos amistosos de hockey y rugby subaquático",
-        "Prácticas los lunes y jueves de 20:30 a 21:55"
-      ],
-      "notes": "Cornwall Aquatic Center (100 Water St E, Cornwall, Ontario).",
-      "url": "https://www.facebook.com/groups/1638204000148806"
-    },
-    "image": null
-  },
-  {
     "id": "newbie-training",
     "startDate": null,
     "endDate": null,
@@ -98,7 +33,7 @@
         "Maniement de la rondelle (hockey) et du ballon (rugby)",
         "Stratégies de jeu et parties amicales"
       ],
-      "notes": "ATTENTION : Piscine Joseph-Charbonneau fermée jusqu à nouvel ordre suite à un incendie le 20 octobre 2026. Pratiques suspendues en attente de relocalisation. Alternative à Cornwall les lundis et jeudis de 20h30 à 21h55.",
+      "notes": "La piscine Joseph-Charbonneau est rouverte ! Les entraînements réguliers de hockey subaquatique et rugby subaquatique reprennent selon l’horaire habituel.",
       "url": "mailto:info@camosub.ca"
     },
     "en": {
@@ -114,7 +49,7 @@
         "Puck handling (hockey) and ball handling (rugby)",
         "Game strategies and friendly matches"
       ],
-      "notes": "NOTICE: Joseph-Charbonneau Pool closed until further notice following a fire on October 20, 2026. Practices suspended while seeking relocation. Alternative in Cornwall on Mondays and Thursdays from 8:30 PM to 9:55 PM.",
+      "notes": "Joseph-Charbonneau pool is reopened! Regular practices for underwater hockey and underwater rugby have resumed on normal schedule.",
       "url": "mailto:info@camosub.ca"
     },
     "image": null,
@@ -131,7 +66,7 @@
         "Manejo del disco (hockey) y manejo del balón (rugby)",
         "Estrategias de juego y partidos amistosos"
       ],
-      "notes": "AVISO: Piscina Joseph-Charbonneau cerrada hasta nuevo aviso debido a un incendio el 20 de octubre de 2026. Prácticas suspendidas en espera de relocalización. Alternativa en Cornwall los lunes y jueves de 20:30 a 21:55.",
+      "notes": "¡La piscina Joseph-Charbonneau está reabierta! Los entrenamientos regulares de hockey subacuático y rugby subacuático se han reanudado en el horario habitual.",
       "url": "mailto:info@camosub.ca"
     }
   },
